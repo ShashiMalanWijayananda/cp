@@ -1,0 +1,38 @@
+.payment-result {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.payment-result.success{
+    --text-color: #9FFF82;
+}
+
+.payment-result.failed{
+    --text-color: #C49799;
+}
+
+
+.payment-result .payment-result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 300px;
+}
+
+.payment-result .payment-result-header {
+    color: var(--text-color);
+    font-size: clamp(30px, 5vw, 60px);
+    font-family: 'Jersey 25', sans-serif;
+}
+
+.payment-result .payment-result-info {
+    color: var(--yo-light);
+    font-size: clamp(20px, 5vw, 40px);
+    font-family: VT323, monospace;
+    text-align: center;
+}

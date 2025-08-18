@@ -1,0 +1,411 @@
+.submarine-theme {
+    font-family: "Jersey 25", sans-serif;
+    background-color: #000;
+    border: 2px solid #B7EF82;
+    border-radius: 8px;
+    color: #B7EF82;
+    padding: 20px;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 20px rgba(47, 182, 126, 0.5);
+    box-sizing: border-box;
+}
+
+.ticket {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header Section */
+.ticket-header-section {
+    text-align: center; /* Center align as shown in screenshot */
+    border-bottom: 1px dotted #B7EF82;
+    padding-bottom: 10px;
+
+}
+
+.concert-name {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 2px;
+    color: #B7EF82;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.concert-text {
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem); /* Smaller responsive font size */
+    margin: 5px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center; /* Center align as shown in screenshot */
+}
+
+.ticket-protocol {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    color: #c49799;
+    letter-spacing: 3px;
+    margin-top: 10px;
+    text-align: center; /* Center align as shown in screenshot */
+}
+
+/* Graphics Section */
+.ticket-graphics {
+    display: flex;
+    flex-direction: column; /* Stack vertically as in screenshot */
+    align-items: center; /* Center items */
+    gap: 20px;
+    margin: 15px 0;
+}
+
+.radar-graphic {
+    width: min(120px, 35vw); /* Smaller responsive width */
+    height: min(120px, 35vw); /* Smaller responsive height */
+    border: 2px solid #B7EF82;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto; /* Center when wrapped */
+}
+
+.radar-graphic::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px solid #B7EF82;
+    border-radius: 50%;
+}
+
+.radar-graphic::after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    border: 1px solid #B7EF82;
+    border-radius: 50%;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items */
+    gap: 10px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.submarine-graphic {
+    width: min(100px, 30vw); /* Responsive width */
+    height: min(40px, 10vw); /* Responsive height */
+    background-color: transparent;
+    border-bottom: 2px solid #B7EF82;
+    position: relative;
+}
+
+.submarine-graphic::before {
+    content: "";
+    position: absolute;
+    width: min(20px, 6vw);
+    height: min(10px, 3vw);
+    background-color: #B7EF82;
+    top: -10px;
+    right: 30%;
+}
+
+.location-year {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    color: #d6c872;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.sound-wave {
+    width: 60%;
+    margin: 0 auto;
+    height: 20px;
+    background: linear-gradient(90deg,
+    transparent 0%,
+    #B7EF82 25%, #B7EF82 27%,
+    transparent 27%, transparent 32%,
+    #B7EF82 32%, #B7EF82 34%,
+    transparent 34%, transparent 40%,
+    #B7EF82 40%, #B7EF82 42%,
+    transparent 42%, transparent 100%
+    );
+    background-size: 100% 100%;
+    opacity: 0.7;
+}
+
+.agent-verification {
+    border-bottom: 1px solid #B7EF82;
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    text-align: right;
+    width: 100%;
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+}
+
+/* Agent Section */
+.agent-section {
+    border: 2px solid #B7EF82;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0 10px;
+    display: flex;
+    flex-direction: column;
+    /* Remove border for simpler look matching screenshot */
+    display: none;
+}
+
+.agent-label {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    opacity: 0.8;
+}
+
+.agent-name {
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+    font-weight: bold;
+    margin: 5px 0 15px 0;
+    letter-spacing: 2px;
+    word-break: break-word;
+}
+
+.access-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 15px;
+}
+
+.access-zone-label {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    opacity: 0.8;
+}
+
+.zone-designation {
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.barcode-section {
+    width: min(120px, 30vw); /* Responsive width */
+    height: min(80px, 20vw); /* Responsive height */
+    border: 1px solid #ff3366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin-left: auto; /* Push to right */
+    margin-right: 0;
+}
+
+.barcode-image {
+    max-width: 100%;
+    max-height: 100%;
+    filter: invert(1) hue-rotate(140deg);
+}
+
+/* Action Button */
+.engage-access-button {
+    background-color: #B7EF82;
+    color: #000;
+    text-align: center;
+    padding: clamp(10px, 3vw, 15px);
+    font-size: clamp(1.2rem, 4vw, 1.5rem); /* Responsive font size */
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    border: 2px solid #d6c872;
+    cursor: pointer;
+    margin: 15px 0;
+    transition: all 0.3s ease;
+    /* Hide this button to match the screenshot */
+    display: none;
+}
+
+.engage-access-button:hover {
+    background-color: #d6c872;
+    color: #000;
+}
+
+/* Header */
+.ticket-footer {
+    border-top: 1px dotted #B7EF82;
+    padding-top: 10px;
+    font-size: clamp(0.7rem, 2vw, 0.8rem);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-item {
+    display: flex;
+    gap: 5px;
+}
+
+.detail-label {
+    opacity: 0.8;
+}
+
+.sequence-id {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* Action button styles */
+.ticket-action {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.action-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(47, 182, 126, 0.2);
+    color: #B7EF82;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-group:hover {
+    background-color: rgba(47, 182, 126, 0.4);
+}
+
+.action-icon {
+    font-size: 16px;
+}
+
+.action-text {
+    font-size: 14px;
+}
+
+/* Assigner badge styles */
+.assigner-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: rgba(47, 182, 126, 0.1);
+    border-radius: 4px;
+    font-size: 12px;
+    color: #B7EF82;
+}
+
+.assigner-icon {
+    font-size: 14px;
+}
+
+/* Overlay for non-shared tickets */
+.ticket-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.ticket-overlay::after {
+    content: "SHARE TO UNLOCK";
+    cursor:pointer;
+    color: #B7EF82;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 20px;
+    border: 2px dashed #B7EF82;
+    border-radius: 8px;
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 768px) {
+    .ticket-graphics {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .right-section {
+        align-items: center;
+        width: 100%;
+    }
+
+    .access-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .barcode-section {
+        margin: 0 auto;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .submarine-theme {
+        padding: 15px;
+    }
+
+    .agent-section {
+        padding: 10px;
+    }
+}
+
+/* Container styles to ensure the ticket is centered and responsive within the carousel */
+.ticket-container {
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.ticket-wrapper {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+/* Carousel container specific styles */
+.carousel-container .carousel {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-container .carousel .slide {
+    background-color: transparent;
+}
+
+/* Adjust carousel control sizes for mobile */
+@media (max-width: 768px) {
+    .carousel-container .carousel .control-arrow {
+        padding: 5px;
+    }
+}

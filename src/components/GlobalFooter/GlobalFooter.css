@@ -1,0 +1,49 @@
+/* GlobalFooter.css */
+.global-footer-scrolling {
+    width: 100vw;
+    position: fixed;
+    height: 38px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #B4B3B0;
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+    padding: 0;
+    z-index: 100;
+    margin: 0px;
+}
+
+.global-scroll-wrapper {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.global-scroll-content {
+    display: inline-block;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    color: #000;
+    letter-spacing: 3px;
+    opacity: 0.8;
+    animation: scroll-left-system 350s linear infinite;
+    will-change: transform;
+    visibility: visible;
+}
+
+@keyframes scroll-left-system {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Accessibility: Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .global-scroll-content {
+        animation-duration: 300s;
+    }
+}

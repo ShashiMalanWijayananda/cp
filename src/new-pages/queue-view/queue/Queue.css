@@ -1,0 +1,434 @@
+/* Queue.css - Adjusted for 100% zoom (scaled down from 75% design) */
+
+/* theme switches */
+.queue-loader.blue {
+    --theam-color: #99d5ff;
+}
+
+
+/* Zone Z */
+.queue-loader.green {
+    --theam-color: #CFDF82;
+}
+
+/* Zone A */
+
+/* container */
+.queue-loader {
+    font-family: 'Jersey 25', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+
+    /* center vertically like Figma card */
+    width: 100%;
+    max-width: 615px;
+    /* was 820px -> 820*0.75 = 615px */
+    margin: 0 auto;
+}
+
+/* header */
+.queue-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 30px 25px 0px 25px;
+    border: 2px solid var(--theam-color);
+    padding-inline: 50px; /* Keeps spacing for title & subtitle */
+    position: relative;   /* Allows inner elements to stretch properly */
+    width: 100%;
+    max-width: 480px;
+}
+
+/* was 22px */
+.queue-header .queue-title {
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--yo-blue);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.queue-header .queue-subtitle {
+    font-size: 2rem;
+    line-height: 1;
+    /* was clamp(18px, 3vw, 36px) */
+    color: var(--yo-dark-rose);
+    letter-spacing: 1.5px;
+    /* was 2px */
+    margin-bottom: 0px;
+    /* was 6px */
+}
+
+
+.queue-header .queue-description {
+    font-size: clamp(11px, 1.9vw, 20px);
+    padding: 10px 0px;
+    letter-spacing: 0.75px;
+    margin-bottom: 0px;
+    font-family: 'Jersey 25', sans-serif;
+    background-color: var(--theam-color);
+    color: #0A2314;
+
+    /* Override parent padding */
+    margin-inline: -50px; /* Pulls description to the box edges */
+    padding-inline: 0px;  /* No extra padding inside */
+}
+
+/* card */
+.queue-box {
+    width: 100%;
+    max-width: 480px;
+    /* was 640px -> 640*0.75 = 480px */
+    border: 2px solid var(--theam-color);
+    background: rgba(255, 255, 255, 0.02);
+    /* subtle glass */
+    backdrop-filter: blur(2px);
+    padding: 17px;
+    /* was 22px */
+    margin-bottom: 15px;
+
+    /* was 18px */
+}
+
+.queue-box .queue-status-title {
+    font-size: clamp(18px, 3vw, 42px);
+    /* was clamp(24px, 4vw, 56px) */
+    color: var(--yo-dark-rose);
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 0px;
+    /* was 14px */
+}
+
+.queue-box .queue-info {
+    margin-bottom: 0px;
+    line-height: 1;
+}
+
+/* was 14px */
+.queue-box .queue-info .queue-total-seats {
+    font-size: clamp(12px, 1.9vw, 24px);
+    /* was clamp(16px, 2.5vw, 32px) */
+    color: var(--yo-light);
+    text-align: center;
+    font-family: VT323, monospace;
+    margin-bottom: 6px;
+    /* was 8px */
+}
+
+.queue-box .queue-info .queue-checking-position {
+    font-size: clamp(12px, 1.9vw, 24px);
+    /* was clamp(16px, 2.5vw, 32px) */
+    color: var(--yo-blue);
+    text-align: center;
+    font-family: VT323, monospace;
+    margin-bottom: 0px;
+    /* was 14px */
+}
+
+.queue-box .queue-info .queue-checking-position .queue-arrow {
+    color: var(--yo-blue);
+    margin-right: 6px;
+    /* was 8px */
+    animation: queue-blink 1s infinite;
+}
+
+@keyframes queue-blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* depth rows */
+.queue-depth-info {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+/* was 10px */
+.queue-depth-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    font-size: 1rem;
+    justify-content: space-between;
+    /* was clamp(14px, 2vw, 22px) */
+}
+
+.queue-depth-label {
+    color: var(--yo-dark-rose);
+    font-family: VT323, monospace;
+    font-size: 1.5rem;
+    /* was clamp(14px, 2vw, 28px) */
+    justify-self: start;
+}
+
+.queue-depth-dashes {
+    color: var(--yo-dark-rose);
+    text-align: center;
+    letter-spacing: 1.5px;
+    /* was 2px */
+    opacity: 0.7;
+}
+
+.queue-depth-value {
+    color: var(--yo-dark-rose);
+    font-family: VT323, monospace;
+    font-size: 1.5rem;
+    /* was clamp(14px, 2vw, 28px) */
+    justify-self: end;
+}
+
+/* progress */
+.queue-progress-container {
+    margin-top: 5px;
+    width: 100%;
+    max-width: 480px;
+}
+
+/* was 6px, 640px */
+.queue-progress-bar {
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    /* 10 blocks like the mock */
+    gap: 5px;
+    /* was 6px */
+    height: 23px;
+    /* was 30px */
+    width: 100%;
+    border: 2px solid var(--theam-color);
+    padding: 2px;
+    background: transparent;
+    margin-bottom: 0px;
+}
+
+.queue-progress-segment {
+    border: 1px solid #1a1a1a;
+    background-color: transparent;
+}
+
+/* keep the original binding logic from TSX, but style an active segment */
+.queue-progress-segment.queue-active {
+    background-color: var(--yo-blue);
+}
+
+/* helper – not currently shown by TSX but retained */
+.queue-remaining-time {
+    color: var(--yo-blue);
+    text-align: center;
+    letter-spacing: 0.75px;
+    /* was 1px */
+    font-family: VT323, monospace;
+    font-size: clamp(11px, 1.5vw, 18px);
+    /* was clamp(14px, 2vw, 24px) */
+    margin-top: 8px;
+    /* was 10px */
+}
+
+/* bottom buttons */
+.horizontal-buttons {
+    padding-top: 0px;
+    /* was 20px */
+    display: flex;
+    gap: 15px;
+    /* was 20px */
+    width: 100%;
+    max-width: 480px;
+    /* was 640px - align to card width */
+    margin: 0px !important;
+}
+
+.horizontal-buttons .queue-button {
+    flex: 1;
+}
+
+
+.queue-button .bicon {
+    filter: invert(0);
+}
+.queue-button .cicon {
+    filter: invert(1);
+}
+.queue-button{
+    justify-content: center;
+}
+
+.queue-button .label {
+    font-size: 1.5rem !important;
+    line-height: 1;
+    color: #ffffff;
+    font-weight: 200;
+}
+@media (max-width: 768px) {
+
+
+    /* responsive trims from your original preserved/adjusted */
+    @media (max-width: 768px) {
+        .queue-loader {
+            padding: 14px 9px;
+        }
+
+        /* was 18px 12px */
+        .queue-header {
+            margin-bottom: 14px;
+        }
+
+        /* was 18px */
+        .queue-header .queue-title {
+            font-size: 3rem;
+            margin-bottom: 0px;
+        }
+
+        .queue-header .queue-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 0px;
+        }
+
+        /* was clamp(16px, 5vw, 28px) */
+        .queue-header .queue-description {
+            font-size: 1rem;
+            margin-bottom: 0px;
+        }
+
+        /* was clamp(12px, 4vw, 20px) */
+        .queue-box {
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        /* was 16px, 16px */
+        .queue-box .queue-status-title {
+            font-size: clamp(15px, 4.5vw, 32px);
+        }
+
+        .queue-box .queue-info .queue-checking-position {
+            font-size: 1.5rem;
+            text-align: center;
+
+        }
+        /* was clamp(20px, 6vw, 42px) */
+        .queue-depth-row {
+            grid-template-columns: 1fr auto 1fr;
+        }
+
+        .horizontal-buttons {
+            flex-direction: column;
+            gap: 0px;
+        }
+
+        /* was 14px */
+    }
+
+    /* button appearance (retro outline) */
+    .queue-button {
+        border: var(--theam-color) 2px solid;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 42px;
+        padding: 8px 9px;
+        background-color: transparent;
+        color: #ffffff;
+        cursor: pointer;
+        transition: transform .08s ease, box-shadow .2s ease;
+        font-family: 'Jersey 25', sans-serif;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+
+    .queue-button:active {
+        transform: translateY(1px);
+    }
+
+    .queue-button .bicon {
+        filter: invert(0);
+    }
+    .queue-button .cicon {
+        filter: invert(1);
+    }
+
+    .queue-button .label {
+        font-size: 1.5rem !important;
+        line-height: 1;
+        color: #ffffff;
+        font-weight: 200;
+    }
+
+    /* was clamp(14px, 3vw, 18px) */
+    .label {
+        font-family: VT323, monospace;
+    }
+}
+
+@media (max-width: 480px) {
+    .queue-loader {
+        padding: 11px 8px;
+    }
+
+    /* was 15px 10px */
+    .queue-box {
+        padding: 11px;
+        margin-bottom: 11px;
+    }
+
+    .queue-header .queue-title {
+        font-size: 3rem;
+        font-weight: 100;
+        margin-bottom: 0px;
+    }
+
+    /* was clamp(20px, 6vw, 36px) */
+    .queue-header .queue-subtitle {
+        font-size: 1.5rem;
+        line-height: 1;
+        margin-bottom: 0px;
+        font-weight: 100;
+    }
+
+    /* was clamp(16px, 5vw, 28px) */
+    .queue-header .queue-description {
+        margin-bottom: 0px;
+        font-weight: 100;
+    }
+
+    .queue-progress-bar {
+        height: 21px;
+    }
+
+    .queue-depth-value{
+        font-size: 1.3rem;
+
+    }
+
+    .queue-depth-label{
+        font-size: 1.3rem;
+
+    }
+
+    .queue-depth-dashes{
+        font-size: 1.3rem;
+        text-align: center;
+
+    }
+}
+
+@media (max-width: 375px) {
+    .queue-progress-bar {
+        height: 18px;
+    }
+
+    /* was 24px */
+}

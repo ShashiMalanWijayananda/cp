@@ -1,0 +1,888 @@
+:root {
+     font-size: 14px; 
+    --yo-green: #99ff88;
+    --yo-glow: 0 0 10px #99ff88;
+    --yo-font: 'Courier New', monospace;
+}
+
+.form-fields .form-group .input-wrapper {
+    flex: 1;
+    max-width: 50%;
+  }
+
+.form-fields .form-group .input-wrapper input {
+    background-color: #162d23;
+    color: var(--yo-green);
+    font-family: var(--yo-font);
+    border: 2px solid var(--yo-green);
+    box-shadow: var(--yo-glow);
+    font-size: 0.6rem;
+    padding: 10px;
+}
+
+.main-container-reg {
+    background: #0A2314;  
+    background-size: cover;
+    padding: 40px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.content-area-reg{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 1200px;
+    height: 80vh;
+}
+
+/* Keep consistent with login page */
+.logo-panel-reg{
+    flex: 1;
+    margin: 10px;
+    padding: 20px 20px 0px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #9FFF82;
+    height: 100%;
+}
+
+/* Standardized logo sizing to match login */
+.logo {
+    width: 220px;
+    height: 220px;
+    /* margin-top: 40px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;
+    mix-blend-mode: screen;
+}
+
+.content-area-reg .reg-view {
+    flex: 1;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: 1px solid #9EFF6D;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.reg-view .main-title {
+    font-size: 2.2rem;
+    text-align: center;
+    line-height: 1;
+    font-family: 'Jersey 25', sans-serif;
+    color: #9FFF82;
+    margin: 0px;
+}
+
+.note-text {
+    font-size: 0.85rem;
+    color: #9FFF82;
+    font-family: VT323, monospace;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: end;
+}
+
+.sign-up-form {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.google-signup-section {
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+    width: 100%;
+    margin: 0;
+}
+
+.divider {
+    margin: 0px;
+    padding:0px;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--yo-green);
+    font-family: VT323, monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #9FFF82;
+    margin: 10px;
+}
+
+.divider::before {
+    margin-right: 15px;
+}
+
+.divider::after {
+    margin-left: 15px;
+}
+
+.form-panel {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    width: 100%;
+    position: relative;
+    gap: 10px;
+    text-align: left;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-fields .form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.form-fields .form-group .input-wrapper input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.form-fields .form-group .input-wrapper input::placeholder {
+    color: rgba(0, 255, 0, 0.6);
+    font-style: italic;
+}
+
+.form-fields  .form-group label{
+    flex: 0;
+    font-family: VT323, monospace;
+    font-size: 1.5rem;
+    text-align: left;
+    width: 100%;
+}
+
+.form-panel .form-actions {
+    flex-direction: column;
+    gap: 15px;
+    margin: 0px;
+    padding:0px;
+}
+
+/* Cap max width of content area */
+.content-area-reg {
+  max-width: 1000px !important;
+}
+
+/* Adjust Google Sign Up Section */
+.google-signup-section {
+  justify-content: center !important;
+}
+
+/* Optional - Slightly reduce margin on form sections */
+.form-panel {
+  gap: 8px !important;
+}
+
+.sign-up-form {
+  gap: 8px !important;
+}
+.google-signup-section {
+    max-width: 350px !important;
+    min-width: 150px !important;
+}
+
+.sign-up-form .bottom-text {
+    width: 100%;
+    color: #9FFF82;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    margin: 0px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #9FFF82;
+}
+
+.sign-up-form .bottom-text:hover {
+    border: #9FFF82 1px solid;
+}
+
+.signup-redirect-btn {
+    background: transparent;
+    width: 100%;
+    color: var(--yo-green);
+    border: 1px solid var(--yo-green);
+    padding: 12px 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.signup-redirect-btn:hover {
+    background: var(--yo-green);
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.validation-errors {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    color: #ff0000;
+    border: solid #ff0000 2px;
+    padding: 20px;
+    background-color: #000000;
+    z-index: 1000;
+    min-width: 300px;
+    max-width: 150vw;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.error-header {
+    color: #ff0000;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.reg-close-button {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    border: dotted #ff0000 1px;
+}
+
+/* Password mismatch error styling */
+.password-error {
+    color: #ff5151;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    border: 1px dashed #ff5151;
+    margin-top: 0px;
+    font-family: 'vt323', monospace;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-container-reg {
+        display: flex;
+        padding: 15px;
+        gap: 15px;
+        overflow-y: auto;
+    }
+
+    .content-area-reg .reg-view{
+        padding: 2%;
+        gap: 10px;
+    }
+
+    /* Match login page logo section padding */
+    .logo-panel-reg {
+        padding: 2%;
+    }
+
+    .form-fields  .form-group label{
+        flex: 1;
+        font-family: VT323, monospace;
+        font-size: 1.5rem;
+        text-align: left;
+        width: 100%;
+    }
+
+    /* Consistent logo sizing with login */
+    .logo {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container-reg {
+        padding: 10px;
+        height: auto;
+        min-height: 100vh;
+        gap: 10px;
+        overflow-y: auto;
+    }
+
+    .content-area-reg {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+        align-items: center;
+    }
+
+    /* Match login page mobile styling exactly */
+    .logo-panel-reg{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 20px 0;
+        height: auto;
+        border: none; /* Match login */
+    }
+
+    /* Consistent mobile logo sizing */
+    .logo {
+        width: 250px;
+        height: 250px;
+    }
+
+    .reg-view {
+        border: none;
+        width: 100%;
+        margin: 0;
+        padding: 0 5%;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        flex: 1;
+    }
+
+    .reg-view .main-title {
+        font-size: 2rem;
+        text-align: center;
+        letter-spacing: 2px;
+        line-height: 1;
+        font-family: 'Jersey 25', sans-serif;
+        color: #9FFF82;
+        margin: 0 0 20px 0;
+    }
+
+    .google-signup-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px 0;
+        margin: 10px 0;
+    }
+
+    .divider {
+        margin: 10px 0;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sign-up-form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        gap: 8px;
+    }
+
+    .form-panel {
+        gap: 8px;
+    }
+
+    .form-fields {
+        gap: 6px;
+    }
+
+    .form-fields  .form-group label{
+        flex: 1;
+        font-family: VT323, monospace;
+        font-size: 1.5rem;
+        text-align: left;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container-reg {
+        padding: 10px 10px 100px 10px;
+        gap: 8px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .content-area-reg{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .sign-up-form {
+        margin-top: 0;
+        padding-top: 0;
+        width: 100%;
+        gap: 6px;
+    }
+
+    /* Match login page exactly */
+    .logo-panel-reg{
+        border: none;
+        margin: 0;
+        padding: 15px 0;
+        width: 100%;
+    }
+
+    /* Consistent small mobile logo sizing */
+    .logo {
+        width: 200px;
+        height: 200px;
+    }
+
+    .main-title {
+        display: none; 
+    }
+
+    .note-text {
+        text-align: left;
+        margin: 10px 0;
+    }
+
+    .google-signup-section {
+        justify-content: center;
+        padding: 8px 0;
+        margin: 8px 0;
+        width: 100%;
+    }
+
+    .divider {
+        justify-content: center;
+        margin: 8px 0;
+        padding: 0;
+        font-size: 0.9rem;
+    }
+
+    .divider::before {
+        margin-right: 8px;
+    }
+    
+    .divider::after {
+        margin-left: 8px;
+    }
+
+    .content-area-reg .reg-view{
+        padding: 0 5%;
+        gap: 10px;
+        border: none;
+    }
+
+    .form-panel {
+        gap: 6px;
+    }
+
+    .form-fields {
+        gap: 4px;
+    }
+
+    .form-actions {
+        margin-top: 10px;
+    }
+
+    .bottom-text {
+        margin-top: 10px;
+    }
+
+    .form-fields  .form-group label{
+        flex: 1;
+        font-family: VT323, monospace;
+        font-size: 1.5rem;
+        text-align: left;
+        width: 100%;
+    }
+
+    .form-fields .form-group .input-wrapper input {
+        font-size: 0.8rem !important;
+        padding: 8px !important;
+    }
+
+    .signup-redirect-btn {
+        padding: 10px 12px;
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .main-container-reg {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .content-area-reg{
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .logo-panel-reg{
+        border: none;
+        padding: 10px 0;
+    }
+
+    .logo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .sign-up-form {
+        gap: 4px;
+    }
+
+    .google-signup-section {
+        justify-content: center;
+        padding: 6px 0;
+        margin: 6px 0;
+    }
+
+    .divider {
+        margin: 6px 0;
+        padding: 0;
+    }
+
+    .content-area-reg .reg-view{
+        padding: 0 3%;
+        gap: 8px;
+        border: none;
+    }
+
+    .form-panel {
+        gap: 4px;
+    }
+
+    .form-fields {
+        gap: 3px;
+    }
+
+    .form-actions {
+        margin-top: 8px;
+    }
+
+    .bottom-text {
+        margin-top: 8px;
+    }
+
+    .form-fields  .form-group label{
+        flex: 1;
+        font-family: VT323, monospace;
+        font-size: 1.3rem;
+        text-align: left;
+        width: 100%;
+    }
+
+    .form-fields .form-group .input-wrapper input {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .signup-redirect-btn {
+        padding: 10px 12px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Mobile Landscape fixes for both components */
+@media (max-width: 768px) and (orientation: landscape) {
+    .main-container-reg {
+        padding: 10px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .content-area-reg {
+        flex-direction: row;
+        height: auto;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .logo-panel-reg {
+        flex: 0 0 auto;
+        border: none;
+        width: auto;
+        padding: 10px;
+    }
+
+    .reg-view {
+        margin: 0;
+        flex: 1;
+        border: none;
+        padding: 10px;
+    }
+
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .sign-up-form {
+        gap: 4px;
+    }
+
+    .reg-view .main-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .google-signup-section {
+        padding: 5px 0;
+        margin: 5px 0;
+    }
+
+    .divider {
+        margin: 5px 0;
+        font-size: 0.8rem;
+    }
+
+    .form-panel {
+        gap: 4px;
+    }
+
+    .form-fields {
+        gap: 3px;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+}
+
+/* Additional legacy styles to maintain compatibility */
+.register-provider {
+    user-select: none;
+    display: flex;
+    width: 100%;
+    font-size: 1rem;
+    justify-content: space-evenly;
+    padding: 5px;
+}
+
+.provider {
+    display: inline-block;
+    color: var(--yo-green);
+    text-decoration: none;
+    font-weight: normal;
+    background: #0d1117;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.register-btn {
+    background: var(--yo-green);
+    color: #000;
+    border: none;
+    padding: 12px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.register-btn:hover:not(:disabled) {
+    background: #00dd00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.register-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.login-redirect-btn {
+    background: transparent;
+    width: 100%;
+    color: var(--yo-green);
+    border: 1px solid var(--yo-green);
+    padding: 10px 15px;
+    font-family: 'Jersey 25', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.login-redirect-btn:hover {
+    background: var(--yo-green);
+    color: #000;
+}
+
+.reg-btn {
+    width: 100%;
+    padding: 0px 5px;
+    background: var(--yo-green);
+    color: #000;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 0px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.reg-btn:hover {
+    /*background: #00cc00;*/
+}
+
+.reg-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+}
+
+.signup-with {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Input update */
+.form-fields .form-group .input-wrapper input {
+    background-color: #333;
+    border: 2px solid var(--yo-green);
+    color: var(--yo-green);
+    box-shadow: var(--yo-glow);
+}
+
+/* UI PATCH */
+:root {
+  --yo-green: #99ff88;
+  --yo-glow: 0 0 6px #99ff88;
+  --yo-font: 'Courier New', monospace;
+}
+
+.form-fields .form-group .input-wrapper input {
+  background-color: #333;
+  border: 2px solid var(--yo-green);
+  color: var(--yo-green);
+  font-family: var(--yo-font);
+  font-size: 10px;
+  padding: 10px;
+  box-shadow: var(--yo-glow);
+}
+
+/* FINAL MATCH TO REGISTER.JPG */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #02140F;
+  color: #9EFF6D;
+}
+
+.google-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #9EFF6D;
+  background-color: #02140F;
+  color: #9EFF6D;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 0 4px #9EFF6D;
+}
+
+.password-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle .eye-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+button.register-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #9EFF6D;
+  color: #02140F;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 6px #9EFF6D;
+  margin-top: 20px;
+}

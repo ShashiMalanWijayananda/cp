@@ -1,0 +1,305 @@
+.authorize-ticket-view {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    padding: 20px;
+    color: #ffffff;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.authorize-ticket-view .authorize-ticket-view-header {
+    color: var(--yo-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: clamp(30px, 5vw, 50px);
+    font-family: 'Jersey 25', sans-serif;
+    margin-bottom: 5px;
+}
+
+.authorize-ticket-view .authorize-ticket-view-title {
+    color: var(--yo-shade-blue);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    font-size: clamp(20px, 5vw, 40px);
+    font-family: 'Jersey 25', sans-serif;
+    margin-bottom: 20px;
+}
+
+.authorize-ticket-view .footer {
+    font-size: clamp(15px, 3vw, 20px);
+    font-family: VT323, monospace;
+    color: #ffffff;
+    position: absolute;
+    bottom: 20px;
+    line-height: 1.2;
+    text-align: left;
+    width: calc(100% - 40px);
+}
+
+.authorize-ticket-view .ticket-layout-view {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*flex: 1;*/
+}
+
+.desktop-view {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.mobile-view {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.mobile-ticket-counter {
+    color: var(--yo-shade-blue);
+    font-size: clamp(18px, 4vw, 24px);
+    font-family: 'Jersey 25', sans-serif;
+    text-align: center;
+}
+
+.mobile-ticket-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    width: 100%;
+}
+
+.mobile-ticket-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--yo-blue, #00bfff);
+    border-radius: 50px;
+    color: var(--yo-blue, #00bfff);
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 80px;
+    justify-content: center;
+}
+
+.nav-button:hover:not(:disabled) {
+    background: var(--yo-blue, #00bfff);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.nav-button svg {
+    transition: transform 0.3s ease;
+}
+
+.nav-button:hover:not(:disabled) svg {
+    transform: scale(1.2);
+}
+
+
+.ticket-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--yo-blue, #00bfff);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: var(--yo-blue, #00bfff);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+.indicator:hover {
+    transform: scale(1.2);
+}
+
+.assign-button {
+    background: linear-gradient(45deg, var(--yo-blue, #00bfff), var(--yo-shade-blue, #0099cc));
+    border: none;
+    border-radius: 50px;
+    color: #000;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    font-family: 'Jersey 25', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.assign-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
+}
+
+@media (min-width: 769px) {
+    .desktop-view {
+        display: flex;
+    }
+
+    .mobile-view {
+        display: none;
+    }
+
+    .authorize-ticket-view .footer {
+        font-size: clamp(16px, 3vw, 24px);
+        bottom: 40px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .desktop-view {
+        gap: 15px;
+    }
+
+    .authorize-ticket-view {
+        padding: 15px;
+    }
+
+    .authorize-ticket-view .footer {
+        font-size: clamp(10px, 2.5vw, 16px);
+        bottom: 15px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .desktop-view {
+        display: none;
+    }
+
+    .mobile-view {
+        display: flex;
+    }
+
+    .authorize-ticket-view {
+        padding: 10px;
+        justify-content: flex-start;
+    }
+
+    .authorize-ticket-view .authorize-ticket-view-header-p {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .authorize-ticket-view .authorize-ticket-view-title {
+        font-size: clamp(16px, 4vw, 24px);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .mobile-ticket-navigation {
+        gap: unset;
+    }
+
+    .nav-button {
+        min-width: 50px;
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 25px;
+    }
+
+    .nav-text {
+        display: none;
+    }
+
+    .assign-button {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .authorize-ticket-view .footer {
+        position: absolute;
+        bottom: auto;
+        bottom: 50px;
+        font-size: clamp(12px, 2vw, 14px);
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .authorize-ticket-view .footer {
+        display: none;
+    }
+
+    .authorize-ticket-view {
+        padding: 8px;
+    }
+
+    .mobile-ticket-navigation {
+        gap: 0px;
+    }
+
+    .nav-button {
+        min-width: 40px;
+        padding: 8px 10px;
+    }
+
+    .nav-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .assign-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .mobile-ticket-counter {
+        font-size: clamp(14px, 3.5vw, 18px);
+    }
+}
+.not-available{
+    margin-top:120px;
+    position: absolute;
+    font-size: clamp(20px, 3.5vw, 40px);
+    font-family: 'Jersey 25', sans-serif;
+}

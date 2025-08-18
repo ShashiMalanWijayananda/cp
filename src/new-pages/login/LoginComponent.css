@@ -1,0 +1,1229 @@
+body {
+    color: var(--yo-green);
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: VT323, monospace;
+    margin: 0px;
+}
+
+.main-container-login {
+    background: #0A2314;
+    background-size: cover;
+    padding: 40px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.content-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 1200px;
+    height: 80vh;
+}
+
+/* Match registration exactly - keep consistent with registration page */
+.logo-section {
+    flex: 1;
+    margin: 10px;
+    padding: 20px 20px 0px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #9FFF82;  /* Changed to match registration */
+    height: 100%;
+}
+
+.login-section {
+    flex: 1;
+    margin: 10px;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #9EFF6D;  /* Changed to match registration */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.login-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 10px; */
+    width: 100%;
+    max-width: 80%;
+}
+
+.login-panel .login-title {
+    font-size: 2.2rem;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 1;
+    font-family: 'Jersey 25', sans-serif;
+    color: #9FFF82;
+}
+
+.divider {
+    margin: 0px;
+    padding:0px;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--yo-green);
+    font-family: VT323, monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #9FFF82;
+    margin: 10px;
+}
+
+.divider::before {
+    margin-right: 15px;
+}
+
+.divider::after {
+    margin-left: 15px;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0px;
+}
+
+/* Standardized logo sizing to match registration */
+.logo {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;
+    mix-blend-mode: screen;
+}
+
+.info-text {
+    position: relative;
+    z-index: 2;
+    line-height: 1.6;
+    font-size: clamp(20px, 4vw, 25px);
+}
+
+.no-account {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 20px;
+    color: var(--yo-green);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.form-group {
+    /*margin: 0px !important;*/
+    /*gap: 0px;*/
+}
+
+.form-group label {
+    font-weight: 200;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.input-login-panel {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-group .input-wrapper{
+    background-color: #ffffff;
+    border: #9FFF82;
+}
+
+.form-group .input-wrapper input{
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+/* Login Button */
+.login-btn {
+    margin: 0px;
+    letter-spacing: 1px;
+    width: 100%;
+    background: #9FFF82;
+    color: #000;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: VT323, monospace;
+    text-transform: uppercase;
+}
+
+.signup-redirect-btn-container {
+    padding: 0px;
+    font-size: 1.5rem;
+    border: #9FFF82 1px solid;
+    width: 100%;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.signup-redirect-btn {
+    margin: 0px;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 100%;
+    color: #9FFF82;
+    font-size: 1.5rem !important;
+    padding: 0px;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+    font-weight: 100;
+    text-transform: uppercase;
+    border-radius: 0px;
+}
+
+.signup-redirect-btn:hover {
+    color: #000;
+    background-color: #9FFF82;
+    border-radius: 0px;
+}
+
+/* Cap max width of content area to match registration */
+.content-area {
+  max-width: 1000px !important;
+}
+
+/* Tablet View */
+@media (max-width: 1024px) {
+    .main-container-login {
+        display: flex;
+        padding: 15px;
+        gap: 15px;
+        overflow-y: auto;
+    }
+
+    .content-area {
+        max-width: 900px;
+    }
+
+    .login-panel {
+        padding: 30px;
+        max-width: 400px;
+    }
+
+    .login-panel .login-title {
+        font-size: 2.2rem;
+    }
+
+    /* Match registration logo section padding */
+    .logo-section {
+        padding: 2%;
+    }
+
+    .login-section {
+        padding: 2%;
+        gap: 10px;
+    }
+
+    /* Consistent logo sizing with registration */
+    .logo {
+        width: 300px;
+        height: 300px;
+    }
+
+    form label{
+        flex: 0px;
+    }
+}
+
+/* ===== LOGIN COMPONENT MOBILE FIXES ===== */
+
+/* Mobile Portrait - 768px and below */
+@media (max-width: 768px) {
+    .main-container-login {
+        padding: 10px;
+        height: auto;
+        min-height: 100vh;
+        gap: 10px;
+        overflow-y: auto;
+    }
+
+    .content-area {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+        align-items: center;
+    }
+
+    .logo-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 20px 0;
+        height: auto;
+        border: none;
+    }
+
+    .login-section {
+        border: none;
+        width: 100%;
+        margin: 0;
+        padding: 0 5%;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        flex: 1;
+    }
+
+    .logo {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+    }
+
+    .login-panel {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        padding: 20px 10px;
+        box-sizing: border-box;
+        gap: 10px;
+    }
+
+    .google-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 0;
+        margin: 10px 0;
+    }
+
+    .divider {
+        margin: 10px 0;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .input-login-panel {
+        margin-top: 5px;
+    }
+
+    form {
+        gap: 8px;
+    }
+}
+
+/* Mobile Small - 480px and below */
+@media (max-width: 480px) {
+    .main-container-login {
+        padding: 10px 10px 100px 10px;
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+        gap: 8px;
+    }
+
+    .content-area {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .logo-section {
+        border: none;
+        margin: 0;
+        padding: 15px 0;
+        width: 100%;
+    }
+
+    .login-section {
+        padding: 0 5%;
+        gap: 10px;
+        border: none;
+        margin: 0;
+        width: 100%;
+    }
+
+    .logo {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    .login-panel {
+        padding: 10px 15px;
+        gap: 8px;
+    }
+
+    .login-panel .login-title {
+        display: none;
+    }
+
+    .google-btn {
+        justify-content: center;
+        padding: 8px 0;
+        margin: 8px 0;
+        width: 100%;
+    }
+
+    .divider {
+        font-size: 0.9rem;
+        justify-content: center;
+        margin: 8px 0;
+        padding: 0;
+    }
+
+    .divider::before {
+        margin-right: 8px;
+    }
+
+    .divider::after {
+        margin-left: 8px;
+    }
+
+    .input-login-panel {
+        margin-top: 3px;
+    }
+
+    form {
+        gap: 6px;
+    }
+
+    .signup-redirect-btn-container {
+        margin-top: 15px;
+    }
+}
+
+/* Extra Small Mobile - 375px and below */
+@media (max-width: 375px) {
+    .main-container-login {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .content-area {
+        gap: 6px;
+    }
+
+    .logo-section {
+        border: none;
+        padding: 10px 0;
+    }
+
+    .login-section {
+        padding: 0 3%;
+        gap: 8px;
+        border: none;
+    }
+
+    .logo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .login-panel {
+        gap: 6px;
+        padding: 8px 12px;
+    }
+
+    .google-btn {
+        justify-content: center;
+        padding: 6px 0;
+        margin: 6px 0;
+    }
+
+    .divider {
+        margin: 6px 0;
+        padding: 0;
+    }
+
+    .input-login-panel {
+        margin-top: 2px;
+    }
+
+    form {
+        gap: 4px;
+    }
+}
+
+/* ===== REGISTRATION COMPONENT MOBILE FIXES ===== */
+
+/* Mobile Portrait - 768px and below */
+@media (max-width: 768px) {
+    .main-container-reg {
+        padding: 10px;
+        height: auto;
+        min-height: 100vh;
+        gap: 15px;
+        overflow-y: auto;
+    }
+
+    .content-area-reg {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        height: auto;
+        align-items: center;
+    }
+
+    .logo-panel-reg {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 20px 0;
+        height: auto;
+        border: none;
+    }
+
+    .reg-view {
+        border: none;
+        width: 100%;
+        margin: 0;
+        padding: 0 5%;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        flex: 1;
+    }
+
+    .logo {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+    }
+
+    .reg-view .main-title {
+        font-size: 2rem;
+        text-align: center;
+        letter-spacing: 2px;
+        line-height: 1;
+        font-family: 'Jersey 25', sans-serif;
+        color: #9FFF82;
+        margin: 0 0 20px 0;
+    }
+
+    .google-signup-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px 0;
+        margin: 10px 0;
+    }
+
+    .divider {
+        margin: 15px 0;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sign-up-form {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Mobile Small - 480px and below */
+@media (max-width: 480px) {
+    .main-container-reg {
+        padding: 10px 10px 100px 10px;
+        gap: 10px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .content-area-reg {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .logo-panel-reg {
+        border: none;
+        margin: 0;
+        padding: 15px 0;
+        width: 100%;
+    }
+
+    .reg-view {
+        padding: 0 5%;
+        gap: 10px;
+        border: none;
+        margin: 0;
+        width: 100%;
+    }
+
+    .logo {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    .main-title {
+        display: none;
+    }
+
+    .note-text {
+        text-align: left;
+        margin: 10px 0;
+    }
+
+    .google-signup-section {
+        justify-content: center;
+        padding: 15px 0;
+        margin: 15px 0;
+        width: 100%;
+    }
+
+    .divider {
+        justify-content: center;
+        margin: 20px 0;
+        padding: 10px 0;
+        font-size: 1rem;
+    }
+
+    .sign-up-form {
+        margin-top: 0;
+        padding-top: 0;
+        width: 100%;
+    }
+
+    .form-panel {
+        gap: 10px;
+    }
+
+    .form-fields .form-group .input-wrapper input {
+        font-size: 0.8rem !important;
+        padding: 8px !important;
+    }
+
+    .signup-redirect-btn {
+        padding: 10px 12px;
+        font-size: 1.4rem;
+    }
+}
+
+/* Extra Small Mobile - 375px and below */
+@media (max-width: 375px) {
+    .main-container-reg {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .logo-panel-reg {
+        border: none;
+        padding: 10px 0;
+    }
+
+    .reg-view {
+        padding: 0 3%;
+        gap: 8px;
+        border: none;
+    }
+
+    .logo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .google-signup-section {
+        justify-content: center;
+        padding: 20px 0;
+        margin: 20px 0;
+    }
+
+    .divider {
+        margin: 25px 0;
+        padding: 15px 0;
+    }
+
+    .form-fields .form-group .input-wrapper input {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .signup-redirect-btn {
+        padding: 10px 12px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Mobile Landscape fixes for both components */
+@media (max-width: 768px) and (orientation: landscape) {
+    .main-container-login,
+    .main-container-reg {
+        padding: 10px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .content-area,
+    .content-area-reg {
+        flex-direction: row;
+        height: auto;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .logo-section,
+    .logo-panel-reg {
+        flex: 0 0 auto;
+        border: none;
+        width: auto;
+        padding: 10px;
+    }
+
+    .login-section,
+    .reg-view {
+        margin: 0;
+        flex: 1;
+        border: none;
+        padding: 10px;
+    }
+
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .login-panel {
+        padding: 0;
+        gap: 4px;
+        max-width: none;
+    }
+
+    .login-panel .login-title,
+    .reg-view .main-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .google-btn,
+    .google-signup-section {
+        padding: 5px 0;
+        margin: 5px 0;
+    }
+
+    .divider {
+        margin: 5px 0;
+        font-size: 0.8rem;
+    }
+
+    form {
+        gap: 3px;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+}
+
+/* Additional centering improvements */
+.google-btn > div,
+.google-signup-section > div {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Ensure divider lines are properly centered */
+.divider::before,
+.divider::after {
+    flex: 1;
+    height: 1px;
+    background: #9FFF82;
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    .main-container-login {
+        padding: 15px;
+    }
+
+    .content-area {
+        flex-direction: row;
+        height: 90vh;
+    }
+
+    .logo-section {
+        flex: 0px;
+        border: none;
+    }
+
+    .login-section {
+        margin: 10px;
+        flex: 0px;
+        border: none;
+    }
+
+    .logo {
+        width: 180px;
+        height: 180px;
+    }
+
+    .login-panel {
+        padding: 0px;
+        gap: 0px;
+    }
+
+    .login-panel .login-title {
+        font-size: 1rem;
+        margin-bottom: 0px;
+    }
+
+    form {
+        gap: 5px;
+    }
+
+    .form-group label{
+        font-size: 1rem;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+.login-btn:disabled {
+    background: var(--yo-green);
+    cursor: pointer !important;
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .main-container-login,
+    .content-area,
+    .login-panel,
+    .logo {
+        transition: all 0.3s ease;
+    }
+}
+
+.login-error{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-family:"VT323";
+    color: var(--yo-dark-rose);
+}
+
+
+
+/* FINAL MOBILE SPACING REFINEMENT - ULTRA COMPACT */
+
+/* Mobile Portrait - 768px and below - FINAL ADJUSTMENTS */
+@media (max-width: 768px) {
+    /* LOGIN & REGISTRATION SHARED FIXES */
+    .login-panel,
+    .sign-up-form {
+        gap: 3px !important; /* Even tighter */
+    }
+
+    .divider {
+        margin: 3px 0 !important; /* Minimal divider spacing */
+        padding: 0 !important;
+        font-size: 0.95rem !important;
+    }
+
+    .google-btn,
+    .google-signup-section {
+        margin: 3px 0 !important; /* Minimal Google button spacing */
+        padding: 3px 0 !important;
+    }
+
+    .content-area,
+    .content-area-reg {
+        gap: 3px !important; /* Tighter content area gap */
+    }
+
+    /* FORM SPECIFIC FIXES */
+    .input-login-panel {
+        margin-top: 1px !important;
+    }
+
+    form {
+        gap: 2px !important; /* Very tight form element spacing */
+    }
+
+    .form-panel {
+        gap: 2px !important;
+    }
+
+    .form-fields {
+        gap: 1px !important; /* Minimal gap between form fields */
+    }
+
+    /* LOGO SECTION MINIMAL PADDING */
+    .logo-section,
+    .logo-panel-reg {
+        padding: 8px 0 !important;
+    }
+}
+
+/* Mobile Small - 480px and below - FINAL TIGHT */
+@media (max-width: 480px) {
+    .main-container-login,
+    .main-container-reg {
+        gap: 2px !important;
+        padding: 8px 8px 80px 8px !important; /* Reduced bottom padding */
+    }
+
+    .login-panel {
+        gap: 2px !important;
+        padding: 5px 10px !important;
+    }
+
+    .sign-up-form {
+        gap: 2px !important;
+    }
+
+    .google-btn,
+    .google-signup-section {
+        margin: 2px 0 !important;
+        padding: 2px 0 !important;
+    }
+
+    .divider {
+        margin: 2px 0 !important;
+        padding: 0 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .divider::before,
+    .divider::after {
+        margin: 4px !important; /* Minimal line margins */
+    }
+
+    .input-login-panel {
+        margin-top: 0px !important;
+    }
+
+    form {
+        gap: 1px !important;
+    }
+
+    .form-panel {
+        gap: 1px !important;
+    }
+
+    .form-fields {
+        gap: 0px !important; /* No gap between form fields */
+    }
+
+    .form-actions {
+        margin-top: 3px !important;
+    }
+
+    .bottom-text {
+        margin-top: 3px !important;
+    }
+
+    .content-area,
+    .content-area-reg {
+        gap: 2px !important;
+    }
+
+    .logo-section,
+    .logo-panel-reg {
+        padding: 5px 0 !important;
+    }
+}
+
+/* Extra Small Mobile - 375px and below - MINIMAL */
+@media (max-width: 375px) {
+    .main-container-login,
+    .main-container-reg {
+        gap: 1px !important;
+        padding: 5px 5px 60px 5px !important;
+    }
+
+    .login-panel {
+        gap: 1px !important;
+        padding: 3px 8px !important;
+    }
+
+    .sign-up-form {
+        gap: 1px !important;
+    }
+
+    .google-btn,
+    .google-signup-section {
+        margin: 1px 0 !important;
+        padding: 1px 0 !important;
+    }
+
+    .divider {
+        margin: 1px 0 !important;
+        padding: 0 !important;
+        font-size: 0.85rem !important;
+    }
+
+    .divider::before,
+    .divider::after {
+        margin: 3px !important;
+    }
+
+    .input-login-panel {
+        margin-top: 0px !important;
+    }
+
+    form {
+        gap: 0px !important; /* No gap between form elements */
+    }
+
+    .form-panel {
+        gap: 0px !important;
+    }
+
+    .form-fields {
+        gap: 0px !important;
+    }
+
+    .form-actions {
+        margin-top: 2px !important;
+    }
+
+    .bottom-text {
+        margin-top: 2px !important;
+    }
+
+    .content-area,
+    .content-area-reg {
+        gap: 1px !important;
+    }
+
+    .logo-section,
+    .logo-panel-reg {
+        padding: 3px 0 !important;
+    }
+}
+
+/* FORM ELEMENTS TIGHT SPACING */
+@media (max-width: 768px) {
+    .form-group {
+        margin: 0 !important;
+        margin-bottom: 2px !important;
+    }
+
+    .form-group:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    .form-group .input-wrapper {
+        margin: 0 !important;
+    }
+
+    .form-group label {
+        margin: 0 !important;
+        margin-bottom: 1px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-group {
+        margin-bottom: 1px !important;
+    }
+
+    .form-group label {
+        margin-bottom: 0px !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .form-group {
+        margin-bottom: 0px !important;
+    }
+}
+
+/* BUTTON SPACING REFINEMENT */
+@media (max-width: 480px) {
+    .login-btn,
+    .reg-btn {
+        margin: 2px 0 !important;
+    }
+
+    .signup-redirect-btn-container {
+        margin-top: 5px !important;
+    }
+
+    .signup-redirect-btn {
+        margin: 0 !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .login-btn,
+    .reg-btn {
+        margin: 1px 0 !important;
+    }
+
+    .signup-redirect-btn-container {
+        margin-top: 3px !important;
+    }
+}
+
+/* ENSURE NO UNEXPECTED SPACING */
+@media (max-width: 768px) {
+    /* Remove any default margins/padding that might interfere */
+    .login-panel > *,
+    .sign-up-form > *,
+    .form-panel > *,
+    .form-fields > * {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    /* Only allow minimal bottom spacing */
+    .login-panel > *:not(:last-child) {
+        margin-bottom: 2px !important;
+    }
+
+    .sign-up-form > *:not(:last-child),
+    .form-panel > *:not(:last-child) {
+        margin-bottom: 2px !important;
+    }
+
+    .form-fields > *:not(:last-child) {
+        margin-bottom: 1px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-panel > *:not(:last-child),
+    .sign-up-form > *:not(:last-child),
+    .form-panel > *:not(:last-child) {
+        margin-bottom: 1px !important;
+    }
+
+    .form-fields > *:not(:last-child) {
+        margin-bottom: 0px !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .login-panel > *:not(:last-child),
+    .sign-up-form > *:not(:last-child),
+    .form-panel > *:not(:last-child),
+    .form-fields > *:not(:last-child) {
+        margin-bottom: 0px !important;
+    }
+}
+
+/* RETRO TEXT BOX SPECIFIC SPACING */
+@media (max-width: 768px) {
+    /* Target RetroTextBox components specifically */
+    .form-group .input-wrapper input {
+        margin: 0 !important;
+        padding: 8px !important; /* Slightly reduced padding */
+    }
+
+    .form-group label {
+        line-height: 1.2 !important; /* Tighter line height */
+    }
+}
+
+@media (max-width: 480px) {
+    .form-group .input-wrapper input {
+        padding: 6px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .form-group label {
+        font-size: 1.3rem !important; /* Slightly smaller labels */
+        line-height: 1.1 !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .form-group .input-wrapper input {
+        padding: 5px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .form-group label {
+        font-size: 1.2rem !important;
+        line-height: 1 !important;
+    }
+}
+
+/* FINAL CONSISTENCY CHECK */
+@media (max-width: 768px) {
+    /* Ensure both login and registration have identical spacing */
+    .main-container-login,
+    .main-container-reg {
+        padding-top: 10px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .login-section,
+    .reg-view {
+        padding: 0 3% !important;
+    }
+}

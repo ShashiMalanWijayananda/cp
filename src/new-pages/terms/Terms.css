@@ -1,0 +1,330 @@
+body {
+    background: #0A2314 !important;
+}
+
+.terms-view {
+
+    background-color: #0A2314;
+    color: var(--yo-shade-blue);
+    overflow-y: auto;
+
+}
+
+.terms-box {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto 20px auto;
+}
+
+.terms-view .terms-view-title {
+    font-family: "Jersey 25";
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    color: var(--yo-blue);
+    font-weight: normal;
+    /* margin: 10px 0; */
+    line-height: 2;
+}
+
+/* UPDATED: Standardized logo container to match Contact */
+/* .terms-view .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+    margin: 75px auto 20px auto;
+} */
+
+
+
+/* Content container */
+.terms-content-container {
+    width: 100%;
+    padding: 0 15px;
+    padding-bottom: 40px;
+}
+
+.terms-view .content {
+    font-family: VT323;
+    font-size: clamp(14px, 2.25vw, 15px);
+    width: 100%;
+    max-width: 900px;
+    line-height: 1.6;
+    margin: 0 auto;
+}
+
+/* Multi-column grid layout */
+.terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+
+.terms-view .terms-section {
+    border: 1px solid #fff;
+    /* background-color: rgba(0, 0, 0, 0.3); */
+    margin-bottom: 15px;
+}
+
+.terms-view .section-terms-view-title {
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 2.2rem;
+    line-height: 1;
+    font-family: VT323;
+}
+
+.terms-view .section-content {
+    margin: 10px;
+    line-height: 1;
+    color: var(--yo-shade-blue);
+    font-size: 1rem;
+}
+
+/* Event table styling */
+.event-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.event-details-table td {
+    padding: 4px 0;
+    vertical-align: top;
+    color: var(--yo-shade-blue);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.event-details-table td:first-child {
+    color: #f7fafc;
+    white-space: nowrap;
+    width: 120px;
+    font-size: 1.05rem;
+}
+
+.event-details-table td:nth-child(2) {
+    width: 20px;
+    text-align: center;
+    color: #f7fafc;
+    padding: 4px 10px;
+    font-size: 1.05rem;
+}
+
+.event-details-table td:nth-child(3) {
+    color: var(--yo-shade-blue);
+}
+
+.bullet-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.bullet-list li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+    font-size: 1.2rem;
+    color: var(--yo-shade-blue);
+}
+
+.bullet-list ul {
+    list-style-type: circle;
+    padding-left: 20px;
+    margin-top: 5px;
+    font-size: 1.2rem;
+}
+
+.bullet-list ul li {
+    margin-bottom: 4px;
+    font-size: 1.2rem;
+}
+
+.terms-view a {
+    color: #63b3ed;
+    text-decoration: none;
+}
+
+.terms-view a:hover {
+    text-decoration: underline;
+    color: #90cdf4;
+}
+
+.terms-view .section-content p {
+    margin: 10px 0;
+    color: var(--yo-shade-blue);
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+
+.terms-view .section-content strong {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: #f7fafc;
+}
+
+
+/* UPDATED: Mobile responsive logo sizes to match Contact */
+@media (max-width: 1024px) {
+
+    .terms-content-container {
+        padding-bottom: 40px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .terms-view {
+        padding: 15px 7px;
+    }
+
+    .header-right {
+        top: 11px;
+        right: 11px;
+    }
+
+
+
+
+    .terms-view .terms-view-title {
+        font-size: 2.2rem;
+    }
+
+    .terms-content-container {
+        padding-bottom: 40px;
+    }
+
+    .terms-view .content {
+        width: 100%;
+        padding: 7px;
+    }
+
+    .terms-grid {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .terms-view .section-terms-view-title {
+        font-size: 0.9em;
+        padding: 6px 9px;
+    }
+
+    .terms-view .section-content {
+        font-size: 0.75rem;
+        margin: 9px;
+    }
+
+    .event-details-table td {
+        font-size: 0.75rem;
+        padding: 3px 0;
+    }
+
+    .event-details-table td:first-child {
+        width: 100px;
+        font-size: 0.9rem;
+    }
+
+    .event-details-table td:nth-child(2) {
+        font-size: 0.9rem;
+        padding: 3px 8px;
+    }
+
+    .bullet-list li {
+        font-size: 0.75rem;
+    }
+
+    .bullet-list ul li {
+        font-size: 0.71rem;
+    }
+
+    .terms-view .section-content p {
+        font-size: 0.75rem;
+    }
+
+    .terms-view .section-content strong {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-view {
+        padding: 11px 11px 150px 11px;
+    }
+
+    .header-right {
+        top: 7px;
+        right: 7px;
+    }
+
+
+
+    .terms-view .terms-view-title {
+        font-size: 2.2em;
+        line-height: 1;
+    }
+
+    .terms-content-container {
+        padding: 0 4px;
+    }
+
+    .terms-view .content {
+        padding: 4px;
+    }
+
+    .terms-grid {
+        gap: 9px;
+    }
+
+    .terms-view .section-terms-view-title {
+        font-size: 0.83em;
+        padding: 4px 7px;
+    }
+
+    .terms-view .section-content {
+        font-size: 0.71rem;
+        margin: 7px;
+    }
+
+    .event-details-table td {
+        font-size: 0.71rem;
+        padding: 2px 0;
+    }
+
+    .event-details-table td:first-child {
+        width: 90px;
+        font-size: 0.83rem;
+    }
+
+    .event-details-table td:nth-child(2) {
+        font-size: 1.2rem;
+        padding: 2px 6px;
+    }
+
+    .bullet-list li {
+        font-size: 1.2rem;
+    }
+
+    .bullet-list ul li {
+        font-size: 0.67rem;
+    }
+
+    .terms-view .section-content p {
+        font-size: 0.71rem;
+    }
+
+    .terms-view .section-content strong {
+        font-size: 0.83rem;
+    }
+}
+
+@media (max-width: 375px) {
+
+}
+
+@media (max-width: 320px) {
+
+}

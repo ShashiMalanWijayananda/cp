@@ -1,0 +1,172 @@
+.retro-no-events-container {
+    margin: 1.5rem 0;
+    padding: 0;
+    font-family: 'VT323', monospace;
+}
+
+.retro-screen {
+    background-color: #1a1a1a;
+    border: 4px solid #C89595;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5),
+    0 0 0 4px #000000,
+    0 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    margin:15px;
+}
+
+.retro-screen:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right,
+    transparent,
+    #C89595,
+    transparent);
+    z-index: 1;
+    opacity: 0.3;
+}
+
+.screen-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* CRT scan line effect */
+.screen-content:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, 0.15) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.pixel-icon {
+    margin-bottom: 1rem;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.calendar-top {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 30px;
+    height: 10px;
+    background-color: #C89595;
+}
+
+.calendar-body {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 40px;
+    height: 30px;
+    background-color: #C89595;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-x {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.calendar-x:before,
+.calendar-x:after {
+    content: '';
+    position: absolute;
+    background-color: #1a1a1a;
+    width: 4px;
+    height: 20px;
+    top: 0;
+    left: 8px;
+    transform: rotate(45deg);
+}
+
+.calendar-x:after {
+    transform: rotate(-45deg);
+}
+
+.retro-heading {
+    font-size: 1.8rem;
+    color: #b7ef82;
+    margin: 0.5rem 0;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(183, 239, 130, 0.7);
+    letter-spacing: 2px;
+}
+
+.terminal-text {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    border-left: 3px solid #C89595;
+}
+
+.prompt {
+    color: #C89595;
+    margin-right: 0.5rem;
+}
+
+.message {
+    color: #cccccc;
+    padding-left: 1.2rem;
+    margin-top: 0.25rem;
+}
+
+/* Blinking cursor effect */
+.blink {
+    color: #b7ef82;
+    animation: blink-animation 1s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+/* Additional retro CRT glow */
+@keyframes flicker {
+    0% { box-shadow: 0 0 5px rgba(183, 239, 130, 0.1); }
+    50% { box-shadow: 0 0 10px rgba(183, 239, 130, 0.3); }
+    100% { box-shadow: 0 0 5px rgba(183, 239, 130, 0.1); }
+}
+
+.retro-screen {
+    animation: flicker 2s infinite alternate;
+}

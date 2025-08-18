@@ -1,0 +1,239 @@
+
+
+.contact-view {
+
+    background-color: #0A2314;
+    color: var(--yo-shade-blue);
+    overflow-y: auto;
+
+
+}
+
+.contact-view .contact-title {
+    font-family: "Jersey 25";
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    line-height: 2;
+}
+
+
+
+
+.contact-view .content {
+    font-family: VT323;
+    font-size: 1.2rem;
+    width: 100%;
+    max-width: 900px;
+    line-height: 1.6;
+}
+
+.contact-view .content h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--yo-blue);
+    font-weight: normal;
+}
+
+.contact-view .contact-content {
+    width: 100%;
+    margin-bottom: 19px;
+}
+
+.contact-view .contact-content > .contact-section {
+    text-align: center;
+    margin-bottom: 22px;
+    border: 1px solid #fff;
+    padding: 15px;
+}
+
+.contact-view .contact-content > .contact-section p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: var(--yo-shade-blue);
+    margin: 0;
+}
+
+.contact-view .contact-details-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.contact-view .contact-section {
+    border: 1px solid #fff;
+}
+
+.contact-view .contact-section p {
+    margin: 11px;
+    line-height: 1.3;
+    text-align: left;
+    color: var(--yo-shade-blue);
+    font-size: 1.2rem;
+}
+
+.contact-view .section-contact-title {
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 7px 11px;
+    font-size: 2.2rem;
+    line-height: 1.2;
+}
+
+.contact-view .contact-section {
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.contact-view .contact-section strong {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: #f7fafc;
+}
+
+.contact-view .section-content {
+    margin-left: 0;
+    color: var(--yo-shade-blue);
+}
+
+.contact-view .bullet-point {
+    margin-bottom: 6px;
+    padding-left: 0;
+    line-height: 1.5;
+}
+
+.split-content {
+    display: flex;
+    gap: 38px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.split-content img {
+    max-width: 225px;
+    height: auto;
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-link {
+    color: #63b3ed;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+    color: #3f8ef5;
+}
+
+
+
+@media (max-width: 768px) {
+    .contact-view {
+        padding: 15px 7px;
+    }
+
+
+
+    .contact-view .content {
+        width: 100%;
+        padding: 7px;
+    }
+
+    .contact-view .content h1 {
+        font-size: 2.2rem;
+    }
+
+    .contact-view .contact-content > .contact-section {
+        padding: 11px;
+    }
+
+    .contact-view .contact-content > .contact-section p {
+        font-size: 1.2rem;
+    }
+
+    .contact-view .contact-details-panel {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .contact-view .section-contact-title {
+        font-size: 2.2rem;
+        padding: 6px 9px;
+    }
+
+    .contact-view .contact-section p {
+        font-size: 1.2rem;
+        margin: 9px;
+    }
+
+    .split-content {
+        gap: 15px;
+    }
+
+    .split-content img {
+        max-width: 188px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-view {
+        padding: 11px 11px 150px 11px;
+    }
+
+
+
+    .contact-view .content h1 {
+        font-size: 2.2rem;
+    }
+
+    .contact-view .content {
+        padding: 4px;
+    }
+
+    .contact-view .contact-content > .contact-section {
+        padding: 9px;
+    }
+
+    .contact-view .contact-content > .contact-section p {
+        font-size: 1.2rem;
+    }
+
+    .contact-view .contact-details-panel {
+        gap: 9px;
+    }
+
+    .contact-view .section-contact-title {
+        font-size: 2.2rem;
+        padding: 4px 7px;
+    }
+
+    .contact-view .contact-section p {
+        font-size: 1.2rem;
+        margin: 7px;
+    }
+
+    .contact-view .contact-section strong {
+        font-size: 1.2rem;
+    }
+
+    .split-content {
+        gap: 11px;
+    }
+
+    .split-content img {
+        max-width: 150px;
+    }
+
+    .contact-view .contact-title {
+        line-height: 1;
+    }
+}
+

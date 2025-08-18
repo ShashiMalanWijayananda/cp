@@ -1,0 +1,733 @@
+:root {
+    --color-darkblue: #8666d5;
+    --color-lightblue: #8293CF;
+    --color-stone: #687C75;
+    --color-forest: #092313;
+    --color-olive: #607C46;
+    --color-lime: #B7EF82;
+    --color-secondary: #d4c693;
+    --color-darkgray: #3A3C3C;
+    --color-skyblue: #A3D8FD;
+    --color-aqua: #A9CACC;
+    --color-rose: #c49799;
+    --color-primary: rgba(115, 115, 115, 0.29);
+}
+
+/* Base styles */
+.cyber-concert-container {
+    min-height: 60vh; /* Mobile first */
+    padding: 0.5rem;
+    font-family: 'Jersey 25', monospace;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Web/Desktop sizing */
+@media (min-width: 768px) {
+    .cyber-concert-container {
+        min-height: 100vh; /* Full height for better visibility */
+        padding: 1rem;
+        display: flex;
+        align-items: center; /* Center the card vertically */
+        justify-content: center; /* Center the card horizontally */
+    }
+}
+
+/* For screens around 1366px width, ensure button is visible */
+@media (min-width: 768px) and (max-height: 800px) {
+    .cyber-concert-container {
+        min-height: 100vh;
+        padding: 0.5rem; /* Reduce padding on shorter screens */
+        overflow-y: auto; /* Allow scrolling if needed */
+    }
+}
+
+/* Background grid */
+.background-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    height: 100%;
+    width: 100%;
+    gap: 1px;
+}
+
+.grid-cell {
+    border: 1px solid;
+    border-color: rgba(104, 124, 117, 0.3);
+    animation: pulse 2s infinite;
+}
+
+/* Main card container */
+.card-container {
+    max-width: 20rem; /* Mobile first */
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Web/Desktop sizing */
+@media (min-width: 768px) {
+    .card-container {
+        max-width: 28rem; /* Larger for web */
+        max-height: 90vh; /* Limit height to ensure button visibility */
+        overflow-y: auto; /* Allow scrolling within card if needed */
+    }
+}
+
+/* For medium height screens (like 1366x768) */
+@media (min-width: 768px) and (max-height: 800px) {
+    .card-container {
+        max-width: 26rem; /* Slightly smaller width */
+        max-height: 95vh; /* More height utilization */
+        transform: scale(0.9); /* Scale down entire card */
+        transform-origin: center;
+    }
+}
+
+.card-container.glitching {
+    animation: bounce 1s infinite;
+}
+
+/* Terminal header */
+.terminal-header-concert {
+    border: 2px solid #B7EF82;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0.25rem; /* Reduced from 0.5rem */
+    margin-bottom: 0;
+    background-color: var(--color-darkgray);
+}
+
+.terminal-dots-concert {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem; /* Reduced from 0.5rem */
+}
+
+.terminal-dot {
+    width: 0.5rem; /* Reduced from 0.75rem */
+    height: 0.5rem; /* Reduced from 0.75rem */
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.terminal-dot.red {
+    background-color: var(--color-rose);
+}
+
+.terminal-dot.yellow {
+    background-color: var(--color-secondary);
+}
+
+.terminal-dot.green {
+    background-color: #B7EF82FF;
+}
+
+.terminal-title-concert {
+    font-size: 1rem; /* Further increased */
+    margin-left: 0.25rem;
+    color: #B7EF82FF;
+}
+
+.terminal-text {
+    font-size: 1rem; /* Further increased */
+    margin-top: 0.125rem;
+    color: var(--color-secondary);
+}
+
+/* Web/Desktop terminal sizing */
+@media (min-width: 768px) {
+    .terminal-title-concert {
+        font-size: 1.25rem; /* Much larger for web */
+    }
+
+    .terminal-text {
+        font-size: 1.25rem; /* Much larger for web */
+    }
+}
+
+.blinking-cursor {
+    transition: opacity 0.5s;
+}
+
+/* Main card */
+.main-card {
+    border: 2px solid #B7EF82;
+    border-radius: 0 0 0.5rem 0.5rem;
+    position: relative;
+    overflow: hidden;
+    background-color: #000000;
+    box-shadow: 0 0 30px rgba(134, 102, 213, 0.3);
+}
+
+.main-card.glitching {
+    animation: bounce 0.5s ease-in-out;
+}
+
+/* CRT Scanlines inside card */
+.scanlines-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.scanline {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, transparent);
+    height: 0.25rem;
+    transition: all 75ms;
+    background-color: rgba(183, 239, 130, 0.3);
+}
+
+.scanlines-pattern {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(9, 35, 19, 0.2);
+    background-image: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(183, 239, 130, 0.1) 2px,
+            rgba(183, 239, 130, 0.1) 4px
+    );
+}
+
+/* Glitch overlay */
+.glitch-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    mix-blend-mode: multiply;
+    background: linear-gradient(to right,
+    rgba(196, 151, 153, 0.3),
+    transparent,
+    rgba(134, 102, 213, 0.3)
+    );
+}
+
+/* Card content */
+.card-content {
+    padding: 0.75rem; /* Mobile first */
+    position: relative;
+    z-index: 30;
+}
+
+/* Web/Desktop sizing */
+@media (min-width: 768px) {
+    .card-content {
+        padding: 1rem; /* More padding for web */
+    }
+}
+
+/* Compact padding for medium height screens */
+@media (min-width: 768px) and (max-height: 800px) {
+    .card-content {
+        padding: 0.75rem; /* Reduce padding to save space */
+    }
+}
+
+/* ASCII Header */
+.ascii-header {
+    text-align: center;
+    margin-bottom: 0.5rem; /* Reduced from 1rem */
+}
+
+.ascii-border {
+    font-size: 1rem; /* Further increased */
+    margin-bottom: 0.25rem;
+    animation: pulse 2s infinite;
+    color: #B7EF82;
+}
+
+/* Web/Desktop ascii sizing */
+@media (min-width: 768px) {
+    .ascii-border {
+        font-size: 1.25rem; /* Much larger for web */
+    }
+}
+
+.main-title {
+    font-size: calc(1rem + 0.8vw);
+    font-weight: bold;
+    margin-bottom: 0.25rem; /* Reduced from 0.5rem */
+    position: relative;
+    color: var(--color-secondary);
+}
+
+.glitch-text-red {
+    position: absolute;
+    inset: 0;
+    animation: ping 1s infinite;
+    opacity: 0.75;
+    color: var(--color-rose);
+}
+
+.glitch-text-blue {
+    position: absolute;
+    inset: 0;
+    animation: pulse 2s infinite;
+    opacity: 0.5;
+    color: var(--color-darkblue);
+}
+
+.subtitle {
+    font-size: 1rem; /* Reduced from 1.5rem */
+    margin-bottom: 0.5rem; /* Reduced from 0.75rem */
+    animation: pulse 2s infinite;
+    color: var(--color-skyblue);
+}
+
+/* Cassette deck */
+.cassette-deck {
+    border: 1px solid var(--color-olive);
+    border-radius: 0.5rem;
+    padding: 0.5rem; /* Reduced from 0.75rem */
+    margin-bottom: 0.75rem; /* Reduced from 1rem */
+    position: relative;
+    background-color: var(--color-darkgray);
+}
+
+/* Compact sizing for medium height screens */
+@media (min-width: 768px) and (max-height: 800px) {
+    .cassette-deck {
+        padding: 0.375rem; /* Even more compact */
+        margin-bottom: 0.5rem;
+    }
+}
+
+.cassette-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem; /* Reduced from 0.75rem */
+}
+
+.cassette-reels {
+    display: flex;
+    gap: 0.25rem; /* Reduced from 0.5rem */
+}
+
+.cassette-reel {
+    width: 2rem; /* Reduced from 2.5rem */
+    height: 1.5rem; /* Reduced from 2rem */
+    border: 1px solid #B7EF82;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+}
+
+.reel-spinner {
+    width: 1rem; /* Reduced from 1.25rem */
+    height: 1rem; /* Reduced from 1.25rem */
+    border: 1px solid #B7EF82;
+    border-radius: 50%;
+    animation: spin-slow 3s linear infinite;
+}
+
+.reel-spinner.reverse {
+    animation-direction: reverse;
+}
+
+.recording-indicator {
+    font-size: 1rem; /* Further increased */
+    animation: pulse 2s infinite;
+    color: var(--color-rose);
+}
+
+/* Web/Desktop cassette sizing */
+@media (min-width: 768px) {
+    .recording-indicator {
+        font-size: 1.25rem; /* Much larger for web */
+    }
+}
+
+/* Waveform */
+.waveform-container {
+    height: 1.5rem; /* Reduced from 2rem */
+    border: 1px solid var(--color-olive);
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem; /* Reduced from 0.75rem */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #A9CACC;
+}
+
+.waveform-svg {
+    width: 100%;
+    height: 1rem; /* Reduced from 1.5rem */
+}
+
+.waveform-bar {
+    animation: pulse 2s infinite;
+}
+
+/* Info grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.info-card {
+    border: 1px solid var(--color-olive);
+    padding: 0.375rem; /* Mobile first */
+    border-radius: 0.25rem;
+    background-color: var(--color-primary);
+}
+
+.info-label {
+    font-size: calc(1rem + 0.8vw); /* Much larger base */
+    margin-bottom: 0.125rem;
+    color: #B7EF82;
+}
+
+.info-value {
+    font-size: calc(1rem + 0.8vw); /* Much larger base */
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+.info-value-small {
+    font-size: calc(0.875rem + 0.8vw); /* Much larger base */
+    color: var(--color-secondary);
+}
+
+/* Web/Desktop info sizing */
+@media (min-width: 768px) {
+    .info-grid {
+        gap: 0.75rem;
+    }
+
+    .info-card {
+        padding: 0.5rem;
+    }
+
+    .info-label {
+        font-size: calc(1.25rem + 0.8vw); /* Much larger base for web */
+        margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+        font-size: calc(1.25rem + 0.8vw); /* Much larger base for web */
+    }
+
+    .info-value-small {
+        font-size: calc(1rem + 0.8vw); /* Much larger base for web */
+    }
+}
+
+/* Radar section */
+.radar-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem; /* Reduced from 1rem */
+}
+
+.radar-container {
+    position: relative;
+}
+
+.radar-circle {
+    width: 3.5rem; /* Reduced from 5rem */
+    height: 3.5rem; /* Reduced from 5rem */
+    border: 2px solid #B7EF82;
+    border-radius: 50%;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+.radar-circle-inner {
+    position: absolute;
+    inset: 0.25rem;
+    border: 1px solid var(--color-olive);
+    border-radius: 50%;
+}
+
+.radar-circle-innermost {
+    position: absolute;
+    inset: 0.25rem;
+    border: 1px solid var(--color-stone);
+    border-radius: 50%;
+}
+
+.radar-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.375rem; /* Reduced from 0.5rem */
+    height: 0.375rem; /* Reduced from 0.5rem */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ping 2s infinite;
+    background-color: var(--color-rose);
+}
+
+.radar-sweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.125rem;
+    height: 1.5rem; /* Reduced from 2rem */
+    transform-origin: bottom;
+    transform: translate(-50%, -100%);
+    animation: spin 4s linear infinite;
+    opacity: 0.75;
+    background-color: #B7EF82;
+}
+
+.radar-label {
+    font-size: 1rem; /* Further increased */
+    text-align: center;
+    margin-top: 0.125rem;
+    color: #B7EF82;
+}
+
+/* Web/Desktop radar text sizing */
+@media (min-width: 768px) {
+    .radar-label {
+        font-size: 1.25rem; /* Much larger for web */
+    }
+}
+
+/* Stats panel */
+.stats-panel {
+    border: 1px solid var(--color-olive);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: calc(1rem + 0.5vw); /* Much larger base */
+    background-color: var(--color-primary);
+}
+
+/* Web/Desktop stats sizing */
+@media (min-width: 768px) {
+    .stats-panel {
+        font-size: calc(1.125rem + 0.5vw); /* Much larger for web */
+    }
+}
+
+.stats-row {
+    margin-bottom: 0.125rem; /* Reduced from 0.25rem */
+}
+
+.stats-row:last-child {
+    margin-bottom: 0;
+}
+
+.stats-label {
+    color: #B7EF82;
+}
+
+.stats-value {
+    color: var(--color-secondary);
+}
+
+.stats-value-accent {
+    color: var(--color-rose);
+}
+
+.stats-value-status {
+    color: var(--color-skyblue);
+    animation: pulse 2s infinite;
+}
+
+/* Button section */
+.button-section {
+    position: relative;
+}
+
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    z-index: 20;
+    background-color: rgba(9, 35, 19, 0.8);
+}
+
+.loading-content {
+    text-align: center;
+    color: var(--color-skyblue);
+}
+
+.loading-spinner {
+    animation: spin 1s linear infinite;
+    font-size: 1.25rem; /* Reduced from 1.5rem */
+    margin-bottom: 0.125rem; /* Reduced from 0.25rem */
+}
+
+.loading-text {
+    font-size: 0.7rem; /* Reduced from 0.875rem */
+    animation: pulse 2s infinite;
+}
+
+.access-granted-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    z-index: 20;
+    animation: pulse 2s infinite;
+    background-color: rgba(134, 102, 213, 0.25);
+}
+
+.access-granted-icon {
+    font-size: 1.25rem; /* Reduced from 1.5rem */
+    margin-bottom: 0.125rem; /* Reduced from 0.25rem */
+}
+
+.access-granted-text {
+    font-size: 0.7rem; /* Reduced from 0.875rem */
+}
+
+/* Main button */
+.purchase-button {
+    width: 100%;
+    border: 2px solid #B7EF82;
+    font-size: 1.5rem; /* Much larger - was 1.25rem */
+    font-weight: bold;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 300ms;
+    transform: scale(1);
+    font-family: 'Jersey 25', monospace;
+    background-color: var(--color-darkgray);
+    color: var(--color-skyblue);
+    box-shadow: 0 0 20px rgba(183, 239, 130, 0.25);
+    cursor: pointer;
+}
+
+/* Web/Desktop button sizing */
+@media (min-width: 768px) {
+    .purchase-button {
+        font-size: 1.875rem; /* Much larger - was 1.5rem */
+        padding: 1rem;
+    }
+}
+
+.purchase-button:hover {
+    transform: scale(1.05);
+    background-color: var(--color-olive);
+    box-shadow: 0 0 25px rgba(183, 239, 130, 0.4);
+}
+
+.purchase-button:active {
+    transform: scale(0.95);
+}
+
+.purchase-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem; /* Reduced from 0.5rem */
+}
+
+/* Bottom border */
+.bottom-border {
+    font-size: 1rem; /* Further increased */
+    text-align: center;
+    margin-top: 0.5rem;
+    animation: pulse 2s infinite;
+    color: #8293CF;
+}
+
+/* Web/Desktop bottom border sizing */
+@media (min-width: 768px) {
+    .bottom-border {
+        font-size: 1.25rem; /* Much larger for web */
+    }
+}
+
+/* Animations */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-25%);
+    }
+}
+
+/* Responsive adjustments for even smaller screens */
+@media (max-width: 360px) {
+    .cyber-concert-container {
+        min-height: 50vh;
+        padding: 0.25rem;
+    }
+
+    .card-container {
+        max-width: 18rem;
+    }
+
+    .main-title {
+        font-size: 1.25rem;
+    }
+
+    .subtitle {
+        font-size: 0.875rem;
+    }
+
+    .purchase-button {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+}

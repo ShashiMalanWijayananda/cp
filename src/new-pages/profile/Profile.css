@@ -1,0 +1,478 @@
+/* ✅ FULLY ALIGNED PROFILE.CSS with Yogeshwari LOGIN THEME */
+
+body {
+    background: #0A2314 !important;
+    color: var(--yo-green);
+    font-family: VT323, monospace;
+}
+
+.profile-layout {
+    width: 100vw;
+    height: 100vh;
+    background: #0A2314;
+    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    font-family: 'VT323', monospace;
+    /* Custom scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--yo-green) #0A2314;
+}
+
+/* Webkit scrollbar styling for better mobile experience */
+.profile-layout::-webkit-scrollbar {
+    width: 8px;
+}
+
+.profile-layout::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0px; /* Remove border radius for sharp corners */
+}
+
+.profile-layout::-webkit-scrollbar-thumb {
+    background: var(--yo-green);
+    border-radius: 0px; /* Remove border radius for sharp corners */
+    transition: all 0.3s ease;
+}
+
+.profile-layout::-webkit-scrollbar-thumb:hover {
+    background: rgba(159, 255, 130, 0.8);
+}
+
+.logout-icon {
+    height: 20px;
+    width: 20px;
+    filter: brightness(0) invert(1);
+}
+
+/* Header Section */
+.profile-header {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+    position: relative;
+}
+
+/* Greeting section - positioned like in Figma */
+.header-left {
+    text-align: right;
+    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+    font-family: VT323, monospace;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 750px;
+}
+
+.greeting-text {
+    font-size: clamp(16px, 2.5vw, 18px);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+}
+
+.timestamp-text {
+    font-size: clamp(14px, 2vw, 15px);
+    line-height: 1.4;
+    opacity: 0.8;
+    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+}
+
+/* Main Content */
+.profile-main {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* Profile Info Row - Avatar and Badges */
+.profile-info-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.avatar-container {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-icon {
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 0 4px rgba(159, 255, 130, 0.3)); /* Changed to green glow */
+}
+
+.badge-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.badge-item {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 4px rgba(159, 255, 130, 0.2)); /* Changed to green glow */
+    border-radius: 0px; /* Remove border radius for sharp corners */
+}
+
+.badge-item:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(159, 255, 130, 0.4)); /* Changed to green glow */
+}
+
+.badge-placeholder {
+    width: 120px;
+    height: 120px;
+    background: rgba(159, 255, 130, 0.1); /* Changed to green tint */
+    border: 1px dashed #9FFF82; /* Changed to solid green border */
+    border-radius: 0px; /* Remove border radius for sharp corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form styling aligned with theme */
+.details-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: VT323, monospace;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+
+.field-label {
+    flex: 1;
+    font-size: 1.5rem;
+    color: var(--yo-green); /* Changed from #fff to yo-green */
+    min-width: 150px;
+    max-width: 150px;
+    
+    letter-spacing: 1px; /* Added letter spacing like login theme */
+}
+
+.field-colon {
+    width: 15px;
+    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+    text-align: center;
+}
+
+.field-value-profile {
+    flex: 2;
+    background-color: #747070; /* Changed to white like login inputs */
+    color: #000; /* Changed to black text like login inputs */
+    border: 1px solid #9FFF82; /* Added green border like login theme */
+    padding: 12px 15px;
+    font-size: 1.5rem;
+    font-family: VT323, monospace;
+    letter-spacing: 1px; /* Added letter spacing like login theme */
+    transition: all 0.3s ease;
+    border-radius: 0px; /* Remove border radius for sharp corners */
+}
+
+.field-value-profile:focus {
+    outline: none;
+    border-color: #9FFF82; /* Changed to green focus border */
+}
+
+.field-value-profile:disabled {
+    background-color: rgba(255, 255, 255, 0.3); /* Lighter disabled state */
+    color: rgba(0, 0, 0, 0.5); /* Darker disabled text */
+    border-color: #9FFF82; /* Keep green border even when disabled */
+    cursor: not-allowed;
+}
+
+.update-button {
+    margin-top: 15px;
+    padding: 1px 10px; /* Increased padding to match login button */
+    font-size: 1.5rem;
+    background-color: #9FFF82; /* Changed to green background like login */
+    color: #000; /* Changed to black text like login */
+    border: 1px solid #9FFF82;
+    cursor: pointer;
+    align-self: flex-end;
+    font-family: VT323, monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Added letter spacing like login theme */
+    transition: all 0.3s ease;
+    border-radius: 0px; /* Remove border radius for sharp corners */
+    font-weight: normal; /* Remove bold to match login theme */
+}
+
+.update-button:hover {
+    background-color: #9FFF82;
+    color: #000;
+    opacity: 0.9;
+}
+
+.update-button:disabled {
+    background-color: rgba(159, 255, 130, 0.5);
+    color: rgba(0, 0, 0, 0.5);
+    cursor: not-allowed;
+}
+
+/* Badge Popup Styling */
+.badge-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: VT323, monospace;
+}
+
+.badge-popup-content {
+    background: #0A2314;
+    border: 1px solid #9FFF82; /* Changed to green border */
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    border-radius: 0px; /* Remove border radius for sharp corners */
+}
+
+.badge-popup-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    border-bottom: 1px solid #9FFF82; /* Changed to green border */
+}
+
+.badge-popup-close {
+    background: none;
+    border: none;
+    color: var(--yo-green); /* Changed to green */
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.badge-popup-close:hover {
+    color: #ffffff; /* White on hover */
+    transform: scale(1.1);
+}
+
+.badge-popup-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.badge-image-container {
+    margin-bottom: 20px;
+}
+
+.badge-popup-image {
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 0 8px rgba(159, 255, 130, 0.3)); /* Changed to green glow */
+}
+
+.badge-info {
+    color: var(--yo-green); /* Changed to green */
+}
+
+.badge-title {
+    font-size: clamp(16px, 2.5vw, 18px);
+    color: #ffffff; /* Changed to white for better contrast */
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Added letter spacing like login theme */
+}
+
+.badge-description {
+    font-size: clamp(14px, 2.25vw, 15px);
+    line-height: 1.6;
+    margin: 0;
+    color: var(--yo-green); /* Green description text */
+}
+
+/* Mobile Responsive - aligned with theme breakpoints */
+@media (max-width: 1024px) {
+    /* Tablet styles remain mostly the same */
+}
+
+@media (max-width: 768px) {
+    .profile-layout {
+        padding: 20px 20px 60px 20px;
+        height: 100vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .logout-icon {
+        height: 18px;
+        width: 18px;
+    }
+
+    .header-left {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .profile-info-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .avatar-container {
+        order: 1;
+    }
+
+    .badge-container {
+        order: 2;
+        display: flex;
+        flex-direction: row !important;
+        gap: 15px;
+        width: 100%;
+        max-width: 750px;
+        justify-content: center;
+    }
+
+    .badge-item,
+    .badge-placeholder {
+        width: 70px;
+        height: 70px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px; /* Reduced gap for mobile */
+    }
+
+    .field-label {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+        text-align: left;
+    }
+
+    .field-colon {
+        display: none;
+    }
+
+    .field-value-profile {
+        width: 100%;
+    }
+
+    .update-button {
+        align-self: stretch;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-layout {
+        padding: 20px 20px 150px 20px;
+        height: 100vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .logout-icon {
+        height: 16px;
+        width: 16px;
+    }
+
+    .avatar-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .badge-container {
+        max-width: 450px;
+    }
+
+    .badge-item,
+    .badge-placeholder {
+        width: 60px;
+        height: 60px;
+    }
+
+    .details-form {
+        gap: 5px;
+    }
+    
+    .form-row .field-label {
+        font-size: 1.3rem;
+    }
+
+    .form-row .field-value-profile {
+        font-size: 1.3rem;
+        padding: 8px 10px; /* Adjusted padding for mobile */
+    }
+
+    .update-button {
+        font-size: 1.3rem;
+        padding: 8px 15px; /* Adjusted padding for mobile */
+    }
+}
+
+@media (max-width: 375px) {
+    .badge-container {
+        max-width: 300px;
+        gap: 10px;
+    }
+
+    .badge-item,
+    .badge-placeholder {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+@media (max-width: 320px) {
+    .badge-container {
+        max-width: 250px;
+        gap: 8px;
+    }
+
+    .badge-item,
+    .badge-placeholder {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Additional animations for consistency with login theme */
+@media (prefers-reduced-motion: no-preference) {
+    .profile-layout,
+    .profile-main,
+    .avatar-container,
+    .badge-item,
+    .field-value-profile,
+    .update-button {
+        transition: all 0.3s ease;
+    }
+}

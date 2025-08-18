@@ -1,0 +1,218 @@
+.about-view {
+  background: #0A2314;
+  color: var(--yo-shade-blue);
+
+}
+
+
+/* Exit Button */
+.header-right {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  z-index: 10;
+}
+
+.exit-button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transform: scale(1.25);
+  transition: all 0.3s ease;
+}
+
+.exit-button:hover {
+  color: var(--accent-green);
+  transform: scale(1.5);
+}
+
+/* .centered-logo-container{
+  margin-top: 70px;
+} */
+
+/* Title */
+.about-title {
+  font-family: "Jersey 25", sans-serif;
+  font-size: 2.2rem;
+  line-height: 2;
+  color: var(--yo-blue);
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0px 40px;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+
+}
+
+.content-wrapper .text-block{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-family: VT323, monospace;
+  width: max-content;
+}
+
+.about-subheader {
+  border: 1px solid #fff;
+  color: #000;
+  background-color: #fff;
+  padding: 0px 20px;
+  font-size: 2rem;
+
+}
+
+.text-box{
+  border: 1px solid #fff;
+  padding: 20px;
+  height: 100%;
+}
+
+.text-box p{
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+/* Image */
+.image-wrapper {
+  max-width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper img {
+  filter: contrast(1.15) brightness(1.15);
+  border-radius: 0px;
+}
+
+/* FIXED FOOTER - ensure it's always at the bottom */
+.about-footer-scrolling {
+  width: 100vw;
+  position: fixed;
+  height: 38px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #B4B3B0;
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+  padding: 0px;
+  z-index: 100;
+  margin: 0px;
+}
+
+.about-scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.about-scroll-content {
+  display: inline-block;
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  color: #000;
+  letter-spacing: 3px;
+  opacity: 0.8;
+  animation: scroll-left-system 15s linear infinite;
+
+}
+
+@keyframes scroll-left-system {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsive Styles  */
+@media (max-width: 1024px) {
+  .image-wrapper {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  /*
+    .centered-logo-container{
+      margin-top: 50px;
+    } */
+
+
+  /* Title */
+  .about-title {
+    font-family: "Jersey 25", sans-serif;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin: 0px 0px 20px 0px;
+  }
+
+  .content-wrapper {
+
+  }
+
+  .image-wrapper {
+    order: 1;
+    height: auto;
+    width: 350px;
+  }
+
+  .content-wrapper .text-block{
+    order: 2;
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+
+  .image-wrapper {
+    align-items: center;
+    width: 300px;
+  }
+
+  .about-view{
+    padding-bottom: 100px;
+  }
+
+}
+
+
+@media (max-width: 375px) {
+  .image-wrapper {
+    width: 250px;
+  }
+
+  .about-subheader {
+    font-size: 1.5rem;
+
+  }
+
+}
+
+@media (max-width: 320px) {
+
+  html, body {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  }
+
+}

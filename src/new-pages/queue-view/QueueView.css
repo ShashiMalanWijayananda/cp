@@ -1,0 +1,78 @@
+/* QueueView.css - Adjusted for 100% zoom (scaled down from 75% design) */
+.queue-view {
+    /* Figma background */
+    width:100%;
+    min-height:100vh;        /* was #000 */
+    color: var(--yo-green);
+    font-family: 'Jersey 25', sans-serif;
+
+    /* Center everything like the mock */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap: 21px;                     /* was 28px -> 28*0.75 = 21px */
+    padding: 18px 12px;            /* was 24px 16px -> scaled down */
+}
+
+/* keep loader spacing predictable */
+.queue-view .queue-loader{
+    height: 100%;
+    overflow: hidden;
+    margin-top: 0;                 /* remove extra top gap */
+}
+
+@media (max-width: 768px) {
+    .queue-view { padding: 23px 15px; }    /* was 30px 20px */
+    .queue-view .queue-view-footer{ bottom: 0px; }
+}
+
+@media (max-width: 480px) {
+    .queue-view {
+        padding: 15px 15px 150px 15px;
+    }
+}
+
+@media (max-width: 320px) {
+    .queue-view { padding: 45px 8px; }     /* was 60px 10px */
+}
+
+/* home-layout not used for this view, but keep safe defaults */
+.queue-view .home-layout {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;                     /* was 20px */
+    justify-content: center;
+    align-items: center;
+    color: #1da750;
+}
+
+.queue-view .web-layout { width:100%; height:100%; display:flex; justify-content:center; align-items:center; }
+.queue-view .mobile-layout { width:100%; height:100%; display:none; flex-direction:column; padding:15px; gap:15px; } /* was 20px */
+
+@media (max-width: 768px) {
+    .queue-view .web-layout { display: none; }
+    .queue-view .mobile-layout { display: flex; }
+}
+
+/* Footer ticker (terminal vibe) */
+.queue-view-footer{
+    font-size: clamp(19px, 2.25vw, 23px);  /* was clamp(25px, 3vw, 30px) */
+    font-family: VT323, monospace;
+    color: #ffffff;
+    line-height: 0.9;
+    margin: 0;
+    padding: 5px 8px;              /* was 6px 10px */
+    text-align:center;
+    width: 100%;
+    max-width: 675px;              /* was 900px */
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.queue-text{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

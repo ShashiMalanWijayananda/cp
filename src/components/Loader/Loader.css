@@ -1,0 +1,475 @@
+/* retro.css - Beautiful Retro Loading Animations */
+
+/* CSS Variables for Brand Colors */
+:root {
+    --brand-primary: #0a0a0a;
+    --brand-lime: #00ff41;
+    --brand-rose: #ffe0e6;
+    --brand-cyan: #00ffff;
+    --brand-amber: #ffb000;
+    --brand-purple: #9d00ff;
+    --brand-white: #ffffff;
+    --brand-dark: #1a1a1a;
+    --brand-glow-lime: 0 0 20px var(--brand-lime);
+    --brand-glow-rose: 0 0 20px var(--brand-rose);
+    --brand-glow-cyan: 0 0 20px var(--brand-cyan);
+}
+
+/* Base Retro Text Styles */
+.retro-text {
+    font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px currentColor;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.retro-container {
+    background: linear-gradient(45deg, var(--brand-primary), var(--brand-dark));
+    position: relative;
+    overflow: hidden;
+}
+
+.retro-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 65, 0.03) 2px,
+                    rgba(0, 255, 65, 0.03) 4px
+            );
+    pointer-events: none;
+    animation: scanlines 0.1s linear infinite;
+}
+
+/* Retro Loading Animations */
+
+/* 1. Neon Spinner */
+.retro-spinner {
+    width: 80px;
+    height: 80px;
+    border: 4px solid transparent;
+    border-top: 4px solid var(--brand-lime);
+    border-right: 4px solid var(--brand-rose);
+    border-radius: 50%;
+    animation: neonSpin 1.5s linear infinite;
+    position: relative;
+    box-shadow: var(--brand-glow-lime);
+}
+
+.retro-spinner::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px solid transparent;
+    border-bottom: 2px solid var(--brand-cyan);
+    border-left: 2px solid var(--brand-purple);
+    border-radius: 50%;
+    animation: neonSpin 2s linear infinite reverse;
+}
+
+/* 2. Matrix Loading Bars */
+.matrix-loader {
+    display: flex;
+    gap: 4px;
+    align-items: end;
+    height: 60px;
+}
+
+.matrix-bar {
+    width: 6px;
+    background: linear-gradient(to top, var(--brand-lime), var(--brand-cyan));
+    border-radius: 2px;
+    animation: matrixPulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--brand-lime);
+}
+
+.matrix-bar:nth-child(1) { animation-delay: 0s; }
+.matrix-bar:nth-child(2) { animation-delay: 0.1s; }
+.matrix-bar:nth-child(3) { animation-delay: 0.2s; }
+.matrix-bar:nth-child(4) { animation-delay: 0.3s; }
+.matrix-bar:nth-child(5) { animation-delay: 0.4s; }
+.matrix-bar:nth-child(6) { animation-delay: 0.5s; }
+.matrix-bar:nth-child(7) { animation-delay: 0.6s; }
+
+/* 3. Cassette Tape Loader */
+.cassette-loader {
+    width: 120px;
+    height: 80px;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border-radius: 8px;
+    border: 2px solid var(--brand-lime);
+    position: relative;
+    box-shadow: var(--brand-glow-lime);
+}
+
+.cassette-reel {
+    width: 20px;
+    height: 20px;
+    background: var(--brand-dark);
+    border: 2px solid var(--brand-rose);
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+}
+
+.cassette-reel.left {
+    left: 20px;
+    animation: cassetteSpinLeft 2s linear infinite;
+}
+
+.cassette-reel.right {
+    right: 20px;
+    animation: cassetteSpinRight 1.5s linear infinite;
+}
+
+.cassette-reel::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--brand-rose);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--brand-rose);
+}
+
+.cassette-tape {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    height: 3px;
+    background: linear-gradient(90deg,
+    var(--brand-amber) 0%,
+    var(--brand-rose) 50%,
+    var(--brand-amber) 100%);
+    border-radius: 2px;
+    animation: tapeFlow 3s ease-in-out infinite;
+}
+
+/* 4. Oscilloscope Wave */
+.oscilloscope-loader {
+    width: 200px;
+    height: 100px;
+    background: var(--brand-dark);
+    border: 3px solid var(--brand-cyan);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--brand-glow-cyan);
+}
+
+.oscilloscope-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+            linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.oscilloscope-wave {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--brand-lime);
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px var(--brand-lime);
+    animation: waveform 2s ease-in-out infinite;
+}
+
+.oscilloscope-beam {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: var(--brand-white);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px var(--brand-white);
+    animation: beamSweep 3s linear infinite;
+}
+
+/* 5. Terminal Loader */
+.terminal-loader {
+    background: var(--brand-dark);
+    border: 2px solid var(--brand-lime);
+    border-radius: 4px;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    width: 300px;
+    box-shadow: var(--brand-glow-lime);
+}
+
+.terminal-line {
+    color: var(--brand-lime);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.terminal-prompt::after {
+    content: '_';
+    animation: cursorBlink 1s step-end infinite;
+}
+
+.terminal-progress {
+    display: flex;
+    margin-top: 10px;
+}
+
+.terminal-block {
+    width: 12px;
+    height: 12px;
+    background: var(--brand-lime);
+    margin-right: 2px;
+    animation: terminalFill 3s ease-in-out infinite;
+    box-shadow: 0 0 5px var(--brand-lime);
+}
+
+/* 6. Floppy Disk Loader */
+.floppy-loader {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(145deg, #333, #111);
+    border: 2px solid var(--brand-cyan);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: var(--brand-glow-cyan);
+}
+
+.floppy-label {
+    position: absolute;
+    top: 15px;
+    left: 8px;
+    right: 8px;
+    height: 12px;
+    background: var(--brand-white);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.floppy-label::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--brand-cyan), transparent);
+    animation: floppyRead 2s ease-in-out infinite;
+}
+
+.floppy-center {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 25px;
+    background: var(--brand-dark);
+    border: 2px solid var(--brand-lime);
+    border-radius: 50%;
+    animation: floppySpin 3s linear infinite;
+}
+
+.floppy-center::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: var(--brand-rose);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--brand-rose);
+}
+
+/* 7. Nixie Tube Counter */
+.nixie-loader {
+    display: flex;
+    gap: 8px;
+}
+
+.nixie-tube {
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(145deg, rgba(255, 176, 0, 0.1), rgba(255, 176, 0, 0.05));
+    border: 2px solid var(--brand-amber);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px var(--brand-amber);
+}
+
+.nixie-digit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--brand-amber);
+    text-shadow: 0 0 10px var(--brand-amber);
+    animation: nixieGlow 2s ease-in-out infinite;
+}
+
+.nixie-digit:nth-child(2) { animation-delay: 0.2s; }
+.nixie-digit:nth-child(3) { animation-delay: 0.4s; }
+.nixie-digit:nth-child(4) { animation-delay: 0.6s; }
+
+/* Keyframe Animations */
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px currentColor; }
+    to { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+}
+
+@keyframes neonSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes matrixPulse {
+    0%, 100% { height: 10px; opacity: 0.3; }
+    50% { height: 60px; opacity: 1; }
+}
+
+@keyframes cassetteSpinLeft {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes cassetteSpinRight {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes tapeFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes waveform {
+    0% { clip-path: polygon(0 50%, 10% 30%, 20% 70%, 30% 40%, 40% 60%, 50% 35%, 60% 65%, 70% 45%, 80% 55%, 90% 25%, 100% 50%); }
+    50% { clip-path: polygon(0 50%, 10% 70%, 20% 30%, 30% 60%, 40% 40%, 50% 65%, 60% 35%, 70% 55%, 80% 45%, 90% 75%, 100% 50%); }
+    100% { clip-path: polygon(0 50%, 10% 30%, 20% 70%, 30% 40%, 40% 60%, 50% 35%, 60% 65%, 70% 45%, 80% 55%, 90% 25%, 100% 50%); }
+}
+
+@keyframes beamSweep {
+    0% { left: 0; }
+    100% { left: 100%; }
+}
+
+@keyframes cursorBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes terminalFill {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.terminal-block:nth-child(1) { animation-delay: 0s; }
+.terminal-block:nth-child(2) { animation-delay: 0.2s; }
+.terminal-block:nth-child(3) { animation-delay: 0.4s; }
+.terminal-block:nth-child(4) { animation-delay: 0.6s; }
+.terminal-block:nth-child(5) { animation-delay: 0.8s; }
+.terminal-block:nth-child(6) { animation-delay: 1s; }
+.terminal-block:nth-child(7) { animation-delay: 1.2s; }
+.terminal-block:nth-child(8) { animation-delay: 1.4s; }
+
+@keyframes floppyRead {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes floppySpin {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes nixieGlow {
+    0%, 100% {
+        opacity: 0.6;
+        text-shadow: 0 0 10px var(--brand-amber);
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 20px var(--brand-amber), 0 0 30px var(--brand-amber);
+    }
+}
+
+/* Utility Classes */
+.retro-glow-lime {
+    box-shadow: var(--brand-glow-lime);
+}
+
+.retro-glow-rose {
+    box-shadow: var(--brand-glow-rose);
+}
+
+.retro-glow-cyan {
+    box-shadow: var(--brand-glow-cyan);
+}
+
+.retro-border-lime {
+    border: 2px solid var(--brand-lime);
+}
+
+.retro-border-rose {
+    border: 2px solid var(--brand-rose);
+}
+
+.retro-border-cyan {
+    border: 2px solid var(--brand-cyan);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .retro-spinner {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cassette-loader {
+        width: 100px;
+        height: 65px;
+    }
+
+    .oscilloscope-loader {
+        width: 150px;
+        height: 80px;
+    }
+
+    .terminal-loader {
+        width: 250px;
+        padding: 15px;
+    }
+
+    .retro-text {
+        font-size: 1.2rem;
+    }
+}
