@@ -1,0 +1,288 @@
+/* src/styles/yogeshwari-utilities.css */
+/* Import this file in your index.css AFTER Tailwind directives */
+
+/* Enhanced button components building on your existing styles */
+.btn-yogeshwari-primary {
+  @apply bg-yogeshwari-green text-yogeshwari-dark-green px-6 py-3 
+         border-2 border-yogeshwari-green font-jersey25 text-lg
+         hover:bg-yogeshwari-light-green hover:border-yogeshwari-light-green
+         active:shadow-retro-active focus:outline-none
+         transition-all duration-200 shadow-retro hover:shadow-retro-hover;
+}
+
+.btn-yogeshwari-secondary {
+  @apply bg-transparent border-2 border-yogeshwari-rose text-yogeshwari-rose 
+         px-6 py-3 font-jersey25 text-lg
+         hover:bg-yogeshwari-rose hover:text-yogeshwari-dark-green
+         active:shadow-retro-active focus:outline-none
+         transition-all duration-200 shadow-retro hover:shadow-retro-hover;
+}
+
+.btn-yogeshwari-zone-a {
+  @apply bg-yogeshwari-zone-a text-yogeshwari-dark-green px-6 py-3 
+         border-2 border-yogeshwari-zone-a font-jersey25 text-lg
+         hover:opacity-90 active:shadow-retro-active focus:outline-none
+         transition-all duration-200 shadow-retro hover:shadow-retro-hover;
+}
+
+.btn-yogeshwari-zone-z {
+  @apply bg-yogeshwari-zone-z text-white px-6 py-3 
+         border-2 border-yogeshwari-zone-z font-jersey25 text-lg
+         hover:opacity-90 active:shadow-retro-active focus:outline-none
+         transition-all duration-200 shadow-retro hover:shadow-retro-hover;
+}
+
+/* Card components matching your design */
+.card-yogeshwari {
+  @apply bg-yogeshwari-dark-green/90 backdrop-blur-sm 
+         border-2 border-yogeshwari-green rounded-none p-6 
+         shadow-glow-green hover:shadow-glow-green transition-all duration-300;
+}
+
+.card-zone-a {
+  @apply bg-yogeshwari-dark-green/90 backdrop-blur-sm 
+         border-2 border-yogeshwari-zone-a rounded-none p-6 
+         shadow-glow-rose hover:shadow-glow-rose transition-all duration-300;
+}
+
+.card-zone-z {
+  @apply bg-yogeshwari-dark-green/90 backdrop-blur-sm 
+         border-2 border-yogeshwari-zone-z rounded-none p-6 
+         shadow-glow-purple hover:shadow-glow-purple transition-all duration-300;
+}
+
+/* Ticket card styling */
+.ticket-card-yogeshwari {
+  @apply relative overflow-hidden border-2 transition-all duration-300
+         hover:scale-105 hover:shadow-2xl cursor-pointer bg-yogeshwari-dark-green/80;
+}
+
+.ticket-card-locked {
+  @apply border-gray-600 opacity-75 cursor-not-allowed;
+}
+
+.ticket-card-unlocked {
+  @apply border-yogeshwari-green shadow-glow-green;
+}
+
+/* Input fields matching your style */
+.input-yogeshwari {
+  @apply bg-transparent border-2 border-yogeshwari-blue text-yogeshwari-light 
+         px-4 py-3 font-jersey25 text-lg h-12
+         focus:outline-none focus:border-yogeshwari-green focus:shadow-glow-green
+         placeholder:text-gray-400 transition-all duration-200;
+}
+
+/* Navigation styles */
+.nav-yogeshwari {
+  @apply text-yogeshwari-light hover:text-yogeshwari-green px-3 py-2 
+         transition-colors duration-200 font-jersey25 text-lg;
+}
+
+.nav-yogeshwari.active {
+  @apply text-yogeshwari-green bg-yogeshwari-green/10;
+}
+
+/* Loading and progress bars */
+.loading-bar-yogeshwari {
+  @apply bg-gray-700 h-4 overflow-hidden border border-yogeshwari-green;
+}
+
+.loading-progress-yogeshwari {
+  @apply bg-gradient-to-r from-yogeshwari-green to-yogeshwari-light-green h-full 
+         transition-all duration-300 ease-out;
+}
+
+/* Queue status styling */
+.queue-progress {
+  @apply bg-gray-700 h-4 overflow-hidden;
+}
+
+.queue-progress-fill {
+  @apply bg-yogeshwari-green h-full transition-all duration-500 ease-out;
+}
+
+/* Modal and overlay styling */
+.modal-yogeshwari {
+  @apply fixed inset-0 bg-black/80 backdrop-blur-sm z-50 
+         flex items-center justify-center p-4;
+}
+
+.modal-content-yogeshwari {
+  @apply bg-yogeshwari-dark-green border-2 border-yogeshwari-green 
+         p-6 max-w-lg w-full shadow-glow-green;
+}
+
+/* Text effects */
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(159, 255, 130, 0.5);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(134, 102, 213, 0.5);
+}
+
+.text-glow-rose {
+  text-shadow: 0 0 10px rgba(196, 151, 153, 0.5);
+}
+
+/* CRT and retro effects */
+.crt-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-effect::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(159, 255, 130, 0.03) 2px,
+    rgba(159, 255, 130, 0.03) 4px
+  );
+  animation: crtFlicker 0.15s linear infinite;
+}
+
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* Matrix/terminal effects */
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+  background: black;
+}
+
+.matrix-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: 
+    linear-gradient(90deg, transparent 98%, rgba(159, 255, 130, 0.3) 100%),
+    linear-gradient(180deg, transparent 98%, rgba(159, 255, 130, 0.3) 100%);
+  background-size: 20px 20px;
+}
+
+/* Terminal window styling */
+.terminal-window {
+  @apply bg-black border-2 border-yogeshwari-green p-4 
+         font-vt323 text-yogeshwari-green shadow-terminal;
+}
+
+.terminal-header {
+  @apply flex items-center justify-between mb-4 pb-2 
+         border-b border-yogeshwari-green/30;
+}
+
+.terminal-content {
+  @apply space-y-2 text-sm leading-relaxed;
+}
+
+/* Glitch effects */
+.glitch-text {
+  position: relative;
+  color: #CCCCCC;
+  font-family: 'VT323', monospace;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  animation: glitch1 0.5s infinite;
+  color: #ff00ff;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch2 0.5s infinite;
+  color: #00ffff;
+  z-index: -2;
+}
+
+@keyframes glitch1 {
+  0%, 14%, 15%, 49%, 50%, 99%, 100% {
+    transform: skew(0deg) translate3d(0, 0, 0);
+  }
+  1%, 13% {
+    transform: skew(-0.5deg) translate3d(-1px, 0, 0);
+  }
+  16%, 48% {
+    transform: skew(0.5deg) translate3d(1px, 0, 0);
+  }
+}
+
+@keyframes glitch2 {
+  0%, 20%, 21%, 62%, 63%, 99%, 100% {
+    transform: skew(0deg) translate3d(0, 0, 0);
+  }
+  1%, 19% {
+    transform: skew(0.5deg) translate3d(1px, 0, 0);
+  }
+  22%, 61% {
+    transform: skew(-0.5deg) translate3d(-1px, 0, 0);
+  }
+}
+
+/* Utility classes for common patterns */
+.border-glow {
+  box-shadow: 0 0 10px rgba(159, 255, 130, 0.3);
+}
+
+.glass-morphism {
+  @apply bg-white/5 backdrop-blur-md border border-white/10;
+}
+
+.gradient-text-yogeshwari {
+  @apply bg-gradient-to-r from-yogeshwari-green to-yogeshwari-light-green 
+         bg-clip-text text-transparent;
+}
+
+.retro-cursor {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffff00" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><rect x="2" y="2" width="20" height="20"/><path d="m7 7 10 10"/><path d="m17 7-10 10"/></svg>'), auto;
+}
+
+/* Responsive text sizing for retro fonts */
+.text-retro-xs { @apply text-xs font-vt323 tracking-wider; }
+.text-retro-sm { @apply text-sm font-vt323 tracking-wider; }
+.text-retro-base { @apply text-base font-vt323 tracking-wider; }
+.text-retro-lg { @apply text-lg font-vt323 tracking-wider; }
+.text-retro-xl { @apply text-xl font-jersey25 tracking-wider; }
+.text-retro-2xl { @apply text-2xl font-jersey25 tracking-wider; }
+.text-retro-3xl { @apply text-3xl font-jersey25 tracking-wider; }
+
+/* Blinking cursor effect */
+.cursor-blink::after {
+  content: '_';
+  animation: retroBlink 1s step-end infinite;
+}

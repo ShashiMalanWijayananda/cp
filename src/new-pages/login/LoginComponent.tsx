@@ -63,7 +63,6 @@ const LoginComponent: FC<LoginComponentProps> = () => {
     );
   };
 
-
   const handleUserInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
@@ -79,209 +78,201 @@ const LoginComponent: FC<LoginComponentProps> = () => {
     }
   };
 
-  const validateForm = () => {
-    let isValid = true;
-    const errors = { email: "", password: "", general: "" };
-    if (!user.email) {
-      errors.email = "Email is required";
+  const handleGoogleLoginSuccess = async (credentialResponse: GoogleCredentialResponse) => {
+    try {
+      const decoded: DecodedCredential = jwtDecode(credentialResponse.credential);
+      const googleUser: User = {
+        id: decoded.sub,
+        email: decoded.email,
+        firstName: decoded.given_name,
+        lastName: decoded.family_name,
+        provider: "GOOGLE",
+        contact: "",
+        nic: "",
+        picture: decoded.picture
+      };
+
+      const success = await loginUser(googleUser, "GOOGLE");
+      if (success) {
+        navigation("/");
+      }
+    } catch (error) {
+      console.error("Google login error:", error);
       setAlert({
-        ...alert,
-        message: "Email is required",
+        type: "error",
         visible: true,
-        type: "error"
-      })
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(user.email)) {
-      errors.email = "Please enter a valid email address";
-      setAlert({
-        ...alert,
-        message: "Please enter a valid email address",
-        visible: true,
-        type: "error"
-      })
-      isValid = false;
-    } else if (user.password == "") {
-      setAlert({
-        ...alert,
-        message: "Please enter password",
-        visible: true,
-        type: "error"
-      })
+        message: "Google login failed. Please try again."
+      });
     }
-    setFormErrors(errors);
-    return isValid;
   };
 
-  const handleLogin = async () => {
-    setFormErrors((prev) => ({ ...prev, general: "" }));
+  const handleGoogleLoginError = () => {
+    setAlert({
+      type: "error",
+      visible: true,
+      message: "Google login failed. Please try again."
+    });
+  };
 
-    if (validateForm()) {
-      const loggedUser: User = {
-        email: user.email,
-        password: user.password,
-        provider: AuthProvider.LOCAL,
-      };
-      if (loggedUser?.email !== "" && loggedUser?.password !== "") {
-        try {
-          await loginUser(loggedUser);
-        } catch (err) {
-          if (error) {
-            if (error.includes("Password must contain")) {
-              setFormErrors((prev) => ({...prev, password: error}));
-            } else {
-              setFormErrors((prev) => ({...prev, general: error}));
-            }
-          }
-        }
-      }
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!isFormValid()) {
+      setAlert({
+        type: "error",
+        visible: true,
+        message: "Please fill in all required fields correctly."
+      });
+      return;
     }
+
+    try {
+      const localUser: User = {
+        id: "",
+        email: user.email,
+        firstName: "",
+        lastName: "",
+        provider: "LOCAL",
+        contact: "",
+        nic: "",
+        password: user.password
+      };
+
+      const success = await loginUser(localUser, "LOCAL");
+      if (success) {
+        navigation("/");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setAlert({
+        type: "error",
+        visible: true,
+        message: "Login failed. Please check your credentials."
+      });
+    }
+  };
+
+  const redirectToSignup = () => {
+    navigation("/registration");
   };
 
   useEffect(() => {
     if (error) {
-
+      setAlert({
+        type: "error",
+        visible: true,
+        message: error
+      });
     }
   }, [error]);
 
-  const handleGoogleLoginSuccess = async (
-    credentialResponse: GoogleCredentialResponse
-  ) => {
-    try {
-      const decoded: DecodedCredential = jwtDecode(
-          credentialResponse.credential
-      );
-
-      console.log(credentialResponse)
-      const loggedUser: User = {
-        email: decoded.email,
-        authKey: credentialResponse.credential,
-        provider: AuthProvider.GOOGLE,
-      };
-
-      setFormErrors({email: "", password: "", general: ""});
-      await loginUser(loggedUser);
-    } catch (error) {
-      console.error("Error decoding Google credential:", error);
-      setFormErrors((prev) => ({
-        ...prev,
-        general: "Google authentication failed. Please try again.",
-      }));
-    }
-  };
-
-  useEffect(() => {
-    const verifyStatus = queryParams.get("verification-success") as string | null;
-    const email = queryParams.get("email");
-    if (verifyStatus == "activated") {
-      setAlert({visible: true, type: "info", message: "Hi agent, Your account has already activated!!!"})
-    } else if (verifyStatus == "active") {
-      setAlert({visible: true, type: "info", message: "Hi agent, Your account has been activated!!!"})
-    } else if (verifyStatus == "failed") {
-      setAlert({visible: true, type: "error", message: "Hi agent, Activation Process Error.."})
-    }
-  }, [])
-
-
-
   return (
-      <>
-        <Alert
-            message={alert.message ?? ""}
-            visible={alert.visible}
-            type={alert.type}
-            onClose={() => setAlert(prev => ({
-              ...prev,
-              visible: false,
-            }))}
-            className="label-right"
-            autoClose={true}
-            autoCloseDelay={5000}
-        />
-        <div className="main-container-login">
-          <div className="content-area">
-            <div className="logo-section">
-              <div className="logo">
-                <img
-                    src="images/logo/Logo-animate-wothout-Blink1.gif"
-                    alt="Logo"
-                />
-              </div>
+    <div className="yo-login-main-container">
+      <div className="yo-login-content-area">
+        {/* Logo Section */}
+        <div className="yo-login-logo-section">
+          <div className="yo-login-logo">
+            <img src="/logo.svg" alt="Yogeshwari Logo" />
+          </div>
+        </div>
+
+        {/* Login Section */}
+        <div className="yo-login-section">
+          <div className="yo-login-panel">
+            <h1 className="yo-login-title">ACCESS BOARDING PROCESS</h1>
+
+            {/* Google Login */}
+            <div className="yo-login-google-btn">
+              <GoogleLogin
+                onSuccess={handleGoogleLoginSuccess}
+                onError={handleGoogleLoginError}
+                theme="outline"
+                size="large"
+                text="signin_with"
+                width="300"
+              />
             </div>
 
-          <div className="login-section">
-            <div className="login-panel">
-              {/* Hide title on small mobile screens to match registration */}
-              <h1 className={"login-title"}>LOGIN TO BOARDING PROCESS</h1>
-              <div className="google-btn">
-                <GoogleLogin
-                  type={"standard"}
-                  theme="filled_black"
-                  size="large"
-                  onSuccess={handleGoogleLoginSuccess}
-                  onError={() => {
-                    setFormErrors((prev) => ({
-                      ...prev,
-                      general: "Google Login Failed. Please try again.",
-                    }));
-                  }}
-                  useOneTap
-                />
-              </div>
-              <div className="divider">OR USE EMAIL ADDRESS</div>
-              <div className={"input-login-panel"}>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    handleLogin();
-                  }}
-                >
+            {/* Divider */}
+            <div className="yo-login-divider">OR USE EMAIL ADDRESS</div>
+
+            {/* Login Form - Using global form classes */}
+            <form className="yo-form-container" onSubmit={handleLogin}>
+              <div className="yo-form-group">
+                <label htmlFor="email">Email Address:</label>
+                <div className="yo-input-wrapper">
                   <RetroTextBox
-                    labelText="Email :"
-                    type="text"
-                    name="email"
                     id="email"
+                    name="email"
+                    type="email"
                     value={user.email}
                     onChange={handleUserInput}
-                    placeholder=""
+                    placeholder="agent@yogeshwari.one"
+                    required
                   />
+                </div>
+              </div>
 
+              <div className="yo-form-group">
+                <label htmlFor="password">Access Code:</label>
+                <div className="yo-input-wrapper">
                   <RetroTextBox
-                    labelText="Password :"
-                    type="password"
-                    name="password"
                     id="password"
+                    name="password"
+                    type="password"
                     value={user.password}
                     onChange={handleUserInput}
-                    placeholder=""
+                    placeholder="Enter your access code"
+                    required
                   />
-
-                  <span className={"login-error"}>{error ?? ""}</span>
-
-                  <button
-                      type="submit"
-                      className="login-btn"
-                      disabled={loading}
-                  >
-                    {loading ? "Logging..." : "Login"}
-                  </button>
-
-                  <div className="signup-redirect-btn-container">
-                    <div
-                      className="signup-redirect-btn"
-                      onClick={() =>
-                        navigation("/registration", { replace: true })
-                      }
-                    >
-                      I don't have an account
-                    </div>
-                  </div>
-                </form>
+                </div>
               </div>
+
+              {/* Login Button - Using global button classes */}
+              <button 
+                type="submit" 
+                className="yo-login-btn btn"
+                disabled={loading || !isFormValid()}
+              >
+                {loading ? "ACCESSING..." : "ACCESS SYSTEM"}
+              </button>
+            </form>
+
+            {/* Signup Redirect */}
+            <div className="yo-login-signup-redirect-container">
+              <button 
+                type="button"
+                className="yo-login-signup-redirect-btn btn-secondary"
+                onClick={redirectToSignup}
+              >
+                I NEED NEW BOARDING PASS
+              </button>
             </div>
+
+            {/* No Account Text */}
+            <p className="yo-login-no-account">
+              First time accessing the system? Register for boarding process above.
+            </p>
+
+            {/* Error Display */}
+            {alert.visible && (
+              <div className="yo-login-error">
+                {alert.message}
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </>
+
+      {/* Alert Component */}
+      {alert.visible && (
+        <Alert
+          type={alert.type}
+          message={alert.message}
+          onClose={() => setAlert({ ...alert, visible: false })}
+        />
+      )}
+    </div>
   );
 };
 

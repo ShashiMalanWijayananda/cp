@@ -1,105 +1,101 @@
-.about-view {
-  background: #0A2314;
-  color: var(--yo-shade-blue);
+/* ============================================================================= 
+   ABOUT PAGE - CLEANED CSS WITH UPDATED CLASS NAMES
+   ============================================================================= */
 
+/* About page main container with updated class name */
+.yo-about-view {
+  background: var(--yo-secondary);
+  color: var(--yo-shade-blue);
 }
 
-
-/* Exit Button */
-.header-right {
+/* Exit Button - Updated class name */
+.yo-about-header-right {
   position: absolute;
   top: 100px;
   right: 40px;
   z-index: 10;
 }
 
-.exit-button {
+.yo-about-exit-button {
   background: none;
   border: none;
   display: flex;
   align-items: center;
   cursor: pointer;
   transform: scale(1.25);
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
 }
 
-.exit-button:hover {
-  color: var(--accent-green);
+.yo-about-exit-button:hover {
+  color: var(--yo-green);
   transform: scale(1.5);
 }
 
-/* .centered-logo-container{
-  margin-top: 70px;
-} */
-
-/* Title */
-.about-title {
-  font-family: "Jersey 25", sans-serif;
-  font-size: 2.2rem;
+/* Title - Updated to use global heading styles */
+.yo-about-title {
+  /* Removed redundant font-family, font-size, color - now handled globally */
+  /* Global h1 styles will apply: font-family: var(--font-primary), font-size: var(--h1-size) */
   line-height: 2;
   color: var(--yo-blue);
   text-align: center;
-  font-weight: normal;
-  margin-bottom: 20px;
-  text-transform: uppercase;
+  margin-bottom: var(--spacing-lg);
+  /* text-transform: uppercase; - handled globally */
 }
 
-/* Content Wrapper */
-.content-wrapper {
+/* Content Wrapper - Updated class name */
+.yo-about-content-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 0px 40px;
-  gap: 20px;
+  gap: var(--spacing-lg);
   width: 100%;
   margin-bottom: 40px;
   flex-wrap: wrap;
-
 }
 
-.content-wrapper .text-block{
+.yo-about-content-wrapper .yo-about-text-block {
   display: flex;
   flex-direction: column;
   flex: 1;
-  font-family: VT323, monospace;
+  /* Removed font-family - now handled globally */
   width: max-content;
 }
 
-.about-subheader {
-  border: 1px solid #fff;
-  color: #000;
-  background-color: #fff;
-  padding: 0px 20px;
-  font-size: 2rem;
-
+.yo-about-subheader {
+  border: 1px solid var(--yo-white);
+  color: var(--yo-black);
+  background-color: var(--yo-white);
+  padding: 0px var(--spacing-lg);
+  /* Removed font-size - will use global h2 styles */
 }
 
-.text-box{
-  border: 1px solid #fff;
-  padding: 20px;
+.yo-about-text-box {
+  border: 1px solid var(--yo-white);
+  padding: var(--spacing-lg);
   height: 100%;
 }
 
-.text-box p{
-  font-size: 1.5rem;
+.yo-about-text-box p {
+  /* Removed font-size, line-height, margin-bottom - now handled globally */
   line-height: 1;
   margin-bottom: 1rem;
 }
 
-/* Image */
-.image-wrapper {
+/* Image - Updated class name */
+.yo-about-image-wrapper {
   max-width: 300px;
   justify-content: center;
   align-items: center;
 }
 
-.image-wrapper img {
+.yo-about-image-wrapper img {
   filter: contrast(1.15) brightness(1.15);
   border-radius: 0px;
 }
 
-/* FIXED FOOTER - ensure it's always at the bottom */
-.about-footer-scrolling {
+/* Footer scrolling - Updated class names */
+.yo-about-footer-scrolling {
   width: 100vw;
   position: fixed;
   height: 38px;
@@ -114,24 +110,23 @@
   margin: 0px;
 }
 
-.about-scroll-wrapper {
+.yo-about-scroll-wrapper {
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.about-scroll-content {
+.yo-about-scroll-content {
   display: inline-block;
-  font-family: 'VT323', monospace;
-  font-size: 1.5rem;
-  color: #000;
+  /* Removed font-family - now handled globally */
+  font-size: var(--text-xl);
+  color: var(--yo-black);
   letter-spacing: 3px;
   opacity: 0.8;
-  animation: scroll-left-system 15s linear infinite;
-
+  animation: yo-about-scroll-left-system 15s linear infinite;
 }
 
-@keyframes scroll-left-system {
+@keyframes yo-about-scroll-left-system {
   0% {
     transform: translateX(100vw);
   }
@@ -140,79 +135,65 @@
   }
 }
 
-/* Responsive Styles  */
+/* ============================================================================= 
+   RESPONSIVE DESIGN - Updated with new class names
+   ============================================================================= */
+
+/* Tablet */
 @media (max-width: 1024px) {
-  .image-wrapper {
+  .yo-about-image-wrapper {
     max-width: 350px;
   }
 }
 
+/* Mobile Portrait */
 @media (max-width: 768px) {
-  /*
-    .centered-logo-container{
-      margin-top: 50px;
-    } */
-
-
-  /* Title */
-  .about-title {
-    font-family: "Jersey 25", sans-serif;
-    font-size: 2.2rem;
+  .yo-about-title {
+    /* Removed font-family, font-size - using global styles */
     line-height: 1;
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px var(--spacing-lg) 0px;
   }
 
-  .content-wrapper {
-
-  }
-
-  .image-wrapper {
+  .yo-about-image-wrapper {
     order: 1;
     height: auto;
     width: 350px;
   }
 
-  .content-wrapper .text-block{
+  .yo-about-content-wrapper .yo-about-text-block {
     order: 2;
     width: 100%;
   }
-
 }
 
-
+/* Small Mobile */
 @media (max-width: 480px) {
-
-
-  .image-wrapper {
+  .yo-about-image-wrapper {
     align-items: center;
     width: 300px;
   }
 
-  .about-view{
+  .yo-about-view {
     padding-bottom: 100px;
   }
-
 }
 
-
+/* Extra Small Mobile */
 @media (max-width: 375px) {
-  .image-wrapper {
+  .yo-about-image-wrapper {
     width: 250px;
   }
 
-  .about-subheader {
-    font-size: 1.5rem;
-
+  .yo-about-subheader {
+    /* Removed font-size - will use global heading styles */
   }
-
 }
 
+/* Tiny Mobile */
 @media (max-width: 320px) {
-
   html, body {
     height: 100%;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+    -webkit-overflow-scrolling: touch;
   }
-
 }

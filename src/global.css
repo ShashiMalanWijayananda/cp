@@ -1,0 +1,654 @@
+/* =============================================================================
+   YOGESHWARI GLOBAL STYLES - TYPOGRAPHY, FORMS & BUTTONS
+   ============================================================================= */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* =============================================================================
+   ROOT VARIABLES - Updated and Organized
+   ============================================================================= */
+:root {
+    /* Brand Colors */
+    --yo-primary: #092313;
+    --yo-secondary: #0A2314;
+    --yo-green: #9FFF82;
+    --yo-light-green: #B7EF82;
+    --yo-dark-green: #06491D;
+    --yo-blue: #8293CF;
+    --yo-shade-blue: #AFD0D6;
+    --yo-purple: #8666D5;
+    --yo-rose: #C49799;
+    --yo-dark-rose: #c2b4bb;
+    --yo-amber: #d4c693;
+    --yo-gray: #D9D9D9;
+    --yo-dark-gray: #3A3C3C;
+    --yo-white: #ffffff;
+    --yo-black: #000000;
+    
+    /* Typography Variables */
+    --font-primary: 'VT323', monospace;
+    --font-secondary: 'Jersey 25', sans-serif;
+    
+    /* Font Sizes - Responsive using clamp() */
+    --text-xs: clamp(0.75rem, 2vw, 0.875rem);      /* 12-14px */
+    --text-sm: clamp(0.875rem, 2.5vw, 1rem);       /* 14-16px */
+    --text-base: clamp(1rem, 3vw, 1.125rem);       /* 16-18px */
+    --text-lg: clamp(1.125rem, 3.5vw, 1.25rem);    /* 18-20px */
+    --text-xl: clamp(1.25rem, 4vw, 1.5rem);        /* 20-24px */
+    --text-2xl: clamp(1.5rem, 4.5vw, 1.875rem);    /* 24-30px */
+    --text-3xl: clamp(1.875rem, 5vw, 2.25rem);     /* 30-36px */
+    --text-4xl: clamp(2.25rem, 6vw, 3rem);         /* 36-48px */
+    --text-5xl: clamp(3rem, 8vw, 4rem);            /* 48-64px */
+    
+    /* Heading Sizes */
+    --h1-size: clamp(2.5rem, 6vw, 4rem);           /* 40-64px */
+    --h2-size: clamp(2rem, 5vw, 3rem);             /* 32-48px */
+    --h3-size: clamp(1.75rem, 4.5vw, 2.5rem);      /* 28-40px */
+    --h4-size: clamp(1.5rem, 4vw, 2rem);           /* 24-32px */
+    --h5-size: clamp(1.25rem, 3.5vw, 1.75rem);     /* 20-28px */
+    --h6-size: clamp(1.125rem, 3vw, 1.5rem);       /* 18-24px */
+    
+    /* Paragraph Sizes */
+    --p-small: clamp(0.875rem, 2.5vw, 1rem);       /* 14-16px */
+    --p-base: clamp(1rem, 3vw, 1.125rem);          /* 16-18px */
+    --p-large: clamp(1.125rem, 3.5vw, 1.25rem);    /* 18-20px */
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-2xl: 3rem;     /* 48px */
+    
+    /* Form Variables */
+    --input-height: 40px;
+    --input-padding: 12px 15px;
+    --input-border-width: 1px;
+    --input-border-radius: 0px;
+    
+    /* Button Variables */
+    --btn-height: 40px;
+    --btn-padding: 12px 20px;
+    --btn-border-radius: 0px;
+    --btn-font-size: var(--text-xl);
+    
+    /* Animation Variables */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* =============================================================================
+   GLOBAL TYPOGRAPHY RESET & BASE STYLES
+   ============================================================================= */
+
+/* Base HTML and Body */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--yo-green);
+    background-color: var(--yo-primary);
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================================================
+   HEADING STYLES - H1, H2, H3, H4, H5, H6
+   ============================================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--yo-green);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: var(--h1-size);
+    margin-bottom: var(--spacing-xl);
+}
+
+h2 {
+    font-size: var(--h2-size);
+    margin-bottom: var(--spacing-lg);
+}
+
+h3 {
+    font-size: var(--h3-size);
+    margin-bottom: var(--spacing-lg);
+}
+
+h4 {
+    font-size: var(--h4-size);
+    margin-bottom: var(--spacing-md);
+}
+
+h5 {
+    font-size: var(--h5-size);
+    margin-bottom: var(--spacing-md);
+}
+
+h6 {
+    font-size: var(--h6-size);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* =============================================================================
+   PARAGRAPH STYLES
+   ============================================================================= */
+
+p {
+    font-family: var(--font-primary);
+    font-size: var(--p-base);
+    line-height: 1.6;
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--yo-green);
+    letter-spacing: 1px;
+}
+
+/* Paragraph Variants */
+.text-small, .p-small {
+    font-size: var(--p-small);
+}
+
+.text-large, .p-large {
+    font-size: var(--p-large);
+}
+
+/* =============================================================================
+   UTILITY TYPOGRAPHY CLASSES
+   ============================================================================= */
+
+/* Font Family Classes */
+.font-primary {
+    font-family: var(--font-primary);
+}
+
+.font-secondary {
+    font-family: var(--font-secondary);
+}
+
+/* Font Size Classes */
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+.text-5xl { font-size: var(--text-5xl); }
+
+/* Text Color Classes */
+.text-primary { color: var(--yo-green); }
+.text-secondary { color: var(--yo-blue); }
+.text-rose { color: var(--yo-rose); }
+.text-white { color: var(--yo-white); }
+.text-black { color: var(--yo-black); }
+.text-gray { color: var(--yo-gray); }
+
+/* Text Transform Classes */
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+/* Font Weight Classes */
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-bold { font-weight: 700; }
+
+/* Letter Spacing Classes */
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-normal { letter-spacing: 0; }
+.tracking-wide { letter-spacing: 0.025em; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
+
+/* =============================================================================
+   GLOBAL FORM STRUCTURE & STYLES
+   ============================================================================= */
+
+/* Form Container */
+.form-container, form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Form Group - Consistent across all forms */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Form Labels - Global styling */
+.form-group label,
+label {
+    font-family: var(--font-primary);
+    font-size: var(--text-xl);
+    color: var(--yo-green);
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-xs);
+    text-transform: none;
+}
+
+/* Input Wrapper for custom styling */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Global Input Styles */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+    font-family: var(--font-primary);
+    font-size: var(--text-xl);
+    height: var(--input-height);
+    width: 100%;
+    padding: var(--input-padding);
+    border: var(--input-border-width) solid var(--yo-green);
+    border-radius: var(--input-border-radius);
+    background-color: var(--yo-white);
+    color: var(--yo-black);
+    letter-spacing: 1px;
+    outline: none;
+    transition: all var(--transition-normal);
+    box-sizing: border-box;
+}
+
+/* Textarea specific styling */
+textarea {
+    height: auto;
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Select specific styling */
+select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+    appearance: none;
+}
+
+/* Input Focus States */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--yo-green);
+    box-shadow: 0 0 0 2px rgba(159, 255, 130, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Input Disabled States */
+input:disabled,
+textarea:disabled,
+select:disabled {
+    background-color: rgba(217, 217, 217, 0.5);
+    color: rgba(0, 0, 0, 0.5);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Input Placeholder Styling */
+input::placeholder,
+textarea::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* Password Toggle Button (if using) */
+.password-toggle-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--yo-black);
+    font-size: 16px;
+    padding: 4px;
+    transition: color var(--transition-fast);
+}
+
+.password-toggle-btn:hover {
+    color: var(--yo-green);
+}
+
+/* =============================================================================
+   GLOBAL BUTTON STYLES
+   ============================================================================= */
+
+/* Base Button Styles */
+button,
+.btn,
+.button {
+    font-family: var(--font-primary);
+    font-size: var(--btn-font-size);
+    height: var(--btn-height);
+    padding: var(--btn-padding);
+    border: var(--input-border-width) solid var(--yo-green);
+    border-radius: var(--btn-border-radius);
+    background-color: var(--yo-green);
+    color: var(--yo-black);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    outline: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 120px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+/* Button Hover States */
+button:hover,
+.btn:hover,
+.button:hover {
+    background-color: var(--yo-light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
+
+/* Button Active States */
+button:active,
+.btn:active,
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(159, 255, 130, 0.2);
+}
+
+/* Button Disabled States */
+button:disabled,
+.btn:disabled,
+.button:disabled {
+    background-color: rgba(159, 255, 130, 0.3);
+    color: rgba(0, 0, 0, 0.5);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Button Variants */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--yo-green);
+    border-color: var(--yo-green);
+}
+
+.btn-secondary:hover {
+    background-color: var(--yo-green);
+    color: var(--yo-black);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--yo-green);
+    border-color: var(--yo-green);
+}
+
+.btn-outline:hover {
+    background-color: var(--yo-green);
+    color: var(--yo-black);
+}
+
+.btn-rose {
+    background-color: var(--yo-rose);
+    border-color: var(--yo-rose);
+    color: var(--yo-black);
+}
+
+.btn-rose:hover {
+    background-color: var(--yo-dark-rose);
+    border-color: var(--yo-dark-rose);
+}
+
+.btn-blue {
+    background-color: var(--yo-blue);
+    border-color: var(--yo-blue);
+    color: var(--yo-black);
+}
+
+.btn-blue:hover {
+    background-color: var(--yo-shade-blue);
+    border-color: var(--yo-shade-blue);
+}
+
+/* Button Sizes */
+.btn-sm {
+    height: 32px;
+    padding: 8px 16px;
+    font-size: var(--text-base);
+    min-width: 80px;
+}
+
+.btn-lg {
+    height: 48px;
+    padding: 16px 24px;
+    font-size: var(--text-2xl);
+    min-width: 160px;
+}
+
+.btn-xl {
+    height: 56px;
+    padding: 20px 32px;
+    font-size: var(--text-3xl);
+    min-width: 200px;
+}
+
+/* Full Width Button */
+.btn-full {
+    width: 100%;
+    min-width: 100%;
+}
+
+/* =============================================================================
+   SPECIALIZED FORM COMPONENTS
+   ============================================================================= */
+
+/* Login/Registration Form Specific Styles */
+.login-form,
+.registration-form,
+.profile-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    background-color: transparent;
+}
+
+/* Form Divider */
+.form-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+    color: var(--yo-green);
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    letter-spacing: 1px;
+}
+
+.form-divider::before,
+.form-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--yo-green);
+    margin: 0 var(--spacing-md);
+}
+
+/* Error Messages */
+.error-message,
+.validation-error {
+    color: var(--yo-rose);
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    margin-top: var(--spacing-xs);
+    letter-spacing: 1px;
+}
+
+/* Success Messages */
+.success-message {
+    color: var(--yo-green);
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    margin-top: var(--spacing-xs);
+    letter-spacing: 1px;
+}
+
+/* Required Field Indicator */
+.required {
+    color: var(--yo-rose);
+    margin-left: var(--spacing-xs);
+    font-weight: bold;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+/* Mobile Portrait (480px and below) */
+@media (max-width: 480px) {
+    .form-group {
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .form-group label {
+        font-size: var(--text-lg);
+    }
+    
+    input, textarea, select {
+        font-size: var(--text-lg);
+        padding: 10px 12px;
+    }
+    
+    button, .btn {
+        font-size: var(--text-lg);
+        padding: 10px 16px;
+        height: 36px;
+    }
+    
+    .login-form,
+    .registration-form,
+    .profile-form {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .form-group {
+        gap: var(--spacing-sm);
+    }
+    
+    .login-form,
+    .registration-form,
+    .profile-form {
+        max-width: 350px;
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Large Desktop (1024px and above) */
+@media (min-width: 1024px) {
+    .login-form,
+    .registration-form,
+    .profile-form {
+        max-width: 450px;
+        padding: var(--spacing-2xl);
+    }
+}
+
+/* =============================================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================================================= */
+
+/* Focus Visible for better keyboard navigation */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--yo-green);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    input, textarea, select {
+        border-width: 2px;
+    }
+    
+    button, .btn {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =============================================================================
+   PRINT STYLES
+   ============================================================================= */
+@media print {
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+    }
+    
+    button, .btn {
+        display: none;
+    }
+    
+    input, textarea, select {
+        border: 1px solid black;
+        background: white;
+        color: black;
+    }
+}

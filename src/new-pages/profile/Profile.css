@@ -1,119 +1,125 @@
-/* ✅ FULLY ALIGNED PROFILE.CSS with Yogeshwari LOGIN THEME */
+/* ============================================================================= 
+   PROFILE PAGE - CLEANED CSS WITH UPDATED CLASS NAMES
+   Removing redundant styles that are now handled globally
+   ============================================================================= */
 
+/* Body override for profile page */
 body {
-    background: #0A2314 !important;
+    background: var(--yo-secondary) !important;
     color: var(--yo-green);
-    font-family: VT323, monospace;
+    /* Removed font-family - now handled globally */
 }
 
-.profile-layout {
+/* Profile layout container */
+.yo-profile-layout {
     width: 100vw;
     height: 100vh;
-    background: #0A2314;
-    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+    background: var(--yo-secondary);
+    color: var(--yo-green);
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    padding: 0px 15px;
+    padding: 0px var(--spacing-lg);
     box-sizing: border-box;
-    font-family: 'VT323', monospace;
+    /* Removed font-family - now handled globally */
     /* Custom scrollbar styling */
     scrollbar-width: thin;
-    scrollbar-color: var(--yo-green) #0A2314;
+    scrollbar-color: var(--yo-green) var(--yo-secondary);
 }
 
 /* Webkit scrollbar styling for better mobile experience */
-.profile-layout::-webkit-scrollbar {
+.yo-profile-layout::-webkit-scrollbar {
     width: 8px;
 }
 
-.profile-layout::-webkit-scrollbar-track {
+.yo-profile-layout::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.1);
-    border-radius: 0px; /* Remove border radius for sharp corners */
+    border-radius: 0px;
 }
 
-.profile-layout::-webkit-scrollbar-thumb {
+.yo-profile-layout::-webkit-scrollbar-thumb {
     background: var(--yo-green);
-    border-radius: 0px; /* Remove border radius for sharp corners */
-    transition: all 0.3s ease;
+    border-radius: 0px;
+    transition: all var(--transition-normal);
 }
 
-.profile-layout::-webkit-scrollbar-thumb:hover {
+.yo-profile-layout::-webkit-scrollbar-thumb:hover {
     background: rgba(159, 255, 130, 0.8);
 }
 
-.logout-icon {
+/* Logout icon */
+.yo-profile-logout-icon {
     height: 20px;
     width: 20px;
     filter: brightness(0) invert(1);
 }
 
 /* Header Section */
-.profile-header {
+.yo-profile-header {
     width: 100%;
     max-width: 900px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto var(--spacing-lg) auto;
     position: relative;
 }
 
-/* Greeting section - positioned like in Figma */
-.header-left {
+/* Greeting section */
+.yo-profile-header-left {
     text-align: right;
-    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
-    font-family: VT323, monospace;
-    margin-bottom: 20px;
+    color: var(--yo-green);
+    /* Removed font-family - now handled globally */
+    margin-bottom: var(--spacing-lg);
     width: 100%;
     max-width: 750px;
 }
 
-.greeting-text {
-    font-size: clamp(16px, 2.5vw, 18px);
+.yo-profile-greeting-text {
+    /* Removed font-size - now handled globally */
     line-height: 1.4;
-    margin-bottom: 8px;
-    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+    margin-bottom: var(--spacing-sm);
+    color: var(--yo-green);
 }
 
-.timestamp-text {
-    font-size: clamp(14px, 2vw, 15px);
+.yo-profile-timestamp-text {
+    /* Removed font-size - now handled globally */
     line-height: 1.4;
     opacity: 0.8;
-    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+    color: var(--yo-green);
 }
 
 /* Main Content */
-.profile-main {
+.yo-profile-main {
     width: 100%;
     max-width: 750px;
     margin: 0 auto;
 }
 
 /* Profile Info Row - Avatar and Badges */
-.profile-info-row {
+.yo-profile-info-row {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 60px;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-lg);
     width: 100%;
 }
 
-.avatar-container {
+.yo-profile-avatar-container {
     flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.avatar-icon {
+.yo-profile-avatar-icon {
     width: 120px;
     height: 120px;
-    filter: drop-shadow(0 0 4px rgba(159, 255, 130, 0.3)); /* Changed to green glow */
+    filter: drop-shadow(0 0 4px rgba(159, 255, 130, 0.3));
 }
 
-.badge-container {
+.yo-profile-badge-container {
     display: flex;
     justify-content: flex-end;
     gap: 25px;
@@ -122,120 +128,83 @@ body {
     align-items: center;
 }
 
-.badge-item {
+.yo-profile-badge-item {
     width: 80px;
     height: 80px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 0 4px rgba(159, 255, 130, 0.2)); /* Changed to green glow */
-    border-radius: 0px; /* Remove border radius for sharp corners */
+    transition: all var(--transition-normal);
+    filter: drop-shadow(0 0 4px rgba(159, 255, 130, 0.2));
+    border-radius: 0px;
 }
 
-.badge-item:hover {
+.yo-profile-badge-item:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 8px rgba(159, 255, 130, 0.4)); /* Changed to green glow */
+    filter: drop-shadow(0 0 8px rgba(159, 255, 130, 0.4));
 }
 
-.badge-placeholder {
+.yo-profile-badge-placeholder {
     width: 120px;
     height: 120px;
-    background: rgba(159, 255, 130, 0.1); /* Changed to green tint */
-    border: 1px dashed #9FFF82; /* Changed to solid green border */
-    border-radius: 0px; /* Remove border radius for sharp corners */
+    background: rgba(159, 255, 130, 0.1);
+    border: 1px dashed var(--yo-green);
+    border-radius: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Form styling aligned with theme */
-.details-form {
+/* REMOVED REDUNDANT FORM STYLES - NOW HANDLED GLOBALLY:
+   - .details-form styles (display, flex-direction, gap, font-family)
+   - .form-row styles (display, align-items, gap, font-size, line-height)
+   - .field-label styles (flex, font-size, color, min-width, max-width, letter-spacing)
+   - .field-value-profile styles (all input styling)
+   - .update-button styles (all button styling)
+*/
+
+/* Form styling aligned with global theme */
+.yo-profile-details-form {
+    /* Global form styles will apply */
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-family: VT323, monospace;
 }
 
-.form-row {
+.yo-profile-form-row {
+    /* Global form row styles will apply */
     display: flex;
     align-items: center;
-    gap: 15px;
-    font-size: 1.5rem;
+    gap: var(--spacing-lg);
     line-height: 1.6;
 }
 
-.field-label {
+.yo-profile-field-label {
     flex: 1;
-    font-size: 1.5rem;
-    color: var(--yo-green); /* Changed from #fff to yo-green */
+    color: var(--yo-green);
     min-width: 150px;
     max-width: 150px;
-    
-    letter-spacing: 1px; /* Added letter spacing like login theme */
+    letter-spacing: 1px;
 }
 
-.field-colon {
+.yo-profile-field-colon {
     width: 15px;
-    color: var(--yo-green); /* Changed from yo-shade-blue to yo-green */
+    color: var(--yo-green);
     text-align: center;
 }
 
-.field-value-profile {
+/* Profile-specific input styling - extends global input styles */
+.yo-profile-field-value {
+    /* Global input styles will apply */
     flex: 2;
-    background-color: #747070; /* Changed to white like login inputs */
-    color: #000; /* Changed to black text like login inputs */
-    border: 1px solid #9FFF82; /* Added green border like login theme */
-    padding: 12px 15px;
-    font-size: 1.5rem;
-    font-family: VT323, monospace;
-    letter-spacing: 1px; /* Added letter spacing like login theme */
-    transition: all 0.3s ease;
-    border-radius: 0px; /* Remove border radius for sharp corners */
+    /* Any profile-specific overrides can go here */
 }
 
-.field-value-profile:focus {
-    outline: none;
-    border-color: #9FFF82; /* Changed to green focus border */
-}
-
-.field-value-profile:disabled {
-    background-color: rgba(255, 255, 255, 0.3); /* Lighter disabled state */
-    color: rgba(0, 0, 0, 0.5); /* Darker disabled text */
-    border-color: #9FFF82; /* Keep green border even when disabled */
-    cursor: not-allowed;
-}
-
-.update-button {
-    margin-top: 15px;
-    padding: 1px 10px; /* Increased padding to match login button */
-    font-size: 1.5rem;
-    background-color: #9FFF82; /* Changed to green background like login */
-    color: #000; /* Changed to black text like login */
-    border: 1px solid #9FFF82;
-    cursor: pointer;
+/* Profile-specific button styling - extends global button styles */
+.yo-profile-update-button {
+    /* Global button styles will apply */
+    margin-top: var(--spacing-lg);
     align-self: flex-end;
-    font-family: VT323, monospace;
-    text-transform: uppercase;
-    letter-spacing: 1px; /* Added letter spacing like login theme */
-    transition: all 0.3s ease;
-    border-radius: 0px; /* Remove border radius for sharp corners */
-    font-weight: normal; /* Remove bold to match login theme */
-}
-
-.update-button:hover {
-    background-color: #9FFF82;
-    color: #000;
-    opacity: 0.9;
-}
-
-.update-button:disabled {
-    background-color: rgba(159, 255, 130, 0.5);
-    color: rgba(0, 0, 0, 0.5);
-    cursor: not-allowed;
 }
 
 /* Badge Popup Styling */
-.badge-popup-overlay {
+.yo-profile-badge-popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -246,233 +215,242 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    font-family: VT323, monospace;
+    /* Removed font-family - now handled globally */
 }
 
-.badge-popup-content {
-    background: #0A2314;
-    border: 1px solid #9FFF82; /* Changed to green border */
+.yo-profile-badge-popup-content {
+    background: var(--yo-secondary);
+    border: 1px solid var(--yo-green);
     max-width: 500px;
     width: 90%;
     max-height: 80vh;
     overflow-y: auto;
     position: relative;
-    border-radius: 0px; /* Remove border radius for sharp corners */
+    border-radius: 0px;
 }
 
-.badge-popup-header {
+.yo-profile-badge-popup-header {
     display: flex;
     justify-content: flex-end;
-    padding: 10px;
-    border-bottom: 1px solid #9FFF82; /* Changed to green border */
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--yo-green);
 }
 
-.badge-popup-close {
+.yo-profile-badge-popup-close {
     background: none;
     border: none;
-    color: var(--yo-green); /* Changed to green */
-    font-size: 24px;
+    color: var(--yo-green);
+    /* Removed font-size - now handled globally */
     cursor: pointer;
-    padding: 5px 10px;
-    transition: all 0.3s ease;
+    padding: var(--spacing-xs) var(--spacing-md);
+    transition: all var(--transition-normal);
 }
 
-.badge-popup-close:hover {
-    color: #ffffff; /* White on hover */
+.yo-profile-badge-popup-close:hover {
+    color: var(--yo-white);
     transform: scale(1.1);
 }
 
-.badge-popup-body {
-    padding: 20px;
+.yo-profile-badge-popup-body {
+    padding: var(--spacing-lg);
     text-align: center;
 }
 
-.badge-image-container {
-    margin-bottom: 20px;
+.yo-profile-badge-image-container {
+    margin-bottom: var(--spacing-lg);
 }
 
-.badge-popup-image {
+.yo-profile-badge-popup-image {
     width: 120px;
     height: 120px;
-    filter: drop-shadow(0 0 8px rgba(159, 255, 130, 0.3)); /* Changed to green glow */
+    filter: drop-shadow(0 0 8px rgba(159, 255, 130, 0.3));
 }
 
-.badge-info {
-    color: var(--yo-green); /* Changed to green */
+.yo-profile-badge-info {
+    color: var(--yo-green);
 }
 
-.badge-title {
-    font-size: clamp(16px, 2.5vw, 18px);
-    color: #ffffff; /* Changed to white for better contrast */
-    margin-bottom: 15px;
+.yo-profile-badge-title {
+    /* Font size will be handled by global heading styles */
+    color: var(--yo-white);
+    margin-bottom: var(--spacing-lg);
     text-transform: uppercase;
-    letter-spacing: 1px; /* Added letter spacing like login theme */
+    letter-spacing: 1px;
 }
 
-.badge-description {
-    font-size: clamp(14px, 2.25vw, 15px);
+.yo-profile-badge-description {
+    /* Font size will be handled by global paragraph styles */
     line-height: 1.6;
     margin: 0;
-    color: var(--yo-green); /* Green description text */
+    color: var(--yo-green);
 }
 
-/* Mobile Responsive - aligned with theme breakpoints */
+/* ============================================================================= 
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+/* Tablet - 1024px and below */
 @media (max-width: 1024px) {
     /* Tablet styles remain mostly the same */
 }
 
+/* Mobile Portrait - 768px and below */
 @media (max-width: 768px) {
-    .profile-layout {
-        padding: 20px 20px 60px 20px;
+    .yo-profile-layout {
+        padding: var(--spacing-lg) var(--spacing-lg) 60px var(--spacing-lg);
         height: 100vh;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
 
-    .logout-icon {
+    .yo-profile-logout-icon {
         height: 18px;
         width: 18px;
     }
 
-    .header-left {
+    .yo-profile-header-left {
         text-align: center;
         margin-bottom: 25px;
     }
 
-    .profile-info-row {
+    .yo-profile-info-row {
         flex-direction: column;
         align-items: center;
         gap: 25px;
     }
 
-    .avatar-container {
+    .yo-profile-avatar-container {
         order: 1;
     }
 
-    .badge-container {
+    .yo-profile-badge-container {
         order: 2;
         display: flex;
         flex-direction: row !important;
-        gap: 15px;
+        gap: var(--spacing-lg);
         width: 100%;
         max-width: 750px;
         justify-content: center;
     }
 
-    .badge-item,
-    .badge-placeholder {
+    .yo-profile-badge-item,
+    .yo-profile-badge-placeholder {
         width: 70px;
         height: 70px;
     }
 
-    .form-row {
+    .yo-profile-form-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 5px; /* Reduced gap for mobile */
+        gap: var(--spacing-xs);
     }
 
-    .field-label {
+    .yo-profile-field-label {
         min-width: auto;
         max-width: none;
         width: 100%;
         text-align: left;
     }
 
-    .field-colon {
+    .yo-profile-field-colon {
         display: none;
     }
 
-    .field-value-profile {
+    .yo-profile-field-value {
         width: 100%;
     }
 
-    .update-button {
+    .yo-profile-update-button {
         align-self: stretch;
         text-align: center;
     }
 }
 
+/* Mobile Small - 480px and below */
 @media (max-width: 480px) {
-    .profile-layout {
-        padding: 20px 20px 150px 20px;
+    .yo-profile-layout {
+        padding: var(--spacing-lg) var(--spacing-lg) 150px var(--spacing-lg);
         height: 100vh;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
 
-    .logout-icon {
+    .yo-profile-logout-icon {
         height: 16px;
         width: 16px;
     }
 
-    .avatar-icon {
+    .yo-profile-avatar-icon {
         width: 80px;
         height: 80px;
     }
 
-    .badge-container {
+    .yo-profile-badge-container {
         max-width: 450px;
     }
 
-    .badge-item,
-    .badge-placeholder {
+    .yo-profile-badge-item,
+    .yo-profile-badge-placeholder {
         width: 60px;
         height: 60px;
     }
 
-    .details-form {
-        gap: 5px;
+    .yo-profile-details-form {
+        gap: var(--spacing-xs);
     }
     
-    .form-row .field-label {
-        font-size: 1.3rem;
+    /* Form field responsive adjustments */
+    .yo-profile-form-row .yo-profile-field-label {
+        /* Font size handled globally */
     }
 
-    .form-row .field-value-profile {
-        font-size: 1.3rem;
-        padding: 8px 10px; /* Adjusted padding for mobile */
+    .yo-profile-form-row .yo-profile-field-value {
+        /* Font size and padding handled globally */
+        padding: var(--spacing-sm) var(--spacing-md);
     }
 
-    .update-button {
-        font-size: 1.3rem;
-        padding: 8px 15px; /* Adjusted padding for mobile */
+    .yo-profile-update-button {
+        /* Font size and padding handled globally */
+        padding: var(--spacing-sm) var(--spacing-lg);
     }
 }
 
+/* Extra Small Mobile - 375px and below */
 @media (max-width: 375px) {
-    .badge-container {
+    .yo-profile-badge-container {
         max-width: 300px;
-        gap: 10px;
+        gap: var(--spacing-md);
     }
 
-    .badge-item,
-    .badge-placeholder {
+    .yo-profile-badge-item,
+    .yo-profile-badge-placeholder {
         width: 55px;
         height: 55px;
     }
 }
 
+/* Tiny Mobile - 320px and below */
 @media (max-width: 320px) {
-    .badge-container {
+    .yo-profile-badge-container {
         max-width: 250px;
-        gap: 8px;
+        gap: var(--spacing-sm);
     }
 
-    .badge-item,
-    .badge-placeholder {
+    .yo-profile-badge-item,
+    .yo-profile-badge-placeholder {
         width: 50px;
         height: 50px;
     }
 }
 
-/* Additional animations for consistency with login theme */
+/* Smooth transitions for better UX */
 @media (prefers-reduced-motion: no-preference) {
-    .profile-layout,
-    .profile-main,
-    .avatar-container,
-    .badge-item,
-    .field-value-profile,
-    .update-button {
-        transition: all 0.3s ease;
+    .yo-profile-layout,
+    .yo-profile-main,
+    .yo-profile-avatar-container,
+    .yo-profile-badge-item,
+    .yo-profile-field-value,
+    .yo-profile-update-button {
+        transition: all var(--transition-normal);
     }
 }

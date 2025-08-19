@@ -1,11 +1,15 @@
+/* =============================================================================
+   YOGESHWARI - UPDATED src/index.css
+   ============================================================================= */
 
+/* Tailwind and External Library Imports */
 @layer tailwind-base, primereact, tailwind-utilities;
 @import 'primereact/resources/themes/lara-light-blue/theme.css';
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer tailwind-base {
     @tailwind base;
 }
@@ -15,22 +19,89 @@
     @tailwind utilities;
 }
 
+/* =============================================================================
+   GLOBAL TYPOGRAPHY & DESIGN SYSTEM
+   ============================================================================= */
 
-html, body {
-    font-family: "Jersey 25", "VT323", "Courier New", monospace;
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* CSS Variables - Brand Colors & Design Tokens */
+:root {
+    /* Brand Colors */
+    --yo-primary: #092313;
+    --yo-secondary: #0A2314;
+    --yo-green: #9FFF82;
+    --yo-light-green: #B7EF82;
+    --yo-dark-green: #06491D;
+    --yo-blue: #8293CF;
+    --yo-shade-blue: #AFD0D6;
+    --yo-purple: #8666D5;
+    --yo-rose: #C49799;
+    --yo-dark-rose: #c2b4bb;
+    --yo-amber: #d4c693;
+    --yo-gray: #D9D9D9;
+    --yo-dark-gray: #3A3C3C;
+    --yo-white: #ffffff;
+    --yo-black: #000000;
+    
+    /* Typography */
+    --font-primary: 'VT323', monospace;
+    --font-secondary: 'Jersey 25', sans-serif;
+    
+    /* Responsive Font Sizes */
+    --text-xs: clamp(0.75rem, 2vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 2.5vw, 1rem);
+    --text-base: clamp(1rem, 3vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 3.5vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 4vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 4.5vw, 1.875rem);
+    --text-3xl: clamp(1.875rem, 5vw, 2.25rem);
+    --text-4xl: clamp(2.25rem, 6vw, 3rem);
+    --text-5xl: clamp(3rem, 8vw, 4rem);
+    
+    /* Heading Sizes */
+    --h1-size: clamp(2.5rem, 6vw, 4rem);
+    --h2-size: clamp(2rem, 5vw, 3rem);
+    --h3-size: clamp(1.75rem, 4.5vw, 2.5rem);
+    --h4-size: clamp(1.5rem, 4vw, 2rem);
+    --h5-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    --h6-size: clamp(1.125rem, 3vw, 1.5rem);
+    
+    /* Spacing System */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Component Variables */
+    --input-height: 40px;
+    --btn-height: 40px;
+    --border-radius: 0px;
+    --transition: 0.3s ease;
 }
 
-* {
-    -webkit-overflow-scrolling: touch;
-}
-
+/* Base HTML & Body */
 html {
+    font-size: 16px;
+    scroll-behavior: smooth;
     height: 100%;
     height: -webkit-fill-available;
     overflow-x: hidden;
 }
 
 body {
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--yo-green);
+    background-color: var(--yo-primary);
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
     height: 100%;
     min-height: 100vh;
     min-height: -webkit-fill-available;
@@ -40,456 +111,283 @@ body {
     position: relative;
 }
 
+/* Preserve your existing root styles */
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
 #root {
     min-height: 100vh;
     min-height: -webkit-fill-available;
     -webkit-overflow-scrolling: touch;
 }
 
-input {
-    height: 40px;
-    background: transparent;
-    padding: 0px;
-    font-family: "Jersey 25", sans-serif;
-    border: 1px solid var(--yo-blue);
-    border-radius: 0;
-    font-size: 16px;
+/* =============================================================================
+   TYPOGRAPHY - Headings & Paragraphs
+   ============================================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--yo-green);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+h1 { font-size: var(--h1-size); margin-bottom: var(--spacing-xl); }
+h2 { font-size: var(--h2-size); margin-bottom: var(--spacing-lg); }
+h3 { font-size: var(--h3-size); margin-bottom: var(--spacing-lg); }
+h4 { font-size: var(--h4-size); margin-bottom: var(--spacing-md); }
+h5 { font-size: var(--h5-size); margin-bottom: var(--spacing-md); }
+h6 { font-size: var(--h6-size); margin-bottom: var(--spacing-sm); }
+
+p {
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--yo-green);
+    letter-spacing: 1px;
+}
+
+/* =============================================================================
+   GLOBAL FORM SYSTEM
+   ============================================================================= */
+
+.form-container, form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label, label {
+    font-family: var(--font-primary);
+    font-size: var(--text-xl);
+    color: var(--yo-green);
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-xs);
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Global Input Styles - Replaces the old input styles */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+    font-family: var(--font-primary);
+    font-size: var(--text-xl);
+    height: var(--input-height);
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--yo-green);
+    border-radius: var(--border-radius);
+    background-color: var(--yo-white);
+    color: var(--yo-black);
     letter-spacing: 1px;
     outline: none;
-    transition: all 0.2s;
-    width: 100%;
-    color: #ffffff;
+    transition: all var(--transition);
+    box-sizing: border-box;
 }
 
-input:focus {
-    box-shadow: 2px 2px 0 #333;
-    /*transform: translate(3px, 3px);*/
+textarea {
+    height: auto;
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.5;
 }
 
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
+input:focus, textarea:focus, select:focus {
+    border-color: var(--yo-green);
+    box-shadow: 0 0 0 2px rgba(159, 255, 130, 0.2);
+    transform: translateY(-1px);
 }
 
-input:focus::after {
-    content: "|";
-    animation: blink 1s step-end infinite;
-}
-
-
-.custom-button {
-    color: #000000;
-    width: 150px;
-    background: #D9D9D9;
-    font-family: VT323;
-    font-size: 16px;
-
-}
-
-.custom-button:hover {
-    background: #969696;
-    border-color: #000000;
-}
-
-.custom-button:active {
-    background: rgb(79, 92, 122);
-    box-shadow: 2px 2px 0 #333;
-    transform: translate(3px, 3px);
-}
-
-.custom-button:focus {
-    outline: 2px dotted #000000;
-    outline-offset: 2px;
-}
-
-
-.custom-button:disabled {
-    background: #444444;
+input:disabled, textarea:disabled, select:disabled {
+    background-color: rgba(217, 217, 217, 0.5);
+    color: rgba(0, 0, 0, 0.5);
     cursor: not-allowed;
+    opacity: 0.6;
 }
 
-
-.custom-button::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+input::placeholder, textarea::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    letter-spacing: 1px;
 }
 
-.custom-button:active::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+/* =============================================================================
+   GLOBAL BUTTON SYSTEM - Replaces .custom-button
+   ============================================================================= */
+
+button, .btn, .button {
+    font-family: var(--font-primary);
+    font-size: var(--text-xl);
+    height: var(--btn-height);
+    padding: 12px 20px;
+    border: 1px solid var(--yo-green);
+    border-radius: var(--border-radius);
+    background-color: var(--yo-green);
+    color: var(--yo-black);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition);
+    outline: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 120px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+button:hover, .btn:hover, .button:hover {
+    background-color: var(--yo-light-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
+
+button:active, .btn:active, .button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(159, 255, 130, 0.2);
+}
+
+button:disabled, .btn:disabled, .button:disabled {
+    background-color: rgba(159, 255, 130, 0.3);
+    color: rgba(0, 0, 0, 0.5);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Button Variants */
+.btn-secondary, .btn-outline {
     background-color: transparent;
-    opacity: 0;
-    animation: button-flash 0.2s ease-out;
-    pointer-events: none;
+    color: var(--yo-green);
+    border-color: var(--yo-green);
 }
 
-@keyframes button-flash {
-    0% {
-        opacity: 0.7;
+.btn-secondary:hover, .btn-outline:hover {
+    background-color: var(--yo-green);
+    color: var(--yo-black);
+}
+
+.btn-full {
+    width: 100%;
+    min-width: 100%;
+}
+
+/* =============================================================================
+   UTILITY CLASSES
+   ============================================================================= */
+
+/* Font Sizes */
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+
+/* Colors */
+.text-primary { color: var(--yo-green); }
+.text-secondary { color: var(--yo-blue); }
+.text-rose { color: var(--yo-rose); }
+.text-white { color: var(--yo-white); }
+
+/* Error & Success Messages */
+.error-message, .validation-error {
+    color: var(--yo-rose);
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    margin-top: var(--spacing-xs);
+    letter-spacing: 1px;
+}
+
+.success-message {
+    color: var(--yo-green);
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    margin-top: var(--spacing-xs);
+    letter-spacing: 1px;
+}
+
+.required {
+    color: var(--yo-rose);
+    margin-left: var(--spacing-xs);
+    font-weight: bold;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 480px) {
+    .form-group {
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
     }
-    100% {
-        opacity: 0;
+    
+    .form-group label {
+        font-size: var(--text-lg);
+    }
+    
+    input, textarea, select {
+        font-size: var(--text-lg);
+        padding: 10px 12px;
+    }
+    
+    button, .btn {
+        font-size: var(--text-lg);
+        padding: 10px 16px;
+        height: 36px;
     }
 }
 
+/* =============================================================================
+   EXISTING STYLES - Keep these for compatibility
+   ============================================================================= */
+
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-    background: #d2d2d2; /* Color of the track */
+    background: #d2d2d2;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #607C46; /* Color of the scrollbar handle */
+    background: #607C46;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #888888; /* Color of the scrollbar handle on hover */
+    background: #888888;
 }
 
-.retro-globe-cursor {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><radialGradient id="grad" cx="0.3" cy="0.3"><stop offset="0%" stop-color="%2300ff00"/><stop offset="70%" stop-color="%2300aa00"/><stop offset="100%" stop-color="%23003300"/></radialGradient></defs><circle cx="16" cy="16" r="14" fill="url(%23grad)" stroke="%23ffffff" stroke-width="2"/><path d="M 6 16 Q 16 8 26 16 Q 16 24 6 16" fill="none" stroke="%23ffffff" stroke-width="1"/><path d="M 16 2 Q 24 16 16 30 Q 8 16 16 2" fill="none" stroke="%23ffffff" stroke-width="1"/><circle cx="16" cy="16" r="2" fill="%23ffffff"/></svg>'), auto;
-}
-
-
-#iframe-modal-wrapper,
-#iframe-modal-wrapper * {
-    cursor: auto !important;
-}
-
-#scene-instructions-wrapper {
-    cursor: none !important;
-}
-
-#retro-loading-wrapper {
-    cursor: none !important;
-}
-
-.quality-settings-overlay {
-    cursor: none !important;
-}
-
-#secret-area-modal {
-    cursor: none !important;
-}
-
-.modal-action-trigger {
-    cursor: none !important;
-}
-
-#scene-manu-wrapper {
-    cursor: none !important;
-}
-
-#card-selection-modal {
-    cursor: none !important;
-}
-
-body {
-    margin: 0;
-    background-color: black !important;
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
-}
-
-/*button,*/
-/*button:hover,*/
-/*button:active,*/
-/*button:focus {*/
-/*    cursor: none !important;*/
-/*}*/
-
-.MuiModal-root,
-.MuiBackdrop-root,
-.MuiDialog-root,
-.MuiDialog-container,
-.MuiDialog-paper,
-.MuiPopover-root,
-.MuiPopover-paper,
-.MuiButtonBase-root,
-.MuiButton-root,
-.MuiButton-text,
-.MuiButton-contained,
-.MuiButton-outlined {
-    cursor: none !important;
-}
-
-
-body::-webkit-scrollbar {
-    display: none;
-}
-
-canvas {
-    width: 100vw;
-    height: 100vh;
-}
-
-.Typewriter__cursor {
-    display: none !important;
-}
-
-
-/* ===========================================
-   MOBILE FOOTER MARGIN FIX
-   =========================================== */
-
-/* 1. Profile.css - Update the footer positioning */
-.profile-footer-scrolling {
-    width: 100vw;
-    position: fixed;
-    height: 38px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #B4B3B0;
-    border-top: 1px solid var(--line);
-    overflow: hidden;
-    padding: 5px 0;
-    z-index: 100;
-    margin: 0px;
-}
-
-/* Add safe area for mobile browsers */
-@media (max-width: 768px) {
-    .profile-footer-scrolling {
-        /* Add bottom padding for mobile browser UI */
-        bottom: env(safe-area-inset-bottom, 10px);
-        padding-bottom: calc(5px + env(safe-area-inset-bottom, 10px));
-    }
-
-    .profile-layout {
-        /* Add bottom padding to prevent content from hiding behind footer */
-        padding-bottom: calc(60px + env(safe-area-inset-bottom, 10px));
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-footer-scrolling {
-        bottom: env(safe-area-inset-bottom, 15px);
-        padding-bottom: calc(5px + env(safe-area-inset-bottom, 15px));
-    }
-
-    .profile-layout {
-        padding-bottom: calc(70px + env(safe-area-inset-bottom, 15px));
-    }
-}
-
-/* ===========================================*/
-
-/* 2. Mission-Selection.css - Update the footer positioning */
-.mission-footer-scrolling {
-    width: 100vw;
-    height: 38px;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #B4B3B0;
-    border-top: 1px solid var(--line);
-    overflow: hidden;
-    padding: 0;
-    margin-top: 40px;
-    flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-    .mission-footer-scrolling {
-        bottom: env(safe-area-inset-bottom, 10px);
-        height: calc(38px + env(safe-area-inset-bottom, 10px));
-    }
-
-    .mission-view-v2 {
-        padding-bottom: calc(60px + env(safe-area-inset-bottom, 10px));
-    }
-}
-
-@media (max-width: 480px) {
-    .mission-footer-scrolling {
-        bottom: env(safe-area-inset-bottom, 15px);
-        height: calc(38px + env(safe-area-inset-bottom, 15px));
-    }
-
-    .mission-view-v2 {
-        padding-bottom: calc(70px + env(safe-area-inset-bottom, 15px));
-    }
-}
-
-/* ===========================================*/
-
-/* 3. PurchaseTickets.css - Update the footer positioning */
-.footer-menu-s {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    padding: 15px;
-    justify-content: start;
-    font-family: VT323, monospace;
-    font-size: 1.125rem;
-    z-index: 10;
-    color: #ffffff;
-    background: transparent;
-    backdrop-filter: none;
-    white-space: nowrap;
-    overflow: hidden;
-    height: 45px;
-    display: flex;
-    align-items: center;
-}
-
-@media (max-width: 768px) {
-    .footer-menu-s {
-        bottom: env(safe-area-inset-bottom, 10px);
-        padding-bottom: calc(15px + env(safe-area-inset-bottom, 10px));
-    }
-
-    .purchase-ticket-view-main {
-        padding-bottom: calc(80px + env(safe-area-inset-bottom, 10px));
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-menu-s {
-        bottom: env(safe-area-inset-bottom, 15px);
-        padding-bottom: calc(15px + env(safe-area-inset-bottom, 15px));
-    }
-
-    .purchase-ticket-view-main {
-        padding-bottom: calc(90px + env(safe-area-inset-bottom, 15px));
-    }
-}
-
-/* ===========================================*/
-
-/* 4. Registration.css - Update mobile spacing */
-@media (max-width: 768px) {
-    .main-container-reg {
-        padding-bottom: calc(20px + env(safe-area-inset-bottom, 10px));
-        min-height: 100vh;
-        min-height: calc(100vh - env(safe-area-inset-bottom, 0px));
-    }
-}
-
-@media (max-width: 480px) {
-    .main-container-reg {
-        padding-bottom: calc(30px + env(safe-area-inset-bottom, 15px));
-    }
-
-    .bottom-text {
-        margin-bottom: calc(20px + env(safe-area-inset-bottom, 15px));
-    }
-}
-
-/* ===========================================*/
-
-/* 5. Universal Mobile Browser Fix */
-@supports (padding: max(0px)) {
-    @media (max-width: 768px) {
-        /* For modern browsers that support env() */
-        .profile-footer-scrolling,
-        .mission-footer-scrolling,
-        .footer-menu-s {
-            bottom: max(10px, env(safe-area-inset-bottom));
-        }
-
-        .profile-layout,
-        .mission-view-v2,
-        .purchase-ticket-view-main {
-            padding-bottom: max(60px, calc(50px + env(safe-area-inset-bottom)));
-        }
-
-        .main-container-reg {
-            padding-bottom: max(20px, calc(10px + env(safe-area-inset-bottom)));
-        }
-    }
-
-    @media (max-width: 480px) {
-        .profile-footer-scrolling,
-        .mission-footer-scrolling,
-        .footer-menu-s {
-            bottom: max(15px, env(safe-area-inset-bottom));
-        }
-
-        .profile-layout,
-        .mission-view-v2,
-        .purchase-ticket-view-main {
-            padding-bottom: max(70px, calc(60px + env(safe-area-inset-bottom)));
-        }
-
-        .main-container-reg {
-            padding-bottom: max(30px, calc(20px + env(safe-area-inset-bottom)));
-        }
-    }
-}
-
-/* ===========================================*/
-
-/* 6. Additional fixes for specific devices */
-
-/* iPhone with home indicator */
-@media (max-width: 480px) and (orientation: portrait) {
-    .profile-footer-scrolling,
-    .mission-footer-scrolling,
-    .footer-menu-s {
-        bottom: 20px;
-    }
-}
-
-/* Android with navigation bar */
-@media (max-width: 480px) and (min-height: 800px) {
-    .profile-footer-scrolling,
-    .mission-footer-scrolling,
-    .footer-menu-s {
-        bottom: 25px;
-    }
-}
-
-/* Very small screens */
-@media (max-width: 375px) {
-    .profile-footer-scrolling,
-    .mission-footer-scrolling,
-    .footer-menu-s {
-        bottom: 15px;
-    }
-
-    .profile-layout,
-    .mission-view-v2,
-    .purchase-ticket-view-main {
-        padding-bottom: 75px;
-    }
-}
-
-@media (max-width: 320px) {
-    .profile-footer-scrolling,
-    .mission-footer-scrolling,
-    .footer-menu-s {
-        bottom: 20px;
-    }
-
-    .profile-layout,
-    .mission-view-v2,
-    .purchase-ticket-view-main {
-        padding-bottom: 80px;
-    }
-}
+/* Keep any other non-conflicting styles from your original index.css */

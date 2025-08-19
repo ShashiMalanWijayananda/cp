@@ -1,27 +1,17 @@
+/* ============================================================================= 
+   REGISTRATION PAGE - CLEANED CSS WITH UPDATED CLASS NAMES
+   Removing redundant styles that are now handled globally
+   ============================================================================= */
+
+/* Override root variables - will be removed once global styles are applied */
 :root {
-     font-size: 14px; 
-    --yo-green: #99ff88;
-    --yo-glow: 0 0 10px #99ff88;
-    --yo-font: 'Courier New', monospace;
+    /* Temporary font size override */
+    font-size: 14px; 
 }
 
-.form-fields .form-group .input-wrapper {
-    flex: 1;
-    max-width: 50%;
-  }
-
-.form-fields .form-group .input-wrapper input {
-    background-color: #162d23;
-    color: var(--yo-green);
-    font-family: var(--yo-font);
-    border: 2px solid var(--yo-green);
-    box-shadow: var(--yo-glow);
-    font-size: 0.6rem;
-    padding: 10px;
-}
-
-.main-container-reg {
-    background: #0A2314;  
+/* Main container */
+.yo-registration-main-container {
+    background: var(--yo-secondary);  
     background-size: cover;
     padding: 40px;
     width: 100vw;
@@ -34,7 +24,8 @@
     overflow-y: auto;
 }
 
-.content-area-reg{
+/* Content area */
+.yo-registration-content-area {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -45,30 +36,29 @@
     height: 80vh;
 }
 
-/* Keep consistent with login page */
-.logo-panel-reg{
+/* Logo panel */
+.yo-registration-logo-panel {
     flex: 1;
-    margin: 10px;
-    padding: 20px 20px 0px 20px;
+    margin: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-lg) 0px var(--spacing-lg);
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #9FFF82;
+    border: 1px solid var(--yo-green);
     height: 100%;
 }
 
 /* Standardized logo sizing to match login */
-.logo {
+.yo-registration-logo {
     width: 220px;
     height: 220px;
-    /* margin-top: 40px; */
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
 }
 
-.logo img {
+.yo-registration-logo img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -76,165 +66,158 @@
     mix-blend-mode: screen;
 }
 
-.content-area-reg .reg-view {
+/* Registration view */
+.yo-registration-view {
     flex: 1;
     padding: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin: var(--spacing-md);
     border: 1px solid #9EFF6D;
     height: 100%;
     box-sizing: border-box;
 }
 
-.reg-view .main-title {
-    font-size: 2.2rem;
+/* Main title - Updated to use global heading styles */
+.yo-registration-main-title {
+    /* Removed font-size, font-family - now handled globally */
     text-align: center;
     line-height: 1;
-    font-family: 'Jersey 25', sans-serif;
-    color: #9FFF82;
+    color: var(--yo-green);
     margin: 0px;
 }
 
-.note-text {
-    font-size: 0.85rem;
-    color: #9FFF82;
-    font-family: VT323, monospace;
+/* Note text */
+.yo-registration-note-text {
+    /* Removed font-size, font-family - now handled globally */
+    color: var(--yo-green);
     margin-top: -10px;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-md);
     text-align: end;
 }
 
-.sign-up-form {
-    gap: 10px;
+/* Sign up form */
+.yo-registration-signup-form {
+    gap: var(--spacing-md);
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
 }
 
-.google-signup-section {
+/* Google signup section */
+.yo-registration-google-section {
     padding: 0;
     display: flex;
-    gap: 10px;
-    justify-content: start;
+    gap: var(--spacing-md);
+    justify-content: center;
     width: 100%;
     margin: 0;
+    max-width: 350px;
+    min-width: 150px;
 }
 
-.divider {
+/* Divider - Updated to use consistent styling */
+.yo-registration-divider {
     margin: 0px;
-    padding:0px;
+    padding: 0px;
     text-align: center;
     width: 100%;
-    font-size: 1rem;
+    /* Removed font-size, font-family - now handled globally */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--yo-green);
-    font-family: VT323, monospace;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.divider::before,
-.divider::after {
+.yo-registration-divider::before,
+.yo-registration-divider::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: #9FFF82;
-    margin: 10px;
+    background: var(--yo-green);
+    margin: var(--spacing-md);
 }
 
-.divider::before {
-    margin-right: 15px;
+.yo-registration-divider::before {
+    margin-right: var(--spacing-lg);
 }
 
-.divider::after {
-    margin-left: 15px;
+.yo-registration-divider::after {
+    margin-left: var(--spacing-lg);
 }
 
-.form-panel {
+/* Form panel */
+.yo-registration-form-panel {
     margin: 0px;
     display: flex;
     flex-direction: column;
     padding: 0px;
     width: 100%;
     position: relative;
-    gap: 10px;
+    gap: var(--spacing-md);
     text-align: left;
 }
 
-.form-fields {
+/* Form fields container */
+.yo-registration-form-fields {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--spacing-xs);
 }
 
-.form-fields .form-group {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
+/* Individual form group - REMOVED redundant styles, now using global */
+.yo-registration-form-fields .yo-form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-xs);
 }
 
-.form-fields .form-group .input-wrapper input:focus {
-    outline: none;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+/* Form group input wrapper */
+.yo-registration-form-fields .yo-form-group .yo-input-wrapper {
+    flex: 1;
+    max-width: 50%;
 }
 
-.form-fields .form-group .input-wrapper input::placeholder {
-    color: rgba(0, 255, 0, 0.6);
-    font-style: italic;
-}
+/* REMOVED REDUNDANT INPUT STYLES - NOW HANDLED GLOBALLY:
+   - All input styling (background, color, font, border, box-shadow, etc.)
+   - Focus states
+   - Placeholder styling
+*/
 
-.form-fields  .form-group label{
+/* Form group labels - REMOVED redundant styles, now using global */
+.yo-registration-form-fields .yo-form-group label {
     flex: 0;
-    font-family: VT323, monospace;
-    font-size: 1.5rem;
+    /* Removed font-family, font-size - now handled globally */
     text-align: left;
     width: 100%;
 }
 
-.form-panel .form-actions {
+/* Form actions */
+.yo-registration-form-panel .yo-registration-form-actions {
     flex-direction: column;
-    gap: 15px;
+    gap: var(--spacing-lg);
     margin: 0px;
-    padding:0px;
+    padding: 0px;
 }
 
-/* Cap max width of content area */
-.content-area-reg {
-  max-width: 1000px !important;
+/* Content area max width cap */
+.yo-registration-content-area {
+    max-width: 1000px !important;
 }
 
-/* Adjust Google Sign Up Section */
-.google-signup-section {
-  justify-content: center !important;
-}
-
-/* Optional - Slightly reduce margin on form sections */
-.form-panel {
-  gap: 8px !important;
-}
-
-.sign-up-form {
-  gap: 8px !important;
-}
-.google-signup-section {
-    max-width: 350px !important;
-    min-width: 150px !important;
-}
-
-.sign-up-form .bottom-text {
+/* Bottom text / Login redirect */
+.yo-registration-signup-form .yo-registration-bottom-text {
     width: 100%;
-    color: #9FFF82;
-    font-family: 'VT323', monospace;
-    font-size: 1.5rem;
+    color: var(--yo-green);
+    /* Removed font-family, font-size - now handled globally */
     margin: 0px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -242,35 +225,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid #9FFF82;
-}
-
-.sign-up-form .bottom-text:hover {
-    border: #9FFF82 1px solid;
-}
-
-.signup-redirect-btn {
-    background: transparent;
-    width: 100%;
-    color: var(--yo-green);
     border: 1px solid var(--yo-green);
-    padding: 12px 15px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-.signup-redirect-btn:hover {
-    background: var(--yo-green);
-    color: #000;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+.yo-registration-signup-form .yo-registration-bottom-text:hover {
+    border: var(--yo-green) 1px solid;
 }
 
-.validation-errors {
+/* REMOVED REDUNDANT BUTTON STYLES - NOW HANDLED GLOBALLY:
+   - .register-btn styles 
+   - .login-redirect-btn styles
+   - .reg-btn styles
+   - .signup-redirect-btn styles
+*/
+
+/* Register button - Uses global button styles */
+.yo-registration-register-btn {
+    /* Global button styles will apply */
+    width: 100%;
+}
+
+/* Login redirect button - Uses global .btn-secondary styles */
+.yo-registration-login-redirect-btn {
+    /* Global .btn-secondary styles will apply */
+    width: 100%;
+}
+
+/* Validation errors popup */
+.yo-registration-validation-errors {
     position: fixed;
     top: 50vh;
     left: 50vw;
@@ -278,27 +260,27 @@
     margin: 0;
     color: #ff0000;
     border: solid #ff0000 2px;
-    padding: 20px;
-    background-color: #000000;
+    padding: var(--spacing-lg);
+    background-color: var(--yo-black);
     z-index: 1000;
     min-width: 300px;
     max-width: 150vw;
     text-align: center;
-    font-size: 14px;
+    /* Removed font-size - now handled globally */
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
     border-radius: 4px;
 }
 
-.error-header {
+.yo-registration-error-header {
     color: #ff0000;
-    font-size: 14px;
+    /* Removed font-size - now handled globally */
     font-weight: bold;
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.reg-close-button {
+.yo-registration-close-button {
     width: 20px;
     height: 20px;
     display: flex;
@@ -310,579 +292,228 @@
 }
 
 /* Password mismatch error styling */
-.password-error {
+.yo-registration-password-error {
     color: #ff5151;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 1.5rem;
+    /* Removed font-size, font-family - now handled globally */
     border: 1px dashed #ff5151;
     margin-top: 0px;
-    font-family: 'vt323', monospace;
 }
 
-/* Responsive Design */
+/* ============================================================================= 
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+/* Tablet - 1024px and below */
 @media (max-width: 1024px) {
-    .main-container-reg {
+    .yo-registration-main-container {
         display: flex;
-        padding: 15px;
-        gap: 15px;
+        padding: var(--spacing-lg);
+        gap: var(--spacing-lg);
         overflow-y: auto;
     }
 
-    .content-area-reg .reg-view{
+    .yo-registration-content-area .yo-registration-view {
         padding: 2%;
-        gap: 10px;
+        gap: var(--spacing-md);
     }
 
-    /* Match login page logo section padding */
-    .logo-panel-reg {
+    .yo-registration-logo-panel {
         padding: 2%;
     }
 
-    .form-fields  .form-group label{
+    .yo-registration-form-fields .yo-form-group label {
         flex: 1;
-        font-family: VT323, monospace;
-        font-size: 1.5rem;
+        /* Font styles handled globally */
         text-align: left;
         width: 100%;
     }
 
-    /* Consistent logo sizing with login */
-    .logo {
+    .yo-registration-logo {
         width: 300px;
         height: 300px;
     }
 }
 
+/* Mobile Portrait - 768px and below */
 @media (max-width: 768px) {
-    .main-container-reg {
-        padding: 10px;
+    .yo-registration-main-container {
+        padding: var(--spacing-md);
         height: auto;
         min-height: 100vh;
-        gap: 10px;
+        gap: var(--spacing-md);
         overflow-y: auto;
-    }
-
-    .content-area-reg {
-        display: flex;
         flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        height: auto;
-        align-items: center;
     }
 
-    /* Match login page mobile styling exactly */
-    .logo-panel-reg{
-        width: 100%;
-        display: flex;
+    .yo-registration-content-area {
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        padding: 20px 0;
         height: auto;
-        border: none; /* Match login */
+        gap: var(--spacing-md);
     }
 
-    /* Consistent mobile logo sizing */
-    .logo {
-        width: 250px;
-        height: 250px;
+    .yo-registration-logo-panel,
+    .yo-registration-view {
+        flex: none;
+        margin: var(--spacing-xs);
+        height: auto;
+        width: 100%;
     }
 
-    .reg-view {
+    .yo-registration-logo-panel {
+        padding: var(--spacing-lg) 0;
         border: none;
-        width: 100%;
-        margin: 0;
-        padding: 0 5%;
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-        flex: 1;
     }
 
-    .reg-view .main-title {
-        font-size: 2rem;
-        text-align: center;
-        letter-spacing: 2px;
-        line-height: 1;
-        font-family: 'Jersey 25', sans-serif;
-        color: #9FFF82;
-        margin: 0 0 20px 0;
+    .yo-registration-view {
+        padding: var(--spacing-md);
+        border: 1px solid var(--yo-green);
     }
 
-    .google-signup-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        padding: 10px 0;
-        margin: 10px 0;
-    }
-
-    .divider {
-        margin: 10px 0;
-        padding: 0;
-        text-align: center;
-        width: 100%;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .sign-up-form {
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
-        gap: 8px;
-    }
-
-    .form-panel {
-        gap: 8px;
-    }
-
-    .form-fields {
-        gap: 6px;
-    }
-
-    .form-fields  .form-group label{
-        flex: 1;
-        font-family: VT323, monospace;
-        font-size: 1.5rem;
-        text-align: left;
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-container-reg {
-        padding: 10px 10px 100px 10px;
-        gap: 8px;
-        height: auto;
-        min-height: 100vh;
-    }
-
-    .content-area-reg{
-        display: flex;
+    .yo-registration-form-fields .yo-form-group {
         flex-direction: column;
-        gap: 8px;
-        align-items: center;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
     }
 
-    .sign-up-form {
-        margin-top: 0;
-        padding-top: 0;
-        width: 100%;
-        gap: 6px;
-    }
-
-    /* Match login page exactly */
-    .logo-panel-reg{
-        border: none;
-        margin: 0;
-        padding: 15px 0;
+    .yo-registration-form-fields .yo-form-group .yo-input-wrapper {
+        max-width: 100%;
         width: 100%;
     }
 
-    /* Consistent small mobile logo sizing */
-    .logo {
+    .yo-registration-form-fields .yo-form-group label {
+        width: 100%;
+        /* Font size handled globally */
+    }
+
+    .yo-registration-logo {
         width: 200px;
         height: 200px;
     }
 
-    .main-title {
-        display: none; 
+    /* Compact form spacing */
+    .yo-registration-signup-form {
+        gap: var(--spacing-xs);
     }
 
-    .note-text {
-        text-align: left;
-        margin: 10px 0;
+    .yo-registration-form-panel {
+        gap: var(--spacing-xs);
     }
 
-    .google-signup-section {
-        justify-content: center;
-        padding: 8px 0;
-        margin: 8px 0;
-        width: 100%;
-    }
-
-    .divider {
-        justify-content: center;
-        margin: 8px 0;
-        padding: 0;
-        font-size: 0.9rem;
-    }
-
-    .divider::before {
-        margin-right: 8px;
-    }
-    
-    .divider::after {
-        margin-left: 8px;
-    }
-
-    .content-area-reg .reg-view{
-        padding: 0 5%;
-        gap: 10px;
-        border: none;
-    }
-
-    .form-panel {
-        gap: 6px;
-    }
-
-    .form-fields {
-        gap: 4px;
-    }
-
-    .form-actions {
-        margin-top: 10px;
-    }
-
-    .bottom-text {
-        margin-top: 10px;
-    }
-
-    .form-fields  .form-group label{
-        flex: 1;
-        font-family: VT323, monospace;
-        font-size: 1.5rem;
-        text-align: left;
-        width: 100%;
-    }
-
-    .form-fields .form-group .input-wrapper input {
-        font-size: 0.8rem !important;
-        padding: 8px !important;
-    }
-
-    .signup-redirect-btn {
-        padding: 10px 12px;
-        font-size: 1.4rem;
+    .yo-registration-form-fields {
+        gap: var(--spacing-xs);
     }
 }
 
-@media (max-width: 375px) {
-    .main-container-reg {
-        padding: 8px;
-        gap: 6px;
+/* Mobile Small - 480px and below */
+@media (max-width: 480px) {
+    .yo-registration-main-container {
+        padding: var(--spacing-sm) var(--spacing-sm) 80px var(--spacing-sm);
+        gap: var(--spacing-xs);
     }
 
-    .content-area-reg{
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+    .yo-registration-view {
+        padding: var(--spacing-sm);
     }
 
-    .logo-panel-reg{
-        border: none;
-        padding: 10px 0;
+    .yo-registration-form-fields .yo-form-group label {
+        /* Font size handled globally */
     }
 
-    .logo {
+    .yo-registration-form-fields .yo-form-group .yo-input-wrapper input {
+        /* Input styling handled globally */
+        padding: var(--spacing-sm);
+    }
+
+    .yo-registration-logo {
         width: 180px;
         height: 180px;
     }
 
-    .sign-up-form {
-        gap: 4px;
+    /* Ultra-compact spacing */
+    .yo-registration-signup-form {
+        gap: 2px;
     }
 
-    .google-signup-section {
-        justify-content: center;
-        padding: 6px 0;
-        margin: 6px 0;
+    .yo-registration-form-panel {
+        gap: 2px;
     }
 
-    .divider {
-        margin: 6px 0;
-        padding: 0;
-    }
-
-    .content-area-reg .reg-view{
-        padding: 0 3%;
-        gap: 8px;
-        border: none;
-    }
-
-    .form-panel {
-        gap: 4px;
-    }
-
-    .form-fields {
-        gap: 3px;
-    }
-
-    .form-actions {
-        margin-top: 8px;
-    }
-
-    .bottom-text {
-        margin-top: 8px;
-    }
-
-    .form-fields  .form-group label{
-        flex: 1;
-        font-family: VT323, monospace;
-        font-size: 1.3rem;
-        text-align: left;
-        width: 100%;
-    }
-
-    .form-fields .form-group .input-wrapper input {
-        font-size: 0.8rem;
-        padding: 8px;
-    }
-
-    .signup-redirect-btn {
-        padding: 10px 12px;
-        font-size: 1.3rem;
+    .yo-registration-form-fields {
+        gap: 2px;
     }
 }
 
-/* Mobile Landscape fixes for both components */
+/* Mobile Landscape */
 @media (max-width: 768px) and (orientation: landscape) {
-    .main-container-reg {
-        padding: 10px;
+    .yo-registration-main-container {
+        padding: var(--spacing-md);
         height: auto;
         min-height: 100vh;
     }
 
-    .content-area-reg {
+    .yo-registration-content-area {
         flex-direction: row;
         height: auto;
         align-items: center;
-        gap: 20px;
+        gap: var(--spacing-lg);
     }
 
-    .logo-panel-reg {
+    .yo-registration-logo-panel {
         flex: 0 0 auto;
         border: none;
         width: auto;
-        padding: 10px;
+        padding: var(--spacing-md);
     }
 
-    .reg-view {
+    .yo-registration-view {
         margin: 0;
         flex: 1;
         border: none;
-        padding: 10px;
+        padding: var(--spacing-md);
     }
 
-    .logo {
+    .yo-registration-logo {
         width: 150px;
         height: 150px;
     }
 
-    .sign-up-form {
-        gap: 4px;
+    .yo-registration-signup-form {
+        gap: var(--spacing-xs);
     }
 
-    .reg-view .main-title {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
+    .yo-registration-main-title {
+        margin-bottom: var(--spacing-md);
     }
 
-    .google-signup-section {
-        padding: 5px 0;
-        margin: 5px 0;
+    .yo-registration-google-section {
+        padding: var(--spacing-xs) 0;
+        margin: var(--spacing-xs) 0;
     }
 
-    .divider {
-        margin: 5px 0;
-        font-size: 0.8rem;
+    .yo-registration-divider {
+        margin: var(--spacing-xs) 0;
     }
 
-    .form-panel {
-        gap: 4px;
+    .yo-registration-form-panel {
+        gap: var(--spacing-xs);
     }
 
-    .form-fields {
-        gap: 3px;
+    .yo-registration-form-fields {
+        gap: var(--spacing-xs);
     }
 
-    .form-group label {
-        font-size: 1rem;
+    .yo-registration-form-fields .yo-form-group label {
+        /* Font size handled globally */
     }
 }
 
-/* Additional legacy styles to maintain compatibility */
-.register-provider {
-    user-select: none;
-    display: flex;
-    width: 100%;
-    font-size: 1rem;
-    justify-content: space-evenly;
-    padding: 5px;
-}
-
-.provider {
-    display: inline-block;
-    color: var(--yo-green);
-    text-decoration: none;
-    font-weight: normal;
-    background: #0d1117;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.2s ease;
-}
-
-.register-btn {
-    background: var(--yo-green);
-    color: #000;
-    border: none;
-    padding: 12px 20px;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 3px;
-}
-
-.register-btn:hover:not(:disabled) {
-    background: #00dd00;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
-    transform: translateY(-2px);
-}
-
-.register-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-}
-
-.login-redirect-btn {
-    background: transparent;
-    width: 100%;
-    color: var(--yo-green);
-    border: 1px solid var(--yo-green);
-    padding: 10px 15px;
-    font-family: 'Jersey 25', sans-serif;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 3px;
-}
-
-.login-redirect-btn:hover {
-    background: var(--yo-green);
-    color: #000;
-}
-
-.reg-btn {
-    width: 100%;
-    padding: 0px 5px;
-    background: var(--yo-green);
-    color: #000;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    border-radius: 0px;
-    transition: background-color 0.3s ease;
-    text-transform: uppercase;
-}
-
-.reg-btn:hover {
-    /*background: #00cc00;*/
-}
-
-.reg-btn:disabled {
-    background: #666;
-    cursor: not-allowed;
-}
-
-.signup-with {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding: 10px;
-}
-
-/* Input update */
-.form-fields .form-group .input-wrapper input {
-    background-color: #333;
-    border: 2px solid var(--yo-green);
-    color: var(--yo-green);
-    box-shadow: var(--yo-glow);
-}
-
-/* UI PATCH */
-:root {
-  --yo-green: #99ff88;
-  --yo-glow: 0 0 6px #99ff88;
-  --yo-font: 'Courier New', monospace;
-}
-
-.form-fields .form-group .input-wrapper input {
-  background-color: #333;
-  border: 2px solid var(--yo-green);
-  color: var(--yo-green);
-  font-family: var(--yo-font);
-  font-size: 10px;
-  padding: 10px;
-  box-shadow: var(--yo-glow);
-}
-
-/* FINAL MATCH TO REGISTER.JPG */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: #02140F;
-  color: #9EFF6D;
-}
-
-.google-btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-input {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid #9EFF6D;
-  background-color: #02140F;
-  color: #9EFF6D;
-  font-size: 16px;
-  outline: none;
-  box-shadow: 0 0 4px #9EFF6D;
-}
-
-.password-toggle {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-toggle .eye-icon {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-}
-
-button.register-btn {
-  width: 100%;
-  padding: 14px;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #9EFF6D;
-  color: #02140F;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 0 6px #9EFF6D;
-  margin-top: 20px;
+/* Extra Small Mobile */
+@media (max-width: 375px) {
+    .yo-registration-logo {
+        width: 160px;
+        height: 160px;
+    }
 }

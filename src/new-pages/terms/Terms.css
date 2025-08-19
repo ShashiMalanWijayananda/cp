@@ -1,53 +1,45 @@
+/* ============================================================================= 
+   TERMS PAGE - CLEANED CSS WITH UPDATED CLASS NAMES
+   Removing redundant styles that are now handled globally
+   ============================================================================= */
+
+/* Body override for terms page */
 body {
-    background: #0A2314 !important;
+    background: var(--yo-secondary) !important;
 }
 
-.terms-view {
-
-    background-color: #0A2314;
+/* Terms view main container */
+.yo-terms-view {
+    background-color: var(--yo-secondary);
     color: var(--yo-shade-blue);
     overflow-y: auto;
-
 }
 
-.terms-box {
+/* Terms box container */
+.yo-terms-box {
     width: 100%;
     text-align: center;
-    margin: 0 auto 20px auto;
+    margin: 0 auto var(--spacing-lg) auto;
 }
 
-.terms-view .terms-view-title {
-    font-family: "Jersey 25";
+/* Title - Updated to use global heading styles */
+.yo-terms-title {
+    /* Removed font-family, font-size - now handled globally */
     text-transform: uppercase;
-    font-size: 2.2rem;
     color: var(--yo-blue);
-    font-weight: normal;
-    /* margin: 10px 0; */
+    /* Removed font-weight - handled globally */
     line-height: 2;
 }
 
-/* UPDATED: Standardized logo container to match Contact */
-/* .terms-view .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 200px;
-    margin: 75px auto 20px auto;
-} */
-
-
-
 /* Content container */
-.terms-content-container {
+.yo-terms-content-container {
     width: 100%;
-    padding: 0 15px;
+    padding: 0 var(--spacing-lg);
     padding-bottom: 40px;
 }
 
-.terms-view .content {
-    font-family: VT323;
-    font-size: clamp(14px, 2.25vw, 15px);
+.yo-terms-content {
+    /* Removed font-family, font-size - now handled globally */
     width: 100%;
     max-width: 900px;
     line-height: 1.6;
@@ -55,276 +47,270 @@ body {
 }
 
 /* Multi-column grid layout */
-.terms-grid {
+.yo-terms-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: var(--spacing-lg);
     width: 100%;
 }
 
-.terms-view .terms-section {
-    border: 1px solid #fff;
-    /* background-color: rgba(0, 0, 0, 0.3); */
-    margin-bottom: 15px;
+/* Terms section */
+.yo-terms-section {
+    border: 1px solid var(--yo-white);
+    margin-bottom: var(--spacing-lg);
 }
 
-.terms-view .section-terms-view-title {
-    background-color: #fff;
-    color: #000;
+/* Section title - Updated to use global heading styles */
+.yo-terms-section-title {
+    background-color: var(--yo-white);
+    color: var(--yo-black);
     margin: 0;
-    padding: 5px 10px;
-    font-size: 2.2rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    /* Removed font-size, font-family - now handled globally */
     line-height: 1;
-    font-family: VT323;
 }
 
-.terms-view .section-content {
-    margin: 10px;
+/* Section content */
+.yo-terms-section-content {
+    margin: var(--spacing-md);
     line-height: 1;
     color: var(--yo-shade-blue);
-    font-size: 1rem;
+    /* Removed font-size - now handled globally */
 }
 
 /* Event table styling */
-.event-details-table {
+.yo-terms-event-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 5px;
+    margin-top: var(--spacing-xs);
 }
 
-.event-details-table td {
-    padding: 4px 0;
+.yo-terms-event-table td {
+    padding: var(--spacing-xs) 0;
     vertical-align: top;
     color: var(--yo-shade-blue);
-    font-size: 1.2rem;
+    /* Removed font-size - now handled globally */
     line-height: 1;
 }
 
-.event-details-table td:first-child {
+.yo-terms-event-table td:first-child {
     color: #f7fafc;
     white-space: nowrap;
     width: 120px;
-    font-size: 1.05rem;
+    /* Font size will be handled globally */
 }
 
-.event-details-table td:nth-child(2) {
+.yo-terms-event-table td:nth-child(2) {
     width: 20px;
     text-align: center;
     color: #f7fafc;
-    padding: 4px 10px;
-    font-size: 1.05rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    /* Font size will be handled globally */
 }
 
-.event-details-table td:nth-child(3) {
+.yo-terms-event-table td:nth-child(3) {
     color: var(--yo-shade-blue);
 }
 
-.bullet-list {
+/* Bullet list styling */
+.yo-terms-bullet-list {
     list-style-type: disc;
-    padding-left: 20px;
-    margin: 10px 0;
+    padding-left: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
 }
 
-.bullet-list li {
-    margin-bottom: 6px;
+.yo-terms-bullet-list li {
+    margin-bottom: var(--spacing-xs);
     line-height: 1.5;
-    font-size: 1.2rem;
+    /* Removed font-size - now handled globally */
     color: var(--yo-shade-blue);
 }
 
-.bullet-list ul {
+.yo-terms-bullet-list ul {
     list-style-type: circle;
-    padding-left: 20px;
-    margin-top: 5px;
-    font-size: 1.2rem;
+    padding-left: var(--spacing-lg);
+    margin-top: var(--spacing-xs);
+    /* Removed font-size - now handled globally */
 }
 
-.bullet-list ul li {
-    margin-bottom: 4px;
-    font-size: 1.2rem;
+.yo-terms-bullet-list ul li {
+    margin-bottom: var(--spacing-xs);
+    /* Removed font-size - now handled globally */
 }
 
-.terms-view a {
+/* Links */
+.yo-terms-view a {
     color: #63b3ed;
     text-decoration: none;
 }
 
-.terms-view a:hover {
+.yo-terms-view a:hover {
     text-decoration: underline;
     color: #90cdf4;
 }
 
-.terms-view .section-content p {
-    margin: 10px 0;
+/* Section content paragraphs and strong text */
+.yo-terms-section-content p {
+    margin: var(--spacing-md) 0;
     color: var(--yo-shade-blue);
-    font-size: 1.2rem;
+    /* Removed font-size - now handled globally */
     line-height: 1.3;
 }
 
-.terms-view .section-content strong {
-    font-size: 1.2rem;
+.yo-terms-section-content strong {
+    /* Removed font-size - now handled globally */
     line-height: 1.2;
     color: #f7fafc;
 }
 
+/* ============================================================================= 
+   RESPONSIVE DESIGN
+   ============================================================================= */
 
-/* UPDATED: Mobile responsive logo sizes to match Contact */
+/* Tablet - 1024px and below */
 @media (max-width: 1024px) {
-
-    .terms-content-container {
+    .yo-terms-content-container {
         padding-bottom: 40px;
     }
-
 }
 
+/* Mobile Portrait - 768px and below */
 @media (max-width: 768px) {
-    .terms-view {
-        padding: 15px 7px;
+    .yo-terms-view {
+        padding: var(--spacing-lg) var(--spacing-sm);
     }
 
-    .header-right {
-        top: 11px;
-        right: 11px;
+    .yo-terms-title {
+        /* Font size handled globally */
     }
 
-
-
-
-    .terms-view .terms-view-title {
-        font-size: 2.2rem;
-    }
-
-    .terms-content-container {
+    .yo-terms-content-container {
         padding-bottom: 40px;
     }
 
-    .terms-view .content {
+    .yo-terms-content {
         width: 100%;
-        padding: 7px;
+        padding: var(--spacing-sm);
     }
 
-    .terms-grid {
+    .yo-terms-grid {
         grid-template-columns: 1fr;
-        gap: 11px;
+        gap: var(--spacing-md);
     }
 
-    .terms-view .section-terms-view-title {
-        font-size: 0.9em;
-        padding: 6px 9px;
+    .yo-terms-section-title {
+        /* Font size handled globally */
+        padding: var(--spacing-xs) calc(var(--spacing-sm) + var(--spacing-xs));
     }
 
-    .terms-view .section-content {
-        font-size: 0.75rem;
-        margin: 9px;
+    .yo-terms-section-content {
+        /* Font size handled globally */
+        margin: calc(var(--spacing-sm) + var(--spacing-xs));
     }
 
-    .event-details-table td {
-        font-size: 0.75rem;
-        padding: 3px 0;
+    .yo-terms-event-table td {
+        /* Font size handled globally */
+        padding: var(--spacing-xs) 0;
     }
 
-    .event-details-table td:first-child {
+    .yo-terms-event-table td:first-child {
         width: 100px;
-        font-size: 0.9rem;
+        /* Font size handled globally */
     }
 
-    .event-details-table td:nth-child(2) {
-        font-size: 0.9rem;
-        padding: 3px 8px;
+    .yo-terms-event-table td:nth-child(2) {
+        /* Font size handled globally */
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 
-    .bullet-list li {
-        font-size: 0.75rem;
+    .yo-terms-bullet-list li {
+        /* Font size handled globally */
     }
 
-    .bullet-list ul li {
-        font-size: 0.71rem;
+    .yo-terms-bullet-list ul li {
+        /* Font size handled globally */
     }
 
-    .terms-view .section-content p {
-        font-size: 0.75rem;
+    .yo-terms-section-content p {
+        /* Font size handled globally */
     }
 
-    .terms-view .section-content strong {
-        font-size: 0.9rem;
+    .yo-terms-section-content strong {
+        /* Font size handled globally */
     }
 }
 
+/* Mobile Small - 480px and below */
 @media (max-width: 480px) {
-    .terms-view {
-        padding: 11px 11px 150px 11px;
+    .yo-terms-view {
+        padding: var(--spacing-md) var(--spacing-md) 150px var(--spacing-md);
     }
 
-    .header-right {
-        top: 7px;
-        right: 7px;
-    }
-
-
-
-    .terms-view .terms-view-title {
-        font-size: 2.2em;
+    .yo-terms-title {
+        /* Font size handled globally */
         line-height: 1;
     }
 
-    .terms-content-container {
-        padding: 0 4px;
+    .yo-terms-content-container {
+        padding: 0 var(--spacing-xs);
     }
 
-    .terms-view .content {
-        padding: 4px;
+    .yo-terms-content {
+        padding: var(--spacing-xs);
     }
 
-    .terms-grid {
-        gap: 9px;
+    .yo-terms-grid {
+        gap: calc(var(--spacing-sm) + var(--spacing-xs));
     }
 
-    .terms-view .section-terms-view-title {
-        font-size: 0.83em;
-        padding: 4px 7px;
+    .yo-terms-section-title {
+        /* Font size handled globally */
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 
-    .terms-view .section-content {
-        font-size: 0.71rem;
-        margin: 7px;
+    .yo-terms-section-content {
+        /* Font size handled globally */
+        margin: var(--spacing-sm);
     }
 
-    .event-details-table td {
-        font-size: 0.71rem;
+    .yo-terms-event-table td {
+        /* Font size handled globally */
         padding: 2px 0;
     }
 
-    .event-details-table td:first-child {
+    .yo-terms-event-table td:first-child {
         width: 90px;
-        font-size: 0.83rem;
+        /* Font size handled globally */
     }
 
-    .event-details-table td:nth-child(2) {
-        font-size: 1.2rem;
-        padding: 2px 6px;
+    .yo-terms-event-table td:nth-child(2) {
+        /* Font size handled globally */
+        padding: 2px var(--spacing-xs);
     }
 
-    .bullet-list li {
-        font-size: 1.2rem;
+    .yo-terms-bullet-list li {
+        /* Font size handled globally */
     }
 
-    .bullet-list ul li {
-        font-size: 0.67rem;
+    .yo-terms-bullet-list ul li {
+        /* Font size handled globally */
     }
 
-    .terms-view .section-content p {
-        font-size: 0.71rem;
+    .yo-terms-section-content p {
+        /* Font size handled globally */
     }
 
-    .terms-view .section-content strong {
-        font-size: 0.83rem;
+    .yo-terms-section-content strong {
+        /* Font size handled globally */
     }
 }
 
+/* Extra Small Mobile - 375px and below */
 @media (max-width: 375px) {
-
+    /* Additional mobile optimizations if needed */
 }
 
+/* Tiny Mobile - 320px and below */
 @media (max-width: 320px) {
-
+    /* Additional mobile optimizations if needed */
 }
