@@ -1,0 +1,496 @@
+
+@layer tailwind-base, primereact, tailwind-utilities;
+@import 'primereact/resources/themes/lara-light-blue/theme.css';
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import './styles/yogeshwari-utilities.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer tailwind-utilities {
+    @tailwind components;
+    @tailwind utilities;
+}
+
+
+html, body {
+    font-family: "Jersey 25", "VT323", "Courier New", monospace;
+}
+
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+html {
+    height: 100%;
+    height: -webkit-fill-available;
+    overflow-x: hidden;
+}
+
+body {
+    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+}
+
+#root {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    -webkit-overflow-scrolling: touch;
+}
+
+input {
+    height: 40px;
+    background: transparent;
+    padding: 0px;
+    font-family: "Jersey 25", sans-serif;
+    border: 1px solid var(--yo-blue);
+    border-radius: 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+    outline: none;
+    transition: all 0.2s;
+    width: 100%;
+    color: #ffffff;
+}
+
+input:focus {
+    box-shadow: 2px 2px 0 #333;
+    /*transform: translate(3px, 3px);*/
+}
+
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+input:focus::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+}
+
+
+.custom-button {
+    color: #000000;
+    width: 150px;
+    background: #D9D9D9;
+    font-family: VT323;
+    font-size: 16px;
+
+}
+
+.custom-button:hover {
+    background: #969696;
+    border-color: #000000;
+}
+
+.custom-button:active {
+    background: rgb(79, 92, 122);
+    box-shadow: 2px 2px 0 #333;
+    transform: translate(3px, 3px);
+}
+
+.custom-button:focus {
+    outline: 2px dotted #000000;
+    outline-offset: 2px;
+}
+
+
+.custom-button:disabled {
+    background: #444444;
+    cursor: not-allowed;
+}
+
+
+.custom-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.custom-button:active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 0;
+    animation: button-flash 0.2s ease-out;
+    pointer-events: none;
+}
+
+@keyframes button-flash {
+    0% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d2d2d2; /* Color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #607C46; /* Color of the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888888; /* Color of the scrollbar handle on hover */
+}
+
+.retro-globe-cursor {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><radialGradient id="grad" cx="0.3" cy="0.3"><stop offset="0%" stop-color="%2300ff00"/><stop offset="70%" stop-color="%2300aa00"/><stop offset="100%" stop-color="%23003300"/></radialGradient></defs><circle cx="16" cy="16" r="14" fill="url(%23grad)" stroke="%23ffffff" stroke-width="2"/><path d="M 6 16 Q 16 8 26 16 Q 16 24 6 16" fill="none" stroke="%23ffffff" stroke-width="1"/><path d="M 16 2 Q 24 16 16 30 Q 8 16 16 2" fill="none" stroke="%23ffffff" stroke-width="1"/><circle cx="16" cy="16" r="2" fill="%23ffffff"/></svg>'), auto;
+}
+
+
+#iframe-modal-wrapper,
+#iframe-modal-wrapper * {
+    cursor: auto !important;
+}
+
+#scene-instructions-wrapper {
+    cursor: none !important;
+}
+
+#retro-loading-wrapper {
+    cursor: none !important;
+}
+
+.quality-settings-overlay {
+    cursor: none !important;
+}
+
+#secret-area-modal {
+    cursor: none !important;
+}
+
+.modal-action-trigger {
+    cursor: none !important;
+}
+
+#scene-manu-wrapper {
+    cursor: none !important;
+}
+
+#card-selection-modal {
+    cursor: none !important;
+}
+
+body {
+    margin: 0;
+    background-color: black !important;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+/*button,*/
+/*button:hover,*/
+/*button:active,*/
+/*button:focus {*/
+/*    cursor: none !important;*/
+/*}*/
+
+.MuiModal-root,
+.MuiBackdrop-root,
+.MuiDialog-root,
+.MuiDialog-container,
+.MuiDialog-paper,
+.MuiPopover-root,
+.MuiPopover-paper,
+.MuiButtonBase-root,
+.MuiButton-root,
+.MuiButton-text,
+.MuiButton-contained,
+.MuiButton-outlined {
+    cursor: none !important;
+}
+
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+.Typewriter__cursor {
+    display: none !important;
+}
+
+
+/* ===========================================
+   MOBILE FOOTER MARGIN FIX
+   =========================================== */
+
+/* 1. Profile.css - Update the footer positioning */
+.profile-footer-scrolling {
+    width: 100vw;
+    position: fixed;
+    height: 38px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #B4B3B0;
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+    padding: 5px 0;
+    z-index: 100;
+    margin: 0px;
+}
+
+/* Add safe area for mobile browsers */
+@media (max-width: 768px) {
+    .profile-footer-scrolling {
+        /* Add bottom padding for mobile browser UI */
+        bottom: env(safe-area-inset-bottom, 10px);
+        padding-bottom: calc(5px + env(safe-area-inset-bottom, 10px));
+    }
+
+    .profile-layout {
+        /* Add bottom padding to prevent content from hiding behind footer */
+        padding-bottom: calc(60px + env(safe-area-inset-bottom, 10px));
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-footer-scrolling {
+        bottom: env(safe-area-inset-bottom, 15px);
+        padding-bottom: calc(5px + env(safe-area-inset-bottom, 15px));
+    }
+
+    .profile-layout {
+        padding-bottom: calc(70px + env(safe-area-inset-bottom, 15px));
+    }
+}
+
+/* ===========================================*/
+
+/* 2. Mission-Selection.css - Update the footer positioning */
+.mission-footer-scrolling {
+    width: 100vw;
+    height: 38px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #B4B3B0;
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+    padding: 0;
+    margin-top: 40px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .mission-footer-scrolling {
+        bottom: env(safe-area-inset-bottom, 10px);
+        height: calc(38px + env(safe-area-inset-bottom, 10px));
+    }
+
+    .mission-view-v2 {
+        padding-bottom: calc(60px + env(safe-area-inset-bottom, 10px));
+    }
+}
+
+@media (max-width: 480px) {
+    .mission-footer-scrolling {
+        bottom: env(safe-area-inset-bottom, 15px);
+        height: calc(38px + env(safe-area-inset-bottom, 15px));
+    }
+
+    .mission-view-v2 {
+        padding-bottom: calc(70px + env(safe-area-inset-bottom, 15px));
+    }
+}
+
+/* ===========================================*/
+
+/* 3. PurchaseTickets.css - Update the footer positioning */
+.footer-menu-s {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    justify-content: start;
+    font-family: VT323, monospace;
+    font-size: 1.125rem;
+    z-index: 10;
+    color: #ffffff;
+    background: transparent;
+    backdrop-filter: none;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .footer-menu-s {
+        bottom: env(safe-area-inset-bottom, 10px);
+        padding-bottom: calc(15px + env(safe-area-inset-bottom, 10px));
+    }
+
+    .purchase-ticket-view-main {
+        padding-bottom: calc(80px + env(safe-area-inset-bottom, 10px));
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-menu-s {
+        bottom: env(safe-area-inset-bottom, 15px);
+        padding-bottom: calc(15px + env(safe-area-inset-bottom, 15px));
+    }
+
+    .purchase-ticket-view-main {
+        padding-bottom: calc(90px + env(safe-area-inset-bottom, 15px));
+    }
+}
+
+/* ===========================================*/
+
+/* 4. Registration.css - Update mobile spacing */
+@media (max-width: 768px) {
+    .main-container-reg {
+        padding-bottom: calc(20px + env(safe-area-inset-bottom, 10px));
+        min-height: 100vh;
+        min-height: calc(100vh - env(safe-area-inset-bottom, 0px));
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container-reg {
+        padding-bottom: calc(30px + env(safe-area-inset-bottom, 15px));
+    }
+
+    .bottom-text {
+        margin-bottom: calc(20px + env(safe-area-inset-bottom, 15px));
+    }
+}
+
+/* ===========================================*/
+
+/* 5. Universal Mobile Browser Fix */
+@supports (padding: max(0px)) {
+    @media (max-width: 768px) {
+        /* For modern browsers that support env() */
+        .profile-footer-scrolling,
+        .mission-footer-scrolling,
+        .footer-menu-s {
+            bottom: max(10px, env(safe-area-inset-bottom));
+        }
+
+        .profile-layout,
+        .mission-view-v2,
+        .purchase-ticket-view-main {
+            padding-bottom: max(60px, calc(50px + env(safe-area-inset-bottom)));
+        }
+
+        .main-container-reg {
+            padding-bottom: max(20px, calc(10px + env(safe-area-inset-bottom)));
+        }
+    }
+
+    @media (max-width: 480px) {
+        .profile-footer-scrolling,
+        .mission-footer-scrolling,
+        .footer-menu-s {
+            bottom: max(15px, env(safe-area-inset-bottom));
+        }
+
+        .profile-layout,
+        .mission-view-v2,
+        .purchase-ticket-view-main {
+            padding-bottom: max(70px, calc(60px + env(safe-area-inset-bottom)));
+        }
+
+        .main-container-reg {
+            padding-bottom: max(30px, calc(20px + env(safe-area-inset-bottom)));
+        }
+    }
+}
+
+/* ===========================================*/
+
+/* 6. Additional fixes for specific devices */
+
+/* iPhone with home indicator */
+@media (max-width: 480px) and (orientation: portrait) {
+    .profile-footer-scrolling,
+    .mission-footer-scrolling,
+    .footer-menu-s {
+        bottom: 20px;
+    }
+}
+
+/* Android with navigation bar */
+@media (max-width: 480px) and (min-height: 800px) {
+    .profile-footer-scrolling,
+    .mission-footer-scrolling,
+    .footer-menu-s {
+        bottom: 25px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 375px) {
+    .profile-footer-scrolling,
+    .mission-footer-scrolling,
+    .footer-menu-s {
+        bottom: 15px;
+    }
+
+    .profile-layout,
+    .mission-view-v2,
+    .purchase-ticket-view-main {
+        padding-bottom: 75px;
+    }
+}
+
+@media (max-width: 320px) {
+    .profile-footer-scrolling,
+    .mission-footer-scrolling,
+    .footer-menu-s {
+        bottom: 20px;
+    }
+
+    .profile-layout,
+    .mission-view-v2,
+    .purchase-ticket-view-main {
+        padding-bottom: 80px;
+    }
+}

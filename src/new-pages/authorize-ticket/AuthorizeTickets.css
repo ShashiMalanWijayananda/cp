@@ -1,526 +1,408 @@
-.authorize-ticket-view {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    padding: 75px 20px 20px 20px;
-    color: #ffffff;
-    flex-direction: column;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+
+/* =============================================================================
+   AUTHORIZE TICKETS PAGE - CONTENT-ONLY OVERRIDES
+   Header, logo, fonts, and brand tokens come from the global theme.
+   ============================================================================= */
+
+/* =============================================================================
+   PAGE LAYOUT - Using Global Layout System
+   ============================================================================= */
+
+.authorize-tickets-page-heading {
+  position: fixed;
+  top: calc(150px + 4vh);
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: var(--yo-primary); */
+  z-index: 50;
 }
 
-.authorize-ticket-view-header {
-    color: var(--yo-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    font-size: 2.2rem;
-    font-family: 'Jersey 25', sans-serif;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    line-height: 2;
+.authorize-tickets-page-heading h1 {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl);
+  color: var(--yo-blue);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.authorize-ticket-view-title {
-    color: var(--yo-shade-blue);
-    margin-top: -15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    font-size: 1.5rem;
-    font-family: VT323;
+.authorize-tickets-page-container {
+  margin-top: calc(200px + 4vh);
+  margin-bottom: 50px;
+  min-height: calc(100vh - 160px - 4vh);
+  padding: var(--spacing-lg) var(--spacing-md);
+  overflow-y: visible;
+  overflow-x: hidden;
 }
 
-.authorize-ticket-view .footer {
-    font-size: clamp(15px, 3vw, 20px);
-    font-family: VT323, monospace;
-    color: #ffffff;
-    position: absolute;
-    bottom: 20px;
-    line-height: 1.2;
-    text-align: left;
-    width: calc(100% - 40px);
+/* =============================================================================
+   MAIN CONTENT LAYOUT
+   ============================================================================= */
+
+.authorize-tickets-content-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
 }
 
-.authorize-ticket-view .ticket-layout-view {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+.authorize-tickets-layout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
-.desktop-view {
-    width: 100%;
-    display: flex;
-    gap: 50px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
+/* =============================================================================
+   DESKTOP TICKET VIEW
+   ============================================================================= */
+
+.authorize-tickets-desktop-view {
+  width: 100%;
+  display: flex;
+  gap: var(--spacing-2xl);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-xl);
 }
 
-.mobile-view {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding-bottom: 120px; /* Increased bottom padding for device footers */
-    margin-bottom: 20px;
+/* =============================================================================
+   MOBILE TICKET VIEW - Enhanced Touch Navigation
+   ============================================================================= */
+
+.authorize-tickets-mobile-view {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
 }
 
-.mobile-ticket-counter {
-    color: var(--yo-shade-blue);
-    font-size: clamp(18px, 4vw, 24px);
-    font-family: 'Jersey 25', sans-serif;
-    text-align: center;
-    margin-bottom: 5px;
+.authorize-tickets-mobile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: var(--spacing-xs);
+  touch-action: pan-x;
+  cursor: grab;
+  transition: transform var(--transition-normal);
+  position: relative;
+  overflow: hidden;
 }
 
-.mobile-ticket-container {
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 5px;
-    /* Add swipe functionality */
-    touch-action: pan-x;
-    cursor: grab;
-    transition: transform 0.3s ease;
-    position: relative;
-    overflow: hidden;
+.authorize-tickets-mobile-container:active {
+  cursor: grabbing;
 }
 
-.mobile-ticket-container:active {
-    cursor: grabbing;
+.authorize-tickets-mobile-container.swiping {
+  transition: none;
 }
 
-/* Add swipe visual feedback */
-.mobile-ticket-container.swiping {
-    transition: none;
+.authorize-tickets-mobile-container > * {
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+  touch-action: none;
 }
 
-/* Make ticket card swipeable */
-.mobile-ticket-container > * {
-    margin: 0 auto;
-    transition: transform 0.2s ease;
-    touch-action: none;
+/* =============================================================================
+   TICKET INDICATORS - Clean 3-dot style
+   ============================================================================= */
+/* --- INDICATOR DOTS: hard reset to avoid global button styles --- */
+.authorize-tickets-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 var(--spacing-xs);
+  padding: 0;
 }
 
-/* Ticket indicators styling */
-.ticket-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 8px;
-    margin-bottom: 15px; /* More space below indicators */
-    padding: 8px 0;
-    order: -1; /* Move indicators above the ticket container */
+.authorize-tickets-indicator {
+  all: unset;                /* nuke global button padding/border/radius */
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  aspect-ratio: 1 / 1;       /* always perfectly round */
+  box-sizing: content-box;
+  border-radius: 50%;
+  border: 1.5px solid var(--yo-green);
+  background: transparent !important;
+  cursor: pointer;
+  line-height: 0;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
 }
 
-.indicator {
-    width: 14px;
-    height: 14px;
-    border: 2px solid var(--yo-green, #00bfff);
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.indicator.active {
-    background: var(--yo-green, #00bfff);
-    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-    transform: scale(1.1);
-}
-
-.indicator:hover {
-    transform: scale(1.2);
-    border-width: 3px;
-}
-
-.indicator:active {
-    transform: scale(1.0);
-}
-
-.assign-button {
-    background: linear-gradient(45deg, var(--yo-blue, #00bfff), var(--yo-shade-blue, #0099cc));
-    border: none;
-    border-radius: 50px;
-    color: #000;
-    padding: 15px 30px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-family: 'Jersey 25', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.assign-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
-}
-
-.footer-authorize-v {
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    margin: 20px 0px;
-    justify-content: end;
-    font-family: VT323, monospace;
-    font-size: 1.5rem;
-    z-index: 10;
-}
-
-.error {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    font-family: VT323, monospace;
-    font-size: clamp(20px, 4vw, 30px);
-    color: var(--yo-dark-rose);
-}
-
-.not-available {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin-top: 20%;
-    justify-content: center;
-    position: absolute;
-    font-size: 2rem;
-    font-family: 'VT323', sans-serif;
-}
-
-.authorize-ticket-view-o-header {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Single ticket handling */
-.mobile-view.single-ticket {
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-.mobile-view.single-ticket .mobile-ticket-container {
-    margin-left: 0 !important;
-    margin-bottom: 0;
-}
-
-.mobile-view.single-ticket .mobile-ticket-slider {
-    display: none;
-}
-
-.mobile-view.single-ticket .ticket-indicators {
-    display: none;
-}
-
-.ticket-layout-view {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .footer-authorize-v {
-        text-align: center;
-    }
-
-    body {
-        padding: 0px !important;
-        margin: 0px;
-    }
-
-    .mob-navi {
-        padding: 15px;
-    }
-
-    .authorize-ticket-view .authorize-ticket-view-o-header {
-        font-size: 3rem;
-        margin-top: 50px;
-    }
-
-    .authorize-ticket-view-title {
-        font-size: 1.5rem;
-        margin-top: -15px;
-        text-align: center;
-    }
-
-    .desktop-view {
-        gap: 15px;
-    }
-
-    .authorize-ticket-view {
-        padding: 15px;
-    }
-
-    .authorize-ticket-view .footer {
-        font-size: 1rem;
-        bottom: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .mob-navi {
-        padding: 15px;
-    }
-
-    .desktop-view {
-        display: none;
-    }
-
-    .mobile-view {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding-bottom: 140px; /* Increased padding for device footers */
-        margin-bottom: 30px; /* More margin from bottom */
-    }
-
-    .authorize-ticket-view {
-        padding: 15px 15px 150px 15px; /* Increased bottom padding */
-        justify-content: flex-start;
-        min-height: 100vh;
-        min-height: 100dvh;
-    }
-
-    .authorize-ticket-view-header {
-        margin-top: 10px;
-        margin-bottom: 8px;
-        font-size: 2.2rem;
-        line-height: 1;
-        text-align: center;
-    }
-
-    .authorize-ticket-view-title {
-        font-size: 1.5rem;
-        margin-top: -5px;
-        margin-bottom: 15px;
-        line-height: 1;
-        text-align: center;
-    }
-
-    .assign-button {
-        padding: 12px 24px;
-        font-size: 16px;
-        margin-top: 8px;
-        margin-bottom: 8px;
-    }
-
-    .authorize-ticket-view .footer {
-        position: fixed;
-        bottom: 70px; /* More space from device footer */
-        font-size: clamp(12px, 2vw, 14px);
-        width: calc(100% - 30px);
-        left: 15px;
-        z-index: 1000;
-    }
-
-    .footer-authorize-v {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        margin: 0;
-        padding: 20px 15px;
-        padding-bottom: max(30px, env(safe-area-inset-bottom, 30px)); /* Increased safe area */
-        background: rgba(0, 0, 0, 0.9);
-        backdrop-filter: blur(10px);
-        font-family: VT323, monospace;
-        font-size: 1.25rem;
-        z-index: 1000;
-    }
-
-    /* Mobile indicators - positioned above tickets */
-    .ticket-indicators {
-        gap: 16px;
-        margin-top: 20px; /* More top margin */
-        margin-bottom: 20px; /* More bottom margin */
-        padding: 15px 0;
-        order: -1; /* Ensure indicators come first */
-    }
-
-    .indicator {
-        width: 16px;
-        height: 16px;
-        border: 3px solid var(--yo-green, #00bfff);
-    }
-
-    .ticket-layout-view .mobile-view {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .mobile-ticket-container > * {
-        margin: 0 auto;
-        max-width: 100%;
-        transform-origin: center;
-    }
+.authorize-tickets-indicator.active {
+  background: var(--yo-green);
+  transform: scale(1.1);
+  box-shadow: 0 0 4px rgba(170, 247, 147, 0.5);
 }
 
 @media (max-width: 375px) {
-    .authorize-ticket-view .footer {
-        display: none;
-    }
+  .authorize-tickets-indicator { width: 5px; height: 5px; border-width: 1.2px; }
+}
+@media (max-width: 320px) {
+  .authorize-tickets-indicator { width: 4px; height: 4px; border-width: 1px; }
+}
 
-    .authorize-ticket-view {
-        padding: 8px 8px 160px 8px; /* Increased bottom padding */
-        min-height: 100vh;
-        min-height: 100dvh;
-    }
+/* =============================================================================
+   ERROR AND STATUS MESSAGES
+   ============================================================================= */
 
-    .mobile-view {
-        gap: 6px;
-        padding-bottom: 150px; /* More padding for smaller screens */
-        margin-bottom: 50px; /* More margin */
-    }
+.authorize-tickets-error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: var(--yo-rose);
+}
 
-    .assign-button {
-        padding: 10px 20px;
-        font-size: 14px;
-        margin-top: 6px;
-        margin-bottom: 6px;
-    }
+.authorize-tickets-not-available {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 20%;
+  justify-content: center;
+  position: absolute;
+}
 
-    .mobile-ticket-counter {
-        font-size: clamp(14px, 3.5vw, 18px);
-        margin-bottom: 3px;
-    }
+/* =============================================================================
+   SINGLE TICKET HANDLING
+   ============================================================================= */
 
-    .authorize-ticket-view-header {
-        margin-bottom: 5px;
-        font-size: 2.5rem;
-        line-height: 1;
-        text-align: center;
-    }
+.authorize-tickets-mobile-view.single-ticket {
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
 
-    .authorize-ticket-view-title {
-        font-size: 1.25rem;
-        margin-top: 0px;
-        margin-bottom: 10px;
-        line-height: 1;
-        text-align: center;
-    }
+.authorize-tickets-mobile-view.single-ticket .authorize-tickets-mobile-container {
+  margin-left: 0 !important;
+  margin-bottom: 0;
+}
 
-    .footer-authorize-v {
-        font-size: 1.25rem;
-        padding: 15px;
-        padding-bottom: max(25px, env(safe-area-inset-bottom, 25px)); /* More safe area */
-    }
+.authorize-tickets-mobile-view.single-ticket .authorize-tickets-indicators {
+  display: none;
+}
 
-    /* Mobile indicators for smaller screens */
-    .ticket-indicators {
-        margin-top: 18px;
-        margin-bottom: 18px;
-        padding: 12px 0;
-        gap: 14px;
-    }
+/* =============================================================================
+   SHARE DIALOG - Using Global Dialog System
+   ============================================================================= */
 
-    .indicator {
-        width: 14px;
-        height: 14px;
-        border: 2px solid var(--yo-green, #00bfff);
-    }
+.authorize-tickets-share-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
 
-    .mobile-ticket-container {
-         max-width: 280px;
-        margin: 0 auto 3px auto;
-    }
+.authorize-tickets-share-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--yo-green);
+  border-radius: var(--border-radius);
+  background-color: rgba(159, 255, 130, 0.05);
+}
+
+.authorize-tickets-share-option span {
+  color: var(--yo-white);
+}
+
+.authorize-tickets-share-info {
+  color: var(--yo-blue);
+  padding: var(--spacing-md);
+  text-align: center;
+  border: 1px solid var(--yo-blue);
+  border-radius: var(--border-radius);
+  background-color: rgba(130, 147, 207, 0.05);
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN - Using Global Breakpoints
+   ============================================================================= */
+
+@media (max-width: 1024px) {
+  .authorize-tickets-page-container {
+    padding: var(--spacing-md);
+  }
+
+  .authorize-tickets-desktop-view {
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .authorize-tickets-page-heading {
+    top: calc(95px + 4vh);
+    height: 80px;
+    /* background-color: var(--yo-primary); */
+  }
+
+  .authorize-tickets-page-container {
+    margin-top: calc(175px + 4vh);
+    margin-bottom: 50px;
+    padding: var(--spacing-md) var(--spacing-sm);
+    min-height: calc(100vh - 175px - 4vh);
+  }
+
+  .authorize-tickets-desktop-view {
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .authorize-tickets-desktop-view {
+    display: none;
+  }
+
+  .authorize-tickets-mobile-view {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding-bottom: calc(var(--spacing-xl) + 120px);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .authorize-tickets-page-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+    padding-bottom: 150px;
+    justify-content: flex-start;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+@media (max-width: 375px) {
+  .authorize-tickets-page-container {
+    padding: var(--spacing-sm);
+    padding-bottom: 160px;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .authorize-tickets-mobile-view {
+    gap: var(--spacing-xs);
+    padding-bottom: calc(var(--spacing-2xl) + 130px);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .authorize-tickets-mobile-container {
+    max-width: 280px;
+    margin: 0 auto var(--spacing-xs) auto;
+  }
 }
 
 @media (max-width: 320px) {
-    .mobile-ticket-container {
-        margin-left: 0 !important;
-        max-width: 260px;
-        margin: 0 auto 2px auto;
-        margin-bottom: 2px;
-    }
+  .authorize-tickets-mobile-container {
+    margin-left: 0 !important;
+    max-width: 260px;
+    margin: 0 auto var(--spacing-xs) auto;
+    margin-bottom: var(--spacing-xs);
+  }
 
-    .mobile-view {
-        gap: 4px;
-        padding-bottom: 170px; /* Even more padding for very small screens */
-    }
+  .authorize-tickets-mobile-view {
+    margin-top: 125px;
+    gap: 4px;
+    padding-bottom: calc(var(--spacing-2xl) + 150px);
+  }
 
-    .authorize-ticket-view {
-        padding: 8px 8px 180px 8px; /* Increased bottom padding */
-    }
-
-    /* Mobile indicators for extra small screens */
-    .ticket-indicators {
-        margin-top: 15px;
-        margin-bottom: 15px;
-        padding: 8px 0;
-        gap: 12px;
-    }
-
-    .indicator {
-        width: 12px;
-        height: 12px;
-        border: 2px solid var(--yo-green, #00bfff);
-    }
+  .authorize-tickets-page-container {
+    padding: var(--spacing-xs);
+    padding-bottom: 180px;
+  }
 }
 
-/* iOS Safari and mobile browser fixes */
+/* =============================================================================
+   SAFE AREA HANDLING FOR MOBILE DEVICES
+   ============================================================================= */
+
 @supports (padding: max(0px)) {
-    @media (max-width: 480px) {
-        .authorize-ticket-view {
-            padding-bottom: max(150px, calc(env(safe-area-inset-bottom) + 100px)); /* More safe area compensation */
-        }
-
-        .mobile-view {
-            padding-bottom: max(140px, calc(env(safe-area-inset-bottom) + 80px)); /* More safe area compensation */
-        }
+  @media (max-width: 480px) {
+    .authorize-tickets-page-container {
+      padding-bottom: max(150px, calc(env(safe-area-inset-bottom) + 100px));
     }
+
+    .authorize-tickets-mobile-view {
+      margin-top: 110px;
+      padding-bottom: max(
+        calc(var(--spacing-2xl) + 120px),
+        calc(env(safe-area-inset-bottom) + var(--spacing-2xl) + 80px)
+      );
+    }
+  }
 }
 
-/* Ensure no text selection on mobile */
+/* =============================================================================
+   ACCESSIBILITY & PERFORMANCE - Using Global Standards
+   ============================================================================= */
+
 @media (max-width: 480px) {
-    .authorize-ticket-view {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        min-height: 100vh;
-        min-height: 100svh;
-    }
+  .authorize-tickets-page-container {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
 
-    /* Allow selection for form inputs only */
-    .authorize-ticket-view input,
-    .authorize-ticket-view textarea {
-        -webkit-user-select: text;
-        -moz-user-select: text;
-        -ms-user-select: text;
-        user-select: text;
-    }
+  .authorize-tickets-page-container input,
+  .authorize-tickets-page-container textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
 }
 
-/* Ensure the main container uses full viewport */
-html, body {
+@media (prefers-reduced-motion: reduce) {
+  .authorize-tickets-mobile-container,
+  .authorize-tickets-indicator {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .authorize-tickets-indicator,
+  .authorize-tickets-share-option {
+    border-width: 3px;
+  }
+}
+
+.authorize-tickets-indicator:focus {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
+
+@media print {
+  .authorize-tickets-page-container {
     margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .authorize-tickets-mobile-view {
+    display: none;
+  }
+
+  .authorize-tickets-desktop-view {
+    display: flex;
+  }
 }

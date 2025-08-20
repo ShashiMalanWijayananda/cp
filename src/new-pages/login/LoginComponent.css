@@ -1,465 +1,643 @@
-/* ============================================================================= 
-   LOGIN PAGE - CLEANED CSS WITH UPDATED CLASS NAMES
-   Removing redundant styles that are now handled globally
+/* =============================================================================
+   LOGIN COMPONENT - ALIGNED WITH YOGESHWARI GLOBAL DESIGN SYSTEM
+   Using global fonts, colors, spacing - only login-specific styling
    ============================================================================= */
 
-/* Body override for login page */
-body {
-    color: var(--yo-green);
-    overflow-x: hidden;
-    overflow-y: auto;
-    /* Removed font-family - now handled globally */
-    margin: 0px;
+/* =============================================================================
+   PAGE LAYOUT - Full Viewport Design (No Header/Footer)
+   ============================================================================= */
+
+.login-main-container {
+  width: 100vw;
+  height: 100vh;
+  /* background-color: var(--yo-primary); */
+  color: var(--yo-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--spacing-xl);
+  box-sizing: border-box;
+  font-family: var(--font-primary);
 }
 
-/* Main container */
-.yo-login-main-container {
-    background: var(--yo-secondary);
-    background-size: cover;
-    padding: 40px;
-    width: 100vw;
+/* =============================================================================
+   DESKTOP LAYOUT - Two Column Design
+   ============================================================================= */
+
+.login-content-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 1000px;
+  height: 80vh;
+  max-height: 600px;
+}
+
+/* =============================================================================
+   LOGO SECTION - Left Column
+   ============================================================================= */
+
+.login-logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--yo-green);
+  padding: var(--spacing-xl);
+  background-color: transparent;
+}
+
+.login-logo-container {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+  mix-blend-mode: screen;
+}
+
+/* =============================================================================
+   LOGIN FORM SECTION - Right Column
+   ============================================================================= */
+
+.login-form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--yo-green);
+  padding: var(--spacing-xl);
+  background-color: transparent;
+}
+
+.login-form-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+  gap: var(--spacing-md);
+}
+
+/* =============================================================================
+   LOGIN FORM ELEMENTS
+   ============================================================================= */
+
+/* Title */
+.login-form-title {
+  font-family: var(--font-secondary);
+  font-size: var(--text-2xl);
+  color: var(--yo-green);
+  text-align: center;
+  letter-spacing: 2px;
+  margin: 0 0 var(--spacing-md) 0;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Google Login Button Container */
+.login-google-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+}
+
+/* Divider - Uses global form divider pattern */
+.login-form-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: var(--spacing-md) 0;
+  color: var(--yo-green);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.login-form-divider::before,
+.login-form-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--yo-green);
+  margin: 0 var(--spacing-md);
+}
+.password-toggle-btn svg {
+    margin-left: 90px;
+}
+/* =============================================================================
+   GLOBAL FORM SYSTEM OVERRIDE FOR LOGIN - HORIZONTAL LABELS
+   Enhanced specificity to prevent external CSS interference
+   ============================================================================= */
+
+/* Override global form group to use horizontal layout for login */
+.login-main-container .login-form-section .login-form .form-group {
+  display: flex ;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: var(--spacing-md) !important;
+  margin-bottom: var(--spacing-md) !important;
+  width: 100% !important;
+}
+
+.login-main-container .login-form-section .login-form .form-group label {
+  font-family: var(--font-primary) !important;
+  font-size: var(--text-xl) !important;
+  color: var(--yo-green) !important;
+  font-weight: normal !important;
+  letter-spacing: 1px !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  min-width: 120px !important;
+  flex-shrink: 0 !important;
+  text-align: left !important;
+}
+
+.login-main-container .login-form-section .login-form .form-group .input-wrapper {
+  flex: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.login-main-container .login-form-section .login-form .form-group .input-wrapper input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  flex: 1 !important;
+}
+
+/* Additional override for any potential conflicting styles */
+.login-main-container .login-form .form-group {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.login-main-container .login-form .form-group label {
+  min-width: 120px !important;
+  flex-shrink: 0 !important;
+  width: auto !important;
+  max-width: 120px !important;
+}
+
+.login-main-container .login-form .form-group .input-wrapper {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.login-main-container .login-form .form-group .input-wrapper input {
+  width: 100% !important;
+  min-width: 200px !important;
+}
+
+/* Form Container */
+.login-form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.login-error-message {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: var(--text-base);
+  font-family: var(--font-primary);
+  color: var(--yo-rose);
+  text-align: center;
+  margin: var(--spacing-xs) 0;
+}
+
+/* Login Button - Uses global button system */
+.login-submit-button {
+  width: 100%;
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  background-color: var(--yo-green);
+  color: var(--yo-black);
+  border: 1px solid var(--yo-green);
+  padding: var(--btn-padding);
+  height: var(--btn-height);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  outline: none;
+  border-radius: var(--btn-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-submit-button:hover {
+  background-color: var(--yo-light-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
+
+.login-submit-button:disabled {
+  background-color: var(--yo-green);
+  color: var(--yo-black);
+  cursor: pointer;
+  opacity: 0.8;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Registration Redirect Button */
+.login-register-redirect {
+  width: 100%;
+  border: 1px solid var(--yo-green);
+  background-color: transparent;
+  color: var(--yo-green);
+  padding: var(--btn-padding);
+  height: var(--btn-height);
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  outline: none;
+  border-radius: var(--btn-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.login-register-redirect:hover {
+  background-color: var(--yo-green);
+  color: var(--yo-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
+
+/* =============================================================================
+   TABLET LAYOUT (769px - 1024px) - Keep horizontal layout
+   ============================================================================= */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .login-main-container {
+    padding: var(--spacing-lg);
+  }
+  
+  .login-content-area {
+    max-width: 900px;
+    gap: var(--spacing-sm);
+  }
+  
+  .login-logo-section,
+  .login-form-section {
+    padding: var(--spacing-lg);
+  }
+  
+  .login-logo-container {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .login-form-panel {
+    max-width: 400px;
+    gap: var(--spacing-sm);
+  }
+  
+  .login-form-title {
+    font-size: var(--text-xl);
+  }
+  
+  /* Ensure horizontal layout is maintained at 1024px with high specificity */
+  .login-main-container .login-form-section .login-form .form-group {
+    display: contents !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: var(--spacing-md) !important;
+    margin-bottom: var(--spacing-md) !important;
+    width: 100% !important;
+  }
+
+  .login-main-container .login-form-section .login-form .form-group label {
+    font-family: var(--font-primary) !important;
+    font-size: var(--text-lg) !important;
+    color: var(--yo-green) !important;
+    font-weight: normal !important;
+    letter-spacing: 1px !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    min-width: 100px !important;
+    flex-shrink: 0 !important;
+    text-align: left !important;
+  }
+
+  .login-main-container .login-form-section .login-form .form-group .input-wrapper {
+    flex: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .login-main-container .login-form-section .login-form .form-group .input-wrapper input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    flex: 1 !important;
+    min-width: 180px !important;
+  }
+}
+
+/* =============================================================================
+   MOBILE LAYOUT (768px and below) - Vertical Labels on Mobile
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .login-main-container {
+    padding: var(--spacing-md);
     height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-/* Content area */
-.yo-login-content-area {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    width: 100%;
-    max-width: 1200px;
-    height: 80vh;
-}
-
-/* Logo section */
-.yo-login-logo-section {
-    flex: 1;
-    margin: var(--spacing-md);
-    padding: var(--spacing-lg) var(--spacing-lg) 0px var(--spacing-lg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--yo-green);
-    height: 100%;
-}
-
-/* Login section */
-.yo-login-section {
-    flex: 1;
-    margin: var(--spacing-md);
-    padding: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #9EFF6D;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-/* Login panel */
-.yo-login-panel {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Single column layout for mobile */
+  .login-content-area {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 80%;
-}
-
-/* Login title - Updated to use global heading styles */
-.yo-login-title {
-    /* Removed font-size, font-family - now handled globally */
-    text-align: center;
-    letter-spacing: 2px;
-    line-height: 1;
-    color: var(--yo-green);
-}
-
-/* Form divider */
-.yo-login-divider {
-    margin: 0px;
-    padding: 0px;
-    text-align: center;
-    width: 100%;
-    /* Removed font-size - now handled globally */
-    position: relative;
-    display: flex;
+    gap: var(--spacing-md);
+    height: auto;
+    min-height: calc(100vh - 2 * var(--spacing-md));
+    max-height: none;
     align-items: center;
     justify-content: center;
-    color: var(--yo-green);
-    /* Removed font-family - now handled globally */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.yo-login-divider::before,
-.yo-login-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--yo-green);
-    margin: var(--spacing-md);
-}
-
-.yo-login-divider::before {
-    margin-right: var(--spacing-lg);
-}
-
-.yo-login-divider::after {
-    margin-left: var(--spacing-lg);
-}
-
-/* Google button container */
-.yo-login-google-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
+  
+  /* Mobile logo section */
+  .login-logo-section {
     width: 100%;
-    padding: 0;
-    margin: 0px;
-}
-
-/* Logo styling */
-.yo-login-logo {
-    width: 220px;
-    height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-}
-
-.yo-login-logo img {
+    max-width: 400px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    border: none;
+    order: 1;
+  }
+  
+  .login-logo-container {
+    width: 200px;
+    height: 200px;
+  }
+  
+  /* Mobile form section */
+  .login-form-section {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: transparent;
-    mix-blend-mode: screen;
+    max-width: 400px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    border: none;
+    order: 2;
+  }
+  
+  .login-form-panel {
+    max-width: 100%;
+    gap: var(--spacing-sm);
+  }
+  
+  .login-form-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .login-form {
+    gap: var(--spacing-sm);
+  }
+  
+  /* Mobile: Switch back to vertical form layout */
+  .login-form .form-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-xs);
+  }
+  
+  .login-form .form-group label {
+    min-width: auto;
+    text-align: left;
+    white-space: normal;
+  }
+  
+  .login-form-divider {
+    margin: var(--spacing-sm) 0;
+    font-size: var(--text-sm);
+  }
+  
+  .login-form-divider::before,
+  .login-form-divider::after {
+    margin: 0 var(--spacing-sm);
+  }
 }
 
-/* Info text */
-.yo-login-info-text {
-    position: relative;
-    z-index: 2;
-    line-height: 1.6;
-    /* Removed font-size - now handled globally */
-}
-
-/* No account text */
-.yo-login-no-account {
-    text-align: center;
-    margin-top: var(--spacing-lg);
-    /* Removed font-size - now handled globally */
-    color: var(--yo-green);
-}
-
-/* REMOVED REDUNDANT STYLES - NOW HANDLED GLOBALLY:
-   - form styles (display, flex-direction, width, gap)
-   - .form-group styles 
-   - .form-group label styles (font-weight, text-align, font-size)
-   - .input-login-panel styles
-   - .form-group .input-wrapper styles
-   - .form-group .input-wrapper input styles
-   - .login-btn styles (replaced with global button styles)
-   - .signup-redirect-btn styles (replaced with global button styles)
-*/
-
-/* Specific login input panel */
-.yo-login-input-panel {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-/* Login button - Uses global button styles with specific overrides */
-.yo-login-btn {
-    /* Global button styles will apply */
-    /* Additional specific styling if needed */
-    width: 100%;
-}
-
-/* Signup redirect button container */
-.yo-login-signup-redirect-container {
-    padding: 0px;
-    border: var(--yo-green) 1px solid;
-    width: 100%;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-/* Signup redirect button - Uses global .btn-secondary styles */
-.yo-login-signup-redirect-btn {
-    /* Global .btn-secondary styles will apply */
-    margin: 0px;
-    text-align: center;
-    width: 100%;
-    padding: 0px;
-    /* Removed font-family, font-size, font-weight - handled globally */
-    border-radius: 0px;
-}
-
-/* Content area max width cap */
-.yo-login-content-area {
-    max-width: 1000px !important;
-}
-
-/* Login error message */
-.yo-login-error {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    /* Removed font-size, font-family - now handled globally */
-    color: var(--yo-dark-rose);
-}
-
-/* ============================================================================= 
-   RESPONSIVE DESIGN
+/* =============================================================================
+   SMALL MOBILE (480px and below)
    ============================================================================= */
 
-/* Tablet View */
-@media (max-width: 1024px) {
-    .yo-login-main-container {
-        display: flex;
-        padding: var(--spacing-lg);
-        gap: var(--spacing-lg);
-        overflow-y: auto;
-    }
-
-    .yo-login-content-area {
-        max-width: 900px;
-    }
-
-    .yo-login-panel {
-        padding: 30px;
-        max-width: 400px;
-    }
-
-    .yo-login-title {
-        /* Font size handled globally */
-    }
-
-    .yo-login-logo-section {
-        padding: 2%;
-    }
-
-    .yo-login-section {
-        padding: 2%;
-        gap: var(--spacing-md);
-    }
-
-    .yo-login-logo {
-        width: 300px;
-        height: 300px;
-    }
-}
-
-/* Mobile Portrait - 768px and below */
-@media (max-width: 768px) {
-    .yo-login-main-container {
-        padding: var(--spacing-md);
-        gap: var(--spacing-xs);
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-    }
-
-    .yo-login-content-area {
-        flex-direction: column;
-        height: auto;
-        gap: var(--spacing-md);
-    }
-
-    .yo-login-logo-section,
-    .yo-login-section {
-        flex: none;
-        margin: var(--spacing-xs);
-        height: auto;
-        width: 100%;
-    }
-
-    .yo-login-logo-section {
-        padding: var(--spacing-lg) 0;
-        border: none;
-    }
-
-    .yo-login-section {
-        padding: var(--spacing-md);
-        border: 1px solid var(--yo-green);
-    }
-
-    .yo-login-panel {
-        gap: var(--spacing-xs);
-        max-width: 100%;
-        padding: var(--spacing-md);
-    }
-
-    .yo-login-title {
-        margin-bottom: var(--spacing-sm);
-        line-height: 1.2;
-    }
-
-    .yo-login-divider {
-        margin: var(--spacing-xs) 0;
-        padding: 0;
-    }
-
-    .yo-login-google-btn {
-        margin: var(--spacing-xs) 0;
-        padding: var(--spacing-xs) 0;
-    }
-
-    .yo-login-logo {
-        width: 200px;
-        height: 200px;
-    }
-
-    /* Ensure minimal spacing between form elements */
-    .yo-form-container {
-        gap: var(--spacing-xs);
-    }
-
-    .yo-form-group {
-        gap: var(--spacing-xs);
-        margin-bottom: var(--spacing-xs);
-    }
-}
-
-/* Mobile Small - 480px and below */
 @media (max-width: 480px) {
-    .yo-login-main-container {
-        padding: var(--spacing-sm) var(--spacing-sm) 80px var(--spacing-sm);
-        gap: var(--spacing-xs);
-    }
-
-    .yo-login-panel {
-        gap: var(--spacing-xs);
-        padding: var(--spacing-xs) var(--spacing-md);
-    }
-
-    .yo-login-google-btn {
-        margin: var(--spacing-xs) 0;
-        padding: var(--spacing-xs) 0;
-    }
-
-    .yo-login-divider {
-        margin: var(--spacing-xs) 0;
-        padding: 0;
-    }
-
-    .yo-login-divider::before,
-    .yo-login-divider::after {
-        margin: var(--spacing-xs);
-    }
-
-    .yo-login-logo {
-        width: 180px;
-        height: 180px;
-    }
-
-    /* Ultra-tight form spacing */
-    .yo-form-container {
-        gap: 2px;
-    }
-
-    .yo-form-group {
-        gap: 2px;
-        margin-bottom: 2px;
-    }
+    .login-main-container .login-form-section .login-form .form-group {
+  display: contents !important ;}
+  .login-main-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .login-content-area {
+    gap: var(--spacing-sm);
+  }
+  
+  .login-logo-section,
+  .login-form-section {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .login-logo-container {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .login-form-panel {
+    gap: var(--spacing-xs);
+  }
+  
+  .login-form-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .login-form {
+    gap: var(--spacing-xs);
+  }
+  
+  .login-form-divider {
+    margin: var(--spacing-xs) 0;
+    font-size: var(--text-sm);
+  }
+  
+  .login-form-divider::before,
+  .login-form-divider::after {
+    margin: 0 var(--spacing-xs);
+  }
+  
+  .login-submit-button,
+  .login-register-redirect {
+    font-size: var(--text-lg);
+    height: 36px;
+    padding: 10px 16px;
+  }
 }
 
-/* Mobile Landscape */
-@media (max-width: 768px) and (orientation: landscape) {
-    .yo-login-main-container {
-        padding: var(--spacing-md);
-        height: auto;
-        min-height: 100vh;
-    }
+/* =============================================================================
+   EXTRA SMALL MOBILE (375px and below)
+   ============================================================================= */
 
-    .yo-login-content-area {
-        flex-direction: row;
-        height: auto;
-        align-items: center;
-        gap: var(--spacing-lg);
-    }
-
-    .yo-login-logo-section {
-        flex: 0 0 auto;
-        border: none;
-        width: auto;
-        padding: var(--spacing-md);
-    }
-
-    .yo-login-section {
-        margin: 0;
-        flex: 1;
-        border: none;
-        padding: var(--spacing-md);
-    }
-
-    .yo-login-logo {
-        width: 150px;
-        height: 150px;
-    }
-
-    .yo-login-panel {
-        padding: 0;
-        gap: var(--spacing-xs);
-        max-width: none;
-    }
-
-    .yo-login-title {
-        margin-bottom: var(--spacing-md);
-    }
-
-    .yo-login-google-btn {
-        padding: var(--spacing-xs) 0;
-        margin: var(--spacing-xs) 0;
-    }
-
-    .yo-login-divider {
-        margin: var(--spacing-xs) 0;
-    }
-
-    .yo-form-container {
-        gap: var(--spacing-xs);
-    }
-}
-
-/* Extra Small Mobile */
 @media (max-width: 375px) {
-    .yo-login-logo {
-        width: 160px;
-        height: 160px;
-    }
+  .login-main-container {
+    padding: var(--spacing-xs);
+  }
+  
+  .login-content-area {
+    gap: var(--spacing-xs);
+  }
+  
+  .login-logo-section,
+  .login-form-section {
+    padding: var(--spacing-sm) var(--spacing-xs);
+  }
+  
+  .login-logo-container {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .login-form-title {
+    font-size: var(--text-base);
+    display: none; /* Hide title on very small screens like in Figma */
+  }
+  
+  .login-form-divider {
+    font-size: var(--text-xs);
+  }
+  
+  .login-submit-button,
+  .login-register-redirect {
+    font-size: var(--text-base);
+    height: 32px;
+    padding: 8px 12px;
+  }
 }
 
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .yo-login-logo img {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
+/* =============================================================================
+   MOBILE LANDSCAPE (768px and below, landscape)
+   ============================================================================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .login-main-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .login-content-area {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-lg);
+    height: calc(100vh - 2 * var(--spacing-sm));
+    align-items: center;
+  }
+  
+  .login-logo-section {
+    order: 1;
+    width: auto;
+    padding: var(--spacing-md);
+  }
+  
+  .login-logo-container {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .login-form-section {
+    order: 2;
+    flex: 1;
+    padding: var(--spacing-md);
+  }
+  
+  .login-form-panel {
+    gap: var(--spacing-xs);
+  }
+  
+  .login-form-title {
+    font-size: var(--text-base);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .login-form {
+    gap: var(--spacing-xs);
+  }
+  
+  .login-form-divider {
+    margin: var(--spacing-xs) 0;
+    font-size: var(--text-sm);
+  }
 }
 
-/* Disabled button state override */
-.yo-login-btn:disabled {
-    background: var(--yo-green);
-    cursor: pointer !important;
-    opacity: 1;
+/* =============================================================================
+   ACCESSIBILITY & PERFORMANCE
+   ============================================================================= */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .login-submit-button,
+  .login-register-redirect {
+    transition: none;
+  }
 }
 
-/* Smooth transitions for better UX */
-@media (prefers-reduced-motion: no-preference) {
-    .yo-login-main-container,
-    .yo-login-content-area,
-    .yo-login-panel,
-    .yo-login-logo {
-        transition: all var(--transition-normal);
-    }
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .login-logo-section,
+  .login-form-section {
+    border-width: 2px;
+  }
+}
+
+/* Focus states for accessibility */
+.login-submit-button:focus,
+.login-register-redirect:focus {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .login-main-container {
+    background: white;
+    color: black;
+    padding: 1rem;
+  }
+  
+  .login-content-area {
+    display: block;
+  }
+  
+  .login-logo-section,
+  .login-form-section {
+    border: 1px solid black;
+    background: white;
+  }
 }

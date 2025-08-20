@@ -1,21 +1,26 @@
+
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import "./AuthorizeTickets.css";
-import React, {ChangeEvent, FC, useEffect, useRef, useState} from "react";
 import TicketCard from "../../components/TicketCard/TicketCard";
-import {IAPIResponse, ITicket} from "../../interfaces/data.interfaces";
-import {CHECK_IS_EXIST_TICKET, GET_MY_TICKETS, SHARE_TICKET} from "../../graphql/queries";
-import {useLazyQuery, useMutation, useQuery} from "@apollo/client";
-import {useLogin, User} from "../../context/login.context";
-import {useAppContext} from "../../context/app.context";
+import { IAPIResponse, ITicket } from "../../interfaces/data.interfaces";
+import { CHECK_IS_EXIST_TICKET, GET_MY_TICKETS, SHARE_TICKET } from "../../graphql/queries";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { useLogin, User } from "../../context/login.context";
+import { useAppContext } from "../../context/app.context";
 import RetroTextBox from "../../components/retro/RetroTextBox/RetroTextBox";
-import "../../components/CustomDialog/CustomDialog.css";
-import {Dialog} from "primereact/dialog";
-import {Button} from "primereact/button";
-import {InputSwitch} from "primereact/inputswitch";
-import "./ShareDialog.css";
+import { Dialog } from "primereact/dialog";
+import { Button } from "primereact/button";
+import { InputSwitch } from "primereact/inputswitch";
 import axiosClient from "../../axios/axiosClient";
-import {saveAs} from "file-saver";
-import Alert from "../../components/retro/Alert/Alert";
+import { saveAs } from "file-saver";
+import Alert, { AlertProps } from "../../components/retro/Alert/Alert";
 import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
+
+/** ==========================================================================
+ *  Authorize Tickets Page (content-only styling)
+ *  - Header/Logo/Fonts/Colors come from global theme
+ *  - This page only arranges content to match the finalized Figma
+ *  ========================================================================== */
 
 interface SharedUserData {
     nic: string;
@@ -31,51 +36,47 @@ interface ShareTicket {
     selfAssigned: boolean;
 }
 
-interface AlertProps {
-    type?: 'error' | 'warning' | 'info';
-    message: string;
-    isVisible: boolean;
-}
-
 interface ShareTicketContentProps {
     ticket: ITicket;
-    user: User,
+    user: User;
     onAssign: (value: boolean) => void;
     onDataChange: (data: { assigner: SharedUserData }) => void;
 }
 
+// ---------------------------------------------------------------------------
 // Enhanced touch swipe functionality for ticket navigation
-const useSwipeNavigation = (currentIndex: number, totalTickets: number, onChange: (index: number) => void) => {
+// ---------------------------------------------------------------------------
+const useSwipeNavigation = (
+    currentIndex: number, 
+    totalTickets: number, 
+    onChange: (index: number) => void
+) => {
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
     const [isSwiping, setIsSwiping] = useState(false);
 
-    // Minimum swipe distance (in px)
     const minSwipeDistance = 50;
 
-    const onTouchStart = (e: React.TouchEvent) => {
+    const onTouchStart = (e: React.TouchEvent): void => {
         setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
         setIsSwiping(true);
     };
 
-    const onTouchMove = (e: React.TouchEvent) => {
+    const onTouchMove = (e: React.TouchEvent): void => {
         if (!touchStart) return;
         const currentTouchEnd = e.targetTouches[0].clientX;
         setTouchEnd(currentTouchEnd);
 
-        // Add visual feedback during swipe
         const distance = touchStart - currentTouchEnd;
         const element = e.currentTarget as HTMLElement;
 
-        // Limit the visual drag effect
         const maxDrag = 30;
         const dragDistance = Math.max(-maxDrag, Math.min(maxDrag, -distance * 0.3));
         element.style.transform = `translateX(${dragDistance}px)`;
     };
 
-    const onTouchEnd = (e: React.TouchEvent) => {
-        // Reset visual feedback
+    const onTouchEnd = (e: React.TouchEvent): void => {
         const element = e.currentTarget as HTMLElement;
         element.style.transform = 'translateX(0px)';
 
@@ -108,8 +109,13 @@ const useSwipeNavigation = (currentIndex: number, totalTickets: number, onChange
     };
 };
 
-const ShareTicketContent: React.FC<ShareTicketContentProps> = ({ticket, onAssign, onDataChange, user}) => {
-    const [isAssignToMe, setIsAssignToMe] = useState(false);
+const ShareTicketContent: React.FC<ShareTicketContentProps> = ({ 
+    ticket, 
+    onAssign, 
+    onDataChange, 
+    user 
+}) => {
+    const [isAssignToMe, setIsAssignToMe] = useState<boolean>(false);
     const [assigner, setAssigner] = useState<SharedUserData>({
         email: '',
         nic: '',
@@ -127,25 +133,21 @@ const ShareTicketContent: React.FC<ShareTicketContentProps> = ({ticket, onAssign
 
         setAssigner(initialData);
         setIsAssignToMe(false);
-        onDataChange({
-            assigner: initialData
-        });
+        onDataChange({ assigner: initialData });
     }, [ticket?.id, onDataChange]);
 
-    const handleAssigner = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target;
+    const handleAssigner = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const { name, value } = event.target;
         const updatedAssigner = {
             ...assigner,
             [name]: value
         };
 
         setAssigner(updatedAssigner);
-        onDataChange({
-            assigner: updatedAssigner
-        });
+        onDataChange({ assigner: updatedAssigner });
     };
 
-    const handleAssignToggle = (value: boolean) => {
+    const handleAssignToggle = (value: boolean): void => {
         setIsAssignToMe(value);
         onAssign(value);
 
@@ -157,9 +159,7 @@ const ShareTicketContent: React.FC<ShareTicketContentProps> = ({ticket, onAssign
                 selfAssigned: true
             };
             setAssigner(currentUser);
-            onDataChange({
-                assigner: currentUser
-            });
+            onDataChange({ assigner: currentUser });
         } else {
             const resetAssigner: SharedUserData = {
                 email: '',
@@ -168,34 +168,26 @@ const ShareTicketContent: React.FC<ShareTicketContentProps> = ({ticket, onAssign
                 selfAssigned: false
             };
             setAssigner(resetAssigner);
-            onDataChange({
-                assigner: resetAssigner
-            });
+            onDataChange({ assigner: resetAssigner });
         }
     };
 
     if (!ticket) return <div>No ticket selected</div>;
 
     return (
-        <div className="share-dialog">
-            <div>
-                <div className="share-option">
-                    <span className="text-white">
-                       Assign to friend
-                    </span>
-                    <InputSwitch
-                        checked={isAssignToMe}
-                        onChange={(e) => handleAssignToggle(e.value)}
-                    />
-                    <span className="">
-                        Assign to Me
-                    </span>
-                </div>
+        <div className="authorize-tickets-share-dialog">
+            <div className="authorize-tickets-share-option">
+                <span>Assign to friend</span>
+                <InputSwitch
+                    checked={isAssignToMe}
+                    onChange={(e) => handleAssignToggle(e.value)}
+                />
+                <span>Assign to Me</span>
             </div>
 
             {isAssignToMe ? (
-                <div>
-                    <span style={{fontSize:"1.5rem", color:"#AFD0D6"}}>Ticket will be assigned to you.</span>
+                <div className="authorize-tickets-share-info">
+                    <span>Ticket will be assigned to you.</span>
                 </div>
             ) : (
                 <div>
@@ -233,10 +225,9 @@ const ShareTicketContent: React.FC<ShareTicketContentProps> = ({ticket, onAssign
 };
 
 const AuthorizeTickets: FC = () => {
-    const [step, setStep] = useState(0);
-    const {user} = useLogin();
+    const { user } = useLogin();
     const [tickets, setTickets] = useState<ITicket[]>([]);
-    const {appContext} = useAppContext();
+    const { appContext } = useAppContext();
     const [sharedUser, setSharedUser] = useState<SharedUserData>({
         nic: "",
         contact: "",
@@ -246,30 +237,40 @@ const AuthorizeTickets: FC = () => {
     const [isOpenDialog, setOpenDialog] = useState<boolean>(false);
     const [selectedTicket, setSelectedTicket] = useState<ITicket | null>(null);
     const selectedTicketRef = useRef<ITicket | null>(null);
-    const currentFormDataRef = useRef<SharedUserData>({nic: "", contact: "", email: "", selfAssigned: false});
+    const currentFormDataRef = useRef<SharedUserData>({
+        nic: "", 
+        contact: "", 
+        email: "", 
+        selfAssigned: false
+    });
     const [assignToMe, setAssignToMe] = useState<boolean>(false);
-    const [alert, setAlert] = useState<AlertProps>({isVisible: false, message: "", type: "info"});
-    const [currentTicketIndex, setCurrentTicketIndex] = useState(0);
+    const [alert, setAlert] = useState<AlertProps>({
+        visible: false, 
+        message: "", 
+        type: "info"
+    });
+    const [currentTicketIndex, setCurrentTicketIndex] = useState<number>(0);
 
-    const handleUserInput = (e: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
+    const handleUserInput = (e: ChangeEvent<HTMLInputElement>): void => {
+        const { name, value } = e.target;
         setSharedUser((prevUser) => ({
             ...prevUser,
             [name]: value,
         }));
     };
 
-    const handleCloseDialog = () => {
+    const handleCloseDialog = (): void => {
         setOpenDialog(false);
         setSelectedTicket(null);
-        setSharedUser({nic: "", contact: "", email: "", selfAssigned: false});
+        setSharedUser({ nic: "", contact: "", email: "", selfAssigned: false });
     };
 
-    const handleShareTicket = async () => {
+    const handleShareTicket = async (): Promise<void> => {
         if (!selectedTicket || !sharedUser.nic || !sharedUser.contact || !sharedUser.email) {
             appContext.showErrorDialog("Validation Error", "Please fill in all required fields");
             return;
         }
+
         try {
             const response = await shareMyTicket({
                 variables: {
@@ -299,7 +300,7 @@ const AuthorizeTickets: FC = () => {
         error: errorMyTickets,
         refetch: refetchTickets,
     } = useQuery(GET_MY_TICKETS, {
-        variables: {requestId: user?.id},
+        variables: { requestId: user?.id },
         fetchPolicy: "network-only",
         skip: !user?.id,
     });
@@ -312,14 +313,16 @@ const AuthorizeTickets: FC = () => {
     const [checkIsExistTicket, {
         loading: loadingCheckIsExistTicket,
         error: checkIsExistTicketErrorResponse
-    }] = useLazyQuery(CHECK_IS_EXIST_TICKET, {fetchPolicy: "network-only"});
+    }] = useLazyQuery(CHECK_IS_EXIST_TICKET, { fetchPolicy: "network-only" });
 
     useEffect(() => {
         if (myTickets?.getMyTickets) {
             const response = myTickets.getMyTickets as IAPIResponse;
             if (response?.code === "CODE-204") {
                 if (response?.data?.length > 0) {
-                    setTickets(response?.data as [ITicket]);
+                    setTickets(response?.data as ITicket[]);
+                } else {
+                    setTickets([]);
                 }
             } else if (response?.code === "CODE-205") {
                 appContext.showErrorDialog("Ticket fetching error", response?.error);
@@ -327,29 +330,30 @@ const AuthorizeTickets: FC = () => {
         }
     }, [myTickets, appContext]);
 
-    // Add swipe functionality
     const swipeHandlers = useSwipeNavigation(currentTicketIndex, tickets.length, setCurrentTicketIndex);
 
-    // Reset current index when tickets change
     useEffect(() => {
         if (currentTicketIndex >= tickets.length && tickets.length > 0) {
             setCurrentTicketIndex(0);
         }
     }, [tickets.length, currentTicketIndex]);
 
-    const processTicketSharing = async (assignerData: SharedUserData) => {
+    const processTicketSharing = async (assignerData: SharedUserData): Promise<boolean> => {
         const currentTicket = selectedTicketRef.current;
-        setAlert(prev => ({...prev, isVisible: true, type: "info", message: "checking..."}));
+        setAlert(prev => ({ ...prev, visible: true, type: "info", message: "Checking..." }));
+
         if (!currentTicket) {
             console.error('No ticket available for sharing');
             return false;
         }
-        if (!validateNIC(user.nic)) {
-            console.error('error', 'Error', 'NIC number not valid.');
+
+        if (!validateNIC(user?.nic)) {
+            console.error('NIC number not valid.');
             return false;
         }
-        if (!validateEmail(user.email)) {
-            console.error('error', 'Error', 'Email is not valid.');
+
+        if (!validateEmail(user?.email)) {
+            console.error('Email is not valid.');
             return false;
         }
 
@@ -362,36 +366,39 @@ const AuthorizeTickets: FC = () => {
             });
 
             if (result?.data?.checkIsExistTicket?.data?.exists) {
-                setAlert(prev => ({...prev, isVisible: true, type: "warning", message: "Ticket already shared..."}));
+                setAlert(prev => ({ ...prev, visible: true, type: "warning", message: "Ticket already shared..." }));
                 return false;
             }
 
             const shareTicket: ShareTicket = {
                 ticketId: currentTicket.id,
-                assigner: {nic: currentFormDataRef?.current?.nic, email: currentFormDataRef?.current?.email},
+                assigner: { 
+                    nic: currentFormDataRef?.current?.nic, 
+                    email: currentFormDataRef?.current?.email 
+                } as User,
                 eventId: currentTicket?.event?.eventId,
                 selfAssigned: currentFormDataRef?.current?.selfAssigned
             };
 
             const shareResult = await shareMyTicket({
-                variables: {ticket: shareTicket},
+                variables: { ticket: shareTicket },
             });
 
             const response = shareResult?.data?.shareTicket as IAPIResponse;
 
             if (response?.code === "CODE-200") {
                 appContext.setOpenDialog(true);
-                setAlert(prev => ({...prev, isVisible: true, type: "warning", message: "Ticket already shared..."}));
+                setAlert(prev => ({ ...prev, visible: true, type: "warning", message: "Ticket already shared..." }));
             } else if (response?.code === "CODE-202") {
                 refetchTickets();
-                setAlert(prev => ({...prev, isVisible: true, type: "info", message: "Ticket shared successfully..."}));
+                setAlert(prev => ({ ...prev, visible: true, type: "info", message: "Ticket shared successfully..." }));
                 appContext.setOpenDialog(false);
-                currentFormDataRef.current = {email: "", contact: "", nic: "", selfAssigned: false};
+                currentFormDataRef.current = { email: "", contact: "", nic: "", selfAssigned: false };
                 return true;
             } else if (response?.code === "CODE-203") {
                 setAlert(prev => ({
                     ...prev,
-                    isVisible: true,
+                    visible: true,
                     type: "error",
                     message: `Ticket share failed...${response?.error}`
                 }));
@@ -400,7 +407,7 @@ const AuthorizeTickets: FC = () => {
             return false;
         } catch (error) {
             console.error('Error sharing ticket:', error);
-            setAlert(prev => ({...prev, isVisible: true, type: "error", message: "Ticket share failed..."}));
+            setAlert(prev => ({ ...prev, visible: true, type: "error", message: "Ticket share failed..." }));
             return false;
         }
     };
@@ -434,49 +441,47 @@ const AuthorizeTickets: FC = () => {
         return emailRegex.test(email);
     };
 
-    const handleDownload = async (ticket: ITicket) => {
-        setAlert(prev => ({...prev, isVisible: true, type: "info", message: "Downloading.."}));
+    const handleDownload = async (ticket: ITicket): Promise<void> => {
+        setAlert(prev => ({ ...prev, visible: true, type: "info", message: "Downloading..." }));
+
         try {
             const response = await axiosClient.get(`/download/ticket/${ticket?.id}`, {
                 responseType: 'arraybuffer'
             });
-            const blob = new Blob([response.data], {type: 'application/pdf'});
-            setAlert(prev => ({...prev, isVisible: false, type: "info", message: ""}));
+            const blob = new Blob([response.data], { type: 'application/pdf' });
+            setAlert(prev => ({ ...prev, visible: false, type: "info", message: "" }));
             saveAs(blob, `Yogeshwari.pdf`);
         } catch (error) {
-            setAlert(prev => ({...prev, isVisible: true, type: "error", message: `Error downloading... `}));
+            setAlert(prev => ({ ...prev, visible: true, type: "error", message: `Error downloading...` }));
         }
-    }
+    };
 
-    const handlingCloseAlert = () => {
-        setAlert(prev => ({...prev, isVisible: false}));
-    }
+    const handlingCloseAlert = (): void => {
+        setAlert(prev => ({ ...prev, visible: false }));
+    };
 
-    const handleAssignTicket = (ticket: ITicket) => {
+    const handleAssignTicket = (ticket: ITicket): void => {
         setSelectedTicket(ticket);
         selectedTicketRef.current = ticket;
 
         appContext.showDialog({
             title: "Assign Tickets",
             content: (
-                <>
-                    <ShareTicketContent
-                        ticket={ticket}
-                        user={user}
-                        onAssign={(assignToMe) => setAssignToMe(assignToMe)}
-                        onDataChange={(data) => {
-                            console.log(data)
-                            if (data?.assigner) {
-                                currentFormDataRef.current = {
-                                    email: data.assigner.email || "",
-                                    nic: data.assigner.nic || "",
-                                    contact: data.assigner.contact || "",
-                                    selfAssigned: data?.assigner.selfAssigned || false
-                                };
-                            }
-                        }}
-                    />
-                </>
+                <ShareTicketContent
+                    ticket={ticket}
+                    user={user}
+                    onAssign={(assignToMe) => setAssignToMe(assignToMe)}
+                    onDataChange={(data) => {
+                        if (data?.assigner) {
+                            currentFormDataRef.current = {
+                                email: data.assigner.email || "",
+                                nic: data.assigner.nic || "",
+                                contact: data.assigner.contact || "",
+                                selfAssigned: data?.assigner.selfAssigned || false
+                            };
+                        }
+                    }}
+                />
             ),
             primaryAction: {
                 label: "Assign",
@@ -488,10 +493,10 @@ const AuthorizeTickets: FC = () => {
                                 nic: user?.nic,
                                 contact: user?.contact,
                                 selfAssigned: true
-                            }
+                            };
                             await processTicketSharing(assignMe);
                         } else {
-                            console.error("User not found in the context")
+                            console.error("User not found in the context");
                         }
                     } else {
                         await processTicketSharing(currentFormDataRef.current);
@@ -505,6 +510,27 @@ const AuthorizeTickets: FC = () => {
             showCustomActions: true
         });
     };
+
+    // -----------------------------------------------------------------------
+    // UI content to match Figma
+    // -----------------------------------------------------------------------
+
+    // Figma shows "AUTHORIZE TICKETS" in the page heading
+    const pageTitle = "AUTHORIZE TICKETS";
+
+    // Figma footer copy for this page (lock state notice)
+    const scrollingText = "**** TICKETS ARE LOCKED. ASSIGN TICKETS TO UNLOCK UNDER NIC **** CLICK ON ASSIGN BUTTON TO UNLOCK. ****";
+
+    // Mobile indicator: always render up to 3 compact dots (very small)
+    const indicatorCount = Math.min(3, Math.max(1, tickets.length));
+    let activeDot = 0;
+    if (tickets.length <= 3) {
+        activeDot = currentTicketIndex;
+    } else {
+        if (currentTicketIndex === 0) activeDot = 0;
+        else if (currentTicketIndex === tickets.length - 1) activeDot = 2;
+        else activeDot = 1;
+    }
 
     const defaultHeader = (
         <div className="retro-dialog-header">
@@ -569,100 +595,148 @@ const AuthorizeTickets: FC = () => {
         </div>
     );
 
-    const scrollingText = `Agent ${user?.lastName} *** Click on Assign to Unlock button to Assign Tickets *** Tickets should unlock under NIC *** Click on Assign to Unlock button to Assign Tickets`;
-
     return (
-        <React.Fragment>
-            <div className="w-full p-5 gap-4 flex flex-col items-center justify-center fixed lg:sticky">
-                <div
-                    className="w-full p-5 gap-4 flex flex-col items-center justify-center fixed lg:sticky">
-                    <Dialog
-                        visible={isOpenDialog}
-                        onHide={handleCloseDialog}
-                        header={defaultHeader}
-                        footer={customActionsFooter}
-                        className="retro-dialog"
-                        style={{width: '800px', height: '800px'}}
-                        modal
-                        resizable={false}
-                        draggable={false}
-                        closeOnEscape
-                        dismissableMask
-                    >
-                        {dialogContent}
-                    </Dialog>
+        <>
+            {/* Page heading (global styles handle fonts/colors) */}
+            <div className="authorize-tickets-page-heading" role="region" aria-label="Page Heading">
+                <h1>{pageTitle}</h1>
+            </div>
 
-                    <div className="">
-                        {/*<Logo variant="small" />*/}
-                        {/*<div className="authorize-ticket-view-header">Authorize Tickets</div>*/}
-                        <Alert message={alert.message} type={alert.type} visible={alert.isVisible} autoCloseDelay={3000}
-                               autoClose={true}
-                               onClose={handlingCloseAlert}/>
-                        {/*<Alert message={"Fetching ticket(s)..."} type="info" visible={loadingTicket} autoCloseDelay={3000}*/}
-                        {/*       autoClose={true}*/}
-                        {/*       onClose={handlingCloseAlert}/>*/}
-                        <Alert message={"Fetching error..."} type="error"
-                               visible={errorMyTickets === null ? true : false}
-                               autoCloseDelay={3000} autoClose={true}
-                               onClose={handlingCloseAlert}/>
-                        <Alert message={"Fetching sharing..."} type="info" visible={loadingShare} autoCloseDelay={3000}
-                               autoClose={true}
-                       onClose={handlingCloseAlert}/>
-                <Alert message={"Sharing error..."} type="error" visible={shareErrorResponse === null ? true : false}
-                       autoCloseDelay={3000} autoClose={true}
-                       onClose={handlingCloseAlert}/>
-                <Alert message={"Checking error"} type="error"
-                       visible={checkIsExistTicketErrorResponse === null ? true : false}
-                       autoCloseDelay={3000} autoClose={true}
-                       onClose={handlingCloseAlert}/>
-                {/* <div className="authorize-ticket-view-title">
-                    Tickets Are Locked. Assign Tickets To Unlock
-                </div> */}
+            {/* Main page container */}
+            <main className="authorize-tickets-page-container" role="main">
 
-                        {tickets?.length <= 0 &&
-                            <div className="w-full flex items-center justify-center">Ticket(s) not available</div>}
+                {/* Alerts */}
+                <Alert 
+                    message={alert.message} 
+                    type={alert.type} 
+                    visible={alert.visible} 
+                    autoCloseDelay={3000}
+                    autoClose={true}
+                    onClose={handlingCloseAlert}
+                />
 
-                    {/* Desktop View */}
-                    <div className="ticket-view desktop-view">
-                        {tickets?.length > 0 && tickets?.map((ticket, index) => (
-                            <TicketCard key={index} onClick={handleAssignTicket} ticket={ticket}
-                                        onDownload={handleDownload}/>
-                        ))}
+                <Alert 
+                    message="Fetching error..." 
+                    type="error"
+                    visible={!!errorMyTickets}
+                    autoCloseDelay={3000} 
+                    autoClose={true}
+                    onClose={handlingCloseAlert}
+                />
 
-                    {/* Mobile View with Slider */}
+                <Alert 
+                    message="Processing share..." 
+                    type="info" 
+                    visible={loadingShare} 
+                    autoCloseDelay={3000}
+                    autoClose={true}
+                    onClose={handlingCloseAlert}
+                />
+
+                <Alert 
+                    message="Sharing error..." 
+                    type="error" 
+                    visible={!!shareErrorResponse}
+                    autoCloseDelay={3000} 
+                    autoClose={true}
+                    onClose={handlingCloseAlert}
+                />
+
+                <Alert 
+                    message="Checking error" 
+                    type="error"
+                    visible={!!checkIsExistTicketErrorResponse}
+                    autoCloseDelay={3000} 
+                    autoClose={true}
+                    onClose={handlingCloseAlert}
+                />
+
+                {/* Main content */}
+                <section className="authorize-tickets-content-main">
+
+                    {/* No tickets message */}
+                    {tickets?.length <= 0 && (
+                        <div className="authorize-tickets-error">
+                            <p>Ticket(s) not available</p>
+                        </div>
+                    )}
+
+                    {/* Ticket layout */}
                     {tickets?.length > 0 && (
-                        <div className={`ticket-view mobile-view ${tickets.length === 1 ? 'single-ticket' : ''}`}>
-                            <div
-                                className={`mobile-ticket-container ${swipeHandlers.className}`}
-                                {...swipeHandlers}
-                            >
-                                <TicketCard
-                                    ticket={tickets?.[currentTicketIndex]}
-                                    onClick={handleAssignTicket}
-                                    onDownload={handleDownload}
-                                />
-                            </div>
+                        <div className="authorize-tickets-layout">
 
-                            <div className={`ticket-indicators ${tickets.length === 1 ? 'single-ticket' : ''}`}>
-                                {tickets.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        className={`indicator ${index === currentTicketIndex ? 'active' : ''}`}
-                                        onClick={() => setCurrentTicketIndex(index)}
+                            {/* Desktop View */}
+                            <div className="authorize-tickets-desktop-view">
+                                {tickets.map((ticket, index) => (
+                                    <TicketCard 
+                                        key={index} 
+                                        onClick={handleAssignTicket} 
+                                        ticket={ticket}
+                                        onDownload={handleDownload}
                                     />
                                 ))}
                             </div>
+
+                            {/* Mobile View with Slider */}
+                            <div className={`authorize-tickets-mobile-view ${tickets.length === 1 ? 'single-ticket' : ''}`}>
+                                <div className={`authorize-tickets-indicators ${tickets.length === 1 ? 'single-ticket' : ''}`} aria-label="Ticket navigation indicators">
+                                    {Array.from({ length: indicatorCount }).map((_, i) => (
+                                        <button
+                                            key={i}
+                                            className={`authorize-tickets-indicator ${i === activeDot ? 'active' : ''}`}
+                                            onClick={() => {
+                                                if (tickets.length <= 3) {
+                                                    setCurrentTicketIndex(i);
+                                                } else {
+                                                    if (i === 0) setCurrentTicketIndex(0);
+                                                    else if (i === 1) {
+                                                        // jump to middle ticket when clicking middle dot
+                                                        const middle = Math.floor(tickets.length / 2);
+                                                        setCurrentTicketIndex(middle);
+                                                    } else setCurrentTicketIndex(tickets.length - 1);
+                                                }
+                                            }}
+                                            aria-label={`Go to ticket ${i + 1}`}
+                                        />
+                                    ))}
+                                </div>
+
+                                <div
+                                    className={`authorize-tickets-mobile-container ${swipeHandlers.className}`}
+                                    {...swipeHandlers}
+                                >
+                                    <TicketCard
+                                        ticket={tickets[currentTicketIndex]}
+                                        onClick={handleAssignTicket}
+                                        onDownload={handleDownload}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     )}
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <GlobalFooter
-                scrollingText={scrollingText}
-                scrollSpeed={12}
-            />
-        </React.Fragment>
+                </section>
+
+                {/* Dialog for sharing tickets */}
+                <Dialog
+                    visible={isOpenDialog}
+                    onHide={handleCloseDialog}
+                    header={defaultHeader}
+                    footer={customActionsFooter}
+                    className="retro-dialog"
+                    style={{ width: '800px', height: '800px' }}
+                    modal
+                    resizable={false}
+                    draggable={false}
+                    closeOnEscape
+                    dismissableMask
+                >
+                    {dialogContent}
+                </Dialog>
+            </main>
+
+            {/* Global scrolling footer */}
+            <GlobalFooter text={scrollingText} />
+        </>
     );
 };
 

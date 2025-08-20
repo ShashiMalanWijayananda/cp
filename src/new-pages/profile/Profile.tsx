@@ -1,15 +1,14 @@
-import React, {ChangeEvent, FC, useEffect, useState} from "react";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import "./Profile.css";
-import {GET_ARCHIVE_CONCERT, GET_MY_PROFILE, UPDATE_PROFILE} from "../../graphql/queries";
-import {useLazyQuery, useMutation} from "@apollo/client";
-import {useLogin, User} from "../../context/login.context";
-import {IAConcert, IAPIResponse, IGroupedConcert} from "../../interfaces/data.interfaces";
-import Alert, {AlertProps} from "../../components/retro/Alert/Alert";
-import {useAppContext} from "../../context/app.context";
-import {useLocation} from "react-router-dom";
+import { GET_ARCHIVE_CONCERT, GET_MY_PROFILE, UPDATE_PROFILE } from "../../graphql/queries";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { useLogin, User } from "../../context/login.context";
+import { IAConcert, IAPIResponse, IGroupedConcert } from "../../interfaces/data.interfaces";
+import Alert, { AlertProps } from "../../components/retro/Alert/Alert";
+import { useAppContext } from "../../context/app.context";
+import { useLocation } from "react-router-dom";
 import axiosClient from "../../axios/axiosClient";
 import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
-import RetroTextBox from "../../components/retro/RetroTextBox/RetroTextBox";
 
 interface BadgeDetails {
     type: string;
@@ -22,7 +21,7 @@ interface BadgeDetails {
 const Profile: FC = () => {
     const location = useLocation();
     const [now, setNow] = useState<Date>(new Date());
-    const {user} = useLogin();
+    const { user } = useLogin();
     const [systemUser, setSystemUser] = useState<User>(null);
     const [originalUser, setOriginalUser] = useState<User>(null);
     const [archiveConcert, setArchiveConcert] = useState<IAConcert[]>([]);
@@ -31,28 +30,28 @@ const Profile: FC = () => {
         visible: false,
         message: null
     });
-    const {appContext} = useAppContext();
+    const { appContext } = useAppContext();
     const [isBadgePopupOpen, setIsBadgePopupOpen] = useState(false);
     const [selectedBadgeDetails, setSelectedBadgeDetails] = useState<BadgeDetails | null>(null);
-    const [response, setResponse] = useState<IAPIResponse>({code: null, data: null, message: null, error: null});
+    const [response, setResponse] = useState<IAPIResponse>({ code: null, data: null, message: null, error: null });
 
     const [getUserProfile, {
         data: myProfile,
         loading: loadingProfile,
         error: errorLoadingProfile
-    }] = useLazyQuery(GET_MY_PROFILE, {fetchPolicy: "network-only"});
+    }] = useLazyQuery(GET_MY_PROFILE, { fetchPolicy: "network-only" });
 
     const [getArchiveConcert, {
         data: concerts,
         loading: loadingConcerts,
         error: errorConcerts
-    }] = useLazyQuery(GET_ARCHIVE_CONCERT, {fetchPolicy: "network-only"});
+    }] = useLazyQuery(GET_ARCHIVE_CONCERT, { fetchPolicy: "network-only" });
 
     const [updateProfile, {
         data: updateResponse,
         loading: loadingUpdate,
         error: updateError
-    }] = useMutation(UPDATE_PROFILE, {fetchPolicy: "network-only"})
+    }] = useMutation(UPDATE_PROFILE, { fetchPolicy: "network-only" })
 
     useEffect(() => {
         const t = setInterval(() => setNow(new Date()), 1000);
@@ -61,8 +60,8 @@ const Profile: FC = () => {
 
     useEffect(() => {
         if (user?.id !== null) {
-            getUserProfile({variables: {userId: user?.id}})
-            getArchiveConcert({variables: {contact: user?.contact}})
+            getUserProfile({ variables: { userId: user?.id } })
+            getArchiveConcert({ variables: { contact: user?.contact } })
         }
     }, [user, location])
 
@@ -82,7 +81,7 @@ const Profile: FC = () => {
     }, [concerts])
 
     const handleUserInput = (e: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setSystemUser((prevUser) => ({
             ...prevUser,
             [name]: value,
@@ -90,7 +89,7 @@ const Profile: FC = () => {
     }
 
     const handlingCloseAlert = () => {
-        setAlert(prev => ({...prev, visible: false}));
+        setAlert(prev => ({ ...prev, visible: false }));
     }
 
     const handleUpdate = async () => {
@@ -120,9 +119,9 @@ const Profile: FC = () => {
                         message: (
                             <div>
                                 <p>Validation error. Please fix the issues in the form:</p>
-                                <ul style={{margin: '8px 0', paddingLeft: '20px'}}>
+                                <ul style={{ margin: '8px 0', paddingLeft: '20px' }}>
                                     {errorResponse?.error?.map((error) => (
-                                        <li key={error?.field} style={{marginBottom: '4px'}}>
+                                        <li key={error?.field} style={{ marginBottom: '4px' }}>
                                             <strong>{error?.field?.toUpperCase()}:</strong> {error.message}
                                         </li>
                                     ))}
@@ -162,16 +161,6 @@ const Profile: FC = () => {
             concert,
             record,
         }));
-    };
-
-    const pad = (n:number) => String(n).padStart(2,'0');
-    const fmt = (d:Date)=> `${d.getFullYear()}/${pad(d.getMonth()+1)}/${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-
-    const getGreetingByTime = (): string => {
-        const hour = new Date().getHours();
-        if (hour >= 5 && hour < 12) return 'Good Morning';
-        if (hour >= 12 && hour < 18) return 'Good Afternoon';
-        return 'Good Evening';
     };
 
     const getBadgeDetails = (badgeType: string): BadgeDetails => {
@@ -233,327 +222,265 @@ const Profile: FC = () => {
         setSelectedBadgeDetails(null);
     };
 
-    const scrollingText = " Agent Portal * Secure Connection * DATA Encrypted * System Opereational * Mission Status: Active * Clearance Level: Classified ";
+    const renderBadges = () => {
+        const uniqueBadges = new Set();
+        const badgeData = [];
+        const uniqueConcerts = groupByConcert(archiveConcert);
+
+        uniqueConcerts.forEach(concert => {
+            let badgeType = null;
+            let badgeImage = null;
+            if (concert.concert === "Kuweni_1.1" ||
+                concert.concert === "Kuweni_1.2" ||
+                concert.concert === "Kuweni_1.3") {
+                badgeType = "kuweni1";
+                badgeImage = "images/badge/k1.png";
+            } else if (concert.concert === "Kuweni_2.0 1" ||
+                concert.concert === "Kuweni_2.0 2" ||
+                concert.concert === "Kuweni_2.0 3" ||
+                concert.concert === "Kuweni_2.0 4" ||
+                concert.concert === "Kuweni_2.0 5" ||
+                concert.concert === "Kuweni_2.1") {
+                badgeType = "kuweni2";
+                badgeImage = "images/badge/k2.png";
+            } else if (concert.concert === "Kuweni_Verse") {
+                badgeType = "kuweniVerse";
+                badgeImage = "images/badge/k3.png";
+            } else if (concert.concert === "yogeshwari") {
+                badgeType = "yogeshwari";
+                badgeImage = "images/badge/k4.png";
+            }
+            if (badgeType && !uniqueBadges.has(badgeType)) {
+                uniqueBadges.add(badgeType);
+                badgeData.push({
+                    type: badgeType,
+                    image: badgeImage,
+                    concert: concert
+                });
+            }
+        });
+
+        const badges = [];
+        for (let i = 0; i < 4; i++) {
+            if (badgeData[i]) {
+                badges.push(
+                    <img
+                        key={badgeData[i].type}
+                        className="badge-item"
+                        src={badgeData[i].image}
+                        alt={`${badgeData[i].type} Badge`}
+                        onClick={() => showBadge(badgeData[i].type)}
+                    />
+                );
+            } else {
+                badges.push(
+                    <div key={`placeholder-${i}`} className="badge-placeholder" />
+                );
+            }
+        }
+        return badges;
+    };
 
     return (
-        <React.Fragment>
-            <div className="w-full p-5 gap-4 flex flex-col items-center justify-center fixed lg:sticky">
-                <div>
-                    <Alert message={"User profile fetching error..."} type="error"
-                           visible={errorLoadingProfile === null ? true : false}
-                           autoCloseDelay={3000} autoClose={true}
-                           onClose={handlingCloseAlert}/>
-                    <Alert message={alert.message} type={alert.type}
-                           visible={alert.visible}
-                           autoCloseDelay={3000} autoClose={true}
-                           onClose={handlingCloseAlert}/>
+        <>
+            {/* Main page container (sits inside AppLayout Outlet) */}
+            <main className="profile-page-container" role="main">
+                
+                {/* Alerts */}
+                <Alert 
+                    message={alert.message} 
+                    type={alert.type}
+                    visible={alert.visible}
+                    autoCloseDelay={3000} 
+                    autoClose={true}
+                    onClose={handlingCloseAlert}
+                />
 
-                    <Alert message={"Archive concert loading error"} type="error"
-                           visible={errorConcerts === null ? true : false}
-                           autoCloseDelay={3000} autoClose={true}
-                           onClose={handlingCloseAlert}/>
-
-                    {/*<div className="profile-main">*/}
-                    {/*    <div className="profile-info-row">*/}
-                    {/*        <div className="avatar-container">*/}
-                    {/*            <svg className="avatar-icon" viewBox="0 0 24 24" fill="none">*/}
-                    {/*                <circle cx="12" cy="8" r="4" fill="white"/>*/}
-                    {/*                <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="white" strokeWidth="2" fill="white"/>*/}
-                    {/*            </svg>*/}
-                    {/*        </div>*/}
-
-                    {/*        <div className="badge-container">*/}
-                    {/*            {(() => {*/}
-                    {/*                const uniqueBadges = new Set();*/}
-                    {/*                const badgeData = [];*/}
-                    {/*                const uniqueConcerts = groupByConcert(archiveConcert);*/}
-
-                    {/*                uniqueConcerts.forEach(concert => {*/}
-                    {/*                    let badgeType = null;*/}
-                    {/*                    let badgeImage = null;*/}
-                    {/*                    if (concert.concert === "Kuweni_1.1" ||*/}
-                    {/*                        concert.concert === "Kuweni_1.2" ||*/}
-                    {/*                        concert.concert === "Kuweni_1.3") {*/}
-                    {/*                        badgeType = "kuweni1";*/}
-                    {/*                        badgeImage = "images/badge/k1.png";*/}
-                    {/*                    } else if (concert.concert === "Kuweni_2.0 1" ||*/}
-                    {/*                        concert.concert === "Kuweni_2.0 2" ||*/}
-                    {/*                        concert.concert === "Kuweni_2.0 3" ||*/}
-                    {/*                        concert.concert === "Kuweni_2.0 4" ||*/}
-                    {/*                        concert.concert === "Kuweni_2.0 5" ||*/}
-                    {/*                        concert.concert === "Kuweni_2.1") {*/}
-                    {/*                        badgeType = "kuweni2";*/}
-                    {/*                        badgeImage = "images/badge/k2.png";*/}
-                    {/*                    } else if (concert.concert === "Kuweni_Verse") {*/}
-                    {/*                        badgeType = "kuweniVerse";*/}
-                    {/*                        badgeImage = "images/badge/k3.png";*/}
-                    {/*                    } else if (concert.concert === "yogeshwari") {*/}
-                    {/*                        badgeType = "yogeshwari";*/}
-                    {/*                        badgeImage = "images/badge/k4.png";*/}
-                    {/*                    }*/}
-                    {/*                    if (badgeType && !uniqueBadges.has(badgeType)) {*/}
-                    {/*                        uniqueBadges.add(badgeType);*/}
-                    {/*                        badgeData.push({*/}
-                    {/*                            type: badgeType,*/}
-                    {/*                            image: badgeImage,*/}
-                    {/*                            concert: concert*/}
-                    {/*                        });*/}
-                    {/*                    }*/}
-                    {/*                });*/}
-
-                    {/*                const badges = [];*/}
-                    {/*                for (let i = 0; i < 4; i++) {*/}
-                    {/*                    if (badgeData[i]) {*/}
-                    {/*                        badges.push(*/}
-                    {/*                            <img*/}
-                    {/*                                key={badgeData[i].type}*/}
-                    {/*                                className="badge-item"*/}
-                    {/*                                src={badgeData[i].image}*/}
-                    {/*                                alt={`${badgeData[i].type} Badge`}*/}
-                    {/*                                onClick={() => showBadge(badgeData[i].type)}*/}
-                    {/*                            />*/}
-                    {/*                        );*/}
-                    {/*                    } else {*/}
-                    {/*                        badges.push(*/}
-                    {/*                            <div key={`placeholder-${i}`} className="badge-placeholder" />*/}
-                    {/*                        );*/}
-                    {/*                    }*/}
-                    {/*                }*/}
-                    {/*                return badges;*/}
-                    {/*            })()}*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-
-                    {/*    <div className="details-form">*/}
-                    {/*        <div className="form-row">*/}
-                    {/*            <span className="field-label">First Name</span>*/}
-                    {/*            <span className="field-colon">:</span>*/}
-                    {/*            <input*/}
-                    {/*                className="field-value-profile"*/}
-                    {/*                type="text"*/}
-                    {/*                value={systemUser?.firstName || ""}*/}
-                    {/*                onChange={handleUserInput}*/}
-                    {/*                name="firstName"*/}
-                    {/*            />*/}
-                    {/*        </div>*/}
-                    {/*        <div className="form-row">*/}
-                    {/*            <span className="field-label">Last Name</span>*/}
-                    {/*            <span className="field-colon">:</span>*/}
-                    {/*            <input*/}
-                    {/*                className="field-value-profile"*/}
-                    {/*                type="text"*/}
-                    {/*                value={systemUser?.lastName || ""}*/}
-                    {/*                onChange={handleUserInput}*/}
-                    {/*                name="lastName"*/}
-                    {/*            />*/}
-                    {/*        </div>*/}
-                    {/*        <div className="form-row">*/}
-                    {/*            <span className="field-label">Email Address</span>*/}
-                    {/*            <span className="field-colon">:</span>*/}
-                    {/*            <input*/}
-                    {/*                className="field-value-profile"*/}
-                    {/*                type="email"*/}
-                    {/*                value={systemUser?.email || ""}*/}
-                    {/*                onChange={handleUserInput}*/}
-                    {/*                name="email"*/}
-                    {/*                disabled*/}
-                    {/*            />*/}
-                    {/*        </div>*/}
-                    {/*        <div className="form-row">*/}
-                    {/*            <span className="field-label">NIC Number</span>*/}
-                    {/*            <span className="field-colon">:</span>*/}
-                    {/*            <input*/}
-                    {/*                className="field-value-profile"*/}
-                    {/*                type="text"*/}
-                    {/*                value={systemUser?.nic || ""}*/}
-                    {/*                onChange={handleUserInput}*/}
-                    {/*                name="nic"*/}
-                    {/*                disabled*/}
-                    {/*            />*/}
-                    {/*        </div>*/}
-                    {/*        <div className="form-row">*/}
-                    {/*            <span className="field-label">Contact Number</span>*/}
-                    {/*            <span className="field-colon">:</span>*/}
-                    {/*            <input*/}
-                    {/*                className="field-value-profile"*/}
-                    {/*                type="text"*/}
-                    {/*                value={systemUser?.contact || ""}*/}
-                    {/*                onChange={handleUserInput}*/}
-                    {/*                name="contact"*/}
-                    {/*                disabled*/}
-                    {/*            />*/}
-                    {/*        </div>*/}
-                    {/*        {systemUser?.provider === "LOCAL" && (*/}
-                    {/*            <div className="form-row">*/}
-                    {/*                <span className="field-label">Password</span>*/}
-                    {/*                <span className="field-colon">:</span>*/}
-                    {/*                <input*/}
-                    {/*                    className="field-value-profile"*/}
-                    {/*                    type="password"*/}
-                    {/*                    value={systemUser?.password || ""}*/}
-                    {/*                    onChange={handleUserInput}*/}
-                    {/*                    name="password"*/}
-                    {/*                    placeholder="**************"*/}
-                    {/*                />*/}
-                    {/*            </div>*/}
-                    {/*        )}*/}
-
-                    {/*        <button*/}
-                    {/*            className="update-button"*/}
-                    {/*            onClick={handleUpdate}*/}
-                    {/*            disabled={!isFormChanged()}*/}
-                    {/*        >*/}
-                    {/*            Update*/}
-                    {/*        </button>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-
-
-                    <div
-                        className="w-full min-[375px]:overflow-y-auto gap-4 min-[375px]:h-[50vh] min-[414px]:h-[60vh] lg:h-full sticky p-[10px]">
-                        <div className="flex items-center justify-center">
-                            <div className="w-full">
-                                <div className="flex flex-col md:flex-row gap-8 mb-8">
-                                    <div className="flex-1">
-                                        <div
-                                            className="grid grid-cols-3 grid-rows-2 md:grid-cols-5 md:grid-rows-1 gap-4">
-                                            <div
-                                                className="w-[100px] h-[100px]  flex-shrink-0 border-2 border-solid border-green-400 rounded-lg flex items-center justify-center hover:border-green-300 transition-colors cursor-pointer"
-                                            >
-                                                <svg className="avatar-icon" viewBox="0 0 24 24" fill="none">
-                                                    <circle cx="12" cy="8" r="4" fill="white"/>
-                                                    <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="white"
-                                                          strokeWidth="2" fill="white"/>
-                                                </svg>
-                                            </div>
-                                            {[1, 2, 3, 4].map((item) => (
-                                                <div
-                                                    key={item}
-                                                    className="w-[100px] h-[100px]  flex-shrink-0 border-2 border-dashed border-green-400 rounded-lg flex items-center justify-center hover:border-green-300 transition-colors cursor-pointer"
-                                                >
-                                                    <span className="text-green-400 text-4xl">+</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div className="space-y-6">
-                                    <RetroTextBox
-                                        labelText="First Name :"
-                                        type="text"
-                                        name="firstName"
-                                        id="firstName"
-                                        value={systemUser?.firstName}
-                                        onChange={handleUserInput}
-                                        placeholder=""
-                                    />
-                                    <RetroTextBox
-                                        labelText="Last Name :"
-                                        type="text"
-                                        name="lastName"
-                                        id="lastName"
-                                        value={systemUser?.lastName}
-                                        onChange={handleUserInput}
-                                        placeholder=""
-                                    />
-
-                                    <RetroTextBox
-                                        labelText="Email :"
-                                        type="text"
-                                        name="email"
-                                        id="email"
-                                        value={systemUser?.email}
-                                        onChange={handleUserInput}
-                                        placeholder=""
-                                        disabled
-                                    />
-
-
-                                    <RetroTextBox
-                                        labelText="Contact Number :"
-                                        type="text"
-                                        name="contact"
-                                        id="contact"
-                                        value={systemUser?.contact}
-                                        onChange={handleUserInput}
-                                        placeholder=""
-                                        disabled
-                                    />
-
-
-                                    <RetroTextBox
-                                        labelText="NIC/Passport :"
-                                        type="text"
-                                        name="nic"
-                                        id="nic"
-                                        value={systemUser?.nic}
-                                        onChange={handleUserInput}
-                                        placeholder=""
-                                        disabled
-                                    />
-
-                                    {systemUser?.provider == "LOCAL" && <RetroTextBox
-                                        labelText="Password :"
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                        value={systemUser?.password}
-                                        onChange={handleUserInput}
-                                        placeholder=""
-                                    />}
-
-
-                                </div>
-
-
-                                <div className="flex justify-end mt-8">
-                                    <button
-                                        className="update-button"
-                                        onClick={handleUpdate}
-                                        disabled={!isFormChanged()}
-                                    >
-                                        Update
-                                    </button>
-                                </div>
+                {/* Main content area */}
+                <section className="profile-content-main">
+                    <div className="profile-main">
+                        
+                        {/* Profile info row with avatar and badges */}
+                        <div className="profile-info-row">
+                            <div className="avatar-container" aria-label="User avatar">
+                                <svg className="avatar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="8" r="4" fill="white"/>
+                                    <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="white" strokeWidth="2" fill="white"/>
+                                </svg>
+                            </div>
+                            
+                            <div className="badge-container" aria-label="Achievement badges">
+                                {renderBadges()}
                             </div>
                         </div>
 
-                        {isBadgePopupOpen && selectedBadgeDetails && (
-                            <div className="badge-popup-overlay" onClick={closeBadgePopup}>
-                                <div className="badge-popup-content" onClick={(e) => e.stopPropagation()}>
-                                    <div className="badge-popup-header">
-                                        <button className="badge-popup-close" onClick={closeBadgePopup}>
-                                            ×
-                                        </button>
-                                    </div>
-                                    <div className="badge-popup-body">
-                                        <div className="badge-image-container">
-                                            <img
-                                                src={selectedBadgeDetails.image}
-                                                alt={selectedBadgeDetails.title}
-                                                className="badge-popup-image"
-                                            />
-                                        </div>
-                                        <div className="badge-info">
-                                            <h2 className="badge-title">{selectedBadgeDetails.title}</h2>
-                                            <p className="badge-description">{selectedBadgeDetails.description}</p>
-                                        </div>
-                                    </div>
+                        {/* Form - Updated to match Login/Registration style */}
+                        <form className="details-form" onSubmit={(e) => e.preventDefault()}>
+                            
+                            {/* First Name Field */}
+                            <div className="form-group">
+                                <label htmlFor="firstName">First Name:</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="firstName"
+                                        type="text"
+                                        value={systemUser?.firstName || ""}
+                                        onChange={handleUserInput}
+                                        name="firstName"
+                                        aria-label="First name"
+                                    />
                                 </div>
                             </div>
-                        )}
+
+                            {/* Last Name Field */}
+                            <div className="form-group">
+                                <label htmlFor="lastName">Last Name:</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="lastName"
+                                        type="text"
+                                        value={systemUser?.lastName || ""}
+                                        onChange={handleUserInput}
+                                        name="lastName"
+                                        aria-label="Last name"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Email Field */}
+                            <div className="form-group">
+                                <label htmlFor="email">Email:</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        value={systemUser?.email || ""}
+                                        onChange={handleUserInput}
+                                        name="email"
+                                        disabled
+                                        aria-label="Email address (read-only)"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Contact Number Field */}
+                            <div className="form-group">
+                                <label htmlFor="contact">Contact Number:</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="contact"
+                                        type="text"
+                                        value={systemUser?.contact || ""}
+                                        onChange={handleUserInput}
+                                        name="contact"
+                                        disabled
+                                        aria-label="Contact number (read-only)"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* NIC/Passport Field */}
+                            <div className="form-group">
+                                <label htmlFor="nic">NIC/Passport:</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="nic"
+                                        type="text"
+                                        value={systemUser?.nic || ""}
+                                        onChange={handleUserInput}
+                                        name="nic"
+                                        disabled
+                                        aria-label="NIC or Passport number (read-only)"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Password Field - Only for LOCAL provider */}
+                            {systemUser?.provider === "LOCAL" && (
+                                <div className="form-group">
+                                    <label htmlFor="password">Password:</label>
+                                    <div className="input-wrapper">
+                                        <input
+                                            id="password"
+                                            type="password"
+                                            value={systemUser?.password || ""}
+                                            onChange={handleUserInput}
+                                            name="password"
+                                            placeholder="**************"
+                                            aria-label="Password"
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Update Button */}
+                            <button
+                                type="button"
+                                className="update-button"
+                                onClick={handleUpdate}
+                                disabled={!isFormChanged()}
+                                aria-label="Update profile information"
+                            >
+                                Update
+                            </button>
+                        </form>
+                    </div>
+                </section>
+                
+            </main>
+
+            {/* Badge popup modal */}
+            {isBadgePopupOpen && selectedBadgeDetails && (
+                <div 
+                    className="badge-popup-overlay" 
+                    onClick={closeBadgePopup}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="badge-title"
+                    aria-describedby="badge-description"
+                >
+                    <div className="badge-popup-content" onClick={(e) => e.stopPropagation()}>
+                        <header className="badge-popup-header">
+                            <button 
+                                className="badge-popup-close" 
+                                onClick={closeBadgePopup}
+                                aria-label="Close badge details"
+                            >
+                                ×
+                            </button>
+                        </header>
+                        <div className="badge-popup-body">
+                            <div className="badge-image-container">
+                                <img
+                                    src={selectedBadgeDetails.image}
+                                    alt={selectedBadgeDetails.title}
+                                    className="badge-popup-image"
+                                />
+                            </div>
+                            <div className="badge-info">
+                                <h2 id="badge-title" className="badge-title">{selectedBadgeDetails.title}</h2>
+                                <p id="badge-description" className="badge-description">{selectedBadgeDetails.description}</p>
+                                {selectedBadgeDetails.concerts.length > 0 && (
+                                    <div className="badge-popup-concerts">
+                                        <h4>Related Concerts:</h4>
+                                        <ul>
+                                            {selectedBadgeDetails.concerts.map((concert, index) => (
+                                                <li key={index}>{concert.concert}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <GlobalFooter
-                    text={scrollingText}
-                />
-            </div>
-
-
-        </React.Fragment>
-    )
-}
+            )}
+            
+            {/* Global scrolling footer message */}
+            <GlobalFooter text="**** AGENT PORTAL ACTIVE **** SECURE CONNECTION **** DATA ENCRYPTED **** SYSTEM OPERATIONAL **** " />
+            
+        </>
+    );
+};
 
 export default Profile;

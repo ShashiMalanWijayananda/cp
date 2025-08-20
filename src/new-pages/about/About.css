@@ -1,199 +1,322 @@
-/* ============================================================================= 
-   ABOUT PAGE - CLEANED CSS WITH UPDATED CLASS NAMES
+/* =============================================================================
+   ABOUT PAGE - RESPONSIVE LAYOUT
+   Designed to work with your globalized header, footer, and design system
    ============================================================================= */
 
-/* About page main container with updated class name */
-.yo-about-view {
-  background: var(--yo-secondary);
-  color: var(--yo-shade-blue);
-}
+/* =============================================================================
+   PAGE LAYOUT - Accounting for Fixed Header, Logo/CommonHeader & Footer
+   ============================================================================= */
 
-/* Exit Button - Updated class name */
-.yo-about-header-right {
-  position: absolute;
-  top: 100px;
-  right: 40px;
-  z-index: 10;
-}
-
-.yo-about-exit-button {
-  background: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transform: scale(1.25);
-  transition: all var(--transition-normal);
-}
-
-.yo-about-exit-button:hover {
-  color: var(--yo-green);
-  transform: scale(1.5);
-}
-
-/* Title - Updated to use global heading styles */
-.yo-about-title {
-  /* Removed redundant font-family, font-size, color - now handled globally */
-  /* Global h1 styles will apply: font-family: var(--font-primary), font-size: var(--h1-size) */
-  line-height: 2;
-  color: var(--yo-blue);
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-  /* text-transform: uppercase; - handled globally */
-}
-
-/* Content Wrapper - Updated class name */
-.yo-about-content-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 0px 40px;
-  gap: var(--spacing-lg);
-  width: 100%;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-
-.yo-about-content-wrapper .yo-about-text-block {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  /* Removed font-family - now handled globally */
-  width: max-content;
-}
-
-.yo-about-subheader {
-  border: 1px solid var(--yo-white);
-  color: var(--yo-black);
-  background-color: var(--yo-white);
-  padding: 0px var(--spacing-lg);
-  /* Removed font-size - will use global h2 styles */
-}
-
-.yo-about-text-box {
-  border: 1px solid var(--yo-white);
-  padding: var(--spacing-lg);
-  height: 100%;
-}
-
-.yo-about-text-box p {
-  /* Removed font-size, line-height, margin-bottom - now handled globally */
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-
-/* Image - Updated class name */
-.yo-about-image-wrapper {
-  max-width: 300px;
-  justify-content: center;
-  align-items: center;
-}
-
-.yo-about-image-wrapper img {
-  filter: contrast(1.15) brightness(1.15);
-  border-radius: 0px;
-}
-
-/* Footer scrolling - Updated class names */
-.yo-about-footer-scrolling {
-  width: 100vw;
+.about-page-heading {
   position: fixed;
-  height: 38px;
-  bottom: 0;
+  top: calc(150px + 4vh); /* Below header + logo space */
   left: 0;
   right: 0;
-  background: #B4B3B0;
-  border-top: 1px solid var(--line);
-  overflow: hidden;
-  padding: 0px;
-  z-index: 100;
-  margin: 0px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: var(--yo-primary); */
+  z-index: 50;
+  /* border-bottom: 1px solid var(--yo-green); */
 }
 
-.yo-about-scroll-wrapper {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
+.about-page-heading h1 {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl);
+  color: var(--yo-blue);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.yo-about-scroll-content {
-  display: inline-block;
-  /* Removed font-family - now handled globally */
-  font-size: var(--text-xl);
-  color: var(--yo-black);
-  letter-spacing: 3px;
-  opacity: 0.8;
-  animation: yo-about-scroll-left-system 15s linear infinite;
+.about-page-container {
+  margin-top: calc(200px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
+  margin-bottom: 50px; /* Footer space */
+  min-height: calc(100vh - 160px - 4vh); /* Full height minus header, logo, title, footer */
+  padding: var(--spacing-lg) var(--spacing-md);
+  overflow-y: visible;
+  overflow-x: hidden;
 }
 
-@keyframes yo-about-scroll-left-system {
-  0% {
-    transform: translateX(100vw);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* ============================================================================= 
-   RESPONSIVE DESIGN - Updated with new class names
+/* =============================================================================
+   DESKTOP LAYOUT (Matches Figma)
    ============================================================================= */
 
-/* Tablet */
+.about-content-main {
+  max-width: 1200px;
+  margin: 0px auto;
+  /* height: 100%; */
+}
+
+.about-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--spacing-2xl);
+  height: 100%;
+  align-items: start;
+}
+
+/* Text Section */
+.about-text-section {
+  display: flex;
+  flex-direction: column;
+  /* gap: var(--spacing-lg); */
+}
+
+.about-section-header {
+  background-color: var(--yo-gray);
+  padding: var(--spacing-md);
+  border: 1px solid var(--yo-light);
+}
+
+.about-section-header h2 {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  color: var(--yo-black);
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.about-text-content {
+  /* background-color: var(--yo-primary); */
+  border: 1px solid var(--yo-light);
+  padding: var(--spacing-xl);
+  line-height: 1.8;
+}
+
+.about-text-content p {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--yo-light);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.about-text-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Image Section */
+.about-image-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about-image-container {
+  width: 100%;
+  max-width: 400px;
+  /* background-color: var(--yo-gray); */
+  border: 1px solid var(--yo-light);
+  /* padding: var(--spacing-lg); */
+  position: relative;
+}
+
+.about-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: contrast(1.2) brightness(0.9);
+  /* Halftone effect to match Figma */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* =============================================================================
+   TABLET LAYOUT (768px - 1024px)
+   ============================================================================= */
+
 @media (max-width: 1024px) {
-  .yo-about-image-wrapper {
-    max-width: 350px;
+  .about-content-wrapper {
+    grid-template-columns: 1fr 300px;
+    gap: var(--spacing-xl);
+  }
+  
+  .about-image-container {
+    max-width: 300px;
+  }
+  
+  .about-page-container {
+    padding: var(--spacing-md);
+  }
+  
+  .about-text-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .about-text-content p {
+    font-size: var(--text-sm);
   }
 }
 
-/* Mobile Portrait */
+/* =============================================================================
+   MOBILE LAYOUT (768px and below) - Matches Mobile Figma
+   ============================================================================= */
+
 @media (max-width: 768px) {
-  .yo-about-title {
-    /* Removed font-family, font-size - using global styles */
-    line-height: 1;
-    margin: 0px 0px var(--spacing-lg) 0px;
+  /* Mobile header adjustments - no desktop header/logo on mobile */
+  .about-page-heading {
+     top: calc(95px + 4vh);/* Mobile doesn't show desktop header/logo */
+    height: 80px;
+    /* background-color: var(--yo-primary); */
   }
-
-  .yo-about-image-wrapper {
+  
+  .about-page-heading h1 {
+    font-size: var(--text-2xl);
+  }
+  
+  .about-page-container {
+    margin-top: 290px; /* Just the mobile title */
+    margin-bottom: 50px; /* Footer space */
+    padding: var(--spacing-md) var(--spacing-sm);
+    min-height: calc(100vh - 130px); /* Mobile calculation */
+  }
+  
+  /* Stack layout for mobile */
+  .about-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    align-items: center;
+  }
+  
+  /* Mobile image comes first (as per Figma) */
+  .about-image-section {
     order: 1;
-    height: auto;
-    width: 350px;
+    width: 100%;
+    max-width: 300px;
   }
-
-  .yo-about-content-wrapper .yo-about-text-block {
+  
+  .about-image-container {
+    width: 100%;
+    padding: var(--spacing-md);
+  }
+  
+  /* Mobile text section */
+  .about-text-section {
     order: 2;
     width: 100%;
   }
+  
+  .about-section-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .about-section-header h2 {
+    font-size: var(--text-lg);
+  }
+  
+  .about-text-content {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .about-text-content p {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    margin-bottom: var(--spacing-sm);
+  }
 }
 
-/* Small Mobile */
+/* =============================================================================
+   SMALL MOBILE (480px and below)
+   ============================================================================= */
+
 @media (max-width: 480px) {
-  .yo-about-image-wrapper {
-    align-items: center;
-    width: 300px;
+  .about-page-heading {
+    height: 70px;
+    padding: 0 var(--spacing-sm);
   }
-
-  .yo-about-view {
-    padding-bottom: 100px;
+  
+  .about-page-heading h1 {
+    font-size: var(--text-xl);
+  }
+  
+  .about-page-container {
+    margin-top: 300px; /* Mobile title only */
+    padding: var(--spacing-sm);
+    min-height: calc(100vh - 120px); /* Small mobile calculation */
+  }
+  
+  .about-content-wrapper {
+    gap: var(--spacing-md);
+  }
+  
+  .about-image-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .about-text-content {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .about-text-content p {
+    font-size: var(--text-xs);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .about-section-header {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .about-section-header h2 {
+    font-size: var(--text-base);
   }
 }
 
-/* Extra Small Mobile */
-@media (max-width: 375px) {
-  .yo-about-image-wrapper {
-    width: 250px;
-  }
+/* =============================================================================
+   ACCESSIBILITY & PERFORMANCE
+   ============================================================================= */
 
-  .yo-about-subheader {
-    /* Removed font-size - will use global heading styles */
+/* Smooth scrolling for the content area */
+.about-page-container {
+  scroll-behavior: smooth;
+  /* -webkit-overflow-scrolling: touch; */
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .about-page-container {
+    scroll-behavior: auto;
   }
 }
 
-/* Tiny Mobile */
-@media (max-width: 320px) {
-  html, body {
-    height: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .about-section-header,
+  .about-text-content,
+  .about-image-container {
+    border-width: 2px;
+  }
+}
+
+/* Focus states for accessibility */
+.about-image-container:focus-within {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .about-page-heading {
+    position: static;
+    background: white;
+    color: black;
+  }
+  
+  .about-page-container {
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  .about-content-wrapper {
+    display: block;
+  }
+  
+  .about-image-section {
+    break-inside: avoid;
   }
 }

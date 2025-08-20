@@ -1,236 +1,419 @@
-/* ============================================================================= 
-   CONTACT PAGE - CLEANED CSS WITH UPDATED CLASS NAMES
+/* =============================================================================
+   CONTACT PAGE - RESPONSIVE LAYOUT
+   Designed to work with your globalized header, footer, and design system
    ============================================================================= */
 
-/* Contact page main container */
-.yo-contact-view {
-    background-color: var(--yo-secondary);
-    color: var(--yo-shade-blue);
-    overflow-y: auto;
+/* =============================================================================
+   PAGE LAYOUT - Accounting for Fixed Header, Logo/CommonHeader & Footer
+   ============================================================================= */
+
+.contact-page-heading {
+  position: fixed;
+  top: calc(150px + 4vh); /* Below header + logo space */
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+  z-index: 50;
+  /* border-bottom: 1px solid var(--yo-green); */
 }
 
-/* Title - Updated to use global heading styles */
-.yo-contact-title {
-    /* Removed font-family, font-size - now handled globally */
-    /* Global h1 styles will apply */
-    text-transform: uppercase;
-    line-height: 2;
+.contact-page-heading h1 {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl);
+  color: var(--yo-blue);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* Content wrapper */
-.yo-contact-content {
-    /* Removed font-family, font-size - now handled globally */
-    width: 100%;
-    max-width: 900px;
-    line-height: 1.6;
+.contact-page-container {
+  margin-top: calc(200px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
+  margin-bottom: 50px; /* Footer space */
+  min-height: calc(100vh - 160px - 4vh); /* Full height minus header, logo, title, footer */
+  padding: var(--spacing-lg) var(--spacing-md);
+  overflow-y: visible;
+  overflow-x: hidden;
 }
 
-.yo-contact-content h1 {
-    text-align: center;
-    /* Removed font-size - now handled globally */
-    color: var(--yo-blue);
-    /* Removed font-weight - handled globally */
+/* =============================================================================
+   DESKTOP LAYOUT (Matches your design system)
+   ============================================================================= */
+
+.contact-content-main {
+  max-width: 1200px;
+  margin: 0px auto;
+
 }
 
-/* Main content section */
-.yo-contact-main-content {
-    width: 100%;
-    margin-bottom: var(--spacing-lg);
+.contact-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  height: 100%;
 }
 
-.yo-contact-main-content > .yo-contact-section {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
-    border: 1px solid var(--yo-white);
-    padding: var(--spacing-lg);
+/* Introduction section */
+.contact-intro-section {
+  width: 100%;
 }
 
-.yo-contact-main-content > .yo-contact-section p {
-    /* Removed font-size, line-height - now handled globally */
-    color: var(--yo-shade-blue);
-    margin: 0;
+.contact-intro-content {
+  
+  border: 1px solid var(--yo-light);
+  padding: var(--spacing-xl);
+  text-align: center;
 }
 
-/* Details panel grid */
-.yo-contact-details-panel {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+.contact-intro-content p {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  color: var(--yo-light);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.6;
+  letter-spacing: 1px;
 }
 
-/* Contact section styles */
-.yo-contact-section {
-    border: 1px solid var(--yo-white);
+.contact-intro-content p:last-child {
+  margin-bottom: 0;
 }
 
-.yo-contact-section p {
-    margin: var(--spacing-md);
-    line-height: 1.3;
-    text-align: left;
-    color: var(--yo-shade-blue);
-    /* Removed font-size - now handled globally */
+/* Contact details grid - 2 columns on desktop */
+.contact-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
 }
 
-/* Section title */
-.yo-contact-section-title {
-    background-color: var(--yo-white);
-    color: var(--yo-black);
-    margin: 0;
-    padding: var(--spacing-sm) var(--spacing-md);
-    /* Removed font-size - now handled globally by h2 styles */
-    line-height: 1.2;
+/* Contact section */
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--yo-light);
+  background-color: transparent;
+  transition: all var(--transition-normal);
 }
 
-.yo-contact-section strong {
-    /* Removed font-size - now handled globally */
-    line-height: 1.2;
-    color: #f7fafc;
+.contact-section:hover {
+  background-color: rgba(159, 255, 130, 0.05);
+  box-shadow: 0 0 10px rgba(159, 255, 130, 0.1);
 }
 
-.yo-contact-section-content {
-    margin-left: 0;
-    color: var(--yo-shade-blue);
+.contact-section-title {
+  background-color: var(--yo-gray);
+  color: var(--yo-black);
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: var(--spacing-md);
+  line-height: 1.2;
 }
 
-.yo-contact-bullet-point {
-    margin-bottom: var(--spacing-xs);
-    padding-left: 0;
-    line-height: 1.5;
+.contact-section-content {
+  
+  padding: var(--spacing-xl);
+  flex: 1;
 }
 
-/* Split content layout */
-.yo-contact-split-content {
-    display: flex;
-    gap: calc(var(--spacing-xl) + var(--spacing-md)); /* 38px equivalent */
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
+.contact-section-content p {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--yo-light);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.6;
+  letter-spacing: 1px;
 }
 
-.yo-contact-split-content img {
-    max-width: 225px;
-    height: auto;
+.contact-section-content p:last-child {
+  margin-bottom: 0;
 }
 
-.yo-contact-image-wrapper {
-    display: flex;
-    justify-content: center;
+.contact-section-content strong {
+  color: var(--yo-white);
+  font-weight: normal;
+  font-size: var(--text-lg);
+}
+
+/* Service list */
+.contact-service-list {
+  margin-top: var(--spacing-sm);
+}
+
+.contact-service-item {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--yo-light);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+.contact-service-item:last-child {
+  margin-bottom: 0;
 }
 
 /* Links */
-.yo-contact-link {
-    color: #63b3ed;
-    text-decoration: none;
-    font-weight: bold;
+.contact-link {
+  color: var(--yo-blue);
+  text-decoration: none;
+  font-weight: normal;
+  transition: color var(--transition-fast);
 }
 
-.yo-contact-link:hover {
-    text-decoration: underline;
-    color: #3f8ef5;
+.contact-link:hover {
+  color: var(--yo-light-green);
+  text-decoration: underline;
 }
 
-/* ============================================================================= 
-   RESPONSIVE DESIGN
+/* Image section */
+.contact-image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-image-container {
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid var(--yo-light);
+  /* padding: var(--spacing-lg); */
+  position: relative;
+}
+
+.contact-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: contrast(1.2) brightness(0.9);
+  /* Halftone effect to match design */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* =============================================================================
+   TABLET LAYOUT (768px - 1024px)
    ============================================================================= */
 
-/* Tablet */
-@media (max-width: 768px) {
-    .yo-contact-view {
-        padding: var(--spacing-lg) var(--spacing-sm);
-    }
-
-    .yo-contact-content {
-        width: 100%;
-        padding: var(--spacing-sm);
-    }
-
-    .yo-contact-content h1 {
-        /* Font size handled globally */
-    }
-
-    .yo-contact-main-content > .yo-contact-section {
-        padding: var(--spacing-md);
-    }
-
-    .yo-contact-main-content > .yo-contact-section p {
-        /* Font size handled globally */
-    }
-
-    .yo-contact-details-panel {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-
-    .yo-contact-section-title {
-        /* Font size handled globally */
-        padding: var(--spacing-xs) calc(var(--spacing-sm) + var(--spacing-xs));
-    }
-
-    .yo-contact-section p {
-        /* Font size handled globally */
-        margin: calc(var(--spacing-sm) + var(--spacing-xs));
-    }
-
-    .yo-contact-split-content {
-        gap: var(--spacing-lg);
-    }
-
-    .yo-contact-split-content img {
-        max-width: 188px;
-    }
+@media (max-width: 1024px) {
+  .contact-details-grid {
+    gap: var(--spacing-lg);
+  }
+  
+  .contact-page-container {
+    padding: var(--spacing-md);
+  }
+  
+  .contact-content-wrapper {
+    gap: var(--spacing-lg);
+  }
+  
+  .contact-section-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .contact-intro-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .contact-intro-content p {
+    font-size: var(--text-base);
+  }
+  
+  .contact-section-content p,
+  .contact-service-item {
+    font-size: var(--text-sm);
+  }
+  
+  .contact-image-container {
+    max-width: 300px;
+  }
 }
 
-/* Mobile Portrait */
+/* =============================================================================
+   MOBILE LAYOUT (768px and below) - Matches Mobile Design
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  /* Mobile header adjustments - no desktop header/logo on mobile */
+  .contact-page-heading {
+    top: calc(95px + 4vh); /* Mobile doesn't show desktop header/logo */
+    height: 80px;
+    
+  }
+  
+  .contact-page-heading h1 {
+    font-size: var(--text-2xl);
+  }
+  
+  .contact-page-container {
+    margin-top: 290px; /* Just the mobile title */
+    margin-bottom: 50px; /* Footer space */
+    padding: var(--spacing-md) var(--spacing-sm);
+    min-height: calc(100vh - 130px); /* Mobile calculation */
+  }
+  
+  .contact-content-wrapper {
+    gap: var(--spacing-lg);
+  }
+  
+  /* Single column layout for mobile */
+  .contact-details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .contact-intro-content {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .contact-intro-content p {
+    font-size: var(--text-base);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .contact-section-title {
+    font-size: var(--text-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .contact-section-content {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .contact-section-content p,
+  .contact-service-item {
+    font-size: var(--text-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .contact-image-container {
+    max-width: 280px;
+  }
+}
+
+/* =============================================================================
+   SMALL MOBILE (480px and below)
+   ============================================================================= */
+
 @media (max-width: 480px) {
-    .yo-contact-view {
-        padding: var(--spacing-md) var(--spacing-md) 150px var(--spacing-md);
-    }
+  .contact-page-heading {
+    height: 70px;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .contact-page-heading h1 {
+    font-size: var(--text-xl);
+  }
+  
+  .contact-page-container {
+    margin-top: 300px; /* Mobile title only */
+    padding: var(--spacing-sm);
+    min-height: calc(100vh - 120px); /* Small mobile calculation */
+  }
+  
+  .contact-content-wrapper {
+    gap: var(--spacing-md);
+  }
+  
+  .contact-details-grid {
+    gap: var(--spacing-sm);
+  }
+  
+  .contact-intro-content {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .contact-intro-content p {
+    font-size: var(--text-sm);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .contact-section-title {
+    font-size: var(--text-base);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .contact-section-content {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .contact-section-content p,
+  .contact-service-item {
+    font-size: var(--text-xs);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .contact-section-content strong {
+    font-size: var(--text-sm);
+  }
+  
+  .contact-image-container {
+    max-width: 240px;
+    padding: var(--spacing-sm);
+  }
+}
 
-    .yo-contact-content h1 {
-        /* Font size handled globally */
-    }
+/* =============================================================================
+   ACCESSIBILITY & PERFORMANCE
+   ============================================================================= */
 
-    .yo-contact-content {
-        padding: var(--spacing-xs);
-    }
+/* Smooth scrolling for the content area */
+.contact-page-container {
+  scroll-behavior: smooth;
+  /* -webkit-overflow-scrolling: touch; */
+}
 
-    .yo-contact-main-content > .yo-contact-section {
-        padding: calc(var(--spacing-sm) + var(--spacing-xs));
-    }
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .contact-page-container {
+    scroll-behavior: auto;
+  }
+}
 
-    .yo-contact-main-content > .yo-contact-section p {
-        /* Font size handled globally */
-    }
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .contact-section,
+  .contact-intro-content {
+    border-width: 2px;
+  }
+}
 
-    .yo-contact-details-panel {
-        gap: calc(var(--spacing-sm) + var(--spacing-xs));
-    }
+/* Focus states for accessibility */
+.contact-section:focus-within {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
 
-    .yo-contact-section-title {
-        /* Font size handled globally */
-        padding: var(--spacing-xs) var(--spacing-sm);
-    }
+.contact-link:focus {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
 
-    .yo-contact-section p {
-        /* Font size handled globally */
-        margin: var(--spacing-sm);
-    }
-
-    .yo-contact-section strong {
-        /* Font size handled globally */
-    }
-
-    .yo-contact-split-content {
-        gap: var(--spacing-md);
-    }
-
-    .yo-contact-split-content img {
-        max-width: 150px;
-    }
-
-    .yo-contact-title {
-        line-height: 1;
-    }
+/* Print styles */
+@media print {
+  .contact-page-heading {
+    position: static;
+    background: white;
+    color: black;
+  }
+  
+  .contact-page-container {
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  .contact-details-grid {
+    display: block;
+  }
+  
+  .contact-section {
+    break-inside: avoid;
+  }
 }

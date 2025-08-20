@@ -1,427 +1,728 @@
-/* PurchaseCard.css - Updated to match Yogeshwari theme */
-.purchase-card {
-    max-width: 413px;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: 'Jersey 25', sans-serif;
-    font-size: clamp(23px, 3.75vw, 38px);
-}
+/* =============================================================================
+   PURCHASE CARD COMPONENT - ALIGNED WITH GLOBAL DESIGN SYSTEM
+   Using global fonts, colors, spacing, and button styles
+   ============================================================================= */
+
+/* =============================================================================
+   COMPONENT VARIABLES - Zone Theme Colors
+   ============================================================================= */
 
 .purchase-card.blue {
-    --theam-color: #99d5ff;
+  --theme-color: var(--yo-blue);
+  --theme-accent: var(--yo-shade-blue);
 }
 
 .purchase-card.green {
-    --theam-color: #CFDF82;
+  --theme-color: var(--yo-light-green);
+  --theme-accent: var(--yo-green);
 }
 
-.footer-menu-s {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    padding: 15px;
-    justify-content: start;
-    font-family: VT323, monospace;
-    font-size: 1.125rem;
-    z-index: 10;
-    color: #ffffff;
-    background: transparent;
-    backdrop-filter: none;
-    white-space: nowrap;
-    overflow: hidden;
-    height: 45px;
-    display: flex;
-    align-items: center;
+/* =============================================================================
+   MAIN CARD CONTAINER
+   ============================================================================= */
+
+.purchase-card {
+  max-width: 480px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
 }
 
-.footer-menu-s p {
-    margin: 0;
-    display: inline-block;
-    padding-left: 100%;
-    animation: scroll-left 20s linear infinite;
-    line-height: 1;
+/* =============================================================================
+   CARD HEADER SECTION
+   ============================================================================= */
+
+.purchase-card-header {
+  color: var(--theme-color, var(--yo-green));
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-transform: uppercase;
+  font-family: var(--font-primary);
+  font-size: var(--h1-size);
+  font-weight: normal;
+  letter-spacing: 2px;
+  margin: 0;
+  text-align: center;
 }
 
-@keyframes scroll-left {
-    0% {
-        transform: translate3d(100%, 0, 0);
-    }
-    100% {
-        transform: translate3d(-100%, 0, 0);
-    }
+/* =============================================================================
+   MAIN CARD BOX
+   ============================================================================= */
+
+.purchase-card-box {
+  border: 2px solid var(--theme-color, var(--yo-green));
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
 }
 
-input {
-    border: 1px solid var(--theam-color);
-    background: rgba(0, 0, 0, 0.3);
-    color: var(--yo-shade-blue);
-    font-family: VT323, monospace;
-    padding: 8px;
-    box-sizing: border-box;
+.purchase-card-box-header {
+  color: var(--theme-color, var(--yo-green));
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: var(--h2-size);
+  font-family: var(--font-primary);
+  margin: 0;
+  padding: var(--spacing-md);
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-align: center;
 }
 
-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+.purchase-card-box-content {
+  padding: var(--spacing-md) var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  box-sizing: border-box;
 }
 
-.purchase-card .purchase-card-header {
-    padding-top: 20px;
-    color: var(--theam-color);
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    text-transform: uppercase;
-    font-family: "Jersey 25", sans-serif;
-    font-size: 4rem;
+/* =============================================================================
+   INNER CONTENT BOX
+   ============================================================================= */
+
+.purchase-card-inner-box {
+  border: 2px solid var(--theme-color, var(--yo-green));
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
 }
 
-.purchase-card .purchase-card-box {
-    border: solid 2px var(--theam-color);
-    width: 100%;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.3);
+.inner-box-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
 }
 
-.purchase-card .purchase-card-box .purchase-card-box-header {
-    color: var(--theam-color);
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 45px;
-    font-family: "Jersey 25", sans-serif;
-    margin: 0;
-    padding: 10px;
-    text-transform: uppercase;
-}
+/* =============================================================================
+   TICKET COUNTER SECTION
+   ============================================================================= */
 
-.purchase-card .purchase-card-box .purchase-card-box-content {
-    padding: 4px 23px 23px 23px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    box-sizing: border-box;
-}
-
-.purchase-card .purchase-card-box .purchase-card-box-content .purchase-card-inner-box {
-    border: solid 2px var(--theam-color);
-    width: 100%;
-    height: 100%;
-}
-
-.purchase-card .purchase-card-box .purchase-card-box-content .purchase-card-inner-box .inner-box-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 8px;
-}
-
-.purchase-card .purchase-card-box .purchase-card-box-content .purchase-card-inner-box .inner-box-content .ticket-counter {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    padding: 8px;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.ticket-counter {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .circle-button {
-    background-color: var(--yo-light);
-    user-select: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    border-radius: 250px;
-    font-weight: unset;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border: none;
-    color: #000;
-    transition: all 0.3s ease;
+  background-color: var(--yo-gray);
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: normal;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--theme-color, var(--yo-green));
+  color: var(--yo-black);
+  transition: all var(--transition-normal);
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
 }
 
 .circle-button:hover {
+  background-color: var(--theme-color, var(--yo-green));
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
 
+.circle-button:active {
+  transform: scale(0.95);
 }
 
 .circle-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.circle-button img {
+  width: 20px;
+  height: 20px;
+  filter: invert(0);
+}
+
+.circle-button:hover img {
+  filter: invert(0);
 }
 
 .number-of-ticket {
-    color: var(--yo-dark-rose);
-    font-family: 'Jersey 25', sans-serif;
-    font-size: 3rem;
+  color: var(--yo-dark-rose);
+  font-family: var(--font-primary);
+  font-size: var(--h2-size);
+  font-weight: normal;
+  letter-spacing: 1px;
 }
 
-.content-row-dot {
-    border: 1px dotted var(--yo-dark-rose);
-    margin: 8px 0;
-}
+/* =============================================================================
+   CONTENT ROWS & TEXT
+   ============================================================================= */
 
-.purchase-btn {
-    font-family: VT323;
-    margin-top: 19px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--theam-color);
-    font-size: clamp(15px, 3.75vw, 23px);
-    padding: 8px 15px;
-    cursor: pointer;
-    width: 100%;
-    border: none;
-    color: #000;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-.purchase-btn:hover {
-    transform: scale(1.02);
-}
-
-.purchase-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
+.content-text {
+  color: var(--yo-shade-blue);
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  letter-spacing: 1px;
 }
 
 .content-row {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    gap: 15px;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: var(--spacing-md);
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
 }
 
-.content-text {
-    color: var(--yo-shade-blue);
-    font-family: VT323, monospace;
-    font-size: 1.5rem;
+.content-row:last-child {
+  margin-bottom: 0;
 }
 
-/* Custom button styling consistent with theme */
+.content-row-dot {
+  border-top: 1px dotted var(--yo-dark-rose);
+  margin: var(--spacing-md) 0;
+  width: 100%;
+}
+
+/* =============================================================================
+   INPUT & COUPON SECTION - Using Global Form Styles
+   ============================================================================= */
+
+.content-row input {
+  /* Using global input styles with theme colors */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  height: var(--input-height);
+  flex: 1;
+  padding: var(--input-padding);
+  border: 1px solid var(--theme-color, var(--yo-green));
+  border-radius: var(--input-border-radius);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--yo-shade-blue);
+  letter-spacing: 1px;
+  outline: none;
+  transition: all var(--transition-normal);
+  box-sizing: border-box;
+}
+
+.content-row input:focus {
+  border-color: var(--theme-color, var(--yo-green));
+  box-shadow: 0 0 0 2px rgba(159, 255, 130, 0.2);
+  transform: translateY(-1px);
+}
+
+.content-row input::placeholder {
+  color: rgba(175, 208, 214, 0.6);
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+/* =============================================================================
+   BUTTONS - Using Global Button System with Theme Colors
+   ============================================================================= */
+
 .custom-button {
-    background-color: var(--theam-color);
-    border: 1px solid var(--theam-color);
-    color: #000;
-    font-family: VT323, monospace;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    text-transform: uppercase;
+  /* Using global button styles with theme modifications */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  height: var(--btn-height);
+  padding: var(--btn-padding);
+  border: 2px solid var(--theme-color, var(--yo-green));
+  border-radius: var(--btn-border-radius);
+  background-color: var(--theme-color, var(--yo-green));
+  color: var(--yo-black);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  outline: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-weight: normal;
+  line-height: 1;
+  min-width: 80px;
 }
 
 .custom-button:hover {
-    transform: scale(1.05);
+  background-color: var(--yo-white);
+  color: var(--yo-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
+
+.custom-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(159, 255, 130, 0.2);
 }
 
 .custom-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
+  background-color: rgba(159, 255, 130, 0.3);
+  color: rgba(0, 0, 0, 0.5);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-/* Success/Error text styling */
+.purchase-btn {
+  /* Main purchase button */
+  font-family: var(--font-primary);
+  margin-top: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--theme-color, var(--yo-green));
+  font-size: var(--text-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
+  cursor: pointer;
+  width: 100%;
+  border: 2px solid var(--theme-color, var(--yo-green));
+  border-radius: var(--btn-border-radius);
+  color: var(--yo-black);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all var(--transition-normal);
+  outline: none;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+.purchase-btn:hover {
+  background-color: var(--yo-white);
+  color: var(--yo-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
+
+.purchase-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(159, 255, 130, 0.2);
+}
+
+.purchase-btn:disabled {
+  background-color: rgba(159, 255, 130, 0.3);
+  color: rgba(0, 0, 0, 0.5);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =============================================================================
+   SUCCESS/ERROR STATES
+   ============================================================================= */
+
 .success-text {
-    color: var(--accent-green) !important;
+  color: var(--yo-green) !important;
 }
 
 .error-text {
-    color: #ff6b6b !important;
+  color: var(--yo-rose) !important;
 }
 
-/* Queue button styling */
+/* =============================================================================
+   QUEUE BUTTON - Bottom Action Button
+   ============================================================================= */
+
+.horizontal-buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--spacing-lg);
+}
+
 .queue-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--theam-color);
-    color: var(--yo-shade-blue);
-    font-family: VT323, monospace;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 15px;
+  /* Using global button styles with transparent background */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  height: var(--btn-height);
+  padding: var(--btn-padding);
+  border: 2px solid var(--theme-color, var(--yo-green));
+  border-radius: var(--btn-border-radius);
+  background-color: transparent;
+  color: var(--yo-white);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  outline: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-weight: normal;
+  line-height: 1;
+  gap: var(--spacing-sm);
+  min-width: 200px;
 }
 
 .queue-button:hover {
-    background-color: var(--theam-color);
-    color: #000;
-    transform: scale(1.02);
+  background-color: var(--theme-color, var(--yo-green));
+  color: var(--yo-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
+
+.queue-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(159, 255, 130, 0.2);
 }
 
 .queue-button .label {
-    font-size: clamp(12px, 2vw, 14px);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  line-height: 1;
+  color: inherit;
+  font-weight: normal;
+  letter-spacing: 1px;
 }
 
-.queue-button .icons {
-    filter: invert(1);
+.queue-button .cicon {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  transition: filter var(--transition-fast);
 }
 
-.queue-button:hover .icons {
-    filter: invert(0);
+.queue-button:hover .cicon {
+  filter: invert(0);
 }
 
-.horizontal-buttons {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
-}
+/* =============================================================================
+   LOADING STATES
+   ============================================================================= */
 
 .p-view-new {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
 }
 
-@media (max-width: 550px) {
-    .purchase-card {
-        padding: 6px;
-    }
+/* =============================================================================
+   RESPONSIVE DESIGN - Following Global Patterns
+   ============================================================================= */
 
-    .purchase-card .purchase-card-header {
+@media (max-width: 1024px) {
+  .purchase-card {
+    gap: var(--spacing-md);
+  }
+  
+  .purchase-card-header {
+    font-size: var(--h2-size);
+  }
+  
+  .purchase-card-box-header {
+    font-size: var(--h3-size);
+    padding: var(--spacing-sm);
+  }
+  
+  .purchase-card-box-content {
+    padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+  }
+  
+  .inner-box-content {
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+}
 
-    }
-
-    .purchase-card .purchase-card-box .purchase-card-box-content {
-        padding: 4px 15px 0px 15px;
-        margin-bottom: 45px;
-    }
-
-    .purchase-card .purchase-card-box .purchase-card-box-content .purchase-card-inner-box .inner-box-content .ticket-counter {
-        gap: 6px;
-        padding: 6px;
-    }
+@media (max-width: 768px) {
+  .purchase-card {
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+  }
+  
+  .purchase-card-header {
+    font-size: var(--h3-size);
+  }
+  
+  .purchase-card-box-header {
+    font-size: var(--h4-size);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .purchase-card-box-content {
+    padding: var(--spacing-xs) var(--spacing-md) var(--spacing-md) var(--spacing-md);
+  }
+  
+  .inner-box-content {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-xs);
+  }
+  
+  .ticket-counter {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+  
+  .circle-button {
+    width: 40px;
+    height: 40px;
+    font-size: var(--text-xl);
+  }
+  
+  .circle-button img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .number-of-ticket {
+    font-size: var(--h3-size);
+  }
+  
+  .content-text {
+    font-size: var(--text-base);
+  }
+  
+  .content-row {
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .content-row input {
+    font-size: var(--text-sm);
+    height: 36px;
+    padding: 8px 12px;
+  }
+  
+  .custom-button {
+    font-size: var(--text-sm);
+    height: 36px;
+    padding: 8px 12px;
+  }
+  
+  .purchase-btn {
+    font-size: var(--text-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+  
+  .queue-button {
+    font-size: var(--text-sm);
+    height: 36px;
+    padding: 8px 12px;
+    min-width: 180px;
+  }
+  
+  .queue-button .cicon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .queue-button .label {
+    font-size: var(--text-xs);
+  }
 }
 
 @media (max-width: 480px) {
-
-    .purchase-card .purchase-card-box .purchase-card-box-content{
-        margin-bottom: 15px;
-    }
-
-
-    .purchase-card-box-content .content-row input{
-        width: 70%;
-    }
-
-    .purchase-card-box-content .content-row .custom-button{
-        width: 30%;
-    }
-
-    .purchase-card {
-        margin-top: 19px;
-        padding: 4px;
-    }
-
-    .purchase-card .purchase-card-header {
-
-    }
-
-    .purchase-card .purchase-card-box .purchase-card-box-content .purchase-card-inner-box .inner-box-content {
-        padding: 6px;
-        gap: 6px;
-    }
-
-    .purchase-card .purchase-card-box .purchase-card-box-content .purchase-card-inner-box .inner-box-content .ticket-counter {
-        gap: 5px;
-        padding: 5px;
-    }
-
-    .purchase-btn {
-        margin-top: 15px;
-        padding: 6px 12px;
-    }
+  .purchase-card {
+    padding: var(--spacing-xs);
+  }
+  
+  .purchase-card-header {
+    font-size: var(--h4-size);
+  }
+  
+  .purchase-card-box-header {
+    font-size: var(--h5-size);
+    padding: var(--spacing-xs);
+  }
+  
+  .purchase-card-box-content {
+    padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-sm) var(--spacing-sm);
+  }
+  
+  .inner-box-content {
+    padding: var(--spacing-xs);
+    gap: var(--spacing-xs);
+  }
+  
+  .ticket-counter {
+    padding: var(--spacing-xs);
+    gap: var(--spacing-xs);
+  }
+  
+  .circle-button {
+    width: 35px;
+    height: 35px;
+    font-size: var(--text-lg);
+  }
+  
+  .circle-button img {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .number-of-ticket {
+    font-size: var(--h4-size);
+  }
+  
+  .content-text {
+    font-size: var(--text-sm);
+  }
+  
+  .content-row {
+    gap: var(--spacing-xs);
+    margin-bottom: 4px;
+  }
+  
+  .content-row input {
+    font-size: var(--text-xs);
+    height: 32px;
+    padding: 6px 8px;
+  }
+  
+  .custom-button {
+    font-size: var(--text-xs);
+    height: 32px;
+    padding: 6px 8px;
+  }
+  
+  .purchase-btn {
+    font-size: var(--text-base);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+  }
+  
+  .queue-button {
+    font-size: var(--text-xs);
+    height: 32px;
+    padding: 6px 8px;
+    min-width: 160px;
+  }
+  
+  .queue-button .cicon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .queue-button .label {
+    font-size: var(--text-xs);
+  }
 }
 
 @media (max-width: 360px) {
-    .purchase-card .purchase-card-box {
-        border: unset;
-    }
-
-    .purchase-card {
-        padding: 2px;
-    }
-
-    .purchase-card .purchase-card-header {
-
-    }
-
-    .purchase-card .purchase-card-box .purchase-card-box-content {
-        padding: 2px 8px 0px 8px;
-        margin-bottom: 23px;
-    }
-
-    .purchase-card .purchase-card-box .purchase-card-box-content .purchase-card-inner-box .inner-box-content {
-        padding: 5px;
-        gap: 5px;
-    }
-
-    .purchase-card .purchase-card-box .purchase-card-box-content .purchase-card-inner-box .inner-box-content .ticket-counter {
-        gap: 3px;
-        padding: 3px;
-    }
-
-    .purchase-btn {
-        margin-top: 4px;
-        padding: 5px 9px;
-    }
+  .purchase-card-box {
+    border: none;
+  }
+  
+  .purchase-card {
+    padding: 2px;
+  }
+  
+  .purchase-card-box-content {
+    padding: 2px var(--spacing-xs) 0 var(--spacing-xs);
+  }
+  
+  .inner-box-content {
+    padding: 4px;
+    gap: 4px;
+  }
+  
+  .ticket-counter {
+    gap: 4px;
+    padding: 4px;
+  }
+  
+  .circle-button {
+    width: 30px;
+    height: 30px;
+    font-size: var(--text-base);
+  }
+  
+  .circle-button img {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .purchase-btn {
+    margin-top: 4px;
+    padding: 4px 6px;
+  }
 }
 
-.not-valid {
-    width: 100%;
-    text-align: center;
-    font-size: clamp(19px, 2.25vw, 23px);
-    font-family: VT323, monospace;
-    color: #ffffff;
+/* =============================================================================
+   ACCESSIBILITY & PERFORMANCE - Following Global Standards
+   ============================================================================= */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .circle-button,
+  .custom-button,
+  .purchase-btn,
+  .queue-button,
+  .content-row input {
+    transition: none;
+  }
 }
 
-.purchase-footer-scrolling {
-    width: 100vw;
-    height:38px;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #B4B3B0;
-    border-top: 1px solid var(--line);
-    overflow: hidden;
-    margin-top: 40px;
-    flex-shrink: 0;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .purchase-card-box,
+  .purchase-card-inner-box,
+  .circle-button,
+  .custom-button,
+  .purchase-btn,
+  .queue-button,
+  .content-row input {
+    border-width: 3px;
+  }
 }
 
-.purchase-scroll-wrapper {
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
+/* Focus states for accessibility */
+.circle-button:focus-visible,
+.custom-button:focus-visible,
+.purchase-btn:focus-visible,
+.queue-button:focus-visible,
+.content-row input:focus-visible {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
 }
 
-.purchase-scroll-content {
-    display: inline-block;
-    font-family: 'VT323', monospace;
-    font-size: 1.5rem;
-    color: #000;
-    letter-spacing: 2px;
-    opacity: 0.8;
-    animation: scroll-left-system 60s linear infinite;
-    will-change: transform;
-    visibility: visible;
+/* Print styles */
+@media print {
+  .purchase-card {
+    background: white;
+    color: black;
+  }
+  
+  .purchase-card-box,
+  .purchase-card-inner-box {
+    border-color: black;
+    background: white;
+  }
+  
+  .circle-button,
+  .custom-button,
+  .purchase-btn,
+  .queue-button {
+    display: none;
+  }
 }

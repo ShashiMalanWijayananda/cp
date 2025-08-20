@@ -121,8 +121,6 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
     },
   ] = useMutation(REMOVE_USER_QUEUE);
 
-
-
   useEffect(() => {
     if (!eventId || !user?.id) return;
     enqueue({
@@ -307,13 +305,13 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
     });
   };
 
-  const scrollingText =
-      `!!WARNING!! This session will end within ${String(minutes).padStart(2, '0')} Mins ${String(seconds).padStart(2, '0')} Secs. Complete purchase before timeout.`;
-
+  const scrollingText = `!!WARNING!! This session will end within ${String(minutes).padStart(2, '0')} Mins ${String(seconds).padStart(2, '0')} Secs. Complete purchase before timeout.`;
 
   return (
       <React.Fragment>
         <div className="p-view-new">
+          
+          {/* Alert Components */}
           <Alert
               message={"Cannot process discount code"}
               visible={!!couponApplyError}
@@ -321,128 +319,169 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
               autoClose={true}
               autoCloseDelay={3000}
           />
-              <div
-                  className={`purchase-card ${zoneId === "zoneZ" ? "blue" : "green"}`}
-              >
-                <div className="purchase-card-header">
-                  <span>{zone?.name}</span>
-                </div>
-                <div className="purchase-card-box">
-                  <div className="purchase-card-box-header">
-                    <span>{event?.eventName ?? ""}</span>
-                  </div>
-                  <div className="purchase-card-box-content">
-                    <div className="purchase-card-inner-box">
-                      <div className="inner-box-content">
-                        <div className="content-text">Select Mission Tickets:</div>
-                        <div className="ticket-counter">
-                          <button
-                              className="circle-button custom-button"
-                              onClick={handleDecrement}
-                          >
-                            <img src="/images/icon/negative.svg"/>
-                          </button>
-                          <div className="number-of-ticket">{ticketCount}</div>
-                          <button
-                              className="circle-button custom-button"
-                              onClick={handleIncrement}
-                              disabled={
-                                ticketCount >= zone?.remainingTicket || tc >= 4
-                                    ? true
-                                    : false
-                              }
-                          >
-                           <img src="/images/icon/plus.svg"/>
-                          </button>
-                        </div>
+          
+          {/* Main Purchase Card */}
+          <div className={`purchase-card ${zoneId === "zoneZ" ? "blue" : "green"}`}>
+            
+            {/* Card Header - Zone Name */}
+            <div className="purchase-card-header">
+              <span>{zone?.name}</span>
+            </div>
+            
+            {/* Main Card Box */}
+            <div className="purchase-card-box">
+              
+              {/* Box Header - Event Name */}
+              <div className="purchase-card-box-header">
+                <span>{event?.eventName ?? ""}</span>
+              </div>
+              
+              {/* Box Content */}
+              <div className="purchase-card-box-content">
+                <div className="purchase-card-inner-box">
+                  <div className="inner-box-content">
+                    
+                    {/* Ticket Selection Label */}
+                    <div className="content-text">Select Mission Tickets:</div>
+                    
+                    {/* Ticket Counter */}
+                    <div className="ticket-counter">
+                      <button
+                          className="circle-button custom-button"
+                          onClick={handleDecrement}
+                          aria-label="Decrease ticket count"
+                      >
+                        <img src="/images/icon/negative.svg" alt="Decrease"/>
+                      </button>
+                      <div className="number-of-ticket">{ticketCount}</div>
+                      <button
+                          className="circle-button custom-button"
+                          onClick={handleIncrement}
+                          disabled={
+                            ticketCount >= zone?.remainingTicket || tc >= 4
+                                ? true
+                                : false
+                          }
+                          aria-label="Increase ticket count"
+                      >
+                       <img src="/images/icon/plus.svg" alt="Increase"/>
+                      </button>
+                    </div>
+                    
+                    {/* Coupon Code Input */}
+                    <div className="content-row">
+                      <input
+                          placeholder="Discount Code (Optional)"
+                          value={couponCode}
+                          onChange={handleCouponCodeChange}
+                          aria-label="Discount code input"
+                      />
+                      <button
+                          className="custom-button"
+                          onClick={handleApplyCoupon}
+                          disabled={loadinCoupon || !couponCode}
+                          aria-label="Apply discount code"
+                      >
+                        {loadinCoupon ? "Verifying..." : "Apply"}
+                      </button>
+                    </div>
+                    
+                    {/* Coupon Response Message */}
+                    {couponResponse && (
                         <div className="content-row">
-                          <input
-                              style={{ fontFamily: "VT323", flex: 1 }}
-                              placeholder="Discount Code (Optional)"
-                              value={couponCode}
-                              onChange={handleCouponCodeChange}
-                          />
-                          <button
-                              className="custom-button"
-                              onClick={handleApplyCoupon}
-                              disabled={loadinCoupon || !couponCode}
+                          <div
+                              className={`content-text ${
+                                  couponResponseType === "success"
+                                      ? "success-text"
+                                      : "error-text"
+                              }`}
                           >
-                            {loadinCoupon ? "Verifying..." : "Apply"}
-                          </button>
-                        </div>
-                        {couponResponse && (
-                            <div className="content-row">
-                              <div
-                                  className={`content-text ${
-                                      couponResponseType === "success"
-                                          ? "success-text"
-                                          : "error-text"
-                                  }`}
-                              >
-                                {couponResponse}
-                              </div>
-                            </div>
-                        )}
-                        {zone?.remainingTicket <= 4 && (
-                            <div className="content-row">
-                              <div className="content-text">Remaining Slots:</div>
-                              <div className="content-text">
-                                {zone?.remainingTicket - ticketCount}
-                              </div>
-                            </div>
-                        )}
-                        <div className="content-row">
-                          <div className="content-text">Price per Entry</div>
-                          <div className="content-text">
-                            {zone?.price ?? 0.0} LKR
+                            {couponResponse}
                           </div>
                         </div>
-                        {isCouponApplied && discountAmount > 0 && (
-                            <div className="content-row">
-                              <div className="content-text">
-                                Mission Discount ({discountPercentage}%)
-                              </div>
-                              <div className="content-text">
-                                -{discountAmount.toFixed(2)} LKR
-                              </div>
-                            </div>
-                        )}
-                        <div className="content-row-dot"></div>
+                    )}
+                    
+                    {/* Remaining Slots Warning */}
+                    {zone?.remainingTicket <= 4 && (
                         <div className="content-row">
-                          <div className="content-text">Total Mission Cost</div>
+                          <div className="content-text">Remaining Slots:</div>
                           <div className="content-text">
-                            {grandTotal.toFixed(2)} LKR
+                            {zone?.remainingTicket - ticketCount}
                           </div>
                         </div>
-                        <button
-                            className="purchase-btn custom-button"
-                            disabled={
-                              ticketCount > zone?.remainingTicket || tc >= 4
-                                  ? true
-                                  : false
-                            }
-                            onClick={handlePurchase}
-                        >
-                          Confirm Mission Entry
-                        </button>
+                    )}
+                    
+                    {/* Price per Entry */}
+                    <div className="content-row">
+                      <div className="content-text">Price per Entry</div>
+                      <div className="content-text">
+                        {zone?.price ?? 0.0} LKR
                       </div>
                     </div>
+                    
+                    {/* Mission Discount (if applied) */}
+                    {isCouponApplied && discountAmount > 0 && (
+                        <div className="content-row">
+                          <div className="content-text">
+                            Mission Discount ({discountPercentage}%)
+                          </div>
+                          <div className="content-text">
+                            -{discountAmount.toFixed(2)} LKR
+                          </div>
+                        </div>
+                    )}
+                    
+                    {/* Divider */}
+                    <div className="content-row-dot"></div>
+                    
+                    {/* Total Cost */}
+                    <div className="content-row">
+                      <div className="content-text">Total Mission Cost</div>
+                      <div className="content-text">
+                        {grandTotal.toFixed(2)} LKR
+                      </div>
+                    </div>
+                    
+                    {/* Purchase Button */}
+                    <button
+                        className="purchase-btn custom-button"
+                        disabled={
+                          ticketCount > zone?.remainingTicket || tc >= 4
+                              ? true
+                              : false
+                        }
+                        onClick={handlePurchase}
+                        aria-label="Confirm mission entry purchase"
+                    >
+                      Confirm Mission Entry
+                    </button>
+                    
                   </div>
                 </div>
-                <div className={`horizontal-buttons`}>
-                  <button className="queue-button" onClick={handleRemoveQueue}>
-                    <img className="cicon" src="images/icon/close.svg" width={30}/>
-                    <div className="label">
-                      {queueRemoveLoading ? "Aborting..." : "Abort Mission Queue"}
-                    </div>
-                  </button>
-                </div>
               </div>
-          <GlobalFooter
-              scrollingText={scrollingText}
-              scrollSpeed={12}
-          />
+            </div>
+            
+            {/* Bottom Action Button */}
+            <div className="horizontal-buttons">
+              <button 
+                className="queue-button" 
+                onClick={handleRemoveQueue}
+                aria-label="Abort mission queue"
+              >
+                <img className="cicon" src="images/icon/close.svg" width={30} alt="Close"/>
+                <div className="label">
+                  {queueRemoveLoading ? "Aborting..." : "Abort Mission Queue"}
+                </div>
+              </button>
+            </div>
+            
+          </div>
+          
         </div>
+        
+        {/* Global scrolling footer message */}
+        <GlobalFooter text={scrollingText} />
+        
       </React.Fragment>
   );
 };

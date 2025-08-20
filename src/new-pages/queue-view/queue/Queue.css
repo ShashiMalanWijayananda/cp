@@ -1,434 +1,506 @@
-/* Queue.css - Adjusted for 100% zoom (scaled down from 75% design) */
+/* =============================================================================
+   QUEUE COMPONENT - ALIGNED WITH GLOBAL DESIGN SYSTEM
+   Using global fonts, colors, spacing, and button styles
+   ============================================================================= */
 
-/* theme switches */
+/* =============================================================================
+   COMPONENT VARIABLES - Zone Theme Colors
+   ============================================================================= */
+
 .queue-loader.blue {
-    --theam-color: #99d5ff;
+  --theme-color: var(--yo-blue);
+  --theme-accent: var(--yo-shade-blue);
 }
 
-
-/* Zone Z */
 .queue-loader.green {
-    --theam-color: #CFDF82;
+  --theme-color: var(--yo-light-green);
+  --theme-accent: var(--yo-green);
 }
 
-/* Zone A */
+/* =============================================================================
+   MAIN CONTAINER
+   ============================================================================= */
 
-/* container */
 .queue-loader {
-    font-family: 'Jersey 25', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-
-    /* center vertically like Figma card */
-    width: 100%;
-    max-width: 615px;
-    /* was 820px -> 820*0.75 = 615px */
-    margin: 0 auto;
+  font-family: var(--font-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: var(--spacing-lg);
 }
 
-/* header */
+/* =============================================================================
+   QUEUE HEADER SECTION
+   ============================================================================= */
+
 .queue-header {
-    text-align: center;
-    margin-bottom: 15px;
-    padding: 30px 25px 0px 25px;
-    border: 2px solid var(--theam-color);
-    padding-inline: 50px; /* Keeps spacing for title & subtitle */
-    position: relative;   /* Allows inner elements to stretch properly */
-    width: 100%;
-    max-width: 480px;
+  text-align: center;
+  border: 2px solid var(--theme-color, var(--yo-green));
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  background-color: transparent;
 }
 
-/* was 22px */
 .queue-header .queue-title {
-    font-size: 4rem;
-    line-height: 1;
-    color: var(--yo-blue);
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-    text-transform: uppercase;
+  font-family: var(--font-primary);
+  font-size: var(--h1-size);
+  line-height: 1;
+  color: var(--yo-blue);
+  letter-spacing: 2px;
+  margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+  text-transform: uppercase;
+  font-weight: normal;
 }
 
 .queue-header .queue-subtitle {
-    font-size: 2rem;
-    line-height: 1;
-    /* was clamp(18px, 3vw, 36px) */
-    color: var(--yo-dark-rose);
-    letter-spacing: 1.5px;
-    /* was 2px */
-    margin-bottom: 0px;
-    /* was 6px */
+  font-family: var(--font-primary);
+  font-size: var(--h3-size);
+  line-height: 1;
+  color: var(--yo-dark-rose);
+  letter-spacing: 1.5px;
+  margin: 0 0 var(--spacing-sm) 0;
+  text-transform: uppercase;
+  font-weight: normal;
 }
-
 
 .queue-header .queue-description {
-    font-size: clamp(11px, 1.9vw, 20px);
-    padding: 10px 0px;
-    letter-spacing: 0.75px;
-    margin-bottom: 0px;
-    font-family: 'Jersey 25', sans-serif;
-    background-color: var(--theam-color);
-    color: #0A2314;
-
-    /* Override parent padding */
-    margin-inline: -50px; /* Pulls description to the box edges */
-    padding-inline: 0px;  /* No extra padding inside */
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  padding: var(--spacing-md) 0;
+  letter-spacing: 1px;
+  margin: 0;
+  background-color: var(--theme-color, var(--yo-green));
+  color: var(--yo-primary);
+  text-transform: uppercase;
+  font-weight: normal;
 }
 
-/* card */
-.queue-box {
-    width: 100%;
-    max-width: 480px;
-    /* was 640px -> 640*0.75 = 480px */
-    border: 2px solid var(--theam-color);
-    background: rgba(255, 255, 255, 0.02);
-    /* subtle glass */
-    backdrop-filter: blur(2px);
-    padding: 17px;
-    /* was 22px */
-    margin-bottom: 15px;
+/* =============================================================================
+   QUEUE STATUS BOX
+   ============================================================================= */
 
-    /* was 18px */
+.queue-box {
+  width: 100%;
+  max-width: 480px;
+  border: 2px solid var(--theme-color, var(--yo-green));
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(2px);
+  padding: var(--spacing-xl);
+  background-color: transparent;
 }
 
 .queue-box .queue-status-title {
-    font-size: clamp(18px, 3vw, 42px);
-    /* was clamp(24px, 4vw, 56px) */
-    color: var(--yo-dark-rose);
-    line-height: 1;
-    text-align: center;
-    margin-bottom: 0px;
-    /* was 14px */
+  font-family: var(--font-primary);
+  font-size: var(--h3-size);
+  color: var(--yo-dark-rose);
+  line-height: 1;
+  text-align: center;
+  margin: 0 0 var(--spacing-lg) 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: normal;
 }
 
 .queue-box .queue-info {
-    margin-bottom: 0px;
-    line-height: 1;
+  margin-bottom: var(--spacing-lg);
+  line-height: 1;
 }
 
-/* was 14px */
 .queue-box .queue-info .queue-total-seats {
-    font-size: clamp(12px, 1.9vw, 24px);
-    /* was clamp(16px, 2.5vw, 32px) */
-    color: var(--yo-light);
-    text-align: center;
-    font-family: VT323, monospace;
-    margin-bottom: 6px;
-    /* was 8px */
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  color: var(--yo-light);
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: 1px;
 }
 
 .queue-box .queue-info .queue-checking-position {
-    font-size: clamp(12px, 1.9vw, 24px);
-    /* was clamp(16px, 2.5vw, 32px) */
-    color: var(--yo-blue);
-    text-align: center;
-    font-family: VT323, monospace;
-    margin-bottom: 0px;
-    /* was 14px */
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  color: var(--yo-blue);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 1px;
 }
 
 .queue-box .queue-info .queue-checking-position .queue-arrow {
-    color: var(--yo-blue);
-    margin-right: 6px;
-    /* was 8px */
-    animation: queue-blink 1s infinite;
+  color: var(--yo-blue);
+  margin-right: var(--spacing-sm);
+  animation: queue-blink 1s infinite;
 }
 
 @keyframes queue-blink {
-
-    0%,
-    50% {
-        opacity: 1;
-    }
-
-    51%,
-    100% {
-        opacity: 0;
-    }
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
-/* depth rows */
+/* =============================================================================
+   QUEUE DEPTH INFO ROWS
+   ============================================================================= */
+
 .queue-depth-info {
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
 }
 
-/* was 10px */
 .queue-depth-row {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    font-size: 1rem;
-    justify-content: space-between;
-    /* was clamp(14px, 2vw, 22px) */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  font-size: var(--text-base);
+  justify-content: space-between;
 }
 
 .queue-depth-label {
-    color: var(--yo-dark-rose);
-    font-family: VT323, monospace;
-    font-size: 1.5rem;
-    /* was clamp(14px, 2vw, 28px) */
-    justify-self: start;
+  color: var(--yo-dark-rose);
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  justify-self: start;
+  letter-spacing: 1px;
 }
 
 .queue-depth-dashes {
-    color: var(--yo-dark-rose);
-    text-align: center;
-    letter-spacing: 1.5px;
-    /* was 2px */
-    opacity: 0.7;
+  color: var(--yo-dark-rose);
+  text-align: center;
+  letter-spacing: 1.5px;
+  opacity: 0.7;
+  font-family: var(--font-primary);
 }
 
 .queue-depth-value {
-    color: var(--yo-dark-rose);
-    font-family: VT323, monospace;
-    font-size: 1.5rem;
-    /* was clamp(14px, 2vw, 28px) */
-    justify-self: end;
+  color: var(--yo-dark-rose);
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  justify-self: end;
+  letter-spacing: 1px;
 }
 
-/* progress */
+/* =============================================================================
+   PROGRESS BAR
+   ============================================================================= */
+
 .queue-progress-container {
-    margin-top: 5px;
-    width: 100%;
-    max-width: 480px;
+  width: 100%;
+  max-width: 480px;
 }
 
-/* was 6px, 640px */
 .queue-progress-bar {
-    display: grid;
-    grid-template-columns: repeat(30, 1fr);
-    /* 10 blocks like the mock */
-    gap: 5px;
-    /* was 6px */
-    height: 23px;
-    /* was 30px */
-    width: 100%;
-    border: 2px solid var(--theam-color);
-    padding: 2px;
-    background: transparent;
-    margin-bottom: 0px;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  gap: 4px;
+  height: 24px;
+  width: 100%;
+  border: 2px solid var(--theme-color, var(--yo-green));
+  padding: 4px;
+  background: transparent;
+  margin-bottom: var(--spacing-lg);
 }
 
 .queue-progress-segment {
-    border: 1px solid #1a1a1a;
-    background-color: transparent;
+  border: 1px solid var(--yo-dark-gray);
+  background-color: transparent;
+  transition: all var(--transition-fast);
 }
 
-/* keep the original binding logic from TSX, but style an active segment */
 .queue-progress-segment.queue-active {
-    background-color: var(--yo-blue);
+  background-color: var(--yo-blue);
+  border-color: var(--yo-blue);
 }
 
-/* helper – not currently shown by TSX but retained */
-.queue-remaining-time {
-    color: var(--yo-blue);
-    text-align: center;
-    letter-spacing: 0.75px;
-    /* was 1px */
-    font-family: VT323, monospace;
-    font-size: clamp(11px, 1.5vw, 18px);
-    /* was clamp(14px, 2vw, 24px) */
-    margin-top: 8px;
-    /* was 10px */
-}
+/* =============================================================================
+   BUTTON CONTAINER - Using Global Button System
+   ============================================================================= */
 
-/* bottom buttons */
 .horizontal-buttons {
-    padding-top: 0px;
-    /* was 20px */
-    display: flex;
-    gap: 15px;
-    /* was 20px */
-    width: 100%;
-    max-width: 480px;
-    /* was 640px - align to card width */
-    margin: 0px !important;
+  display: flex;
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 480px;
+  margin: 0;
 }
 
-.horizontal-buttons .queue-button {
-    flex: 1;
+.queue-button {
+  /* Using global button styles with modifications */
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  height: var(--btn-height);
+  padding: var(--btn-padding);
+  border: 2px solid var(--theme-color, var(--yo-green));
+  border-radius: var(--btn-border-radius);
+  background-color: transparent;
+  color: var(--yo-white);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  outline: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-weight: normal;
+  line-height: 1;
+  flex: 1;
+  gap: var(--spacing-sm);
 }
 
+.queue-button:hover {
+  background-color: var(--theme-color, var(--yo-green));
+  color: var(--yo-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+}
+
+.queue-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(159, 255, 130, 0.2);
+}
+
+.queue-button:disabled {
+  background-color: rgba(159, 255, 130, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.queue-button .bicon,
+.queue-button .cicon {
+  width: 20px;
+  height: 20px;
+  transition: filter var(--transition-fast);
+}
 
 .queue-button .bicon {
-    filter: invert(0);
+  filter: invert(1);
 }
+
 .queue-button .cicon {
-    filter: invert(1);
+  filter: invert(1);
 }
-.queue-button{
-    justify-content: center;
+
+.queue-button:hover .bicon,
+.queue-button:hover .cicon {
+  filter: invert(0);
 }
 
 .queue-button .label {
-    font-size: 1.5rem !important;
-    line-height: 1;
-    color: #ffffff;
-    font-weight: 200;
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: 1;
+  color: inherit;
+  font-weight: normal;
+  letter-spacing: 1px;
 }
+
+/* =============================================================================
+   RESPONSIVE DESIGN - Following Global Patterns
+   ============================================================================= */
+
+@media (max-width: 1024px) {
+  .queue-loader {
+    gap: var(--spacing-md);
+  }
+  
+  .queue-header .queue-title {
+    font-size: var(--h2-size);
+  }
+  
+  .queue-header .queue-subtitle {
+    font-size: var(--h4-size);
+  }
+  
+  .queue-box {
+    padding: var(--spacing-lg);
+  }
+  
+  .queue-depth-info {
+    padding: var(--spacing-md);
+  }
+}
+
 @media (max-width: 768px) {
-
-
-    /* responsive trims from your original preserved/adjusted */
-    @media (max-width: 768px) {
-        .queue-loader {
-            padding: 14px 9px;
-        }
-
-        /* was 18px 12px */
-        .queue-header {
-            margin-bottom: 14px;
-        }
-
-        /* was 18px */
-        .queue-header .queue-title {
-            font-size: 3rem;
-            margin-bottom: 0px;
-        }
-
-        .queue-header .queue-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 0px;
-        }
-
-        /* was clamp(16px, 5vw, 28px) */
-        .queue-header .queue-description {
-            font-size: 1rem;
-            margin-bottom: 0px;
-        }
-
-        /* was clamp(12px, 4vw, 20px) */
-        .queue-box {
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-
-        /* was 16px, 16px */
-        .queue-box .queue-status-title {
-            font-size: clamp(15px, 4.5vw, 32px);
-        }
-
-        .queue-box .queue-info .queue-checking-position {
-            font-size: 1.5rem;
-            text-align: center;
-
-        }
-        /* was clamp(20px, 6vw, 42px) */
-        .queue-depth-row {
-            grid-template-columns: 1fr auto 1fr;
-        }
-
-        .horizontal-buttons {
-            flex-direction: column;
-            gap: 0px;
-        }
-
-        /* was 14px */
-    }
-
-    /* button appearance (retro outline) */
-    .queue-button {
-        border: var(--theam-color) 2px solid;
-        padding: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        height: 42px;
-        padding: 8px 9px;
-        background-color: transparent;
-        color: #ffffff;
-        cursor: pointer;
-        transition: transform .08s ease, box-shadow .2s ease;
-        font-family: 'Jersey 25', sans-serif;
-        text-decoration: none;
-        box-sizing: border-box;
-    }
-
-    .queue-button:active {
-        transform: translateY(1px);
-    }
-
-    .queue-button .bicon {
-        filter: invert(0);
-    }
-    .queue-button .cicon {
-        filter: invert(1);
-    }
-
-    .queue-button .label {
-        font-size: 1.5rem !important;
-        line-height: 1;
-        color: #ffffff;
-        font-weight: 200;
-    }
-
-    /* was clamp(14px, 3vw, 18px) */
-    .label {
-        font-family: VT323, monospace;
-    }
+  .queue-loader {
+    gap: var(--spacing-md);
+    padding: 0;
+  }
+  
+  .queue-header .queue-title {
+    font-size: var(--h3-size);
+    margin: var(--spacing-md) 0 var(--spacing-xs) 0;
+  }
+  
+  .queue-header .queue-subtitle {
+    font-size: var(--h5-size);
+    margin: 0 0 var(--spacing-xs) 0;
+  }
+  
+  .queue-header .queue-description {
+    font-size: var(--text-sm);
+    padding: var(--spacing-sm) 0;
+  }
+  
+  .queue-box {
+    padding: var(--spacing-md);
+  }
+  
+  .queue-box .queue-status-title {
+    font-size: var(--h4-size);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .queue-box .queue-info .queue-checking-position {
+    font-size: var(--text-base);
+    text-align: center;
+  }
+  
+  .queue-depth-info {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .queue-depth-label,
+  .queue-depth-value {
+    font-size: var(--text-base);
+  }
+  
+  .horizontal-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .queue-button {
+    height: 36px;
+    padding: 10px 16px;
+    font-size: var(--text-lg);
+  }
+  
+  .queue-button .label {
+    font-size: var(--text-sm);
+  }
 }
 
 @media (max-width: 480px) {
-    .queue-loader {
-        padding: 11px 8px;
-    }
-
-    /* was 15px 10px */
-    .queue-box {
-        padding: 11px;
-        margin-bottom: 11px;
-    }
-
-    .queue-header .queue-title {
-        font-size: 3rem;
-        font-weight: 100;
-        margin-bottom: 0px;
-    }
-
-    /* was clamp(20px, 6vw, 36px) */
-    .queue-header .queue-subtitle {
-        font-size: 1.5rem;
-        line-height: 1;
-        margin-bottom: 0px;
-        font-weight: 100;
-    }
-
-    /* was clamp(16px, 5vw, 28px) */
-    .queue-header .queue-description {
-        margin-bottom: 0px;
-        font-weight: 100;
-    }
-
-    .queue-progress-bar {
-        height: 21px;
-    }
-
-    .queue-depth-value{
-        font-size: 1.3rem;
-
-    }
-
-    .queue-depth-label{
-        font-size: 1.3rem;
-
-    }
-
-    .queue-depth-dashes{
-        font-size: 1.3rem;
-        text-align: center;
-
-    }
+  .queue-loader {
+    gap: var(--spacing-sm);
+  }
+  
+  .queue-header .queue-title {
+    font-size: var(--h4-size);
+    margin: var(--spacing-sm) 0 var(--spacing-xs) 0;
+  }
+  
+  .queue-header .queue-subtitle {
+    font-size: var(--h6-size);
+  }
+  
+  .queue-header .queue-description {
+    font-size: var(--text-xs);
+    padding: var(--spacing-xs) 0;
+  }
+  
+  .queue-box {
+    padding: var(--spacing-sm);
+  }
+  
+  .queue-box .queue-status-title {
+    font-size: var(--h5-size);
+  }
+  
+  .queue-depth-info {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    gap: var(--spacing-xs);
+  }
+  
+  .queue-depth-label,
+  .queue-depth-value {
+    font-size: var(--text-sm);
+  }
+  
+  .queue-depth-dashes {
+    font-size: var(--text-sm);
+  }
+  
+  .queue-progress-bar {
+    height: 18px;
+    gap: 2px;
+    padding: 2px;
+  }
+  
+  .horizontal-buttons {
+    gap: var(--spacing-xs);
+  }
+  
+  .queue-button {
+    height: 32px;
+    padding: 8px 12px;
+    font-size: var(--text-base);
+  }
+  
+  .queue-button .bicon,
+  .queue-button .cicon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .queue-button .label {
+    font-size: var(--text-xs);
+  }
 }
 
-@media (max-width: 375px) {
-    .queue-progress-bar {
-        height: 18px;
-    }
+/* =============================================================================
+   ACCESSIBILITY & PERFORMANCE - Following Global Standards
+   ============================================================================= */
 
-    /* was 24px */
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .queue-progress-segment,
+  .queue-button {
+    transition: none;
+  }
+  
+  .queue-arrow {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .queue-header,
+  .queue-box,
+  .queue-progress-bar,
+  .queue-button {
+    border-width: 3px;
+  }
+}
+
+/* Focus states for accessibility */
+.queue-button:focus-visible {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .queue-loader {
+    background: white;
+    color: black;
+  }
+  
+  .queue-header,
+  .queue-box {
+    border-color: black;
+  }
+  
+  .queue-button {
+    display: none;
+  }
 }

@@ -637,6 +637,7 @@ select:focus-visible {
    ============================================================================= */
 @media print {
     body {
+        
         background: white;
         color: black;
         font-size: 12pt;

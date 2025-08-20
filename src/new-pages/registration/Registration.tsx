@@ -15,7 +15,6 @@ interface GoogleCredentialResponse {
     credential: string;
 }
 
-
 interface DecodedCredential {
     email: string;
     name: string;
@@ -253,62 +252,69 @@ const Registration: FC = () => {
     };
 
     return (
-        <React.Fragment>
-            <div className="main-container-reg">
-                <Alert
-                    message={alert.message ?? ""}
-                    visible={alert.visible}
-                    type={alert.type}
-                    onClose={() => setAlert(prev => ({
-                        ...prev,
-                        visible: false,
-                    }))}
-                    className="label-right"
-                    autoClose={false}
-                    autoCloseDelay={5000}
-                />
-                {/* Content Area */}
-                <div className="content-area-reg">
-                    <div className="logo-panel-reg">
-                        {/* Logo Section */}
-                        <div className="logo">
-                            <img src="images/logo/Logo-animate-wothout-Blink1.gif" alt="Logo" />
+        <>
+            <Alert
+                message={alert.message ?? ""}
+                visible={alert.visible}
+                type={alert.type}
+                onClose={() => setAlert(prev => ({
+                    ...prev,
+                    visible: false,
+                }))}
+                className="label-right"
+                autoClose={false}
+                autoCloseDelay={5000}
+            />
+            
+            <div className="registration-main-container">
+                <div className="registration-content-area">
+                    
+                    {/* Logo Section - Left Column (Desktop) / Top (Mobile) */}
+                    <div className="registration-logo-section">
+                        <div className="registration-logo-container">
+                            <img
+                                src="images/logo/Logo-animate-wothout-Blink1.gif"
+                                alt="Yogeshwari Logo"
+                            />
                         </div>
                     </div>
 
-                    <div className="reg-view">
-                        {/* Main Title */}
-                        <h1 className="main-title">
-                            REGISTER TO BOARDING PROCESS
-                        </h1>
-
-                        {/* Google Sign Up Section */}
-                        <div className="google-signup-section">
-                            <GoogleLogin
-                                type={"standard"}
-                                theme="filled_black"
-                                size="large"
-                                onSuccess={handleGoogleSignupSuccess}
-                                onError={() => {
-                                    console.error('Google Signup Failed');
-                                }}
-                                useOneTap
-                            />
-                        </div>
-
-                        {/* Divider */}
-                        <div className="divider">
-                            Or use email address
-                        </div>
-
-                        {/* Form Section */}
-                        <div className="sign-up-form">
-
-                            {/* Form Panel */}
-                            <div className="form-panel">
-                                <div className="form-fields">
+                    {/* Registration Form Section - Right Column (Desktop) / Bottom (Mobile) */}
+                    <div className="registration-form-section">
+                        <div className="registration-form-panel">
+                            
+                            {/* Registration Title */}
+                            <h1 className="registration-form-title">REGISTER TO BOARDING PROCESS</h1>
+                            
+                            {/* Google Registration Button */}
+                            <div className="registration-google-container">
+                                <GoogleLogin
+                                    type={"standard"}
+                                    theme="filled_black"
+                                    size="large"
+                                    onSuccess={handleGoogleSignupSuccess}
+                                    onError={() => {
+                                        console.error('Google Signup Failed');
+                                    }}
+                                    useOneTap
+                                />
+                            </div>
+                            
+                            {/* Divider */}
+                            <div className="registration-form-divider">OR USE EMAIL ADDRESS</div>
+                            
+                            {/* Registration Form */}
+                            <div className="registration-form-container">
+                                <form
+                                    className="registration-form"
+                                    onSubmit={(e) => {
+                                        e.preventDefault();
+                                        handleRegister();
+                                    }}
+                                >
+                                    {/* First Name Field */}
                                     <RetroTextBox
-                                        labelText="First Name:"
+                                        labelText="First Name :"
                                         type="text"
                                         name="firstName"
                                         id="firstName"
@@ -319,8 +325,9 @@ const Registration: FC = () => {
                                         disabled={signupMethod === 'google' && formData.firstName !== ''}
                                     />
 
+                                    {/* Last Name Field */}
                                     <RetroTextBox
-                                        labelText="Last Name:"
+                                        labelText="Last Name :"
                                         type="text"
                                         name="lastName"
                                         id="lastName"
@@ -331,9 +338,10 @@ const Registration: FC = () => {
                                         disabled={signupMethod === 'google' && formData.lastName !== ''}
                                     />
 
+                                    {/* Email Field */}
                                     <RetroTextBox
-                                        labelText="Email Address:"
-                                        type="text"
+                                        labelText="Email :"
+                                        type="email"
                                         name="email"
                                         id="email"
                                         value={formData.email}
@@ -343,32 +351,36 @@ const Registration: FC = () => {
                                         disabled={signupMethod === 'google' && formData.email !== ''}
                                     />
 
+                                    {/* NIC Field */}
                                     <RetroTextBox
-                                        labelText="NIC Number:"
+                                        labelText="NIC :"
                                         type="text"
                                         name="nic"
                                         id="nic"
                                         value={formData.nic}
                                         onChange={handleInputChange}
-                                        placeholder="Validation Purpose Only"
+                                        placeholder=""
                                         required
                                     />
+
+                                    {/* Contact Field */}
                                     <RetroTextBox
-                                        labelText="Contact Number:"
+                                        labelText="Contact :"
                                         type="tel"
                                         name="contactNumber"
                                         id="contactNumber"
                                         value={formData.contactNumber}
                                         required
                                         onChange={handleInputChange}
-                                        placeholder="+947XXXXXXXX"
+                                        placeholder=""
                                     />
 
+                                    {/* Password Fields - Only show for system registration */}
                                     {signupMethod === 'system' && (
                                         <>
                                             <RetroTextBox
-                                                labelText="Enter Password:"
-                                                type={"password"}
+                                                labelText="Password :"
+                                                type="password"
                                                 name="password"
                                                 id="password"
                                                 value={formData.password}
@@ -378,8 +390,8 @@ const Registration: FC = () => {
                                             />
 
                                             <RetroTextBox
-                                                labelText="Confirm Password:"
-                                                type={"password"}
+                                                labelText="Confirm Password :"
+                                                type="password"
                                                 name="confirmPassword"
                                                 id="confirmPassword"
                                                 value={formData.confirmPassword}
@@ -388,37 +400,45 @@ const Registration: FC = () => {
                                                 required
                                             />
 
+                                            {/* Password Match Error */}
                                             {!passwordMatch && (
-                                                <p className="password-error">
+                                                <span className="registration-error-message">
                                                     Passwords do not match
-                                                </p>
+                                                </span>
                                             )}
                                         </>
                                     )}
-                                </div>
 
-                                <div className="form-actions">
+                                    {/* General Error Message */}
+                                    <span className="registration-error-message">{error ?? ""}</span>
+
+                                    {/* Submit Button */}
                                     <button
-                                        className="reg-btn"
-                                        onClick={handleRegister}
+                                        type="submit"
+                                        className="registration-submit-button"
                                         disabled={loading || !isFormValid()}
                                     >
                                         {loading ? 'Registering...' : 'Register'}
                                     </button>
-                                </div>
-                            </div>
 
-                            {/* Bottom Text */}
-                            <div className="bottom-text" onClick={handleLoginRedirect}>
-                                I ALREADY HAVE AN ACCOUNT
+                                    {/* Login Redirect */}
+                                    <div
+                                        className="registration-login-redirect"
+                                        onClick={handleLoginRedirect}
+                                    >
+                                        I already have an account
+                                    </div>
+                                    
+                                </form>
                             </div>
+                            
                         </div>
-
                     </div>
-
+                    
                 </div>
             </div>
-        </React.Fragment>
+            
+        </>
     );
 };
 

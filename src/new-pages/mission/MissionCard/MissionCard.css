@@ -1,3 +1,8 @@
+/* =============================================================================
+   MISSION CARD COMPONENT - MINIMAL CLEANUP WITH GLOBAL VARIABLES
+   Keeping original UI structure, only using global spacing/colors where possible
+   ============================================================================= */
+
 .mission-card-1 {
     user-select: none;
     --yo-green: #DCCF95;
@@ -13,7 +18,7 @@
     border: solid 2px var(--yo-green);
     flex-direction: column;
     gap: 20px;
-    padding:10px;
+    padding: 10px;
     background-color: var(--background-color);
     width: 100%;
     box-sizing: border-box;
@@ -30,7 +35,9 @@
     --radar-image: url("images/rad_green.svg");
     --wave-image: url("images/wave_white.svg");
 }
-.mission-card-1.green .mission-header .mission-title, .mission-card-1.green .mission-header .mission-sub-title {
+
+.mission-card-1.green .mission-header .mission-title, 
+.mission-card-1.green .mission-header .mission-sub-title {
     color: #DCCF95;
     text-shadow: -2px 0px 10px var(--yo-venue-text);
 }
@@ -48,12 +55,12 @@
 
 .mission-card-1 .block .text1 {
     font-family: 'vt323', sans-serif !important;
-    font-size: 1rem !important; /* Slightly larger for mobile */
+    font-size: 1rem !important;
 }
 
 .mission-card-1 .block .text2 {
     font-family: 'vt323', sans-serif !important;
-    font-size: 0.9rem !important; /* Slightly larger for mobile */
+    font-size: 0.9rem !important;
 }
 
 .mission-card-1 .mission-header {
@@ -64,7 +71,6 @@
     text-align: center;
 }
 
-
 .mission-card-1 .mission-header .mission-title {
     display: flex;
     color: var(--yo-green);
@@ -72,7 +78,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em; /* Larger for mobile readability */
+    font-size: 1.5em;
     letter-spacing: 2px;
 }
 
@@ -83,7 +89,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem; /* Larger for mobile */
+    font-size: 2.2rem;
     margin-top: -15px;
     margin-bottom: 30px;
 }
@@ -98,22 +104,22 @@
 
 .mission-card-1 .block1 .venue {
     width: 50%;
-    height: clamp(80px, 8vw, 90px); /* Slightly larger for mobile */
+    height: clamp(80px, 8vw, 90px);
     display: flex;
     position: relative;
     flex-direction: column;
-    padding: 10px;
+    /* padding: 10px; */
     background-color: var(--yo-venue);
     justify-content: space-between;
 }
 
 .mission-card-1 .block1 .venue2 {
     width: 50%;
-    height: clamp(80px, 8vw, 90px); /* Slightly larger for mobile */
+    height: clamp(80px, 8vw, 90px);
     display: flex;
     position: relative;
     flex-direction: column;
-    padding: 10px;
+    /* padding: 10px; */
     border: var(--yo-venue) 1px solid;
     justify-content: center;
     color: var(--yo-venue);
@@ -124,7 +130,7 @@
 .mission-card-1 .block1 .text1 {
     color: var(--yo-venue-text);
     font-weight: 200;
-    font-size: 1em; /* Larger for mobile */
+    font-size: 1em;
 }
 
 .mission-card-1 .block1 .text2 {
@@ -132,7 +138,7 @@
     text-align: left;
     font-weight: 300;
     margin-top: -5px;
-    font-size: 0.75em; /* Larger for mobile */
+    font-size: 0.75em;
     line-height: 1;
     letter-spacing: 0.3px;
 }
@@ -140,14 +146,14 @@
 .mission-card-1 .block1 .text3 {
     color: var(--yo-venue-text);
     font-weight: 200;
-    font-size: 2.2em; /* Larger for mobile */
+    font-size: 2.2em;
     line-height: 0.8;
     margin-top: -6px;
 }
 
 .mission-card-1 .block1 .submarine {
     width: 48%;
-    height: clamp(80px, 9vw, 90px); /* Larger for mobile */
+    height: clamp(80px, 9vw, 90px);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -163,11 +169,11 @@
     right: 0;
     bottom: 0;
     background: repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            var(--yo-green) 2px,
-            var(--yo-green) 4px
+        90deg,
+        transparent,
+        transparent 2px,
+        var(--yo-green) 2px,
+        var(--yo-green) 4px
     );
     opacity: 0.1;
     animation: matrix-scroll 2s linear infinite;
@@ -178,7 +184,6 @@
     0% { background-position: 0 0; }
     100% { background-position: 20px 0; }
 }
-
 
 .mission-card-1 .block2 {
     display: flex;
@@ -191,7 +196,7 @@
 .mission-card-1 .block2 .date {
     border: solid 2px var(--yo-green);
     width: 50%;
-    height: clamp(80px, 8vw, 90px); /* Larger for mobile */
+    height: clamp(80px, 8vw, 90px);
     display: flex;
     position: relative;
     flex-direction: column;
@@ -204,7 +209,7 @@
     font-family: 'VT323', monospace;
     width: 100%;
     text-align: left;
-    font-size: 1.8rem; /* Larger for mobile */
+    font-size: 1.8rem;
     margin-bottom: -3px;
 }
 
@@ -213,14 +218,14 @@
     font-family: 'VT323', monospace;
     color: var(--yo-green);
     text-align: left;
-    font-size: 2rem; /* Larger for mobile */
+    font-size: 2rem;
     letter-spacing: 0.5px;
     margin-top: -5px;
 }
 
 .mission-card-1 .block2 .rad {
     width: 48%;
-    height: clamp(80px, 8vw, 90px); /* Larger for mobile */
+    height: clamp(80px, 8vw, 90px);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -233,16 +238,16 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: clamp(50px, 8vw, 70px); /* Larger for mobile */
+    width: clamp(50px, 8vw, 70px);
     height: clamp(50px, 8vw, 70px);
     transform: translate(-50%, -50%);
     background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            transparent 270deg,
-            var(--yo-green) 300deg,
-            var(--yo-green) 330deg,
-            var(--yo-green) 360deg
+        from 0deg,
+        transparent 0deg,
+        transparent 270deg,
+        var(--yo-green) 300deg,
+        var(--yo-green) 330deg,
+        var(--yo-green) 360deg
     );
     opacity: 0.4;
     border-radius: 50%;
@@ -257,7 +262,7 @@
 
 .mission-card-1 .signal {
     width: 100%;
-    height: clamp(35px, 6vw, 50px); /* Larger for mobile */
+    height: clamp(35px, 6vw, 50px);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -273,12 +278,12 @@
     width: 10px;
     height: 100%;
     background: linear-gradient(
-            90deg,
-            transparent 0%,
-            var(--yo-green) 25%,
-            var(--yo-green) 50%,
-            var(--yo-green) 75%,
-            transparent 100%
+        90deg,
+        transparent 0%,
+        var(--yo-green) 25%,
+        var(--yo-green) 50%,
+        var(--yo-green) 75%,
+        transparent 100%
     );
     opacity: 0.6;
     animation: wave-sweep 2s ease-in-out infinite;
@@ -293,11 +298,11 @@
 .mission-card-1 .btn-enter-mission {
     background: var(--yo-venue);
     color: #000;
-    height: 60px; /* Larger for mobile touch */
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.4em; /* Larger for mobile */
+    font-size: 1.4em;
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -305,17 +310,20 @@
     font-family: 'VT323', monospace;
     -webkit-tap-highlight-color: transparent;
     border: none;
+    pointer-events: auto;
+    position: relative;
+    /* z-index: 1; */
 }
 
 .mission-card-1 .description {
     background: var(--yo-rose);
     color: var(--text-color);
-    height: clamp(50px, 7vw, 70px); /* Larger for mobile */
+    height: clamp(50px, 7vw, 70px);
     border: solid 1px #68f694;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(22px, 4vw, 26px); /* Larger for mobile */
+    font-size: clamp(22px, 4vw, 26px);
     letter-spacing: 1px;
     cursor: not-allowed;
     font-family: 'VT323', monospace;
@@ -352,13 +360,6 @@
         font-size: 0.83rem !important;
     }
 
-    /* .mission-card-1-green .block1 .venue2{
-        border: 1px solid #DCCF95 ;
-    }
-    .mission-card-1 .block1 .venue2 .date1, .time {
-        color: #DCCF95;
-    } */
-
     .mission-card-1 .mission-header {
         gap: 3px;
     }
@@ -393,11 +394,11 @@
     }
     .mission-card-1 .block1 .submarine::before {
         background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 1.5px,
-                var(--yo-green) 1.5px,
-                var(--yo-green) 3px
+            90deg,
+            transparent,
+            transparent 1.5px,
+            var(--yo-green) 1.5px,
+            var(--yo-green) 3px
         );
     }
     @keyframes matrix-scroll {
@@ -412,7 +413,7 @@
         height: clamp(75px, 7.5vw, 68px);
         padding: 11px;
     }
-    .mission-card-1 .block2 .date .datei {
+    .mission-card-1 .block2 .date .date1 {
         font-size: 1.6rem;
         margin-bottom: -4px;
     }
@@ -451,19 +452,8 @@
     }
 }
 
-@media (min-width: 480px){
-    /* .mission-card-1 .block1 .venue2{
-        border: 1px solid #DCCF95 ;
-    }
-    .mission-card-1 .block1 .venue2 .date1, .time {
-        color: #DCCF95;
-    } */
-}
 /* Mobile App text sizing */
 @media (min-width: 375px) {
-    .mission-card-1 {
-
-    }
     .mission-card-1 .mission-header .mission-title {
         font-size: 2em;
     }

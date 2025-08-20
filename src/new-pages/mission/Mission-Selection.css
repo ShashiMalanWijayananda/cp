@@ -1,141 +1,291 @@
-.mission-view-v2 {
+/* =============================================================================
+   MISSION SELECTION PAGE - EXACT MATCH TO PROVIDED IMAGES
+   Desktop: 2 cards side-by-side, Mobile: stacked single column
+   ============================================================================= */
 
+/* =============================================================================
+   PAGE LAYOUT - Using Global Layout System
+   ============================================================================= */
+
+.mission-selection-page-heading {
+  position: fixed;
+    top: calc(150px + 4vh);
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    /* background-color: var(--yo-primary); */
+    z-index: 50;
 }
 
-.mission-view-v2 .mission-card-viewer-v {
-    width: 860px;
+.mission-selection-page-heading h1 {
+      font-size: var(--text-3xl);
+    color: var(--yo-blue);
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.mission-selection-page-container {
+  margin-top: calc(100px + 4vh);
+  margin-bottom: 50px;
+  min-height: calc(100vh - 200px - 4vh);
+  padding: var(--spacing-lg) var(--spacing-md);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =============================================================================
+   MAIN CONTENT LAYOUT
+   ============================================================================= */
+
+.mission-selection-content-main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+/* =============================================================================
+   MISSION CARDS GRID - Desktop 2x1, Mobile 1x2
+   ============================================================================= */
+
+.mission-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xl);
+  width: 100%;
+  max-width: 1000px;
+  margin: var(--spacing-xl) 0;
+  justify-content: center;
+  justify-items: center;
+  align-items: start;
+}
+
+/* =============================================================================
+   MISSION CARD VIEWER WRAPPER
+   ============================================================================= */
+
+.mission-card-viewer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.mission-card-viewer-label {
+  display: none;
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+/* =============================================================================
+   SKELETON LOADING STATE
+   ============================================================================= */
+
+.mission-skeleton {
+  border: 2px solid var(--yo-green);
+  background-color: rgba(159, 255, 130, 0.05);
+  padding: var(--spacing-xl);
+  min-height: 400px;
+  width: 100%;
+  max-width: 400px;
+  animation: mission-skeleton-pulse 2s ease-in-out infinite alternate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.mission-skeleton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(159, 255, 130, 0.1),
+    transparent
+  );
+  animation: mission-skeleton-shimmer 2s infinite;
+}
+
+.mission-skeleton-text {
+  color: var(--yo-green);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+@keyframes mission-skeleton-pulse {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes mission-skeleton-shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN - Mobile Layout
+   ============================================================================= */
+
+@media (max-width: 1024px) {
+  .mission-selection-page-container {
+    padding: var(--spacing-md);
+  }
+    .mission-selection-page-container {
+    margin-top: calc(125px + 4vh); }
+  .mission-cards-grid {
+    gap: var(--spacing-lg);
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop page heading on mobile - matches image 2 */
+  .mission-selection-page-heading {
+    display: none;
+  }
+  
+  .mission-selection-page-container {
+    margin-top: calc(15px + 4vh); /* Only mobile header, no page heading */
+    margin-bottom: 50px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    padding-bottom: 150px;
+    min-height: auto;
+    height: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Switch to single column layout on mobile - matches image 2 */
+  .mission-cards-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    max-width: 500px;
+  }
+  
+  /* Show "Available Missions" label on mobile - NOT visible in your images, so keeping hidden */
+  .mission-card-viewer-label {
+    display: none; /* Keep hidden to match your exact design */
+  }
+  
+  .mission-skeleton {
+    max-width: 100%;
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-selection-page-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+    padding-bottom: 160px;
+  }
+  
+  .mission-cards-grid {
+    gap: var(--spacing-lg);
+    max-width: 450px;
+  }
+  
+  .mission-skeleton {
+    min-height: 320px;
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 375px) {
+  .mission-selection-page-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+    padding-bottom: 170px;
+  }
+  
+  .mission-cards-grid {
+    max-width: 350px;
+    gap: var(--spacing-md);
+  }
+  
+  .mission-skeleton {
+    min-height: 300px;
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 320px) {
+  .mission-selection-page-container {
+    padding: var(--spacing-sm);
+    padding-bottom: 180px;
+  }
+  
+  .mission-cards-grid {
+    max-width: 300px;
+    gap: var(--spacing-sm);
+  }
+  
+  .mission-skeleton {
+    min-height: 280px;
+    padding: var(--spacing-sm);
+  }
+}
+
+/* =============================================================================
+   ACCESSIBILITY & PERFORMANCE
+   ============================================================================= */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .mission-skeleton,
+  .mission-skeleton::before {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .mission-skeleton {
+    border-width: 3px;
+  }
+}
+
+/* Focus states for accessibility */
+.mission-skeleton:focus {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .mission-selection-page-container {
+    margin: 0;
+    padding: 1rem;
+    min-height: auto;
+  }
+  
+  .mission-cards-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap:20px;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    padding: 10px;
-}
-
-.mission-card-viewer-v .mission-card-viewer-lable {
+    gap: 1rem;
+  }
+  
+  .mission-skeleton {
     display: none;
-}
-
-/* Mobile First - Default styles for mobile */
-@media (max-width: 1024px) {
-
-}
-
-@media (max-width: 768px) {
-    .mission-view-v2 {
-        padding: 15px 15px 150px 15px;
-        gap: 15px;
-        justify-content: flex-start;
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    .mission-view-v2 .mission-card-viewer-v {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        width: 100%;
-        max-width: 100%;
-        gap: 15px;
-        padding: 0px;
-        flex: 1;
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .mission-card-viewer-v .mission-card-viewer-lable {
-        font-size: 30px;
-        color: #ffffff;
-        font-family: VT323, monospace;
-        display: block;
-    }
-}
-
-/* Mobile logo adjustments */
-@media (max-width: 480px) {
-    .mission-view-v2 {
-        justify-content: flex-start;
-    }
-}
-
-.missions-section {
-    border: 2px solid var(--yo-green);
-    border-top: none;
-    background: rgba(0, 40, 0, 0.4);
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Mobile missions section */
-@media (max-width: 768px) {
-    .missions-section {
-        padding: 15px;
-        max-width: 100%;
-    }
-}
-
-@media (min-width: 425px) {
-    .mission-card-viewer-v {
-        margin-top: 0px;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-.mission-view-v2 .mission-view-header {
-    font-size: clamp(20px, 5vw, 35px);
-    font-family: VT323, monospace;
-    color: #ffffff;
-    text-align: center;
-}
-
-/* Mobile header adjustments */
-@media (max-width: 768px) {
-    .mission-view-v2 .mission-view-header {
-        font-size: clamp(18px, 6vw, 24px);
-    }
-}
-
-.bottom-text {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 400px;
-    color: var(--yo-green);
-    font-family: VT323, monospace;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-align: center;
-}
-
-/* Desktop bottom text */
-@media (min-width: 769px) {
-    .bottom-text {
-        max-width: 900px;
-        font-size: 1rem;
-    }
-}
-
-.choose-mission-text {
-    flex: 1;
-    text-align: center;
-}
-
-.mission-header-text {
-    color: #ffffff;
-    font-size: clamp(16px, 4vw, 20px);
-    padding-left: 20px;
-}
-
-/* Desktop mission header */
-@media (min-width: 769px) {
-    .mission-header-text {
-        font-size: clamp(18px, 3.8vw, 23px);
-        padding-left: 38px;
-    }
+  }
 }

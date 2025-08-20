@@ -15,7 +15,7 @@ const AppLayout: FC = () => {
                 <CustomDialog/>
                 <div>
                     <div
-                        className="flex w-full md:w-1/2 flex-col justify-center  mx-auto  mt-[10vh] h-[85vh] lg:h-[100vh]">
+                        className="flex w-full md:w-auto flex-col justify-center  mx-auto  mt-[10vh] h-[85vh] lg:h-[100vh]">
                         <Outlet/>
                     </div>
                 </div>

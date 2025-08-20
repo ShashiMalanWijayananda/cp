@@ -1,43 +1,24 @@
-import React, {FC, useCallback, useEffect, useState} from "react";
-import {useNavigate, useSearchParams} from "react-router-dom";
-import {useAppContext} from "../../context/app.context";
-import {useLogin} from "../../context/login.context";
-import {ENQUEUE_LIST, FETCH_ZONE_CONFIGS} from "../../graphql/queries";
-import {useMutation, useQuery} from "@apollo/client";
-import {IAPIResponse, IEnqueue, IZone,} from "../../interfaces/data.interfaces";
+import React, { FC, useCallback, useEffect, useState } from "react";
+import "./ZoneView.css";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useAppContext } from "../../context/app.context";
+import { useLogin } from "../../context/login.context";
+import { ENQUEUE_LIST, FETCH_ZONE_CONFIGS } from "../../graphql/queries";
+import { useMutation, useQuery } from "@apollo/client";
+import { IAPIResponse, IEnqueue, IZone } from "../../interfaces/data.interfaces";
+import Alert, { AlertProps } from "../../components/retro/Alert/Alert";
 import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
 
 const ZoneView: FC = () => {
   const [searchParams] = useSearchParams();
   const eventId = searchParams.get("eventId");
-  const [selectedZone, setSelectedZone] = useState(null);
-  const {appContext} = useAppContext();
+  const [selectedZone, setSelectedZone] = useState<IZone | null>(null);
+  const { appContext } = useAppContext();
   const navigate = useNavigate();
   const { user } = useLogin();
   const [zones, setZones] = useState<IZone[]>([]);
-  const [
-    enqueue,
-    { loading: enqueueLoading, data: enqueueResponse, error: enqueueError },
-  ] = useMutation(ENQUEUE_LIST);
-  const [step, setStep] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const paragraphs = [
-    `****`,
-    `Agent ${user?.lastName}`,
-    `Click a zone to enter the queue. ${
-        !isMobile ? "Press ESC to cancel" : ""
-    }`,
-    "****",
-  ];
+  const [enqueue, { loading: enqueueLoading, data: enqueueData, error: enqueueError }] = useMutation(ENQUEUE_LIST);
 
   const {
     data: zoneConfigData,
@@ -49,6 +30,7 @@ const ZoneView: FC = () => {
     fetchPolicy: "network-only",
   });
 
+  // Handle zones data
   useEffect(() => {
     const response = zoneConfigData?.getZoneConfigs as IAPIResponse;
     if (response?.code === "CODE-700") {
@@ -56,8 +38,9 @@ const ZoneView: FC = () => {
     }
   }, [zoneConfigData]);
 
+  // Handle ESC key to go back
   useEffect(() => {
-    const handleEscKey = (event) => {
+    const handleEscKey = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
         navigate("/mission", { replace: true });
       }
@@ -67,36 +50,11 @@ const ZoneView: FC = () => {
     return () => {
       document.removeEventListener("keydown", handleEscKey);
     };
-  }, []);
+  }, [navigate]);
 
-  const handleZoneSelect = useCallback(
-      async (zone: IZone) => {
-        if (user === null) return;
-        setSelectedZone(zone);
-        localStorage.setItem("zoneId", zone?.zoneId);
-        localStorage.setItem("eventId", zone?.eventId);
-        localStorage.setItem("eventDate", zone?.eventDate);
-        const request: IEnqueue = {
-          requestId: user.id,
-          zone: {
-            zoneId: zone.zoneId,
-            eventDate: zone.eventDate,
-            eventId: zone.eventId,
-          },
-        };
-
-        enqueue({
-          variables: {request},
-          onError: (error) => {
-            console.error(error);
-          },
-        });
-      },
-      [user, enqueue, navigate, appContext]
-  );
-
+  // Handle enqueue response
   useEffect(() => {
-    const response = enqueueResponse?.enqueue as IAPIResponse;
+    const response = enqueueData?.enqueue as IAPIResponse;
     if (response?.code === "CODE-400") {
       if (response.data?.path?.includes("/purchase")) {
         navigate(response.data?.path, { replace: true });
@@ -106,95 +64,158 @@ const ZoneView: FC = () => {
     } else if (response?.code === "CODE-405") {
       appContext.showErrorDialog("Enqueue Error", response?.error);
     }
-  }, [enqueueResponse]);
+  }, [enqueueData, navigate, appContext]);
 
-  // Sort zones for consistent ordering
-  const sortedZones = [...(zones || [])].sort((a, b) =>
-      a?.zoneId?.localeCompare(b?.zoneId)
+  // Handle zone selection
+  const handleZoneSelect = useCallback(
+    async (zone: IZone): Promise<void> => {
+      if (!user || !zone?.available) return;
+      
+      setSelectedZone(zone);
+      localStorage.setItem("zoneId", zone?.zoneId);
+      localStorage.setItem("eventId", zone?.eventId);
+      localStorage.setItem("eventDate", zone?.eventDate);
+      
+      const request: IEnqueue = {
+        requestId: user.id,
+        zone: {
+          zoneId: zone.zoneId,
+          eventDate: zone.eventDate,
+          eventId: zone.eventId,
+        },
+      };
+
+      enqueue({
+        variables: { request },
+        onError: (error) => {
+          console.error("Enqueue error:", error);
+          appContext.showErrorDialog("Enqueue Error", "Failed to join queue");
+        },
+      });
+    },
+    [user, enqueue, appContext]
   );
 
-  // Debug: Log zone data
-  console.log("Zones data:", zones);
+  // Sort zones for consistent ordering (Zone A first, then Zone Z)
+  const sortedZones = [...(zones || [])].sort((a, b) =>
+    a?.zoneId?.localeCompare(b?.zoneId)
+  );
 
-  const scrollingText =
-      "Choose your zone - Your zone determines what you'll see — and what you won't  *** Choose your zone - Your zone determines what you'll see — and what you won't  *** ";
+  // Generate scrolling footer text
+  const scrollingText = `**** CHOOSE YOUR ZONE **** AGENT ${user?.lastName} **** YOUR ZONE DETERMINES WHAT YOU'LL SEE AND WHAT YOU WON'T **** `;
 
   return (
-      <React.Fragment>
-        <div className="w-full h-auto p-5 gap-4 fixed flex flex-col left-0 right-0 items-center justify-center ">
+    <>
+      {/* Page heading */}
+      <div className="zone-view-page-heading">
+        <h1>Zone Selection</h1>
+      </div>
 
-          {/*  <div className="zone-view">*/}
-          {/*    <Alert*/}
-          {/*        message={"Enqueue error....."}*/}
-          {/*        visible={enqueueError === null ? true : false}*/}
-          {/*        type={"error"}*/}
-          {/*    />*/}
-          {/*    <div className="h-[65vh] overflow-y-auto p-4 space-y-4">*/}
-          {/*      <div className="zone-card-viewer">*/}
+      {/* Main page container */}
+      <main className="zone-view-page-container" role="main">
+        
+        {/* Alert messages */}
+        <Alert 
+          message="Enqueue error occurred." 
+          visible={!!enqueueError} 
+          type="error" 
+          autoCloseDelay={5000}
+          autoClose={true}
+        />
+        
+        <Alert 
+          message="Zones fetch error." 
+          visible={!!zonesError} 
+          type="error" 
+          autoCloseDelay={5000}
+          autoClose={true}
+        />
 
-          {/*        {isMobile ? (*/}
-          {/*            <>*/}
-          {/*          {sortedZones[0] && (*/}
-          {/*              <ZoneCard zone={sortedZones[0]} onClick={handleZoneSelect}/>*/}
-          {/*          )}*/}
-          {/*          <div className="stage">STAGE</div>*/}
-          {/*          {sortedZones[1] && (*/}
-          {/*              <ZoneCard zone={sortedZones[1]} onClick={handleZoneSelect}/>*/}
-          {/*          )}*/}
-          {/*          {sortedZones.slice(2).map((zone, index) => (*/}
-          {/*              <ZoneCard*/}
-          {/*                  key={zone?.id || `zone-${index + 2}`}*/}
-          {/*                  zone={zone}*/}
-          {/*                  onClick={handleZoneSelect}*/}
-          {/*              />*/}
-          {/*          ))}*/}
-          {/*        </>*/}
-          {/*    ) : (*/}
-          {/*        <>*/}
-          {/*          {sortedZones.map((zone, index) => (*/}
-          {/*              <React.Fragment key={zone?.id || index}>*/}
-          {/*                <ZoneCard zone={zone} onClick={handleZoneSelect}/>*/}
-          {/*                {index === 0 && <div className="stage">STAGE</div>}*/}
-          {/*              </React.Fragment>*/}
-          {/*          ))}*/}
-          {/*        </>*/}
-          {/*        )}*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
+        {/* Main content */}
+        <div className="zone-view-content-main">
+          
+          {/* Zone layout */}
+          <div className="zone-layout-container">
+            
+            {/* Zone A */}
+            {sortedZones.find(zone => zone.zoneId === "zoneA") && (
+              <div
+                className={`zone-card zone-a ${
+                  !sortedZones.find(zone => zone.zoneId === "zoneA")?.available ? 'sold-out' : ''
+                }`}
+                onClick={() => {
+                  const zoneA = sortedZones.find(zone => zone.zoneId === "zoneA");
+                  if (zoneA) handleZoneSelect(zoneA);
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label={`Zone A - ${sortedZones.find(zone => zone.zoneId === "zoneA")?.available ? 'Available' : 'Sold Out'}`}
+              >
+                <div className="zone-card-content">
+                  <h2 className="zone-card-title">ZONE A</h2>
+                  <p className="zone-card-slots">
+                    {sortedZones.find(zone => zone.zoneId === "zoneA")?.available 
+                      ? `Available Slots: ${String(sortedZones.find(zone => zone.zoneId === "zoneA")?.remainingTicket || 0).padStart(4, "0")}`
+                      : "SOLD OUT"
+                    }
+                  </p>
+                </div>
+              </div>
+            )}
 
-          <div
-              className="w-full gap-4 min-[375px]:overflow-y-auto min-[375px]:h-[50vh] min-[414px]:h-[60vh] lg:h-full sticky  flex flex-col items-center justify-center ">
-            <div
-                className="grid grid-cols-1 grid-rows-3 gap-4 lg:grid-cols-3 lg:grid-rows-1 w-full md:w-1/2 place-items-center">
-              {sortedZones.map((zone, index) => (
-                  <React.Fragment key={zone?.id || index}>
-                    <div onClick={() => zone?.available && handleZoneSelect(zone)}
-                         className={`${zone?.available ? 'cursor-pointer' : 'cursor-not-allowed'} w-full h-[150px] flex flex-col items-center justify-center ${
-                             zone?.zoneId === "zoneA" ? 'bg-brand-rose' : 'bg-brand-purple'
-                         }`}>
-              <span
-                  className="text-[10px] min-[375px]:text-xl  md:text-2xl lg:text-3xl text-brand-forest font-medium font-jersey25">{zone?.zoneId?.replace("zone", "ZONE ") || "ZONE"}</span>
-                      {zone?.available ? <span
-                              className="text-[10px] min-[375px]:text-xl min-[1024px]:text-xl md:text-2xl lg:text-3xl font-medium text-brand-forest font-jersey25"> Available Slots:{" "} {zone?.remainingTicket?.toString()?.padStart(4, "0") || "0000"}</span>
-                          : <span
-                              className="text-[10px] min-[375px]:text-xl md:text-2xl lg:text-3xl font-medium text-brand-forest font-jersey25">SOLD OUT</span>}
-                    </div>
-                    {index === 0 && <div
-                        className="border border-brand-lightGreen w-full flex items-center justify-center h-[80px] lg:h-[150px] text-[10px] min-[375px]:text-xl md:text-2xl lg:text-3xl font-medium font-jersey25 text-white">STAGE
-                    </div>}
-
-                  </React.Fragment>
-              ))}
-
+            {/* Stage */}
+            <div className="zone-stage">
+              <span>STAGE</span>
             </div>
+
+            {/* Zone Z */}
+            {sortedZones.find(zone => zone.zoneId === "zoneZ") && (
+              <div
+                className={`zone-card zone-z ${
+                  !sortedZones.find(zone => zone.zoneId === "zoneZ")?.available ? 'sold-out' : ''
+                }`}
+                onClick={() => {
+                  const zoneZ = sortedZones.find(zone => zone.zoneId === "zoneZ");
+                  if (zoneZ) handleZoneSelect(zoneZ);
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label={`Zone Z - ${sortedZones.find(zone => zone.zoneId === "zoneZ")?.available ? 'Available' : 'Sold Out'}`}
+              >
+                <div className="zone-card-content">
+                  <h2 className="zone-card-title">ZONE Z</h2>
+                  <p className="zone-card-slots">
+                    {sortedZones.find(zone => zone.zoneId === "zoneZ")?.available 
+                      ? `Available Slots: ${String(sortedZones.find(zone => zone.zoneId === "zoneZ")?.remainingTicket || 0).padStart(4, "0")}`
+                      : "SOLD OUT"
+                    }
+                  </p>
+                </div>
+              </div>
+            )}
+
           </div>
-          <GlobalFooter
-              text={scrollingText}
-          />
+
+          {/* Loading state */}
+          {zonesLoading && (
+            <div className="zone-loading">
+              <p>Loading zones...</p>
+            </div>
+          )}
+
+          {/* No zones available */}
+          {!zonesLoading && zones.length === 0 && (
+            <div className="zone-no-data">
+              <p>No zones available for this event.</p>
+            </div>
+          )}
+
         </div>
-      </React.Fragment>
+      </main>
+
+      {/* Global scrolling footer */}
+      <GlobalFooter text={scrollingText} />
+    </>
   );
 };
 
