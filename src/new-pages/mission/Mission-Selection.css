@@ -9,24 +9,23 @@
 
 .mission-selection-page-heading {
   position: fixed;
-    top: calc(150px + 4vh);
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex
-;
-    align-items: center;
-    justify-content: center;
-    /* background-color: var(--yo-primary); */
-    z-index: 50;
+  top: calc(150px + 4vh);
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
 }
 
 .mission-selection-page-heading h1 {
-      font-size: var(--text-3xl);
-    color: var(--yo-blue);
-    margin: 0;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  font-size: var(--text-3xl);
+  color: var(--yo-blue);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: var(--font-primary);
 }
 
 .mission-selection-page-container {
@@ -57,59 +56,61 @@
   gap: var(--spacing-xl);
 }
 
+/* Mission card viewer label (hidden by default to match your design) */
+.mission-card-viewer-label {
+  display: none;
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  color: var(--yo-green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-md);
+}
+
 /* =============================================================================
-   MISSION CARDS GRID - Desktop 2x1, Mobile 1x2
+   MISSION CARDS GRID - Desktop: 2 columns, Mobile: 1 column
    ============================================================================= */
 
 .mission-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-xl);
+  gap: var(--spacing-2xl);
   width: 100%;
   max-width: 1000px;
-  margin: var(--spacing-xl) 0;
-  justify-content: center;
-  justify-items: center;
-  align-items: start;
+  margin: 0 auto;
 }
 
-/* =============================================================================
-   MISSION CARD VIEWER WRAPPER
-   ============================================================================= */
-
-.mission-card-viewer {
+/* Individual mission card - matches the green bordered cards in images */
+.mission-card-container {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: var(--spacing-lg);
-}
-
-.mission-card-viewer-label {
-  display: none;
-  text-align: center;
-  margin-bottom: var(--spacing-md);
 }
 
 /* =============================================================================
-   SKELETON LOADING STATE
+   LOADING/SKELETON STATES
    ============================================================================= */
 
 .mission-skeleton {
-  border: 2px solid var(--yo-green);
-  background-color: rgba(159, 255, 130, 0.05);
-  padding: var(--spacing-xl);
-  min-height: 400px;
   width: 100%;
-  max-width: 400px;
-  animation: mission-skeleton-pulse 2s ease-in-out infinite alternate;
+  max-width: 450px;
+  min-height: 500px;
+  border: 2px solid var(--yo-green);
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(159, 255, 130, 0.1) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: mission-skeleton-shimmer 2s ease-in-out infinite,
+             mission-skeleton-pulse 1.5s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
-  flex-direction: column;
-  gap: var(--spacing-md);
 }
 
 .mission-skeleton::before {
@@ -122,14 +123,28 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(159, 255, 130, 0.1),
+    rgba(159, 255, 130, 0.2),
     transparent
   );
-  animation: mission-skeleton-shimmer 2s infinite;
+  animation: mission-skeleton-shimmer 2s ease-in-out infinite;
+}
+
+.mission-skeleton-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  z-index: 1;
 }
 
 .mission-skeleton-text {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
   color: var(--yo-green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
   opacity: 0.6;
   z-index: 1;
 }
@@ -145,37 +160,82 @@
 }
 
 /* =============================================================================
-   RESPONSIVE DESIGN - Mobile Layout
+   RESPONSIVE DESIGN - ALL SCREEN SIZES
    ============================================================================= */
 
-@media (max-width: 1024px) {
-  .mission-selection-page-container {
-    padding: var(--spacing-md);
+/* Large Desktop (≥1440px) */
+@media (min-width: 1440px) {
+  .mission-selection-page-heading h1 {
+    font-size: var(--text-4xl);
   }
-    .mission-selection-page-container {
-    margin-top: calc(125px + 4vh); }
+  
+  .mission-selection-page-container {
+    padding-left: var(--spacing-2xl);
+    padding-right: var(--spacing-xl);
+  }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .mission-selection-page-heading h1 {
+    font-size: var(--text-3xl);
+  }
+  
+  .mission-selection-page-container {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-md);
+  }
+  
   .mission-cards-grid {
     gap: var(--spacing-lg);
     max-width: 900px;
   }
 }
 
-@media (max-width: 768px) {
-  /* Hide desktop page heading on mobile - matches image 2 */
-  .mission-selection-page-heading {
-    display: none;
+/* Tablet (769px - 1023px) */
+@media (max-width: 1023px) and (min-width: 769px) {
+  .mission-selection-page-heading h1 {
+    font-size: var(--text-2xl);
   }
   
   .mission-selection-page-container {
-    margin-top: calc(15px + 4vh); /* Only mobile header, no page heading */
-    margin-bottom: 50px;
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
+  }
+  
+  .mission-cards-grid {
+    gap: var(--spacing-lg);
+    max-width: 900px;
+  }
+}
+
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  .mission-selection-page-heading {
+    display: none; /* Hide page heading on mobile to match design */
+  }
+  
+  .mission-selection-page-container {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-md);
     padding-bottom: 150px;
-    min-height: auto;
     height: auto;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
+  
+  /* Switch to single column layout on mobile */
+  .mission-cards-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    max-width: 500px;
+  }
+  
+  .mission-skeleton {
+    max-width: 100%;
+    min-height: 350px;
+  }
+}
   
   /* Switch to single column layout on mobile - matches image 2 */
   .mission-cards-grid {
@@ -193,56 +253,43 @@
     max-width: 100%;
     min-height: 350px;
   }
-}
 
 @media (max-width: 480px) {
   .mission-selection-page-container {
     padding: var(--spacing-md) var(--spacing-sm);
-    padding-bottom: 160px;
+    padding-bottom: 120px;
   }
   
   .mission-cards-grid {
-    gap: var(--spacing-lg);
-    max-width: 450px;
+    gap: var(--spacing-md);
+    max-width: 100%;
   }
   
   .mission-skeleton {
-    min-height: 320px;
-    padding: var(--spacing-lg);
+    min-height: 300px;
+  }
+  
+  .mission-skeleton-text {
+    font-size: var(--text-base);
   }
 }
 
 @media (max-width: 375px) {
   .mission-selection-page-container {
-    padding: var(--spacing-md) var(--spacing-sm);
-    padding-bottom: 170px;
-  }
-  
-  .mission-cards-grid {
-    max-width: 350px;
-    gap: var(--spacing-md);
-  }
-  
-  .mission-skeleton {
-    min-height: 300px;
-    padding: var(--spacing-md);
-  }
-}
-
-@media (max-width: 320px) {
-  .mission-selection-page-container {
     padding: var(--spacing-sm);
-    padding-bottom: 180px;
+    padding-bottom: 100px;
   }
   
   .mission-cards-grid {
-    max-width: 300px;
     gap: var(--spacing-sm);
   }
   
   .mission-skeleton {
     min-height: 280px;
-    padding: var(--spacing-sm);
+  }
+  
+  .mission-skeleton-text {
+    font-size: var(--text-sm);
   }
 }
 
@@ -250,11 +297,23 @@
    ACCESSIBILITY & PERFORMANCE
    ============================================================================= */
 
+.mission-selection-page-container {
+  scroll-behavior: smooth;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+  .mission-selection-page-container {
+    scroll-behavior: auto;
+  }
+  
   .mission-skeleton,
   .mission-skeleton::before {
     animation: none;
+  }
+  
+  .mission-skeleton-text {
+    opacity: 0.6;
   }
 }
 
@@ -265,27 +324,21 @@
   }
 }
 
-/* Focus states for accessibility */
-.mission-skeleton:focus {
-  outline: 2px solid var(--yo-green);
-  outline-offset: 2px;
-}
-
 /* Print styles */
 @media print {
+  .mission-selection-page-heading {
+    position: static;
+    background: white;
+    color: black;
+  }
+  
   .mission-selection-page-container {
     margin: 0;
     padding: 1rem;
-    min-height: auto;
   }
   
   .mission-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
-  }
-  
-  .mission-skeleton {
-    display: none;
   }
 }

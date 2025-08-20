@@ -7,18 +7,21 @@
    PAGE LAYOUT - Accounting for Fixed Header, Logo/CommonHeader & Footer
    ============================================================================= */
 
+/* =============================================================================
+   PAGE LAYOUT - Logo and headings scroll with content on ALL screen sizes
+   ============================================================================= */
+
 .about-page-heading {
-  position: fixed;
-  top: calc(150px + 4vh); /* Below header + logo space */
-  left: 0;
-  right: 0;
-  height: 60px;
+  position: relative; /* Always scrolls with content */
+  top: auto;
+  width: 100%;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: var(--yo-primary); */
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
   z-index: 50;
-  /* border-bottom: 1px solid var(--yo-green); */
 }
 
 .about-page-heading h1 {
@@ -31,12 +34,11 @@
 }
 
 .about-page-container {
-  margin-top: calc(200px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
-  margin-bottom: 50px; /* Footer space */
-  min-height: calc(100vh - 160px - 4vh); /* Full height minus header, logo, title, footer */
-  padding: var(--spacing-lg) var(--spacing-md);
-  overflow-y: visible;
-  overflow-x: hidden;
+  padding-top: 0; /* No fixed elements to account for */
+  padding-bottom: 50px; /* Footer space */
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-md);
+  min-height: 100vh;
 }
 
 /* =============================================================================
@@ -46,7 +48,6 @@
 .about-content-main {
   max-width: 1200px;
   margin: 0px auto;
-  /* height: 100%; */
 }
 
 .about-content-wrapper {
@@ -61,39 +62,38 @@
 .about-text-section {
   display: flex;
   flex-direction: column;
-  /* gap: var(--spacing-lg); */
 }
 
 .about-section-header {
-  background-color: var(--yo-gray);
-  padding: var(--spacing-md);
-  border: 1px solid var(--yo-light);
+  border: 1px solid var(--yo-green);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  background-color: transparent;
 }
 
 .about-section-header h2 {
   font-family: var(--font-primary);
   font-size: var(--text-xl);
-  color: var(--yo-black);
+  color: var(--yo-green);
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: normal;
 }
 
 .about-text-content {
-  /* background-color: var(--yo-primary); */
-  border: 1px solid var(--yo-light);
+  border: 1px solid var(--yo-green);
   padding: var(--spacing-xl);
-  line-height: 1.8;
+  background-color: transparent;
 }
 
 .about-text-content p {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  color: var(--yo-light);
+  line-height: 1.6;
+  color: var(--yo-green);
   margin-bottom: var(--spacing-md);
   letter-spacing: 1px;
-  line-height: 1.1;
 }
 
 .about-text-content p:last-child {
@@ -103,77 +103,66 @@
 /* Image Section */
 .about-image-section {
   display: flex;
+  align-items: start;
   justify-content: center;
-  align-items: flex-start;
 }
 
 .about-image-container {
   width: 100%;
   max-width: 400px;
-  /* background-color: var(--yo-gray); */
-  border: 1px solid var(--yo-light);
-  /* padding: var(--spacing-lg); */
-  position: relative;
+  border: 1px solid var(--yo-green);
+  padding: var(--spacing-lg);
+  background-color: transparent;
 }
 
 .about-image-container img {
   width: 100%;
   height: auto;
-  display: block;
-  filter: contrast(1.2) brightness(0.9);
-  /* Halftone effect to match Figma */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
-/* =============================================================================
-   TABLET LAYOUT (768px - 1024px)
-   ============================================================================= */
-
-@media (max-width: 1024px) {
-  .about-content-wrapper {
-    grid-template-columns: 1fr 300px;
-    gap: var(--spacing-xl);
-  }
-  
-  .about-image-container {
-    max-width: 300px;
-  }
-  
-  .about-page-container {
-    padding: var(--spacing-md);
-  }
-  
-  .about-text-content {
-    padding: var(--spacing-lg);
-  }
-  
-  .about-text-content p {
-    font-size: var(--text-sm);
-  }
+  object-fit: contain;
+  filter: sepia(1) saturate(0) brightness(0.8) hue-rotate(20deg);
 }
 
 /* =============================================================================
    MOBILE LAYOUT (768px and below) - Matches Mobile Figma
    ============================================================================= */
 
-@media (max-width: 768px) {
-  /* Mobile header adjustments - no desktop header/logo on mobile */
-  .about-page-heading {
-     top: calc(95px + 4vh);/* Mobile doesn't show desktop header/logo */
-    height: 80px;
-    /* background-color: var(--yo-primary); */
+/* =============================================================================
+   RESPONSIVE DESIGN - Consistent across ALL screen sizes
+   ============================================================================= */
+
+@media (max-width: 1439px) and (min-width: 1024px) {
+  /* Large laptop adjustments */
+  .about-page-heading h1 {
+    font-size: var(--text-3xl);
   }
   
+  .about-page-container {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-md);
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 769px) {
+  /* Tablet adjustments */
   .about-page-heading h1 {
     font-size: var(--text-2xl);
   }
   
   .about-page-container {
-    margin-top: 290px; /* Just the mobile title */
-    margin-bottom: 50px; /* Footer space */
-    padding: var(--spacing-md) var(--spacing-sm);
-    min-height: calc(100vh - 130px); /* Mobile calculation */
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile adjustments - logo and heading scroll with content */
+  .about-page-heading h1 {
+    font-size: var(--text-2xl);
+  }
+  
+  .about-page-container {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
   }
   
   /* Stack layout for mobile */
@@ -226,27 +215,20 @@
    ============================================================================= */
 
 @media (max-width: 480px) {
-  .about-page-heading {
-    height: 70px;
-    padding: 0 var(--spacing-sm);
-  }
-  
-  .about-page-heading h1 {
-    font-size: var(--text-xl);
-  }
-  
   .about-page-container {
-    margin-top: 300px; /* Mobile title only */
     padding: var(--spacing-sm);
-    min-height: calc(100vh - 120px); /* Small mobile calculation */
   }
   
   .about-content-wrapper {
     gap: var(--spacing-md);
   }
   
-  .about-image-container {
+  .about-section-header {
     padding: var(--spacing-sm);
+  }
+  
+  .about-section-header h2 {
+    font-size: var(--text-base);
   }
   
   .about-text-content {
@@ -254,69 +236,24 @@
   }
   
   .about-text-content p {
-    font-size: var(--text-xs);
-    margin-bottom: var(--spacing-xs);
+    font-size: var(--text-sm);
   }
   
-  .about-section-header {
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-  
-  .about-section-header h2 {
-    font-size: var(--text-base);
+  .about-image-container {
+    padding: var(--spacing-sm);
   }
 }
 
 /* =============================================================================
-   ACCESSIBILITY & PERFORMANCE
+   EXTRA SMALL MOBILE (375px and below)
    ============================================================================= */
 
-/* Smooth scrolling for the content area */
-.about-page-container {
-  scroll-behavior: smooth;
-  /* -webkit-overflow-scrolling: touch; */
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .about-page-container {
-    scroll-behavior: auto;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .about-section-header,
-  .about-text-content,
-  .about-image-container {
-    border-width: 2px;
-  }
-}
-
-/* Focus states for accessibility */
-.about-image-container:focus-within {
-  outline: 2px solid var(--yo-green);
-  outline-offset: 2px;
-}
-
-/* Print styles */
-@media print {
-  .about-page-heading {
-    position: static;
-    background: white;
-    color: black;
-  }
-  
-  .about-page-container {
-    margin: 0;
-    padding: 1rem;
+@media (max-width: 375px) {
+  .about-page-heading h1 {
+    font-size: var(--text-xl);
   }
   
   .about-content-wrapper {
-    display: block;
-  }
-  
-  .about-image-section {
-    break-inside: avoid;
+    gap: var(--spacing-sm);
   }
 }

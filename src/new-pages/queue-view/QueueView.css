@@ -16,7 +16,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: var(--yo-primary); */
   z-index: 50;
 }
 
@@ -88,11 +87,13 @@
 }
 
 @media (max-width: 768px) {
-  /* Mobile header adjustments - no desktop header/logo on mobile */
+  /* Mobile adjustments - logo and heading now scroll with content on ALL mobile sizes */
   .queue-page-heading {
-    top: calc(95px + 4vh); /* Mobile doesn't show desktop header/logo */
+    position: relative; /* Changed from fixed to relative */
+    top: auto; /* Reset top positioning */
     height: 80px;
-    /* background-color: var(--yo-primary); */
+    margin-top: var(--spacing-md); /* Add some spacing after logo */
+    margin-bottom: var(--spacing-md);
   }
   
   .queue-page-heading h1 {
@@ -100,10 +101,15 @@
   }
   
   .queue-page-container {
-    margin-top: 290px; /* Just the mobile title */
-    margin-bottom: 50px; /* Footer space */
-    padding: var(--spacing-md) var(--spacing-sm);
-    min-height: calc(100vh - 130px); /* Mobile calculation */
+    padding-top: 0; /* Reset padding since logo and heading are now in content flow */
+    padding-bottom: 50px; /* Footer space */
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
+    min-height: auto; /* Let content determine height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .queue-content-wrapper {
@@ -112,28 +118,21 @@
 }
 
 @media (max-width: 480px) {
-  .queue-page-heading {
-    height: 70px;
-    padding: 0 var(--spacing-sm);
-  }
-  
-  .queue-page-heading h1 {
-    font-size: var(--text-xl);
-  }
-  
   .queue-page-container {
-    margin-top: 300px; /* Mobile title only */
     padding: var(--spacing-sm);
-    min-height: calc(100vh - 120px); /* Small mobile calculation */
   }
   
   .queue-content-wrapper {
     gap: var(--spacing-sm);
   }
+  
+  .queue-page-heading h1 {
+    font-size: var(--text-xl);
+  }
 }
 
 /* =============================================================================
-   ACCESSIBILITY & PERFORMANCE - Following Global Standards
+   ACCESSIBILITY & PERFORMANCE
    ============================================================================= */
 
 .queue-page-container {
@@ -150,20 +149,6 @@
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .queue-page-heading {
-    border-width: 2px;
-  }
-}
-
-/* Print styles */
-@media print {
-  .queue-page-heading {
-    position: static;
-    background: white;
-    color: black;
-  }
-  
-  .queue-page-container {
-    margin: 0;
-    padding: 1rem;
+    border-bottom: 2px solid var(--yo-blue);
   }
 }

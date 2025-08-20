@@ -7,18 +7,21 @@
    PAGE LAYOUT - Accounting for Fixed Header, Logo/CommonHeader & Footer
    ============================================================================= */
 
+/* =============================================================================
+   PAGE LAYOUT - Logo and headings scroll with content on ALL screen sizes
+   ============================================================================= */
+
 .contact-page-heading {
-  position: fixed;
-  top: calc(150px + 4vh); /* Below header + logo space */
-  left: 0;
-  right: 0;
-  height: 60px;
+  position: relative; /* Always scrolls with content */
+  top: auto;
+  width: 100%;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
- 
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
   z-index: 50;
-  /* border-bottom: 1px solid var(--yo-green); */
 }
 
 .contact-page-heading h1 {
@@ -31,12 +34,11 @@
 }
 
 .contact-page-container {
-  margin-top: calc(200px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
-  margin-bottom: 50px; /* Footer space */
-  min-height: calc(100vh - 160px - 4vh); /* Full height minus header, logo, title, footer */
-  padding: var(--spacing-lg) var(--spacing-md);
-  overflow-y: visible;
-  overflow-x: hidden;
+  padding-top: 0; /* No fixed elements to account for */
+  padding-bottom: 50px; /* Footer space */
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-md);
+  min-height: 100vh;
 }
 
 /* =============================================================================
@@ -46,7 +48,6 @@
 .contact-content-main {
   max-width: 1200px;
   margin: 0px auto;
-
 }
 
 .contact-content-wrapper {
@@ -62,8 +63,7 @@
 }
 
 .contact-intro-content {
-  
-  border: 1px solid var(--yo-light);
+  border: 1px solid var(--yo-green);
   padding: var(--spacing-xl);
   text-align: center;
 }
@@ -71,7 +71,7 @@
 .contact-intro-content p {
   font-family: var(--font-primary);
   font-size: var(--text-lg);
-  color: var(--yo-light);
+  color: var(--yo-green);
   margin: 0 0 var(--spacing-md) 0;
   line-height: 1.6;
   letter-spacing: 1px;
@@ -92,7 +92,7 @@
 .contact-section {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--yo-light);
+  border: 1px solid var(--yo-green);
   background-color: transparent;
   transition: all var(--transition-normal);
 }
@@ -116,7 +116,6 @@
 }
 
 .contact-section-content {
-  
   padding: var(--spacing-xl);
   flex: 1;
 }
@@ -124,7 +123,7 @@
 .contact-section-content p {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  color: var(--yo-light);
+  color: var(--yo-green);
   margin: 0 0 var(--spacing-md) 0;
   line-height: 1.6;
   letter-spacing: 1px;
@@ -148,7 +147,7 @@
 .contact-service-item {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  color: var(--yo-light);
+  color: var(--yo-green);
   margin-bottom: var(--spacing-xs);
   line-height: 1.6;
   letter-spacing: 1px;
@@ -158,11 +157,10 @@
   margin-bottom: 0;
 }
 
-/* Links */
+/* Contact links */
 .contact-link {
   color: var(--yo-blue);
   text-decoration: none;
-  font-weight: normal;
   transition: color var(--transition-fast);
 }
 
@@ -171,102 +169,57 @@
   text-decoration: underline;
 }
 
-/* Image section */
-.contact-image-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.contact-image-container {
-  max-width: 400px;
-  width: 100%;
-  border: 1px solid var(--yo-light);
-  /* padding: var(--spacing-lg); */
-  position: relative;
-}
-
-.contact-image-container img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: contrast(1.2) brightness(0.9);
-  /* Halftone effect to match design */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
 /* =============================================================================
-   TABLET LAYOUT (768px - 1024px)
+   MOBILE LAYOUT (768px and below) - Logo now scrolls with content
    ============================================================================= */
 
-@media (max-width: 1024px) {
-  .contact-details-grid {
-    gap: var(--spacing-lg);
+/* =============================================================================
+   RESPONSIVE DESIGN - Consistent across ALL screen sizes
+   ============================================================================= */
+
+@media (max-width: 1439px) and (min-width: 1024px) {
+  /* Large laptop adjustments */
+  .contact-page-heading h1 {
+    font-size: var(--text-3xl);
   }
   
   .contact-page-container {
-    padding: var(--spacing-md);
-  }
-  
-  .contact-content-wrapper {
-    gap: var(--spacing-lg);
-  }
-  
-  .contact-section-content {
-    padding: var(--spacing-lg);
-  }
-  
-  .contact-intro-content {
-    padding: var(--spacing-lg);
-  }
-  
-  .contact-intro-content p {
-    font-size: var(--text-base);
-  }
-  
-  .contact-section-content p,
-  .contact-service-item {
-    font-size: var(--text-sm);
-  }
-  
-  .contact-image-container {
-    max-width: 300px;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-md);
   }
 }
 
-/* =============================================================================
-   MOBILE LAYOUT (768px and below) - Matches Mobile Design
-   ============================================================================= */
-
-@media (max-width: 768px) {
-  /* Mobile header adjustments - no desktop header/logo on mobile */
-  .contact-page-heading {
-    top: calc(95px + 4vh); /* Mobile doesn't show desktop header/logo */
-    height: 80px;
-    
-  }
-  
+@media (max-width: 1023px) and (min-width: 769px) {
+  /* Tablet adjustments */
   .contact-page-heading h1 {
     font-size: var(--text-2xl);
   }
   
   .contact-page-container {
-    margin-top: 290px; /* Just the mobile title */
-    margin-bottom: 50px; /* Footer space */
-    padding: var(--spacing-md) var(--spacing-sm);
-    min-height: calc(100vh - 130px); /* Mobile calculation */
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile adjustments */
+  .contact-page-heading h1 {
+    font-size: var(--text-2xl);
+  }
+  
+  .contact-page-container {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
   }
   
   .contact-content-wrapper {
     gap: var(--spacing-lg);
   }
   
-  /* Single column layout for mobile */
+  /* Single column layout on mobile */
   .contact-details-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
   }
   
   .contact-intro-content {
@@ -293,37 +246,18 @@
     margin-bottom: var(--spacing-sm);
   }
   
-  .contact-image-container {
-    max-width: 280px;
+  .contact-section-content strong {
+    font-size: var(--text-base);
   }
 }
 
-/* =============================================================================
-   SMALL MOBILE (480px and below)
-   ============================================================================= */
-
 @media (max-width: 480px) {
-  .contact-page-heading {
-    height: 70px;
-    padding: 0 var(--spacing-sm);
-  }
-  
-  .contact-page-heading h1 {
-    font-size: var(--text-xl);
-  }
-  
   .contact-page-container {
-    margin-top: 300px; /* Mobile title only */
     padding: var(--spacing-sm);
-    min-height: calc(100vh - 120px); /* Small mobile calculation */
   }
   
   .contact-content-wrapper {
     gap: var(--spacing-md);
-  }
-  
-  .contact-details-grid {
-    gap: var(--spacing-sm);
   }
   
   .contact-intro-content {
@@ -353,11 +287,6 @@
   .contact-section-content strong {
     font-size: var(--text-sm);
   }
-  
-  .contact-image-container {
-    max-width: 240px;
-    padding: var(--spacing-sm);
-  }
 }
 
 /* =============================================================================
@@ -367,7 +296,6 @@
 /* Smooth scrolling for the content area */
 .contact-page-container {
   scroll-behavior: smooth;
-  /* -webkit-overflow-scrolling: touch; */
 }
 
 /* Reduced motion support */

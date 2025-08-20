@@ -33,6 +33,33 @@
 }
 
 /* =============================================================================
+   HEADER BAR - Desktop Only
+   ============================================================================= */
+
+.system-menu-header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: var(--yo-gray);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--spacing-lg);
+  z-index: 100;
+  border-bottom: 1px solid var(--yo-green);
+}
+
+.system-menu-timestamp {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--yo-black);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* =============================================================================
    MENU GRID SYSTEM
    ============================================================================= */
 
@@ -90,6 +117,11 @@
 .system-menu-item .menu-label {
   text-align: center;
   line-height: 1.2;
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--yo-green);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 /* =============================================================================
@@ -102,13 +134,12 @@
   gap: var(--spacing-md);
   width: 100%;
   max-width: 900px;
-  margin-bottom: var(--spacing-lg);
 }
 
 .system-menu-full-width-item {
   border: 2px solid var(--yo-green);
   background-color: transparent;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -116,14 +147,14 @@
   cursor: pointer;
   transition: all var(--transition-normal);
   height: 70px;
-  width: 100%;
+  flex: 1;
   gap: var(--spacing-sm);
 }
 
 .system-menu-full-width-item:hover {
   background-color: rgba(159, 255, 130, 0.1);
   transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(159, 255, 130, 0.3);
+  box-shadow: 0 0 15px rgba(159, 255, 130, 0.3);
 }
 
 .system-menu-full-width-item:active {
@@ -131,147 +162,95 @@
 }
 
 .system-menu-full-width-item .menu-icon {
-  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .system-menu-full-width-item .menu-icon img {
   width: 30px;
   height: 30px;
   filter: brightness(0) invert(1);
+  transition: all var(--transition-fast);
 }
 
 .system-menu-full-width-item .menu-label {
   text-align: center;
   line-height: 1.2;
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  color: var(--yo-green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 /* =============================================================================
-   SPECIAL VARIANTS
+   DIALOG STYLES
    ============================================================================= */
-
-.buy-tickets-item {
-  background-color: var(--yo-green) !important;
-  border-color: var(--yo-green) !important;
-}
-
-.buy-tickets-item .menu-label {
-  color: var(--yo-black) !important;
-}
-
-.buy-tickets-item .menu-icon img {
-  filter: brightness(0) !important;
-}
-
-.buy-tickets-item:hover {
-  background-color: var(--yo-light-green) !important;
-  border-color: var(--yo-light-green) !important;
-}
-
-.buy-tickets-item:hover .menu-label {
-  color: var(--yo-black) !important;
-}
-
-/* =============================================================================
-   HEADER BAR
-   ============================================================================= */
-
-.system-menu-header-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 40px;
-  background-color: var(--yo-gray);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 var(--spacing-xl);
-  z-index: 1000;
-}
-
-.system-menu-timestamp {
-  color: var(--yo-primary);
-}
-
-/* =============================================================================
-   LOADING STATES
-   ============================================================================= */
-
-.system-menu-item.loading,
-.system-menu-full-width-item.loading {
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-.system-menu-item.loading::after,
-.system-menu-full-width-item.loading::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--yo-blue);
-  border-top: 2px solid transparent;
-  border-radius: 50%;
-  animation: system-menu-spin 1s linear infinite;
-}
-
-@keyframes system-menu-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* =============================================================================
-   DIALOG STYLING
-   ============================================================================= */
-
-.system-menu-dialog-overlay {
-  background: rgba(9, 35, 19, 0.8) !important;
-  backdrop-filter: blur(5px);
-}
 
 .system-menu-dialog {
-  background: var(--yo-primary) !important;
-  border: 2px solid var(--yo-green) !important;
-  border-radius: 8px;
-  box-shadow: 0 0 30px rgba(159, 255, 130, 0.4) !important;
+  background-color: var(--yo-primary);
+  border: 2px solid var(--yo-green);
+  border-radius: 0;
+  color: var(--yo-green);
+  font-family: var(--font-primary);
+  max-width: 500px;
+  width: 90%;
 }
 
 .system-menu-dialog .dialog-header {
-  background: var(--yo-gray) !important;
-  color: var(--yo-primary) !important;
+  background-color: transparent;
+  border-bottom: 1px solid var(--yo-green);
   padding: var(--spacing-md) var(--spacing-lg);
-  border-bottom: 2px solid var(--yo-green);
-  margin: calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg)) var(--spacing-lg) calc(-1 * var(--spacing-lg));
+}
+
+.system-menu-dialog .dialog-title {
+  font-size: var(--text-xl);
+  color: var(--yo-green);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .system-menu-dialog .dialog-content {
-  color: var(--yo-white) !important;
+  padding: var(--spacing-lg);
+}
+
+.system-menu-dialog .dialog-content p {
+  font-size: var(--text-base);
+  color: var(--yo-green);
   line-height: 1.6;
-  padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+  letter-spacing: 1px;
+  margin: 0;
 }
 
 .system-menu-dialog .dialog-buttons {
   display: flex;
-  justify-content: flex-end;
   gap: var(--spacing-md);
+  justify-content: flex-end;
   padding: var(--spacing-lg);
+  border-top: 1px solid var(--yo-green);
+  background-color: transparent;
   margin: var(--spacing-lg) calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg));
-  border-top: 1px solid rgba(159, 255, 130, 0.3);
 }
 
 .system-menu-dialog .dialog-button {
-  background: transparent !important;
-  border: 2px solid var(--yo-green) !important;
-  color: var(--yo-white) !important;
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
   padding: var(--spacing-sm) var(--spacing-lg);
+  border: 2px solid var(--yo-green);
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--yo-green);
   cursor: pointer;
   transition: all var(--transition-normal);
+  letter-spacing: 1px;
+  text-transform: uppercase;
   min-width: 80px;
 }
 
 .system-menu-dialog .dialog-button:hover {
-  background: rgba(159, 255, 130, 0.1) !important;
+  background-color: rgba(159, 255, 130, 0.1);
   transform: scale(1.05);
   box-shadow: 0 0 15px rgba(159, 255, 130, 0.3);
 }
@@ -318,10 +297,12 @@
 }
 
 @media (max-width: 768px) {
+  /* Mobile adjustments - logo now scrolls with content */
   .system-menu-layout {
     padding: var(--spacing-xl) var(--spacing-md);
     justify-content: flex-start;
-    padding-top: 80px;
+    padding-top: 20px; /* Reduced since logo is now in content flow */
+    min-height: auto; /* Let content determine height */
   }
 
   .system-menu-grid {
@@ -387,7 +368,7 @@
 @media (max-width: 480px) {
   .system-menu-layout {
     padding: var(--spacing-lg) var(--spacing-sm);
-    padding-top: 60px;
+    padding-top: 20px;
   }
 
   .system-menu-grid {

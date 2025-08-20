@@ -1,24 +1,23 @@
 /* =============================================================================
-   TERMS PAGE - RESPONSIVE LAYOUT
-   Designed to work with your globalized header, footer, and design system
+   TERMS PAGE - UNIVERSAL SCROLLING PATTERN
+   Logo and headings scroll with content on ALL screen sizes
    ============================================================================= */
 
 /* =============================================================================
-   PAGE LAYOUT - Accounting for Fixed Header, Logo/CommonHeader & Footer
+   PAGE LAYOUT - Logo and headings scroll with content on ALL screen sizes
    ============================================================================= */
 
 .terms-page-heading {
-  position: fixed;
-  top: calc(150px + 4vh); /* Below header + logo space */
-  left: 0;
-  right: 0;
-  height: 60px;
+  position: relative; /* Always scrolls with content */
+  top: auto;
+  width: 100%;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: var(--yo-primary); */
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
   z-index: 50;
-  /* border-bottom: 1px solid var(--yo-green); */
 }
 
 .terms-page-heading h1 {
@@ -31,12 +30,11 @@
 }
 
 .terms-page-container {
-  margin-top: calc(200px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
-  margin-bottom: 50px; /* Footer space */
-  min-height: calc(100vh - 160px - 4vh); /* Full height minus header, logo, title, footer */
-  padding: var(--spacing-lg) var(--spacing-md);
-  overflow-y: visible;
-  overflow-x: hidden;
+  padding-top: 0; /* No fixed elements to account for */
+  padding-bottom: 50px; /* Footer space */
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-md);
+  min-height: 100vh;
 }
 
 /* =============================================================================
@@ -46,7 +44,6 @@
 .terms-content-main {
   max-width: 1200px;
   margin: 0px auto;
-  /* height: 100%; */
 }
 
 .terms-content-wrapper {
@@ -74,7 +71,7 @@
 .terms-section {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--yo-light);
+  border: 1px solid var(--yo-green);
   background-color: transparent;
   transition: all var(--transition-normal);
 }
@@ -103,7 +100,7 @@
   background-color: var(--yo-primary);
   padding: var(--spacing-xl);
   line-height: 1.6;
-  color: var(--yo-light);
+  color: var(--yo-green);
   font-size: var(--text-base);
   flex: 1;
 }
@@ -111,7 +108,7 @@
 .section-content p {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  color: var(--yo-light);
+  color: var(--yo-green);
   margin: 0 0 var(--spacing-md) 0;
   line-height: 1.6;
   letter-spacing: 1px;
@@ -137,7 +134,7 @@
 .event-details-table tbody tr td {
   padding: var(--spacing-xs) 0;
   vertical-align: top;
-  color: var(--yo-light);
+  color: var(--yo-green);
   font-size: var(--text-base);
   line-height: 1.6;
   font-family: var(--font-primary);
@@ -161,7 +158,7 @@
 }
 
 .event-details-table tbody tr td:nth-child(3) {
-  color: var(--yo-light);
+  color: var(--yo-green);
 }
 
 /* Bullet lists */
@@ -176,7 +173,7 @@
   margin-bottom: var(--spacing-sm);
   line-height: 1.6;
   font-size: var(--text-base);
-  color: var(--yo-light);
+  color: var(--yo-green);
   letter-spacing: 1px;
 }
 
@@ -217,10 +214,32 @@
 }
 
 /* =============================================================================
-   TABLET LAYOUT (768px - 1024px)
+   RESPONSIVE DESIGN - ALL SCREEN SIZES
    ============================================================================= */
 
-@media (max-width: 1024px) {
+/* Large Desktop (≥1440px) */
+@media (min-width: 1440px) {
+  .terms-page-heading h1 {
+    font-size: var(--text-4xl);
+  }
+  
+  .terms-page-container {
+    padding-left: var(--spacing-2xl);
+    padding-right: var(--spacing-xl);
+  }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .terms-page-heading h1 {
+    font-size: var(--text-3xl);
+  }
+  
+  .terms-page-container {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-md);
+  }
+  
   .terms-grid {
     gap: var(--spacing-lg);
   }
@@ -229,8 +248,28 @@
     gap: var(--spacing-md);
   }
   
+  .section-content {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Tablet (769px - 1023px) */
+@media (max-width: 1023px) and (min-width: 769px) {
+  .terms-page-heading h1 {
+    font-size: var(--text-2xl);
+  }
+  
   .terms-page-container {
-    padding: var(--spacing-md);
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
+  }
+  
+  .terms-grid {
+    gap: var(--spacing-lg);
+  }
+  
+  .terms-column {
+    gap: var(--spacing-md);
   }
   
   .section-content {
@@ -250,158 +289,108 @@
   }
 }
 
-/* =============================================================================
-   MOBILE LAYOUT (768px and below) - Matches Mobile Design
-   ============================================================================= */
-
+/* Mobile (≤768px) */
 @media (max-width: 768px) {
-  /* Mobile header adjustments - no desktop header/logo on mobile */
-  .terms-page-heading {
-    top: calc(95px + 4vh); /* Mobile doesn't show desktop header/logo */
-    height: 80px;
-    /* background-color: var(--yo-primary); */
-  }
-  
   .terms-page-heading h1 {
     font-size: var(--text-2xl);
   }
   
   .terms-page-container {
-    margin-top: 290px; /* Just the mobile title */
-    margin-bottom: 50px; /* Footer space */
-    padding: var(--spacing-md) var(--spacing-sm);
-    min-height: calc(100vh - 130px); /* Mobile calculation */
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
   }
   
-  /* Single column layout for mobile */
+  /* Single column layout on mobile */
   .terms-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
   }
   
   .terms-column {
     gap: var(--spacing-md);
   }
   
-  .section-title {
-    font-size: var(--text-lg);
-    padding: var(--spacing-sm) var(--spacing-md);
-  }
-  
   .section-content {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-md);
   }
   
   .section-content p {
     font-size: var(--text-sm);
-    line-height: 1.5;
-    margin-bottom: var(--spacing-sm);
   }
   
   .event-details-table tbody tr td {
-    font-size: var(--text-sm);
-    padding: 4px 0;
-  }
-  
-  .event-details-table tbody tr td:first-child {
-    width: 100px;
-    font-size: var(--text-sm);
-  }
-  
-  .event-details-table tbody tr td:nth-child(2) {
-    padding: 4px 8px;
     font-size: var(--text-sm);
   }
   
   .bullet-list li {
     font-size: var(--text-sm);
-    margin-bottom: var(--spacing-xs);
-  }
-  
-  .bullet-list ul li {
-    font-size: var(--text-xs);
-    margin-bottom: 4px;
   }
 }
 
-/* =============================================================================
-   SMALL MOBILE (480px and below)
-   ============================================================================= */
-
+/* Small Mobile (≤480px) */
 @media (max-width: 480px) {
-  .terms-page-heading {
-    height: 70px;
-    padding: 0 var(--spacing-sm);
-  }
-  
   .terms-page-heading h1 {
     font-size: var(--text-xl);
   }
   
   .terms-page-container {
-    margin-top: 300px; /* Mobile title only */
-    padding: var(--spacing-sm);
-    min-height: calc(100vh - 120px); /* Small mobile calculation */
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-xs);
   }
   
   .terms-grid {
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
   }
   
   .terms-column {
     gap: var(--spacing-sm);
   }
   
-  .section-title {
-    font-size: var(--text-base);
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-  
   .section-content {
-    padding: var(--spacing-md) var(--spacing-sm);
+    padding: var(--spacing-sm);
   }
   
   .section-content p {
     font-size: var(--text-xs);
-    margin-bottom: var(--spacing-xs);
-  }
-  
-  .section-content strong {
-    font-size: var(--text-sm);
   }
   
   .event-details-table tbody tr td {
     font-size: var(--text-xs);
-    padding: 3px 0;
-  }
-  
-  .event-details-table tbody tr td:first-child {
-    width: 80px;
-    font-size: var(--text-xs);
-  }
-  
-  .event-details-table tbody tr td:nth-child(2) {
-    padding: 3px 6px;
-    font-size: var(--text-xs);
-  }
-  
-  .bullet-list {
-    padding-left: 16px;
   }
   
   .bullet-list li {
     font-size: var(--text-xs);
-    margin-bottom: 5px;
+  }
+}
+
+/* Extra Small Mobile (≤375px) */
+@media (max-width: 375px) {
+  .terms-page-heading {
+    height: 70px;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
   }
   
-  .bullet-list ul {
-    padding-left: 16px;
+  .terms-page-heading h1 {
+    font-size: var(--text-lg);
   }
   
-  .bullet-list ul li {
-    font-size: var(--text-xs);
-    margin-bottom: 3px;
+  .terms-page-container {
+    padding-left: var(--spacing-xs);
+    padding-right: var(--spacing-xs);
+  }
+}
+
+/* Tiny Mobile (≤320px) */
+@media (max-width: 320px) {
+  .terms-page-heading {
+    height: 60px;
+    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .terms-page-heading h1 {
+    font-size: var(--text-base);
   }
 }
 
@@ -409,16 +398,18 @@
    ACCESSIBILITY & PERFORMANCE
    ============================================================================= */
 
-/* Smooth scrolling for the content area */
 .terms-page-container {
   scroll-behavior: smooth;
-  /* -webkit-overflow-scrolling: touch; */
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .terms-page-container {
     scroll-behavior: auto;
+  }
+  
+  .terms-section {
+    transition: none;
   }
 }
 
@@ -431,13 +422,6 @@
 
 /* Focus states for accessibility */
 .terms-section:focus-within {
-  outline: 2px solid var(--yo-green);
-  outline-offset: 2px;
-}
-
-.event-details-table a:focus,
-.section-content a:focus,
-.bullet-list a:focus {
   outline: 2px solid var(--yo-green);
   outline-offset: 2px;
 }

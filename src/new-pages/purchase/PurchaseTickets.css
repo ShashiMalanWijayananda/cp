@@ -1,16 +1,37 @@
 /* =============================================================================
-   PURCHASE TICKETS PAGE - DIRECT CARD LAYOUT (No Page Heading)
-   Using global fonts, colors, spacing, and layout patterns
+   PURCHASE TICKETS PAGE - RESPONSIVE LAYOUT
+   Designed to work with your globalized header, footer, and design system
    ============================================================================= */
 
 /* =============================================================================
-   DIRECT LAYOUT - No Page Heading, Card Displays Immediately
+   PAGE LAYOUT - Accounting for Fixed Header, Logo/CommonHeader & Footer
    ============================================================================= */
 
+.purchase-page-heading {
+  position: fixed;
+  top: calc(150px + 4vh); /* Below header + logo space */
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.purchase-page-heading h1 {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl);
+  color: var(--yo-blue);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
 .purchase-page-container-direct {
-  margin-top: calc(150px + 4vh); /* Header (50px) + Logo (4vh) - No title space */
+  margin-top: calc(200px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
   margin-bottom: 50px; /* Footer space */
-  min-height: calc(100vh - 100px - 4vh); /* Full height minus header, logo, footer */
+  min-height: calc(100vh - 160px - 4vh); /* Full height minus header, logo, title, footer */
   padding: var(--spacing-lg) var(--spacing-md);
   overflow-y: visible;
   overflow-x: hidden;
@@ -51,29 +72,25 @@
   align-items: center;
 }
 
-/* =============================================================================
-   LOADING STATE
-   ============================================================================= */
-
+/* Loading state */
 .purchase-loading {
-  width: 100%;
-  max-width: 480px;
-  height: 300px;
-  border: 2px solid var(--yo-green);
-  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(2px);
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--yo-green);
+  background-color: transparent;
 }
 
 .loading-text {
   font-family: var(--font-primary);
   font-size: var(--text-lg);
   color: var(--yo-green);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  animation: pulse 2s infinite;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -96,12 +113,29 @@
 }
 
 @media (max-width: 768px) {
-  /* Mobile header adjustments - no desktop header/logo on mobile */
+  /* Mobile adjustments - logo and heading now scroll with content on ALL mobile sizes */
+  .purchase-page-heading {
+    position: relative; /* Changed from fixed to relative */
+    top: auto; /* Reset top positioning */
+    height: 80px;
+    margin-top: var(--spacing-md); /* Add some spacing after logo */
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .purchase-page-heading h1 {
+    font-size: var(--text-2xl);
+  }
+  
   .purchase-page-container-direct {
-    margin-top: calc(95px + 4vh); /* Mobile doesn't show desktop header/logo */
-    margin-bottom: 50px; /* Footer space */
-    padding: var(--spacing-md) var(--spacing-sm);
-    min-height: calc(100vh - 95px - 4vh); /* Mobile calculation */
+    padding-top: 0; /* Reset padding since logo and heading are now in content flow */
+    padding-bottom: 50px; /* Footer space */
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-sm);
+    min-height: auto; /* Let content determine height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .purchase-content-wrapper {
@@ -111,13 +145,15 @@
 
 @media (max-width: 480px) {
   .purchase-page-container-direct {
-    margin-top: calc(95px + 4vh); /* Mobile title only */
     padding: var(--spacing-sm);
-    min-height: calc(100vh - 95px - 4vh); /* Small mobile calculation */
   }
   
   .purchase-content-wrapper {
     gap: var(--spacing-sm);
+  }
+  
+  .purchase-page-heading h1 {
+    font-size: var(--text-xl);
   }
 }
 

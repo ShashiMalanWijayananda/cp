@@ -7,16 +7,23 @@ import CommonHeader from "../CommonTitle/CommonHeader";
 const AppLayout: FC = () => {
     return (
         <React.Fragment>
-            <div className="flex-col justify-center overflow-y-hidden h-[100vh]">
+            <div className="w-full h-[100vh] overflow-hidden">
                 <Header/>
-               <div className="h-full fixed lg:mt-[4vh] w-full">
-                   <CommonHeader/>
-               </div>
+                
                 <CustomDialog/>
-                <div>
-                    <div
-                        className="flex w-full md:w-auto flex-col justify-center  mx-auto  mt-[10vh] h-[85vh] lg:h-[100vh]">
-                        <Outlet/>
+                
+                {/* Main scrollable content area - logo always scrolls with content */}
+                <div className="w-full h-full overflow-y-auto overflow-x-hidden">
+                    <div className="w-full min-h-full">
+                        {/* Logo inside scrollable content for ALL screen sizes */}
+                        <div className="w-full">
+                            <CommonHeader/>
+                        </div>
+                        
+                        {/* Content wrapper - no padding needed since no fixed elements */}
+                        <div className="w-full">
+                            <Outlet/>
+                        </div>
                     </div>
                 </div>
             </div>
