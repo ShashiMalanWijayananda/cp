@@ -1,6 +1,6 @@
 /* =============================================================================
-   AUTHORIZE TICKETS PAGE - UNIVERSAL SCROLLING PATTERN
-   Logo and headings scroll with content on ALL screen sizes
+   AUTHORIZE TICKETS PAGE - EXACT FIGMA MATCH THEME
+   Consistent with Terms/Protocol and Contact page styling
    ============================================================================= */
 
 /* =============================================================================
@@ -21,13 +21,16 @@
 }
 
 .authorize-tickets-page-heading h1 {
-color: var(--yo-blue);
+  font-family: var(--font-primary); /* VT323 or Jersey 25 */
+  font-size: var(--text-3xl);
+  color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .authorize-tickets-page-container {
+  background: var(--yo-primary);
   padding-top: 0; /* No fixed elements to account for */
   padding-bottom: 50px;
   padding-left: var(--spacing-lg);
@@ -36,7 +39,7 @@ color: var(--yo-blue);
 }
 
 /* =============================================================================
-   MAIN CONTENT LAYOUT
+   MAIN CONTENT LAYOUT - Match other pages
    ============================================================================= */
 
 .authorize-tickets-content-main {
@@ -57,7 +60,7 @@ color: var(--yo-blue);
 }
 
 /* =============================================================================
-   DESKTOP TICKET VIEW
+   DESKTOP TICKET VIEW - Grid Layout
    ============================================================================= */
 
 .authorize-tickets-desktop-view {
@@ -112,7 +115,7 @@ color: var(--yo-blue);
 }
 
 /* =============================================================================
-   TICKET INDICATORS - Clean 3-dot style
+   TICKET INDICATORS - Clean 3-dot style matching Figma exactly
    ============================================================================= */
 
 .authorize-tickets-indicators {
@@ -132,7 +135,7 @@ color: var(--yo-blue);
   height: 6px;
   aspect-ratio: 1 / 1;
   box-sizing: content-box;
-  border-radius: 50%;
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   border: 1.5px solid var(--yo-green);
   background: transparent !important;
   cursor: pointer;
@@ -145,7 +148,7 @@ color: var(--yo-blue);
 }
 
 .authorize-tickets-indicator.active {
-  background: var(--yo-green);
+  background: var(--yo-green) !important;
   transform: scale(1.1);
   box-shadow: 0 0 4px rgba(170, 247, 147, 0.5);
 }
@@ -167,7 +170,7 @@ color: var(--yo-blue);
 }
 
 /* =============================================================================
-   ERROR AND STATUS MESSAGES
+   ERROR AND STATUS MESSAGES - Match theme colors
    ============================================================================= */
 
 .authorize-tickets-error {
@@ -215,7 +218,7 @@ color: var(--yo-blue);
 }
 
 /* =============================================================================
-   SHARE DIALOG - Using Global Dialog System
+   SHARE DIALOG - Match theme styling
    ============================================================================= */
 
 .authorize-tickets-share-dialog {
@@ -231,7 +234,7 @@ color: var(--yo-blue);
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   border: 1px solid var(--yo-green);
-  border-radius: var(--border-radius);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   background-color: rgba(159, 255, 130, 0.05);
 }
 
@@ -247,7 +250,7 @@ color: var(--yo-blue);
   padding: var(--spacing-md);
   text-align: center;
   border: 1px solid var(--yo-blue);
-  border-radius: var(--border-radius);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   background-color: rgba(130, 147, 207, 0.05);
   font-family: var(--font-primary);
   font-size: var(--text-sm);
@@ -255,14 +258,11 @@ color: var(--yo-blue);
 }
 
 /* =============================================================================
-   RESPONSIVE DESIGN - ALL SCREEN SIZES
+   RESPONSIVE DESIGN - Consistent with other pages
    ============================================================================= */
 
 /* Large Desktop (≥1440px) */
 @media (min-width: 1440px) {
-  .authorize-tickets-page-heading h1 {
-}
-  
   .authorize-tickets-page-container {
     padding-left: var(--spacing-2xl);
     padding-right: var(--spacing-xl);
@@ -271,9 +271,6 @@ color: var(--yo-blue);
 
 /* Desktop (1024px - 1439px) */
 @media (max-width: 1439px) and (min-width: 1024px) {
-  .authorize-tickets-page-heading h1 {
-}
-  
   .authorize-tickets-page-container {
     padding-left: var(--spacing-lg);
     padding-right: var(--spacing-md);
@@ -286,9 +283,6 @@ color: var(--yo-blue);
 
 /* Tablet (769px - 1023px) */
 @media (max-width: 1023px) and (min-width: 769px) {
-  .authorize-tickets-page-heading h1 {
-}
-  
   .authorize-tickets-page-container {
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-sm);
@@ -301,9 +295,6 @@ color: var(--yo-blue);
 
 /* Mobile (≤768px) */
 @media (max-width: 768px) {
-  .authorize-tickets-page-heading h1 {
-}
-
   .authorize-tickets-page-container {
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-sm);
@@ -429,15 +420,18 @@ color: var(--yo-blue);
   }
   
   .authorize-tickets-mobile-container,
-  .authorize-tickets-indicator {
+  .authorize-tickets-indicator,
+  .authorize-tickets-share-option,
+  .authorize-tickets-share-info {
     transition: none;
   }
 }
 
 @media (prefers-contrast: high) {
   .authorize-tickets-indicator,
-  .authorize-tickets-share-option {
-    border-width: 3px;
+  .authorize-tickets-share-option,
+  .authorize-tickets-share-info {
+    border-width: 2px;
   }
 }
 

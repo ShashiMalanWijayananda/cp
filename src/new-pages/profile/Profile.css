@@ -1,6 +1,6 @@
 /* =============================================================================
-   PROFILE PAGE - COMPLETE WITH BADGES & AVATAR SYSTEM
-   Universal scrolling pattern with all original content preserved
+   PROFILE PAGE - EXACT FIGMA MATCH THEME
+   Consistent with Terms/Protocol, Contact, About, and AuthorizeTickets styling
    ============================================================================= */
 
 /* =============================================================================
@@ -21,14 +21,16 @@
 }
 
 .profile-page-heading h1 {
-color: var(--yo-blue);
+  font-family: var(--font-primary); /* VT323 or Jersey 25 */
+  font-size: var(--text-3xl);
+  color: var(--yo-blue);
   margin: 0;
-
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .profile-page-container {
+  background: var(--yo-primary);
   padding-top: 0; /* No fixed elements to account for */
   padding-bottom: 50px;
   padding-left: var(--spacing-lg);
@@ -68,14 +70,12 @@ color: var(--yo-blue);
   display: flex;
   align-items: center;
   gap: var(--spacing-2xl);
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: var(--spacing-xl);
 }
 
-
-
 /* =============================================================================
-   BADGE SYSTEM - Complete Implementation
+   BADGE SYSTEM - Match Figma Design with Sharp Corners
    ============================================================================= */
 
 .badge-container {
@@ -92,8 +92,8 @@ color: var(--yo-blue);
   object-fit: contain;
   cursor: pointer;
   transition: all var(--transition-normal);
-  border: 2px solid transparent;
-  border-radius: 8px;
+  border: 2px solid var(--yo-green);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   padding: var(--spacing-xs);
   background-color: rgba(159, 255, 130, 0.1);
 }
@@ -108,12 +108,22 @@ color: var(--yo-blue);
   width: 80px;
   height: 80px;
   border: 2px dashed var(--yo-gray);
-  border-radius: 8px;
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   background-color: rgba(217, 217, 217, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  color: var(--yo-gray);
+}
+
+.badge-placeholder::after {
+  content: "✗";
 }
 
 /* =============================================================================
-   BADGE POPUP SYSTEM
+   BADGE POPUP SYSTEM - Match Theme
    ============================================================================= */
 
 .badge-popup-overlay {
@@ -133,7 +143,7 @@ color: var(--yo-blue);
 .badge-popup-content {
   background-color: var(--yo-primary);
   border: 2px solid var(--yo-green);
-  border-radius: 0;
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   max-width: 500px;
   width: 100%;
   max-height: 90vh;
@@ -178,7 +188,8 @@ color: var(--yo-blue);
   align-items: center;
   justify-content: center;
   background-color: rgba(159, 255, 130, 0.1);
-  border-radius: 8px;
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  border: 1px solid var(--yo-green);
   padding: var(--spacing-sm);
 }
 
@@ -194,7 +205,7 @@ color: var(--yo-blue);
 
 .badge-title {
   font-family: var(--font-primary);
-  font-size: var(--h4-size);
+  font-size: var(--text-xl);
   color: var(--yo-green);
   font-weight: normal;
   letter-spacing: 2px;
@@ -204,14 +215,18 @@ color: var(--yo-blue);
 }
 
 .badge-description {
-color: var(--yo-gray);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--yo-gray);
   margin: 0 0 var(--spacing-lg) 0;
   line-height: 1.6;
   letter-spacing: 1px;
 }
 
 .badge-popup-concerts h4 {
-color: var(--yo-white);
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  color: var(--yo-white);
   font-weight: normal;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -235,7 +250,7 @@ color: var(--yo-white);
 }
 
 /* =============================================================================
-   PROFILE FORM LAYOUT - Horizontal Label-Input Arrangement
+   PROFILE FORM LAYOUT - Match Figma Design (One line on desktop)
    ============================================================================= */
 
 .details-form {
@@ -246,20 +261,18 @@ color: var(--yo-white);
   max-width: 100%;
 }
 
-/* Form Group Layout - Horizontal Side-by-Side */
+/* Form Group Layout - Horizontal Side-by-Side on Desktop */
 .profile-main .form-group {
-  display: contents;
+  display: flex;
   align-items: center;
   gap: var(--spacing-md);
   width: 100%;
   margin-bottom: var(--spacing-sm);
-/* Force horizontal layout */
 }
 
-/* Label Layout - Fixed Width Left Column */
+/* Label Layout - Fixed Width Left Column on Desktop */
 .profile-main .form-group label {
   min-width: 180px;
-  /* width: 180px; */
   flex-shrink: 0;
   text-align: left;
   margin: 0;
@@ -267,27 +280,26 @@ color: var(--yo-white);
   font-size: var(--text-base);
   color: var(--yo-green);
   letter-spacing: 1px;
-  /* text-transform: uppercase; */
 }
 
-/* Input Wrapper Layout - Flexible Right Column */
+/* Input Wrapper Layout - Flexible Right Column on Desktop */
 .profile-main .input-wrapper {
-  /* flex: 1; */
+  flex: 1;
   width: auto;
   max-width: none;
 }
 
-/* Form Input Styling */
+/* Form Input Styling - Editable Fields */
 .field-value-profile {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  padding: var(--input-padding);
-  border: var(--input-border-width) solid var(--yo-green);
-  border-radius: var(--input-border-radius);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--yo-green);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   background-color: transparent;
   color: var(--yo-green);
   letter-spacing: 1px;
-  height: var(--input-height);
+  height: 40px;
   box-sizing: border-box;
   transition: all var(--transition-fast);
   width: 100%;
@@ -304,14 +316,31 @@ color: var(--yo-white);
   opacity: 0.7;
 }
 
+/* Non-Editable Fields - Display Only */
+.field-value-readonly {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--yo-gray);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  background-color: rgba(217, 217, 217, 0.1);
+  color: var(--yo-gray);
+  letter-spacing: 1px;
+  height: 40px;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 /* Submit Button */
 .update-button {
   font-family: var(--font-primary);
-  font-size: var(--btn-font-size);
-  padding: var(--btn-padding);
-  height: var(--btn-height);
-  border: 2px solid var(--yo-green);
-  border-radius: var(--btn-border-radius);
+  font-size: var(--text-base);
+  padding: var(--spacing-md) var(--spacing-xl);
+  height: 50px;
+  border: 1px solid var(--yo-green);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   background-color: var(--yo-green);
   color: var(--yo-primary);
   letter-spacing: 2px;
@@ -339,14 +368,11 @@ color: var(--yo-white);
 }
 
 /* =============================================================================
-   RESPONSIVE DESIGN - ALL SCREEN SIZES
+   RESPONSIVE DESIGN - Consistent with other pages
    ============================================================================= */
 
 /* Large Desktop (≥1440px) */
 @media (min-width: 1440px) {
-  .profile-page-heading h1 {
-}
-  
   .profile-page-container {
     padding-left: var(--spacing-2xl);
     padding-right: var(--spacing-xl);
@@ -355,9 +381,6 @@ color: var(--yo-white);
 
 /* Desktop (1024px - 1439px) */
 @media (max-width: 1439px) and (min-width: 1024px) {
-  .profile-page-heading h1 {
-}
-  
   .profile-page-container {
     padding-left: var(--spacing-lg);
     padding-right: var(--spacing-md);
@@ -372,8 +395,6 @@ color: var(--yo-white);
     gap: var(--spacing-xl);
   }
   
- 
-
   .badge-item,
   .badge-placeholder {
     width: 70px;
@@ -383,9 +404,6 @@ color: var(--yo-white);
 
 /* Tablet (769px - 1023px) */
 @media (max-width: 1023px) and (min-width: 769px) {
-  .profile-page-heading h1 {
-}
-  
   .profile-page-container {
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-sm);
@@ -402,9 +420,6 @@ color: var(--yo-white);
     align-items: center;
     text-align: center;
   }
-  
-
-
   
   .badge-container {
     grid-template-columns: repeat(4, 1fr);
@@ -419,11 +434,8 @@ color: var(--yo-white);
   }
 }
 
-/* Mobile (≤768px) */
+/* Mobile (≤768px) - Stack labels above inputs */
 @media (max-width: 768px) {
-  .profile-page-heading h1 {
-}
-  
   .profile-page-container {
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-sm);
@@ -440,7 +452,6 @@ color: var(--yo-white);
     align-items: center;
     text-align: center;
   }
-  
 
   .badge-container {
     grid-template-columns: repeat(4, 1fr);
@@ -489,9 +500,6 @@ color: var(--yo-white);
 
 /* Small Mobile (≤480px) */
 @media (max-width: 480px) {
-  .profile-page-heading h1 {
-}
-  
   .profile-page-container {
     padding-left: var(--spacing-sm);
     padding-right: var(--spacing-xs);
@@ -505,8 +513,6 @@ color: var(--yo-white);
   .profile-info-row {
     gap: var(--spacing-md);
   }
-  
-
   
   .badge-container {
     max-width: 260px;
@@ -539,44 +545,15 @@ color: var(--yo-white);
   }
   
   .update-button {
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     padding: 10px 16px;
-    height: 36px;
+    height: 40px;
     min-width: 180px;
   }
 }
 
-/* Extra Small Mobile (≤375px) */
-@media (max-width: 375px) {
-  .profile-page-heading {
-    height: 70px;
-    margin-top: var(--spacing-sm);
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .profile-page-heading h1 {
-}
-  
-  .profile-page-container {
-    padding-left: var(--spacing-xs);
-    padding-right: var(--spacing-xs);
-  }
-}
-
-/* Tiny Mobile (≤320px) */
-@media (max-width: 320px) {
-  .profile-page-heading {
-    height: 60px;
-    margin-top: var(--spacing-xs);
-    margin-bottom: var(--spacing-xs);
-  }
-  
-  .profile-page-heading h1 {
-}
-}
-
 /* =============================================================================
-   ACCESSIBILITY & PERFORMANCE
+   ACCESSIBILITY & PERFORMANCE - Consistent with other pages
    ============================================================================= */
 
 .profile-page-container {
@@ -599,7 +576,11 @@ color: var(--yo-white);
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .profile-main,
-  .badge-popup-content {
+  .badge-popup-content,
+  .field-value-profile,
+  .field-value-readonly,
+  .badge-item,
+  .badge-placeholder {
     border-width: 2px;
   }
 }
@@ -630,5 +611,13 @@ color: var(--yo-white);
   .profile-main {
     border: 1px solid black;
     background: white;
+  }
+  
+  .profile-main .form-group label,
+  .field-value-profile,
+  .field-value-readonly,
+  .badge-title,
+  .badge-description {
+    color: black !important;
   }
 }

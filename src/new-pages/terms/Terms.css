@@ -1,6 +1,5 @@
-
 /* =============================================================================
-   TERMS PAGE - THEME + LAYOUT
+   TERMS PAGE - EXACT FIGMA MATCH
    ============================================================================= */
 
 .terms-page-container {
@@ -19,14 +18,20 @@
   margin: var(--spacing-md) 0;
   z-index: 2;
 }
+
 .terms-page-heading h1 {
+  font-family: var(--font-primary); /* VT323 or Jersey 25 */
+  font-size: var(--text-3xl);
   color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-.terms-content-main { max-width: 1200px; margin: 0 auto; }
+.terms-content-main { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
 
 .terms-content-wrapper {
   display: flex;
@@ -48,26 +53,29 @@
   gap: var(--spacing-lg);
 }
 
-/* Card */
+/* Card - REMOVED BORDER RADIUS to match Figma */
 .terms-section {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--yo-green);
-  border-radius: 6px;
+  border: 1px solid var(--yo-white);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   overflow: hidden;
   background: transparent;
   transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
 }
+
 .terms-section:hover {
   background: rgba(159,255,130,0.05);
   box-shadow: 0 0 10px rgba(159,255,130,0.1);
 }
 
-/* Title bar (white) */
+/* Title bar (white background, black text) - Exact Figma match */
 .section-title {
   background: var(--yo-white);
   color: var(--yo-black);
+  font-family: var(--font-primary); /* Ensure consistent font */
   font-size: var(--text-xl);
+  font-weight: normal;
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: var(--spacing-md);
@@ -75,86 +83,205 @@
   line-height: 1.2;
 }
 
-/* Body */
+/* Body - Exact Figma colors */
 .section-content {
   background: var(--yo-primary);
-  color: var(--yo-green);
+  color: var(--yo-white);
+  font-family: var(--font-primary);
   padding: var(--spacing-xl);
   line-height: 1.6;
   font-size: var(--text-base);
 }
 
-.section-content p { margin: 0 0 var(--spacing-md) 0; letter-spacing: 1px; }
-.section-content p:last-child { margin-bottom: 0; }
-.section-content strong { color: var(--yo-white); font-weight: normal; font-size: var(--text-lg); }
+.section-content p { 
+  margin: 0 0 var(--spacing-md) 0; 
+  letter-spacing: 1px;
+  color: var(--yo-white); /* Ensure consistent green */
+}
 
-/* Event table */
-.event-details-table { width: 100%; border-collapse: collapse; margin-top: var(--spacing-sm); }
-.event-details-table td { padding: var(--spacing-xs) 0; vertical-align: top; font-size: var(--text-base); }
-.event-details-table td:first-child { color: var(--yo-white); white-space: nowrap; width: 140px; }
-.event-details-table td:nth-child(2) { color: var(--yo-white); width: 20px; text-align: center; padding: 0 var(--spacing-sm); }
-.event-details-table td:nth-child(3) { color: var(--yo-green); }
+.section-content p:last-child { 
+  margin-bottom: 0; 
+}
 
-/* Lists */
-.bullet-list { list-style: disc; padding-left: 20px; margin: var(--spacing-md) 0; }
-.bullet-list li { margin-bottom: var(--spacing-sm); color: var(--yo-green); letter-spacing: 1px; }
-.bullet-list li::marker { color: var(--yo-green); }
-.bullet-list ul { list-style: circle; padding-left: 20px; margin: var(--spacing-xs) 0 0 0; }
-.bullet-list ul li { margin-bottom: var(--spacing-xs); font-size: var(--text-sm); }
-.bullet-list ul li::marker { color: var(--yo-green); }
+.section-content strong { 
+  color: var(--yo-white); 
+  font-weight: normal; 
+  font-size: var(--text-lg); 
+}
 
-/* Links */
+/* Event table - Match Figma exactly */
+.event-details-table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: var(--spacing-sm); 
+}
+
+.event-details-table td { 
+  padding: var(--spacing-xs) 0; 
+  vertical-align: top; 
+  font-size: var(--text-base);
+  font-family: var(--font-primary);
+}
+
+.event-details-table td:first-child { 
+  color: var(--yo-white); 
+  white-space: nowrap; 
+  width: 140px; 
+}
+
+.event-details-table td:nth-child(2) { 
+  color: var(--yo-white); 
+  width: 20px; 
+  text-align: center; 
+  padding: 0 var(--spacing-sm); 
+}
+
+.event-details-table td:nth-child(3) { 
+  color: var(--yo-white); 
+}
+
+/* Lists - Exact Figma styling */
+.bullet-list { 
+  list-style: disc; 
+  padding-left: 20px; 
+  margin: var(--spacing-md) 0; 
+}
+
+.bullet-list li { 
+  margin-bottom: var(--spacing-sm); 
+  color: var(--yo-white); 
+  letter-spacing: 1px;
+  font-family: var(--font-primary);
+}
+
+.bullet-list li::marker { 
+  color: var(--yo-white); 
+}
+
+.bullet-list ul { 
+  list-style: circle; 
+  padding-left: 20px; 
+  margin: var(--spacing-xs) 0 0 0; 
+}
+
+.bullet-list ul li { 
+  margin-bottom: var(--spacing-xs); 
+  font-size: var(--text-sm);
+  color: var(--yo-white);
+}
+
+.bullet-list ul li::marker { 
+  color: var(--yo-white); 
+}
+
+/* Links - Match Figma colors */
 .section-content a,
 .event-details-table a,
-.bullet-list a { color: var(--yo-blue); text-decoration: none; }
+.bullet-list a { 
+  color: var(--yo-blue); 
+  text-decoration: none;
+  font-family: var(--font-primary);
+}
+
 .section-content a:hover,
 .event-details-table a:hover,
-.bullet-list a:hover { color: var(--yo-light-green); text-decoration: underline; text-underline-offset: 2px; }
+.bullet-list a:hover { 
+  color: var(--yo-light-green); 
+  text-decoration: underline; 
+  text-underline-offset: 2px; 
+}
 
 /* ---------------------- KEY FIX: align last box bottoms on desktop ---------------------- */
 @media (min-width: 1024px) {
   /* Push the last card in each column to the bottom so both columns end aligned */
-  .terms-column .terms-section:last-child { margin-top: auto; }
+  .terms-column .terms-section:last-child { 
+    margin-top: auto; 
+  }
 }
 
 /* ---------------------- RESPONSIVE ---------------------- */
 
 /* Desktop wide (≥1440px) */
 @media (min-width: 1440px) {
-  .terms-page-container { padding: 0 var(--spacing-xl) 60px var(--spacing-2xl); }
-  .section-content { padding: var(--spacing-xl); }
+  .terms-page-container { 
+    padding: 0 var(--spacing-xl) 60px var(--spacing-2xl); 
+  }
+  
+  .section-content { 
+    padding: var(--spacing-xl); 
+  }
+  
   /* Ensure bottom alignment also at this breakpoint */
-  .terms-column .terms-section:last-child { margin-top: auto; }
+  .terms-column .terms-section:last-child { 
+    margin-top: auto; 
+  }
 }
 
 /* Tablet (769–1023px) */
 @media (max-width: 1023px) and (min-width: 769px) {
-  .terms-page-container { padding: 0 var(--spacing-md) 40px var(--spacing-lg); }
-  .terms-grid { gap: var(--spacing-lg); }
-  .terms-column { gap: var(--spacing-md); }
+  .terms-page-container { 
+    padding: 0 var(--spacing-md) 40px var(--spacing-lg); 
+  }
+  
+  .terms-grid { 
+    gap: var(--spacing-lg); 
+  }
+  
+  .terms-column { 
+    gap: var(--spacing-md); 
+  }
+  
   .section-content,
-  .event-details-table td { font-size: var(--text-sm); padding: var(--spacing-lg); }
+  .event-details-table td { 
+    font-size: var(--text-sm); 
+    padding: var(--spacing-lg); 
+  }
 }
 
 /* Mobile (≤768px) -> single column, no forced bottom alignment */
 @media (max-width: 768px) {
-  .terms-page-container { padding: 0 var(--spacing-sm) 40px var(--spacing-sm); }
-  .terms-grid { grid-template-columns: 1fr; gap: var(--spacing-lg); }
-  .terms-column .terms-section:last-child { margin-top: 0; }
-  .section-content { padding: var(--spacing-md); }
+  .terms-page-container { 
+    padding: 0 var(--spacing-sm) 40px var(--spacing-sm); 
+  }
+  
+  .terms-grid { 
+    grid-template-columns: 1fr; 
+    gap: var(--spacing-lg); 
+  }
+  
+  .terms-column .terms-section:last-child { 
+    margin-top: 0; 
+  }
+  
+  .section-content { 
+    padding: var(--spacing-md); 
+  }
+  
   .event-details-table td,
-  .bullet-list li { font-size: var(--text-sm); }
+  .bullet-list li { 
+    font-size: var(--text-sm); 
+  }
 }
 
 /* Small (≤480px) */
 @media (max-width: 480px) {
-  .section-content { padding: var(--spacing-sm); }
+  .section-content { 
+    padding: var(--spacing-sm); 
+  }
+  
   .event-details-table td,
-  .bullet-list li { font-size: var(--text-xs); }
+  .bullet-list li { 
+    font-size: var(--text-xs); 
+  }
 }
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .terms-page-container { scroll-behavior: auto; }
-  .terms-section { transition: none; }
+  .terms-page-container { 
+    scroll-behavior: auto; 
+  }
+  
+  .terms-section { 
+    transition: none; 
+  }
 }

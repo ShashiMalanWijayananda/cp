@@ -1,5 +1,6 @@
 /* =============================================================================
-   ABOUT PAGE – THEME MATCHED + IMAGE LOCKING (375 / 425 / 760)
+   ABOUT PAGE - EXACT FIGMA MATCH THEME
+   Consistent with Terms/Protocol and Contact page styling
    ============================================================================= */
 
 /* Page title area */
@@ -16,7 +17,9 @@
 }
 
 .about-page-heading h1 {
-  color: var(--yo-blue, #8bd1e5);   /* cyan title like reference */
+  font-family: var(--font-primary); /* VT323 or Jersey 25 */
+  font-size: var(--text-3xl);
+  color: var(--yo-blue, #8bd1e5);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -24,6 +27,7 @@
 
 /* Page container */
 .about-page-container {
+  background: var(--yo-primary);
   padding-top: 0;
   padding-bottom: 50px; /* room for global footer */
   padding-left: var(--spacing-lg, 24px);
@@ -46,20 +50,36 @@
 }
 
 /* =========================
-   TEXT SIDE
+   TEXT SIDE - Match Terms/Contact styling exactly
    ========================= */
 .about-text-section {
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--yo-white);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  overflow: hidden;
+  background: transparent;
+  transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
 }
 
-/* Grey header bar merged with the text box border */
+.about-text-section:hover {
+  background: rgba(159,255,130,0.05);
+  box-shadow: 0 0 10px rgba(159,255,130,0.1);
+}
+
+/* Header bar - Same styling as Terms/Contact section titles */
 .about-section-header {
-  background: var(--yo-panel, #d9d9d9);
-  border: 1px solid var(--yo-green, #2aa178);
-  border-width: 1px 1px 0 1px;  /* sits directly on the box below */
-  padding: var(--spacing-lg, 24px) var(--spacing-xl, 28px);
+  background: var(--yo-white);
+  color: var(--yo-black);
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin: 0;
+  padding: var(--spacing-md);
+  line-height: 1.2;
+  border: none; /* Remove individual border since parent has it */
 }
 
 .about-section-header h2 {
@@ -67,29 +87,38 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: normal;
-  color: var(--yo-ink, #0b0b0b);
+  color: var(--yo-black);
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
 }
 
-/* Text box with yo-green border & yo-green copy */
+/* Text content - Same styling as Terms/Contact content areas */
 .about-text-content {
-  border: 1px solid var(--yo-green, #2aa178);
+  background: var(--yo-primary);
+  color: var(--yo-white);
+  font-family: var(--font-primary);
   padding: var(--spacing-xl, 28px);
-  background: transparent;
+  flex: 1;
+  line-height: 1.6;
+  font-size: var(--text-base);
+  border: none; /* Remove individual border since parent has it */
 }
 
 .about-text-content p {
-  font-family: var(--font-primary, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-family: var(--font-primary);
   font-size: var(--text-base, 16px);
   line-height: 1.6;
-  color: var(--yo-green, #2aa178);
-  margin-bottom: var(--spacing-md, 16px);
+  color: var(--yo-white, #2aa178);
+  margin: 0 0 var(--spacing-md, 16px) 0;
   letter-spacing: 1px;
 }
 
-.about-text-content p:last-child { margin-bottom: 0; }
+.about-text-content p:last-child { 
+  margin-bottom: 0; 
+}
 
 /* =========================
-   IMAGE SIDE
+   IMAGE SIDE - Match theme borders
    ========================= */
 .about-image-section {
   display: flex;
@@ -98,8 +127,8 @@
 }
 
 .about-image-container {
-  /* No border around image */
-  border: 0;
+  /* border: 1px solid var(--yo-white); */
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   padding: 0;
   background: transparent;
   width: 100%;
@@ -108,6 +137,12 @@
   align-items: stretch;
   justify-content: center;
   overflow: hidden;       /* crop left/right if needed on desktop */
+  transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
+}
+
+.about-image-container:hover {
+  background: rgba(159,255,130,0.05);
+  box-shadow: 0 0 10px rgba(159,255,130,0.1);
 }
 
 /* Default/mobile-first: width lock */
@@ -121,7 +156,7 @@
 }
 
 /* =========================
-   RESPONSIVE TUNING
+   RESPONSIVE TUNING - Consistent with other pages
    ========================= */
 
 /* Large laptop */
@@ -138,39 +173,97 @@
     padding-left: var(--spacing-md, 16px);
     padding-right: var(--spacing-sm, 12px);
   }
+  
+  .about-text-content {
+    padding: var(--spacing-lg);
+  }
 }
 
 /* ===== Exact breakpoint groups you requested ===== */
 
 /* ≤374.98px (very small phones) */
 @media (max-width: 374.98px) {
-  .about-page-container { padding: 12px; }
-  .about-content-wrapper { display: flex; flex-direction: column; gap: 12px; align-items: center; }
-  .about-section-header { padding: 10px 12px; }
-  .about-text-content { padding: 14px; }
+  .about-page-container { 
+    padding: 12px; 
+  }
+  
+  .about-content-wrapper { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+    align-items: center; 
+  }
+  
+  .about-section-header { 
+    padding: 10px 12px; 
+  }
+  
+  .about-text-content { 
+    padding: 14px; 
+  }
 }
 
 /* 375–424.98px */
 @media (min-width: 375px) and (max-width: 424.98px) {
-  .about-page-container { padding: 14px; }
-  .about-content-wrapper { display: flex; flex-direction: column; gap: 16px; align-items: center; }
-  .about-section-header { padding: 12px 14px; }
-  .about-text-content { padding: 16px; }
+  .about-page-container { 
+    padding: 14px; 
+  }
+  
+  .about-content-wrapper { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+    align-items: center; 
+  }
+  
+  .about-section-header { 
+    padding: 12px 14px; 
+  }
+  
+  .about-text-content { 
+    padding: 16px; 
+  }
 }
 
 /* 425–760.98px */
 @media (min-width: 425px) and (max-width: 760.98px) {
-  .about-page-container { padding: 18px; }
-  .about-content-wrapper { display: flex; flex-direction: column; gap: 18px; align-items: center; }
-  .about-section-header { padding: 14px 16px; }
-  .about-text-content { padding: 18px; }
+  .about-page-container { 
+    padding: 18px; 
+  }
+  
+  .about-content-wrapper { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 18px; 
+    align-items: center; 
+  }
+  
+  .about-section-header { 
+    padding: 14px 16px; 
+  }
+  
+  .about-text-content { 
+    padding: 18px; 
+  }
 }
 
 /* Mobile (≤760.98px): enforce width lock & image first */
 @media (max-width: 760.98px) {
-  .about-image-section { order: 1; width: 100%; max-width: none; }
-  .about-text-section  { order: 2; width: 100%; }
-  .about-image-container { height: auto; }
+  .about-image-section { 
+    order: 1; 
+    width: 100%; 
+    max-width: none; 
+  }
+  
+  .about-text-section  { 
+    order: 2; 
+    width: 100%; 
+  }
+  
+  .about-image-container { 
+    height: auto; 
+  }
+  
   .about-image-container img {
     width: 100% !important;
     height: auto !important;
@@ -187,7 +280,9 @@
     align-items: stretch;
   }
 
-  .about-image-section { align-self: stretch; }
+  .about-image-section { 
+    align-self: stretch; 
+  }
 
   .about-image-container {
     width: 100% !important;
@@ -199,5 +294,68 @@
     height: 100% !important;  /* lock to box height on desktop */
     width: auto !important;
     object-fit: cover !important; /* fill vertically; crop L/R if needed */
+  }
+}
+
+/* =============================================================================
+   ACCESSIBILITY & PERFORMANCE - Consistent with other pages
+   ============================================================================= */
+
+/* Smooth scrolling for the content area */
+.about-page-container {
+  scroll-behavior: smooth;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .about-page-container {
+    scroll-behavior: auto;
+  }
+  
+  .about-text-section,
+  .about-image-container {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .about-text-section,
+  .about-image-container {
+    border-width: 2px;
+  }
+}
+
+/* Focus states for accessibility */
+.about-text-section:focus-within,
+.about-image-container:focus-within {
+  outline: 2px solid var(--yo-white);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .about-page-heading {
+    position: static;
+    background: white;
+    color: black;
+  }
+  
+  .about-page-container {
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  .about-content-wrapper {
+    display: block;
+  }
+  
+  .about-text-section {
+    break-inside: avoid;
+  }
+  
+  .about-section-header h2,
+  .about-text-content p {
+    color: black !important;
   }
 }

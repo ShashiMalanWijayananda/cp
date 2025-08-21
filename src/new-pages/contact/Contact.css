@@ -1,10 +1,6 @@
 /* =============================================================================
-   CONTACT PAGE - RESPONSIVE LAYOUT
-   Designed to work with your globalized header, footer, and design system
-   ============================================================================= */
-
-/* =============================================================================
-   PAGE LAYOUT - Accounting for Fixed Header, Logo/CommonHeader & Footer
+   CONTACT PAGE - EXACT FIGMA MATCH THEME
+   Consistent with Terms/Protocol page styling
    ============================================================================= */
 
 /* =============================================================================
@@ -25,13 +21,16 @@
 }
 
 .contact-page-heading h1 {
-color: var(--yo-blue);
+  font-family: var(--font-primary); /* VT323 or Jersey 25 */
+  font-size: var(--text-3xl);
+  color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .contact-page-container {
+  background: var(--yo-primary);
   padding-top: 0; /* No fixed elements to account for */
   padding-bottom: 50px; /* Footer space */
   padding-left: var(--spacing-lg);
@@ -40,7 +39,7 @@ color: var(--yo-blue);
 }
 
 /* =============================================================================
-   DESKTOP LAYOUT (Matches your design system)
+   DESKTOP LAYOUT - Matches Terms page design exactly
    ============================================================================= */
 
 .contact-content-main {
@@ -55,21 +54,36 @@ color: var(--yo-blue);
   height: 100%;
 }
 
-/* Introduction section */
+/* Introduction section - Same styling as Terms sections */
 .contact-intro-section {
   width: 100%;
 }
 
 .contact-intro-content {
-  border: 1px solid var(--yo-green);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--yo-white);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  background: transparent;
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
+}
+
+.contact-intro-content:hover {
+  background: rgba(159,255,130,0.05);
+  box-shadow: 0 0 10px rgba(159,255,130,0.1);
+}
+
+.contact-intro-content {
   padding: var(--spacing-xl);
   text-align: center;
+  background: var(--yo-primary);
 }
 
 .contact-intro-content p {
   font-family: var(--font-primary);
   font-size: var(--text-lg);
-  color: var(--yo-green);
+  color: var(--yo-white);
   margin: 0 0 var(--spacing-md) 0;
   line-height: 1.6;
   letter-spacing: 1px;
@@ -86,22 +100,25 @@ color: var(--yo-blue);
   gap: var(--spacing-xl);
 }
 
-/* Contact section */
+/* Contact section - Exact same styling as Terms sections */
 .contact-section {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--yo-green);
-  background-color: transparent;
-  transition: all var(--transition-normal);
+  border: 1px solid var(--yo-white);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  overflow: hidden;
+  background: transparent;
+  transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
 }
 
 .contact-section:hover {
-  background-color: rgba(159, 255, 130, 0.05);
-  box-shadow: 0 0 10px rgba(159, 255, 130, 0.1);
+  background: rgba(159,255,130,0.05);
+  box-shadow: 0 0 10px rgba(159,255,130,0.1);
 }
 
+/* Title bar - Exact same as Terms page */
 .contact-section-title {
-  background-color: var(--yo-gray);
+  background: var(--yo-white);
   color: var(--yo-black);
   font-family: var(--font-primary);
   font-size: var(--text-xl);
@@ -113,15 +130,21 @@ color: var(--yo-blue);
   line-height: 1.2;
 }
 
+/* Content area - Exact same as Terms page */
 .contact-section-content {
+  background: var(--yo-primary);
+  color: var(--yo-white);
+  font-family: var(--font-primary);
   padding: var(--spacing-xl);
   flex: 1;
+  line-height: 1.6;
+  font-size: var(--text-base);
 }
 
 .contact-section-content p {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  color: var(--yo-green);
+  color: var(--yo-white);
   margin: 0 0 var(--spacing-md) 0;
   line-height: 1.6;
   letter-spacing: 1px;
@@ -137,7 +160,7 @@ color: var(--yo-blue);
   font-size: var(--text-lg);
 }
 
-/* Service list */
+/* Service list - Styled like Terms bullet lists */
 .contact-service-list {
   margin-top: var(--spacing-sm);
 }
@@ -145,8 +168,8 @@ color: var(--yo-blue);
 .contact-service-item {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  color: var(--yo-green);
-  margin-bottom: var(--spacing-xs);
+  color: var(--yo-white);
+  margin-bottom: var(--spacing-sm);
   line-height: 1.6;
   letter-spacing: 1px;
 }
@@ -155,31 +178,51 @@ color: var(--yo-blue);
   margin-bottom: 0;
 }
 
-/* Contact links */
+/* Contact links - Same as Terms links */
 .contact-link {
   color: var(--yo-blue);
   text-decoration: none;
+  font-family: var(--font-primary);
   transition: color var(--transition-fast);
 }
 
 .contact-link:hover {
   color: var(--yo-light-green);
   text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Image section - Match Terms styling */
+.contact-image-section {
+  width: 100%;
+  margin-top: var(--spacing-lg);
+}
+
+.contact-image-container {
+  border: 1px solid var(--yo-white);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners */
+  overflow: hidden;
+  background: transparent;
+  transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
+}
+
+.contact-image-container:hover {
+  background: rgba(159,255,130,0.05);
+  box-shadow: 0 0 10px rgba(159,255,130,0.1);
+}
+
+.contact-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* =============================================================================
-   MOBILE LAYOUT (768px and below) - Logo now scrolls with content
-   ============================================================================= */
-
-/* =============================================================================
-   RESPONSIVE DESIGN - Consistent across ALL screen sizes
+   RESPONSIVE DESIGN - Consistent with Terms page
    ============================================================================= */
 
 @media (max-width: 1439px) and (min-width: 1024px) {
   /* Large laptop adjustments */
-  .contact-page-heading h1 {
-}
-  
   .contact-page-container {
     padding-left: var(--spacing-lg);
     padding-right: var(--spacing-md);
@@ -188,22 +231,24 @@ color: var(--yo-blue);
 
 @media (max-width: 1023px) and (min-width: 769px) {
   /* Tablet adjustments */
-  .contact-page-heading h1 {
-}
-  
   .contact-page-container {
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-sm);
+  }
+  
+  .contact-details-grid {
+    gap: var(--spacing-lg);
+  }
+  
+  .contact-section-content {
+    padding: var(--spacing-lg);
   }
 }
 
 @media (max-width: 768px) {
   /* Mobile adjustments */
-  .contact-page-heading h1 {
-}
-  
   .contact-page-container {
-    padding-left: var(--spacing-md);
+    padding-left: var(--spacing-sm);
     padding-right: var(--spacing-sm);
   }
   
@@ -232,7 +277,7 @@ color: var(--yo-blue);
   }
   
   .contact-section-content {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-md);
   }
   
   .contact-section-content p,
@@ -256,7 +301,7 @@ color: var(--yo-blue);
   }
   
   .contact-intro-content {
-    padding: var(--spacing-md) var(--spacing-sm);
+    padding: var(--spacing-sm);
   }
   
   .contact-intro-content p {
@@ -270,7 +315,7 @@ color: var(--yo-blue);
   }
   
   .contact-section-content {
-    padding: var(--spacing-md) var(--spacing-sm);
+    padding: var(--spacing-sm);
   }
   
   .contact-section-content p,
@@ -298,24 +343,31 @@ color: var(--yo-blue);
   .contact-page-container {
     scroll-behavior: auto;
   }
+  
+  .contact-section,
+  .contact-intro-content,
+  .contact-image-container {
+    transition: none;
+  }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .contact-section,
-  .contact-intro-content {
+  .contact-intro-content,
+  .contact-image-container {
     border-width: 2px;
   }
 }
 
 /* Focus states for accessibility */
 .contact-section:focus-within {
-  outline: 2px solid var(--yo-green);
+  outline: 2px solid var(--yo-white);
   outline-offset: 2px;
 }
 
 .contact-link:focus {
-  outline: 2px solid var(--yo-green);
+  outline: 2px solid var(--yo-white);
   outline-offset: 2px;
 }
 
@@ -338,5 +390,11 @@ color: var(--yo-blue);
   
   .contact-section {
     break-inside: avoid;
+  }
+  
+  .contact-section-title,
+  .contact-section-content p,
+  .contact-service-item {
+    color: black !important;
   }
 }

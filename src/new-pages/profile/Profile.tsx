@@ -51,7 +51,7 @@ const Profile: FC = () => {
         data: updateResponse,
         loading: loadingUpdate,
         error: updateError
-    }] = useMutation(UPDATE_PROFILE, { fetchPolicy: "network-only" })
+    }] = useMutation(UPDATE_PROFILE, { fetchPolicy: "network-only" });
 
     useEffect(() => {
         const t = setInterval(() => setNow(new Date()), 1000);
@@ -60,10 +60,10 @@ const Profile: FC = () => {
 
     useEffect(() => {
         if (user?.id !== null) {
-            getUserProfile({ variables: { userId: user?.id } })
-            getArchiveConcert({ variables: { contact: user?.contact } })
+            getUserProfile({ variables: { userId: user?.id } });
+            getArchiveConcert({ variables: { contact: user?.contact } });
         }
-    }, [user, location])
+    }, [user, location]);
 
     useEffect(() => {
         const response = myProfile?.getMyProfile as IAPIResponse;
@@ -71,14 +71,14 @@ const Profile: FC = () => {
             setSystemUser(response?.data);
             setOriginalUser(JSON.parse(JSON.stringify(response?.data)));
         }
-    }, [myProfile])
+    }, [myProfile]);
 
     useEffect(() => {
         const response = concerts?.getConcertArchive as IAPIResponse;
         if (response?.code === "CODE-3000") {
             setArchiveConcert(response?.data);
         }
-    }, [concerts])
+    }, [concerts]);
 
     const handleUserInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -86,11 +86,11 @@ const Profile: FC = () => {
             ...prevUser,
             [name]: value,
         }));
-    }
+    };
 
     const handlingCloseAlert = () => {
         setAlert(prev => ({ ...prev, visible: false }));
-    }
+    };
 
     const handleUpdate = async () => {
         if (!isFormChanged()) {
@@ -100,7 +100,7 @@ const Profile: FC = () => {
         axiosClient.post("/user/update", systemUser)
             .then((response) => {
                 const data = response.data;
-                console.log(response?.data)
+                console.log(response?.data);
                 if (data?.code === "CODE-011") {
                     setOriginalUser(JSON.parse(JSON.stringify(systemUser)));
                     setAlert({
@@ -133,16 +133,13 @@ const Profile: FC = () => {
                     });
                 }
             });
-    }
+    };
 
     const isFormChanged = () => {
         if (!originalUser || !systemUser) return false;
         return (
             originalUser.firstName !== systemUser.firstName ||
             originalUser.lastName !== systemUser.lastName ||
-            originalUser.email !== systemUser.email ||
-            originalUser.nic !== systemUser.nic ||
-            originalUser.contact !== systemUser.contact ||
             (systemUser.provider === "LOCAL" && originalUser.password !== systemUser.password)
         );
     };
@@ -215,7 +212,7 @@ const Profile: FC = () => {
         const details = getBadgeDetails(badgeType);
         setSelectedBadgeDetails(details);
         setIsBadgePopupOpen(true);
-    }
+    };
 
     const closeBadgePopup = () => {
         setIsBadgePopupOpen(false);
@@ -281,211 +278,210 @@ const Profile: FC = () => {
         return badges;
     };
 
-    // Profile.tsx - Add this to the existing file after line that contains the return statement
+    return (
+        <>
+            {/* Page heading that scrolls with content */}
+            <div className="profile-page-heading">
+                <h1>Profile</h1>
+            </div>
 
-return (
-    <>
-        {/* Page heading that scrolls with content */}
-        <div className="profile-page-heading">
-            <h1>My Profile</h1>
-        </div>
+            {/* Main page container (sits inside AppLayout Outlet) */}
+            <main className="profile-page-container" role="main">
+                
+                {/* Alerts */}
+                <Alert 
+                    message={alert.message} 
+                    type={alert.type}
+                    visible={alert.visible}
+                    autoCloseDelay={3000} 
+                    autoClose={true}
+                    onClose={handlingCloseAlert}
+                />
 
-        {/* Main page container (sits inside AppLayout Outlet) */}
-        <main className="profile-page-container" role="main">
-            
-            {/* Alerts */}
-            <Alert 
-                message={alert.message} 
-                type={alert.type}
-                visible={alert.visible}
-                autoCloseDelay={3000} 
-                autoClose={true}
-                onClose={handlingCloseAlert}
-            />
-
-            {/* Main content area */}
-            <section className="profile-content-main">
-                <div className="profile-main">
-                    
-                    {/* Profile info row with avatar and badges */}
-                    <div className="profile-info-row">
+                {/* Main content area */}
+                <section className="profile-content-main">
+                    <div className="profile-main">
                         
-                        
-                        <div className="badge-container" aria-label="Achievement badges">
-                            {renderBadges()}
-                        </div>
-                    </div>
-
-                    {/* Form - Profile fields */}
-                    <form className="details-form" onSubmit={(e) => e.preventDefault()}>
-                        
-                        {/* First Name Field */}
-                        <div className="form-group">
-                            <label htmlFor="firstName">First Name:</label>
-                            <div className="input-wrapper">
-                                <input
-                                    id="firstName"
-                                    type="text"
-                                    value={systemUser?.firstName || ""}
-                                    onChange={handleUserInput}
-                                    name="firstName"
-                                    className="field-value-profile"
-                                    aria-label="First name"
-                                />
+                        {/* Profile info row with badges */}
+                        <div className="profile-info-row">
+                            <div className="badge-container" aria-label="Achievement badges">
+                                {renderBadges()}
                             </div>
                         </div>
 
-                        {/* Last Name Field */}
-                        <div className="form-group">
-                            <label htmlFor="lastName">Last Name:</label>
-                            <div className="input-wrapper">
-                                <input
-                                    id="lastName"
-                                    type="text"
-                                    value={systemUser?.lastName || ""}
-                                    onChange={handleUserInput}
-                                    name="lastName"
-                                    className="field-value-profile"
-                                    aria-label="Last name"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Email Field */}
-                        <div className="form-group">
-                            <label htmlFor="email">Email Address:</label>
-                            <div className="input-wrapper">
-                                <input
-                                    id="email"
-                                    type="email"
-                                    value={systemUser?.email || ""}
-                                    onChange={handleUserInput}
-                                    name="email"
-                                    className="field-value-profile"
-                                    aria-label="Email address"
-                                />
-                            </div>
-                        </div>
-
-                        {/* NIC Field */}
-                        <div className="form-group">
-                            <label htmlFor="nic">NIC Number:</label>
-                            <div className="input-wrapper">
-                                <input
-                                    id="nic"
-                                    type="text"
-                                    value={systemUser?.nic || ""}
-                                    onChange={handleUserInput}
-                                    name="nic"
-                                    className="field-value-profile"
-                                    aria-label="NIC number"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Contact Field */}
-                        <div className="form-group">
-                            <label htmlFor="contact">Contact Number:</label>
-                            <div className="input-wrapper">
-                                <input
-                                    id="contact"
-                                    type="text"
-                                    value={systemUser?.contact || ""}
-                                    onChange={handleUserInput}
-                                    name="contact"
-                                    className="field-value-profile"
-                                    aria-label="Contact number"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Password Field - Only for LOCAL provider */}
-                        {systemUser?.provider === "LOCAL" && (
+                        {/* Form - Profile fields */}
+                        <form className="details-form" onSubmit={(e) => e.preventDefault()}>
+                            
+                            {/* First Name Field - EDITABLE */}
                             <div className="form-group">
-                                <label htmlFor="password">Password:</label>
+                                <label htmlFor="firstName">First Name :</label>
                                 <div className="input-wrapper">
                                     <input
-                                        id="password"
-                                        type="password"
-                                        value={systemUser?.password || ""}
+                                        id="firstName"
+                                        type="text"
+                                        value={systemUser?.firstName || ""}
                                         onChange={handleUserInput}
-                                        name="password"
+                                        name="firstName"
                                         className="field-value-profile"
-                                        placeholder="**************"
-                                        aria-label="Password"
+                                        aria-label="First name"
                                     />
                                 </div>
                             </div>
-                        )}
 
-                        {/* Update Button */}
-                        <button
-                            type="button"
-                            className="update-button"
-                            onClick={handleUpdate}
-                            disabled={!isFormChanged()}
-                            aria-label="Update profile information"
-                        >
-                            Update
-                        </button>
-                    </form>
-                </div>
-            </section>
-            
-        </main>
+                            {/* Last Name Field - EDITABLE */}
+                            <div className="form-group">
+                                <label htmlFor="lastName">Last Name :</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="lastName"
+                                        type="text"
+                                        value={systemUser?.lastName || ""}
+                                        onChange={handleUserInput}
+                                        name="lastName"
+                                        className="field-value-profile"
+                                        aria-label="Last name"
+                                    />
+                                </div>
+                            </div>
 
-        {/* Badge popup modal */}
-        {isBadgePopupOpen && selectedBadgeDetails && (
-            <div 
-                className="badge-popup-overlay" 
-                onClick={closeBadgePopup}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="badge-title"
-                aria-describedby="badge-description"
-            >
-                <div className="badge-popup-content" onClick={(e) => e.stopPropagation()}>
-                    <header className="badge-popup-header">
-                        <button 
-                            className="badge-popup-close" 
-                            onClick={closeBadgePopup}
-                            aria-label="Close badge details"
-                        >
-                            ×
-                        </button>
-                    </header>
-                    <div className="badge-popup-body">
-                        <div className="badge-image-container">
-                            <img
-                                src={selectedBadgeDetails.image}
-                                alt={selectedBadgeDetails.title}
-                                className="badge-popup-image"
-                            />
-                        </div>
-                        <div className="badge-info">
-                            <h2 id="badge-title" className="badge-title">{selectedBadgeDetails.title}</h2>
-                            <p id="badge-description" className="badge-description">{selectedBadgeDetails.description}</p>
-                            {selectedBadgeDetails.concerts.length > 0 && (
-                                <div className="badge-popup-concerts">
-                                    <h4>Related Concerts:</h4>
-                                    <ul>
-                                        {selectedBadgeDetails.concerts.map((concert, index) => (
-                                            <li key={index}>{concert.concert}</li>
-                                        ))}
-                                    </ul>
+                            {/* Email Field - READONLY */}
+                            <div className="form-group">
+                                <label htmlFor="email">Email Address :</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        value={systemUser?.email || ""}
+                                        name="email"
+                                        className="field-value-readonly"
+                                        aria-label="Email address"
+                                        readOnly
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+
+                            {/* NIC Field - READONLY */}
+                            <div className="form-group">
+                                <label htmlFor="nic">NIC Number :</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="nic"
+                                        type="text"
+                                        value={systemUser?.nic || ""}
+                                        name="nic"
+                                        className="field-value-readonly"
+                                        aria-label="NIC number"
+                                        readOnly
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Contact Field - READONLY */}
+                            <div className="form-group">
+                                <label htmlFor="contact">Contact Number :</label>
+                                <div className="input-wrapper">
+                                    <input
+                                        id="contact"
+                                        type="text"
+                                        value={systemUser?.contact || ""}
+                                        name="contact"
+                                        className="field-value-readonly"
+                                        aria-label="Contact number"
+                                        readOnly
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Password Field - EDITABLE (Only for LOCAL provider) */}
+                            {systemUser?.provider === "LOCAL" && (
+                                <div className="form-group">
+                                    <label htmlFor="password">Password :</label>
+                                    <div className="input-wrapper">
+                                        <input
+                                            id="password"
+                                            type="password"
+                                            value={systemUser?.password || ""}
+                                            onChange={handleUserInput}
+                                            name="password"
+                                            className="field-value-profile"
+                                            placeholder="**************"
+                                            aria-label="Password"
+                                        />
+                                    </div>
                                 </div>
                             )}
+
+                            {/* Update Button */}
+                            <button
+                                type="button"
+                                className="update-button"
+                                onClick={handleUpdate}
+                                disabled={!isFormChanged()}
+                                aria-label="Update profile information"
+                            >
+                                Update
+                            </button>
+                        </form>
+                    </div>
+                </section>
+                
+            </main>
+
+            {/* Badge popup modal */}
+            {isBadgePopupOpen && selectedBadgeDetails && (
+                <div 
+                    className="badge-popup-overlay" 
+                    onClick={closeBadgePopup}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="badge-title"
+                    aria-describedby="badge-description"
+                >
+                    <div className="badge-popup-content" onClick={(e) => e.stopPropagation()}>
+                        <header className="badge-popup-header">
+                            <button 
+                                className="badge-popup-close" 
+                                onClick={closeBadgePopup}
+                                aria-label="Close badge details"
+                            >
+                                ×
+                            </button>
+                        </header>
+                        <div className="badge-popup-body">
+                            <div className="badge-image-container">
+                                <img
+                                    src={selectedBadgeDetails.image}
+                                    alt={selectedBadgeDetails.title}
+                                    className="badge-popup-image"
+                                />
+                            </div>
+                            <div className="badge-info">
+                                <h2 id="badge-title" className="badge-title">{selectedBadgeDetails.title}</h2>
+                                <p id="badge-description" className="badge-description">{selectedBadgeDetails.description}</p>
+                                {selectedBadgeDetails.concerts.length > 0 && (
+                                    <div className="badge-popup-concerts">
+                                        <h4>Related Concerts:</h4>
+                                        <ul>
+                                            {selectedBadgeDetails.concerts.map((concert, index) => (
+                                                <li key={index}>{concert.concert}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        )}
-        
-        {/* Global scrolling footer message */}
-        <GlobalFooter text="**** AGENT PORTAL ACTIVE **** SECURE CONNECTION **** DATA ENCRYPTED **** SYSTEM OPERATIONAL **** " />
-        
-    </>
-);
+            )}
+            
+            {/* Global scrolling footer message */}
+            <GlobalFooter text="**** AGENT PORTAL ACTIVE **** SECURE CONNECTION **** DATA ENCRYPTED **** SYSTEM OPERATIONAL **** " />
+            
+        </>
+    );
 };
 
 export default Profile;

@@ -1,56 +1,108 @@
 .ticket-card{
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 0px;
     border: 1px #AFD0D6 solid;
+    border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
 }
 
 .ticket-card .ticket-card-view {
-    zoom: 0.8;
+    zoom: 0.7; /* REDUCED zoom to make tickets smaller */
     width: 350px;
     height: 700px;
     background-color: #000D05;
     padding: 10px;
     box-sizing: border-box;
-    /*border-radius: 15px;*/
+    border-radius: 0;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    font-family: 'Jersey 25', sans-serif;
+    font-family: var(--font-primary);
+}
+
+/* MORE SPECIFIC FIX: Target unlocked tickets with higher specificity */
+.ticket-card .ticket-card-view.zoneA,
+.ticket-card .ticket-card-view.zoneZ {
+    zoom: 0.7 !important; /* REDUCED zoom to make tickets smaller */
+    width: 350px !important;
+    height: 700px !important;
+    transform: none !important;
+    scale: none !important;
+}
+
+/* Ensure shared/unlocked tickets match exactly */
+.ticket-card .ticket-card-view[class*="zone"]:not(.locked) {
+    zoom: 0.7 !important; /* REDUCED zoom to make tickets smaller */
+    width: 350px !important;
+    height: 700px !important;
+    transform: none !important;
+    scale: none !important;
 }
 
 .ticket-card .assigner-box {
-
-    height: 80px;
+    height: auto;
     width: 100%;
-    width: 200px;
+    max-width: 350px;
     cursor: pointer;
-
+    margin-top: var(--spacing-sm);
 }
 
 .ticket-card .assigner-box .assigner {
-    border-radius: 10px;
+    border: 1px solid var(--yo-white);
+    border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+    background: rgba(159, 255, 130, 0.05);
     text-overflow: ellipsis;
-    margin-top:10px;
-    padding: 5px;
+    margin-top: 10px;
+    padding: var(--spacing-md);
     width: 100%;
+    box-sizing: border-box;
     user-select: none;
-    font-size: .7rem;
+    font-size: var(--text-sm);
     position: relative;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
     display: flex;
-    bottom: 0px;
-    color:#ffffff;
-    gap: 2px;
+    color: var(--yo-white);
+    gap: var(--spacing-xs);
     flex-direction: column;
-    font-family: VT323;
+    font-family: var(--font-primary); /* Use consistent font */
+    letter-spacing: 1px;
+    transition: all var(--transition-normal);
 }
 
+.ticket-card .assigner-box .assigner:hover {
+    background: rgba(159, 255, 130, 0.1);
+    box-shadow: 0 0 10px rgba(159, 255, 130, 0.1);
+}
+
+.ticket-card .assigner-box .assigner .download {
+    color: var(--yo-blue);
+    font-size: var(--text-base);
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-xs);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.ticket-card .assigner-box .assigner .download:hover {
+    color: var(--yo-light-green);
+    text-decoration: underline;
+}
+
+.ticket-card .assigner-box .assigner p {
+    margin: 0;
+    color: var(--yo-white);
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1.4;
+}
 
 .ticket-card .ticket-card-view.zoneA {
     --header-text: #C49799;
@@ -63,18 +115,17 @@
 }
 
 .ticket-card .ticket-card-view.locked {
-    zoom: 0.8;
+    zoom: 0.7; /* REDUCED zoom to match other tickets */
     width: 350px;
     height: 700px;
     background-color: #1e0202;
     margin: 0 auto;
     box-sizing: border-box;
+    border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     filter: grayscale(80%) brightness(0.6);
-    /*border: 2px solid #ffffff;*/
-    /*box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);*/
     cursor: pointer;
 }
 
@@ -112,13 +163,12 @@
     background-position: center 25px;
     transform: translate(-50%, -50%);
     z-index: 2;
-    /*filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));*/
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    font-family: 'Jersey 25', sans-serif;
+    font-family: var(--font-primary); /* Use consistent font */
     text-align: center;
-    border-radius: 10px;
+    border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
     padding: 10px;
     padding-bottom: 15px;
     box-sizing: border-box;
@@ -131,7 +181,7 @@
 }
 
 .ticket-card .ticket-card-view .header {
-    font-family: 'Jersey 25', sans-serif;
+    font-family: var(--font-primary); /* Use consistent font */
     font-size: clamp(20px, 3vw, 25px);
     color: var(--header-text);
 }
@@ -142,7 +192,7 @@
 }
 
 .ticket-card .ticket-card-view .ticket-layout {
-    /*border-radius: 20px 20px 0px 0px;*/
+    border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
     width: 100%;
     height: 85%;
     display: flex;
@@ -209,6 +259,16 @@
     justify-content: center;
     gap: 10px;
     color: var(--yo-rose);
+    font-family: var(--font-primary); /* Use consistent font */
+}
+
+/* FIXED: QR CODE "Access Code" font styling to match Figma exactly */
+.ticket-card .ticket-card-view .ticket-layout .qr-info .font-vt323,
+.ticket-card .ticket-card-view .font-vt323 {
+    font-family: var(--font-primary) !important; /* Force consistent font */
+    font-size: clamp(14px, 3vw, 18px) !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .ticket-card .ticket-card-view .ticket-card-logo {
@@ -250,10 +310,12 @@
     padding: 5px;
     height: 50px;
     display: flex;
-    font-family: VT323;
+    font-family: var(--font-primary); /* Use consistent font */
     justify-content: center;
     flex-direction: column;
+    border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
 }
+
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-2px); }
@@ -263,15 +325,6 @@
 .ticket-card .ticket-card-view.locked:hover {
     animation: shake 0.5s ease-in-out;
 }
-
-/*@keyframes pulse-red {*/
-/*    0%, 100% {*/
-/*        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);*/
-/*    }*/
-/*    50% {*/
-/*        box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);*/
-/*    }*/
-/*}*/
 
 .ticket-card .ticket-card-view.locked {
     animation: pulse-red 2s ease-in-out infinite;
@@ -283,9 +336,23 @@
         height: 620px;
         padding: 6px;
     }
+    
     .ticket-card .ticket-card-view.locked{
         height: 620px;
         width: 320px;
+    }
+
+    .ticket-card .assigner-box {
+        max-width: 320px;
+    }
+
+    .ticket-card .assigner-box .assigner {
+        padding: var(--spacing-sm);
+        font-size: var(--text-xs);
+    }
+
+    .ticket-card .assigner-box .assigner .download {
+        font-size: var(--text-sm);
     }
 
     .ticket-card .ticket-card-view.locked::after {
@@ -295,6 +362,7 @@
         background-size: 50px 50px;
         background-position: center 20px;
         padding-bottom: 12px;
+        border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
     }
 
     .ticket-card .ticket-card-view .ticket-layout {
@@ -335,19 +403,24 @@
 }
 
 @media (max-width: 480px) {
-
     .ticket-card .ticket-card-view,
     .ticket-card-view.locked {
         width: 280px;
-        height: 600px;
+        height: 560px;
         padding: 5px;
     }
 
+    .ticket-card .assigner-box {
+        max-width: 280px;
+    }
 
-    .ticket-card .ticket-card-view.locked {
-        width: 280px;
-        height: 560px;
-        padding: 5px;
+    .ticket-card .assigner-box .assigner {
+        padding: var(--spacing-xs);
+        font-size: var(--text-xs);
+    }
+
+    .ticket-card .assigner-box .assigner .download {
+        font-size: var(--text-sm);
     }
 
     .ticket-card .ticket-card-view.locked::after {
@@ -357,6 +430,7 @@
         background-size: 40px 40px;
         background-position: center 15px;
         padding-bottom: 10px;
+        border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
     }
 
     .ticket-card .ticket-card-view .ticket-layout {
@@ -393,16 +467,27 @@
         gap: 10px;
         width: 85%;
     }
-
 }
 
 @media (max-width: 360px) {
-
     .ticket-card .ticket-card-view,
     .ticket-card-view.locked {
         width: 260px;
         height: 520px;
         padding: 4px;
+    }
+
+    .ticket-card .assigner-box {
+        max-width: 260px;
+    }
+
+    .ticket-card .assigner-box .assigner {
+        padding: var(--spacing-xs);
+        font-size: 10px;
+    }
+
+    .ticket-card .assigner-box .assigner .download {
+        font-size: var(--text-xs);
     }
 
     .ticket-card .ticket-card-view.locked::after {
@@ -412,6 +497,7 @@
         background-size: 35px 35px;
         background-position: center 12px;
         padding-bottom: 8px;
+        border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
     }
 
     .ticket-card .ticket-card-view .ticket-layout {
@@ -474,7 +560,7 @@
 
 .desc {
     font-size: clamp(15px, 3vw, 20px);
-    font-family: 'Jersey 25', sans-serif;
+    font-family: var(--font-primary); /* Use consistent font */
     padding-top: 1.5rem;
     width: 80%;
     color: #ffffff;
@@ -487,15 +573,17 @@
 .download {
     color: var(--yo-blue);
     font-size: clamp(15px, 3vw, 15px);
+    font-family: var(--font-primary); /* Use consistent font */
 }
 
 .access-code {
     font-size: clamp(15px, 3vw, 20px);
     background-color: #1a1a1a;
+    font-family: var(--font-primary); /* Use consistent font */
 }
 
 .row-font {
-    font-family: VT323, monospace;
+    font-family: var(--font-primary) !important; /* Use consistent font */
     font-size: clamp(18px, 3vw, 20px);
 }
 
@@ -507,4 +595,5 @@
     color: var(--header-text);
     padding-top: 10px;
     font-size: clamp(25px, 3vw, 20px);
+    font-family: var(--font-primary); /* Use consistent font */
 }

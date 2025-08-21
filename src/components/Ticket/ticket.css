@@ -1,6 +1,6 @@
 /* =============================================================================
-   MY TICKETS PAGE - YOGESHWARI DESIGN SYSTEM
-   Matching the authorize tickets layout and styling
+   MY TICKETS PAGE - EXACT FIGMA MATCH THEME
+   Consistent with Terms/Protocol, Contact, About, and AuthorizeTickets styling
    ============================================================================= */
 
 /* =============================================================================
@@ -8,6 +8,7 @@
    ============================================================================= */
 
 .my-tickets-page-container {
+  background: var(--yo-primary);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +23,7 @@
 }
 
 /* =============================================================================
-   PAGE HEADING - Global Typography System
+   PAGE HEADING - Consistent with other pages
    ============================================================================= */
 
 .my-tickets-page-heading {
@@ -41,17 +42,16 @@
 
 .my-tickets-page-title {
   font-family: var(--font-primary);
-  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-size: var(--text-3xl);
   color: var(--yo-blue);
   text-align: center;
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(130, 147, 207, 0.3);
 }
 
 /* =============================================================================
-   MAIN CONTENT AREA
+   MAIN CONTENT AREA - Match other pages
    ============================================================================= */
 
 .my-tickets-content-main {
@@ -127,7 +127,7 @@
 }
 
 /* =============================================================================
-   TICKET INDICATORS - Clean 3-dot style matching Figma
+   TICKET INDICATORS - Clean style matching Figma exactly
    ============================================================================= */
 
 .my-tickets-indicators {
@@ -147,7 +147,7 @@
   height: 6px;
   aspect-ratio: 1 / 1;
   box-sizing: content-box;
-  border-radius: 50%;
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   border: 1.5px solid var(--yo-green);
   background: transparent !important;
   cursor: pointer;
@@ -175,7 +175,7 @@
 }
 
 /* =============================================================================
-   EMPTY STATE - No Tickets
+   EMPTY STATE - No Tickets (Match theme styling)
    ============================================================================= */
 
 .my-tickets-empty-state {
@@ -187,36 +187,44 @@
   padding: var(--spacing-2xl);
   max-width: 500px;
   margin: 0 auto;
+  border: 1px solid var(--yo-green);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  background: rgba(159, 255, 130, 0.05);
 }
 
 .my-tickets-empty-icon {
   font-size: 4rem;
   margin-bottom: var(--spacing-lg);
   opacity: 0.7;
+  color: var(--yo-green);
 }
 
 .my-tickets-empty-title {
   font-family: var(--font-primary);
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: var(--text-xl);
   color: var(--yo-white);
   margin: 0 0 var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .my-tickets-empty-description {
-  color: var(--yo-white);
+  color: var(--yo-green);
+  font-family: var(--font-primary);
   opacity: 0.8;
   margin: 0 0 var(--spacing-xl);
   line-height: 1.6;
+  letter-spacing: 1px;
 }
 
 .my-tickets-browse-button {
-  background: linear-gradient(45deg, var(--yo-blue), var(--yo-green));
-  border: none;
-  border-radius: 8px;
+  background: var(--yo-green);
+  border: 1px solid var(--yo-green);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   color: var(--yo-primary);
   padding: var(--spacing-md) var(--spacing-xl);
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: var(--text-base);
+  font-weight: normal;
   font-family: var(--font-primary);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -225,12 +233,13 @@
 }
 
 .my-tickets-browse-button:hover {
+  background: transparent;
+  color: var(--yo-green);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(130, 147, 207, 0.4);
 }
 
 /* =============================================================================
-   LOADING AND ERROR STATES
+   LOADING AND ERROR STATES - Match theme colors
    ============================================================================= */
 
 .my-tickets-loading,
@@ -243,9 +252,11 @@
   padding: var(--spacing-xl);
   color: var(--yo-white);
   font-family: var(--font-primary);
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: var(--text-lg);
   text-align: center;
   gap: var(--spacing-lg);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .my-tickets-error {
@@ -255,13 +266,15 @@
 .my-tickets-retry-button {
   background: transparent;
   border: 2px solid var(--yo-rose);
-  border-radius: 8px;
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   color: var(--yo-rose);
   padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: 1rem;
+  font-size: var(--text-base);
   font-family: var(--font-primary);
   cursor: pointer;
   transition: all var(--transition-normal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .my-tickets-retry-button:hover {
@@ -270,7 +283,7 @@
 }
 
 /* =============================================================================
-   TICKET SUMMARY
+   TICKET SUMMARY - Match theme styling
    ============================================================================= */
 
 .my-tickets-summary {
@@ -280,7 +293,7 @@
   gap: var(--spacing-xl);
   padding: var(--spacing-lg);
   border: 1px solid var(--yo-green);
-  border-radius: 8px;
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   background: rgba(159, 255, 130, 0.05);
   margin-top: var(--spacing-lg);
   flex-wrap: wrap;
@@ -295,21 +308,22 @@
 
 .my-tickets-summary-label {
   color: var(--yo-white);
+  font-family: var(--font-primary);
   opacity: 0.8;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .my-tickets-summary-value {
   color: var(--yo-green);
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: var(--text-xl);
+  font-weight: normal;
   font-family: var(--font-primary);
 }
 
 /* =============================================================================
-   ACTION BUTTONS
+   ACTION BUTTONS - Match theme styling
    ============================================================================= */
 
 .my-tickets-actions {
@@ -322,10 +336,10 @@
 .my-tickets-refresh-button {
   background: transparent;
   border: 2px solid var(--yo-blue);
-  border-radius: 8px;
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   color: var(--yo-blue);
   padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: 1rem;
+  font-size: var(--text-base);
   font-family: var(--font-primary);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -363,7 +377,113 @@
 }
 
 /* =============================================================================
-   RESPONSIVE DESIGN - Using Global Breakpoints
+   TICKET CONTAINER STYLES - Match TicketCard theme
+   ============================================================================= */
+
+.ticket-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.ticket-wrapper {
+  border: 1px solid var(--yo-green);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  background: transparent;
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
+}
+
+.ticket-wrapper:hover {
+  background: rgba(159,255,130,0.05);
+  box-shadow: 0 0 10px rgba(159,255,130,0.1);
+}
+
+.ticket-relative {
+  position: relative;
+}
+
+.ticket-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  cursor: pointer;
+  transition: background var(--transition-normal);
+}
+
+.ticket-overlay:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* =============================================================================
+   TICKET ACTION BUTTONS - Match theme styling
+   ============================================================================= */
+
+.ticket-action {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: var(--yo-primary);
+}
+
+.action-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background-color: rgba(47, 182, 126, 0.2);
+  color: var(--yo-green);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  border: 1px solid var(--yo-green);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.action-group:hover {
+  background-color: rgba(47, 182, 126, 0.4);
+  transform: translateY(-1px);
+}
+
+.action-icon {
+  font-size: var(--text-base);
+}
+
+.action-text {
+  font-weight: normal;
+}
+
+/* =============================================================================
+   ASSIGNER BADGE - Match theme styling
+   ============================================================================= */
+
+.assigner-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: rgba(159, 255, 130, 0.1);
+  border-top: 1px solid var(--yo-green);
+  color: var(--yo-green);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  letter-spacing: 1px;
+}
+
+.assigner-icon {
+  color: var(--yo-blue);
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN - Consistent with other pages
    ============================================================================= */
 
 @media (max-width: 1024px) {
@@ -529,7 +649,9 @@
   .my-tickets-mobile-container,
   .my-tickets-indicator,
   .my-tickets-browse-button,
-  .my-tickets-refresh-button {
+  .my-tickets-refresh-button,
+  .ticket-wrapper,
+  .action-group {
     transition: none;
   }
 }
@@ -538,7 +660,9 @@
   .my-tickets-indicator,
   .my-tickets-summary,
   .my-tickets-browse-button,
-  .my-tickets-refresh-button {
+  .my-tickets-refresh-button,
+  .ticket-wrapper,
+  .action-group {
     border-width: 3px;
   }
 }
