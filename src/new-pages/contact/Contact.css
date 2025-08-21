@@ -25,9 +25,7 @@
 }
 
 .contact-page-heading h1 {
-  font-family: var(--font-primary);
-  font-size: var(--text-3xl);
-  color: var(--yo-blue);
+color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -180,8 +178,7 @@
 @media (max-width: 1439px) and (min-width: 1024px) {
   /* Large laptop adjustments */
   .contact-page-heading h1 {
-    font-size: var(--text-3xl);
-  }
+}
   
   .contact-page-container {
     padding-left: var(--spacing-lg);
@@ -192,8 +189,7 @@
 @media (max-width: 1023px) and (min-width: 769px) {
   /* Tablet adjustments */
   .contact-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
+}
   
   .contact-page-container {
     padding-left: var(--spacing-md);
@@ -204,8 +200,7 @@
 @media (max-width: 768px) {
   /* Mobile adjustments */
   .contact-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
+}
   
   .contact-page-container {
     padding-left: var(--spacing-md);

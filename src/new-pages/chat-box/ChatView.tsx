@@ -1,15 +1,20 @@
-import React, {FC} from "react";
-import CommonHeader from "../../components/CommonTitle/CommonHeader";
+import React from "react";
 import ChatBox from "./ChatBox";
+import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
 
-const ChatView: FC = () => {
+const ChatView: React.FC = () => {
+  return (
+    <div className="min-h-screen w-full flex flex-col gap-5 ">
+     
 
-    return (<React.Fragment>
-        <div className="w-full h-auto p-5 gap-4 flex flex-col fixed">
-            <ChatBox/>
-        </div>
-    </React.Fragment>)
+      {/* Chat area */}
+      <ChatBox />
 
-}
+  
+       {/* Global scrolling footer message */}
+      <GlobalFooter text="**** Select a Mission Date... ****" />
+    </div>
+  );
+};
 
-export default ChatView
+export default ChatView;

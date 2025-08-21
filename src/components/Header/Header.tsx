@@ -54,9 +54,7 @@ const Header: FC = () => {
                     </span>
                 </div>
 
-                <div className="header-exit-button" onClick={() => logoutUser()}>
-                    <img className="logout-icon" src="images/icon/exit.svg" alt="Go Back"/>
-                </div>
+                
             </div>}
 
         <div className="mob-navi">
@@ -64,9 +62,7 @@ const Header: FC = () => {
                 <span className="mob-navi-click" onClick={() => navigate("/menu")}>&lt;</span> :
                 <span></span>
             }
-            <div className="mobile-exit-button" onClick={() => logoutUser()}>
-                <img src="images/icon/exit.svg" className="logout-icon" alt="Exit"/>
-            </div>
+           
         </div>
     </React.Fragment>)
 }

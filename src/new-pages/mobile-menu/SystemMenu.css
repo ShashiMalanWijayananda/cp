@@ -489,3 +489,34 @@
   outline: 2px solid var(--yo-green);
   outline-offset: 2px;
 }
+
+
+
+
+/* === FORCE ALL BOX BORDERS TO YO-GREEN (page-scoped) === */
+:root { /* optional alias if you like */
+  --yo-border-color: var(--yo-green);
+}
+
+/* Core system menu boxes + related frames */
+.system-menu-item,
+.system-menu-full-width-item,
+.system-menu-dialog,
+.system-menu-dialog .dialog-header,
+.system-menu-dialog .dialog-buttons,
+.system-menu-header-bar {
+  border-color: var(--yo-border-color) !important;
+}
+
+/* If any Tailwind/utility classes apply a different border color, unify them here */
+.system-menu-page-container .yo-force-green-borders .border,
+.system-menu-page-container .yo-force-green-borders [class*="border-"] {
+  border-color: var(--yo-green) !important;
+}
+
+/* Keep focus states consistent too */
+.system-menu-item:focus,
+.system-menu-full-width-item:focus,
+.system-menu-dialog .dialog-button:focus-visible {
+  outline-color: var(--yo-green) !important;
+}

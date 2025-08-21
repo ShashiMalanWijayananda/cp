@@ -20,16 +20,14 @@
 }
 
 .purchase-page-heading h1 {
-  font-family: var(--font-primary);
-  font-size: var(--text-3xl);
-  color: var(--yo-blue);
+color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .purchase-page-container-direct {
-  margin-top: calc(200px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
+  margin-top: calc(0px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
   margin-bottom: 50px; /* Footer space */
   min-height: calc(100vh - 160px - 4vh); /* Full height minus header, logo, title, footer */
   padding: var(--spacing-lg) var(--spacing-md);
@@ -123,8 +121,7 @@
   }
   
   .purchase-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
+}
   
   .purchase-page-container-direct {
     padding-top: 0; /* Reset padding since logo and heading are now in content flow */
@@ -153,8 +150,7 @@
   }
   
   .purchase-page-heading h1 {
-    font-size: var(--text-xl);
-  }
+}
 }
 
 /* =============================================================================
@@ -190,3 +186,10 @@
     padding: 1rem;
   }
 }
+.circle-button {
+  /* already had border-radius: 50%, size, etc. */
+  padding: 0;
+  min-width: 0;
+  line-height: 0;
+}
+.circle-button img { width: 20px; height: 20px; }

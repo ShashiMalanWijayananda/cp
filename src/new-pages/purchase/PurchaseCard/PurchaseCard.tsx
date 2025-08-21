@@ -17,6 +17,7 @@ import {useLogin} from "../../../context/login.context";
 import ReactGA from "react-ga4";
 import {useNavigate} from "react-router-dom";
 import GlobalFooter from "../../../components/GlobalFooter/GlobalFooter";
+import {useAppContext} from "../../../context/app.context";
 
 interface PurchaseCardProps {
   eventId: string;
@@ -25,6 +26,14 @@ interface PurchaseCardProps {
 }
 
 const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
+  const formatAmount = (n: number) => (n ?? 0).toLocaleString(undefined, { maximumFractionDigits: 0 });
+  const getThemeClass = (zid?: string, zname?: string) => {
+    const name = (zname || "").toLowerCase();
+    const id = (zid || "").toLowerCase();
+    if (id === "zonea" || id === "a" || name.includes("zone a")) return "blue";
+    if (id === "zonez" || name.includes("zone z")) return "blue";
+    return "green";
+  };
   const [isExpired, setIsExpired] = useState(false);
   const intervalRef = useRef<number | null>(null);
   const timerIntervalRef = useRef<any>(null);
@@ -47,7 +56,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
   const [timeLeft, setTimeLeft] = useState(0);
   const maxMinutes = 15;
   const maxMilliseconds = maxMinutes * 60 * 1000;
-
+  const {appContext} = useAppContext();
   useEffect(() => {
     if (!createAt) return;
     const currentTime = Date.now();
@@ -123,8 +132,9 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
 
   useEffect(() => {
     if (!eventId || !user?.id) return;
+    appContext.showSuccessDialog("MISSION ACCESS GRANTED!", "Agent, your access has been approved. You now have 15 minutes to secure your mission ticket.");
     enqueue({
-      variables: { requestId: user.id, eventId },
+      variables: {requestId: user.id, eventId},
       onCompleted: (res) => {
         const response = res?.checkRequestQueue as IAPIResponse;
         if (response?.code === "CODE-402") {
@@ -310,7 +320,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
   return (
       <React.Fragment>
         <div className="p-view-new">
-          
+
           {/* Alert Components */}
           <Alert
               message={"Cannot process discount code"}
@@ -319,35 +329,35 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
               autoClose={true}
               autoCloseDelay={3000}
           />
-          
+
           {/* Main Purchase Card */}
-          <div className={`purchase-card ${zoneId === "zoneZ" ? "blue" : "green"}`}>
-            
+          <div className={`purchase-card ${getThemeClass(zoneId, zone?.name)}`}>
+
             {/* Card Header - Zone Name */}
             <div className="purchase-card-header">
               <span>{zone?.name}</span>
             </div>
-            
+
             {/* Main Card Box */}
             <div className="purchase-card-box">
-              
+
               {/* Box Header - Event Name */}
               <div className="purchase-card-box-header">
                 <span>{event?.eventName ?? ""}</span>
               </div>
-              
+
               {/* Box Content */}
               <div className="purchase-card-box-content">
                 <div className="purchase-card-inner-box">
                   <div className="inner-box-content">
-                    
+
                     {/* Ticket Selection Label */}
-                    <div className="content-text">Select Mission Tickets:</div>
-                    
+                    <div className="content-text">Select Tickets:</div>
+
                     {/* Ticket Counter */}
                     <div className="ticket-counter">
                       <button
-                          className="circle-button custom-button"
+                          className="circle-button"
                           onClick={handleDecrement}
                           aria-label="Decrease ticket count"
                       >
@@ -355,7 +365,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                       </button>
                       <div className="number-of-ticket">{ticketCount}</div>
                       <button
-                          className="circle-button custom-button"
+                          className="circle-button"
                           onClick={handleIncrement}
                           disabled={
                             ticketCount >= zone?.remainingTicket || tc >= 4
@@ -367,7 +377,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                        <img src="/images/icon/plus.svg" alt="Increase"/>
                       </button>
                     </div>
-                    
+
                     {/* Coupon Code Input */}
                     <div className="content-row">
                       <input
@@ -377,15 +387,15 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                           aria-label="Discount code input"
                       />
                       <button
-                          className="custom-button"
+                          className="custom-button apply-btn"
                           onClick={handleApplyCoupon}
                           disabled={loadinCoupon || !couponCode}
                           aria-label="Apply discount code"
                       >
-                        {loadinCoupon ? "Verifying..." : "Apply"}
+                        {loadinCoupon ? "Verifying..." : "APPLY"}
                       </button>
                     </div>
-                    
+
                     {/* Coupon Response Message */}
                     {couponResponse && (
                         <div className="content-row">
@@ -400,7 +410,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                           </div>
                         </div>
                     )}
-                    
+
                     {/* Remaining Slots Warning */}
                     {zone?.remainingTicket <= 4 && (
                         <div className="content-row">
@@ -410,15 +420,15 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                           </div>
                         </div>
                     )}
-                    
+
                     {/* Price per Entry */}
                     <div className="content-row">
                       <div className="content-text">Price per Entry</div>
                       <div className="content-text">
-                        {zone?.price ?? 0.0} LKR
+                        {formatAmount(zone?.price ?? 0)}
                       </div>
                     </div>
-                    
+
                     {/* Mission Discount (if applied) */}
                     {isCouponApplied && discountAmount > 0 && (
                         <div className="content-row">
@@ -430,18 +440,18 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                           </div>
                         </div>
                     )}
-                    
+
                     {/* Divider */}
                     <div className="content-row-dot"></div>
-                    
+
                     {/* Total Cost */}
                     <div className="content-row">
                       <div className="content-text">Total Mission Cost</div>
                       <div className="content-text">
-                        {grandTotal.toFixed(2)} LKR
+                        {formatAmount(Math.round(grandTotal))}
                       </div>
                     </div>
-                    
+
                     {/* Purchase Button */}
                     <button
                         className="purchase-btn custom-button"
@@ -455,33 +465,33 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                     >
                       Confirm Mission Entry
                     </button>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
-            
+
             {/* Bottom Action Button */}
             <div className="horizontal-buttons">
-              <button 
-                className="queue-button" 
-                onClick={handleRemoveQueue}
-                aria-label="Abort mission queue"
+              <button
+                  className="queue-button"
+                  onClick={handleRemoveQueue}
+                  aria-label="Abort mission queue"
               >
-                <img className="cicon" src="images/icon/close.svg" width={30} alt="Close"/>
+                <img className="cicon" src="/images/icon/close.svg" width={30} alt="Close"/>
                 <div className="label">
                   {queueRemoveLoading ? "Aborting..." : "Abort Mission Queue"}
                 </div>
               </button>
             </div>
-            
+
           </div>
-          
+
         </div>
-        
+
         {/* Global scrolling footer message */}
         <GlobalFooter text={scrollingText} />
-        
+
       </React.Fragment>
   );
 };

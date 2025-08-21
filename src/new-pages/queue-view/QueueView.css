@@ -8,30 +8,27 @@
    ============================================================================= */
 
 .queue-page-heading {
-  position: fixed;
-  top: calc(150px + 4vh); /* Below header + logo space */
-  left: 0;
-  right: 0;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
+  position: static;   /* was: fixed */
+  top: auto;
+  left: auto;
+  right: auto;
+  height: auto;       /* let content define height */
+  margin: 0;          /* rely on padding for spacing */
+  padding: var(--spacing-md) 0;
+  z-index: auto;
 }
 
 .queue-page-heading h1 {
-  font-family: var(--font-primary);
-  font-size: var(--text-3xl);
-  color: var(--yo-blue);
+color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .queue-page-container {
-  margin-top: calc(200px + 4vh); /* Header (50px) + Logo (4vh) + Title (60px) */
+  margin-top: 0; /* Header (50px) + Logo (4vh) + Title (60px) */
   margin-bottom: 50px; /* Footer space */
-  min-height: calc(100vh - 160px - 4vh); /* Full height minus header, logo, title, footer */
+  min-height: auto; /* Full height minus header, logo, title, footer */
   padding: var(--spacing-lg) var(--spacing-md);
   overflow-y: visible;
   overflow-x: hidden;
@@ -89,16 +86,15 @@
 @media (max-width: 768px) {
   /* Mobile adjustments - logo and heading now scroll with content on ALL mobile sizes */
   .queue-page-heading {
-    position: relative; /* Changed from fixed to relative */
-    top: auto; /* Reset top positioning */
-    height: 80px;
-    margin-top: var(--spacing-md); /* Add some spacing after logo */
-    margin-bottom: var(--spacing-md);
+    position: static; /* ensure no accidental override */
+    top: auto;
+    height: auto;
+    margin: 0;
+    padding: var(--spacing-md) 0;
   }
   
   .queue-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
+}
   
   .queue-page-container {
     padding-top: 0; /* Reset padding since logo and heading are now in content flow */
@@ -127,8 +123,7 @@
   }
   
   .queue-page-heading h1 {
-    font-size: var(--text-xl);
-  }
+}
 }
 
 /* =============================================================================

@@ -21,9 +21,7 @@
 }
 
 .authorize-tickets-page-heading h1 {
-  font-family: var(--font-primary);
-  font-size: var(--text-3xl);
-  color: var(--yo-blue);
+color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -263,8 +261,7 @@
 /* Large Desktop (≥1440px) */
 @media (min-width: 1440px) {
   .authorize-tickets-page-heading h1 {
-    font-size: var(--text-4xl);
-  }
+}
   
   .authorize-tickets-page-container {
     padding-left: var(--spacing-2xl);
@@ -275,8 +272,7 @@
 /* Desktop (1024px - 1439px) */
 @media (max-width: 1439px) and (min-width: 1024px) {
   .authorize-tickets-page-heading h1 {
-    font-size: var(--text-3xl);
-  }
+}
   
   .authorize-tickets-page-container {
     padding-left: var(--spacing-lg);
@@ -291,8 +287,7 @@
 /* Tablet (769px - 1023px) */
 @media (max-width: 1023px) and (min-width: 769px) {
   .authorize-tickets-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
+}
   
   .authorize-tickets-page-container {
     padding-left: var(--spacing-md);
@@ -307,8 +302,7 @@
 /* Mobile (≤768px) */
 @media (max-width: 768px) {
   .authorize-tickets-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
+}
 
   .authorize-tickets-page-container {
     padding-left: var(--spacing-md);

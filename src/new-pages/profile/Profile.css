@@ -21,10 +21,9 @@
 }
 
 .profile-page-heading h1 {
-  color: var(--yo-blue);
+color: var(--yo-blue);
   margin: 0;
-  font-family: var(--font-primary);
-  font-size: var(--text-3xl);
+
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -73,24 +72,7 @@
   margin-bottom: var(--spacing-xl);
 }
 
-/* Avatar System */
-.avatar-container {
-  flex-shrink: 0;
-  width: 120px;
-  height: 120px;
-  background-color: var(--yo-gray);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--yo-green);
-}
 
-.avatar-icon {
-  width: 60px;
-  height: 60px;
-  fill: var(--yo-primary);
-}
 
 /* =============================================================================
    BADGE SYSTEM - Complete Implementation
@@ -222,18 +204,14 @@
 }
 
 .badge-description {
-  font-family: var(--font-primary);
-  font-size: var(--p-base);
-  color: var(--yo-gray);
+color: var(--yo-gray);
   margin: 0 0 var(--spacing-lg) 0;
   line-height: 1.6;
   letter-spacing: 1px;
 }
 
 .badge-popup-concerts h4 {
-  font-family: var(--font-primary);
-  font-size: var(--h5-size);
-  color: var(--yo-white);
+color: var(--yo-white);
   font-weight: normal;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -270,18 +248,18 @@
 
 /* Form Group Layout - Horizontal Side-by-Side */
 .profile-main .form-group {
-  display: flex;
+  display: contents;
   align-items: center;
   gap: var(--spacing-md);
   width: 100%;
   margin-bottom: var(--spacing-sm);
-  flex-direction: row !important; /* Force horizontal layout */
+/* Force horizontal layout */
 }
 
 /* Label Layout - Fixed Width Left Column */
 .profile-main .form-group label {
   min-width: 180px;
-  width: 180px;
+  /* width: 180px; */
   flex-shrink: 0;
   text-align: left;
   margin: 0;
@@ -289,12 +267,12 @@
   font-size: var(--text-base);
   color: var(--yo-green);
   letter-spacing: 1px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 /* Input Wrapper Layout - Flexible Right Column */
 .profile-main .input-wrapper {
-  flex: 1;
+  /* flex: 1; */
   width: auto;
   max-width: none;
 }
@@ -367,8 +345,7 @@
 /* Large Desktop (≥1440px) */
 @media (min-width: 1440px) {
   .profile-page-heading h1 {
-    font-size: var(--text-4xl);
-  }
+}
   
   .profile-page-container {
     padding-left: var(--spacing-2xl);
@@ -379,8 +356,7 @@
 /* Desktop (1024px - 1439px) */
 @media (max-width: 1439px) and (min-width: 1024px) {
   .profile-page-heading h1 {
-    font-size: var(--text-3xl);
-  }
+}
   
   .profile-page-container {
     padding-left: var(--spacing-lg);
@@ -396,16 +372,8 @@
     gap: var(--spacing-xl);
   }
   
-  .avatar-container {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .avatar-icon {
-    width: 50px;
-    height: 50px;
-  }
-  
+ 
+
   .badge-item,
   .badge-placeholder {
     width: 70px;
@@ -416,8 +384,7 @@
 /* Tablet (769px - 1023px) */
 @media (max-width: 1023px) and (min-width: 769px) {
   .profile-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
+}
   
   .profile-page-container {
     padding-left: var(--spacing-md);
@@ -436,15 +403,8 @@
     text-align: center;
   }
   
-  .avatar-container {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .avatar-icon {
-    width: 40px;
-    height: 40px;
-  }
+
+
   
   .badge-container {
     grid-template-columns: repeat(4, 1fr);
@@ -462,8 +422,7 @@
 /* Mobile (≤768px) */
 @media (max-width: 768px) {
   .profile-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
+}
   
   .profile-page-container {
     padding-left: var(--spacing-md);
@@ -482,16 +441,7 @@
     text-align: center;
   }
   
-  .avatar-container {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .avatar-icon {
-    width: 40px;
-    height: 40px;
-  }
-  
+
   .badge-container {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-sm);
@@ -540,8 +490,7 @@
 /* Small Mobile (≤480px) */
 @media (max-width: 480px) {
   .profile-page-heading h1 {
-    font-size: var(--text-xl);
-  }
+}
   
   .profile-page-container {
     padding-left: var(--spacing-sm);
@@ -557,15 +506,7 @@
     gap: var(--spacing-md);
   }
   
-  .avatar-container {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .avatar-icon {
-    width: 35px;
-    height: 35px;
-  }
+
   
   .badge-container {
     max-width: 260px;
@@ -614,8 +555,7 @@
   }
   
   .profile-page-heading h1 {
-    font-size: var(--text-lg);
-  }
+}
   
   .profile-page-container {
     padding-left: var(--spacing-xs);
@@ -632,8 +572,7 @@
   }
   
   .profile-page-heading h1 {
-    font-size: var(--text-base);
-  }
+}
 }
 
 /* =============================================================================

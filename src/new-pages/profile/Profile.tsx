@@ -309,12 +309,7 @@ return (
                     
                     {/* Profile info row with avatar and badges */}
                     <div className="profile-info-row">
-                        <div className="avatar-container" aria-label="User avatar">
-                            <svg className="avatar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <circle cx="12" cy="8" r="4" fill="white"/>
-                                <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" stroke="white" strokeWidth="2" fill="white"/>
-                            </svg>
-                        </div>
+                        
                         
                         <div className="badge-container" aria-label="Achievement badges">
                             {renderBadges()}

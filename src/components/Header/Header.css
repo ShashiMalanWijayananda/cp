@@ -39,32 +39,8 @@
     justify-content: start;
 }
 
-.header-exit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 5px;
-    transition: all 0.3s ease;
-    min-width: 40px;
-    height: 40px;
-}
 
-.header-exit-button:hover {
-    transform: scale(1.1);
-}
 
-.header-exit-button .logout-icon {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0);
-    transition: all 0.3s ease;
-}
-
-.header-exit-button:hover .logout-icon {
-    filter: brightness(0) invert(1);
-    transform: scale(1.2);
-}
 
 .button-text {
     cursor: pointer;
@@ -98,35 +74,13 @@ content:'>';
 }
 
 
-.mobile-exit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 10px;
-    transition: all 0.3s ease;
-}
 
-.mobile-exit-button:hover {
-    transform: scale(1.1);
-}
 
-.mobile-exit-button .logout-icon {
-    width: 25px;
-    height: 25px;
-    filter: brightness(0) invert(1);
-    transition: all 0.3s ease;
-}
 
-.mobile-exit-button:hover .logout-icon {
-    transform: scale(1.2);
-}
 
 /* Show mobile nav on mobile devices */
 @media (max-width: 768px) {
-    .mobile-exit-button {
-        padding: 80px 10px;
-    }
+  
 
     .custom-footer {
         display: none;
@@ -189,16 +143,7 @@ content:'>';
     transform: translateY(0);
 }
 
-.logout-icon {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) invert(1);
-}
 
-.logout-button:hover .logout-icon {
-    filter: brightness(50);
-    zoom: 1.5;
-}
 
 .logout-text {
     color: #ffffff;
@@ -234,14 +179,4 @@ content:'>';
     }
 }
 
-@media (max-width: 425px) {
-    .mobile-exit-button {
-        padding: 60px 10px;
-    }
-}
 
-@media (max-width: 375px) {
-    .mobile-exit-button {
-        padding: 35px 10px;
-    }
-}

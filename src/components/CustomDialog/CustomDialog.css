@@ -46,9 +46,11 @@
 }
 
 .retro-dialog .p-dialog-footer {
-    background-color: #131212;
-    border-top: 2px solid #333;
+    background-color: #000000;
     padding: 1rem 1.5rem;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .retro-dialog-footer {
@@ -86,22 +88,20 @@
     border: 2px solid #000 !important;
     border-radius: 0 !important;
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.75) !important;
-    transition: all 0.1s ease-in-out !important;
     padding: 0.5rem 1.5rem !important;
 }
 
 .retro-dialog-button:active {
-    transform: translate(2px, 2px) !important;
     box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.75) !important;
 }
 
 .retro-dialog-button-primary {
-    background-color: #CFDF82 !important;
+    background-color: #A9CACC !important;
     color: #000 !important;
 }
 
 .retro-dialog-button-primary:hover {
-    background-color: #8d9b3e !important;
+    background-color: #A9CACC !important;
     color: #000 !important;
 }
 

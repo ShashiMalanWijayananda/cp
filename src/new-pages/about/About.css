@@ -1,259 +1,203 @@
 /* =============================================================================
-   ABOUT PAGE - RESPONSIVE LAYOUT
-   Designed to work with your globalized header, footer, and design system
+   ABOUT PAGE – THEME MATCHED + IMAGE LOCKING (375 / 425 / 760)
    ============================================================================= */
 
-/* =============================================================================
-   PAGE LAYOUT - Accounting for Fixed Header, Logo/CommonHeader & Footer
-   ============================================================================= */
-
-/* =============================================================================
-   PAGE LAYOUT - Logo and headings scroll with content on ALL screen sizes
-   ============================================================================= */
-
+/* Page title area */
 .about-page-heading {
-  position: relative; /* Always scrolls with content */
-  top: auto;
+  position: relative;
   width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
+  margin-top: var(--spacing-md, 16px);
+  margin-bottom: var(--spacing-md, 16px);
   z-index: 50;
 }
 
 .about-page-heading h1 {
-  font-family: var(--font-primary);
-  font-size: var(--text-3xl);
-  color: var(--yo-blue);
+  color: var(--yo-blue, #8bd1e5);   /* cyan title like reference */
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
+/* Page container */
 .about-page-container {
-  padding-top: 0; /* No fixed elements to account for */
-  padding-bottom: 50px; /* Footer space */
-  padding-left: var(--spacing-lg);
-  padding-right: var(--spacing-md);
+  padding-top: 0;
+  padding-bottom: 50px; /* room for global footer */
+  padding-left: var(--spacing-lg, 24px);
+  padding-right: var(--spacing-md, 16px);
   min-height: 100vh;
 }
 
-/* =============================================================================
-   DESKTOP LAYOUT (Matches Figma)
-   ============================================================================= */
-
+/* Main content wrapper */
 .about-content-main {
   max-width: 1200px;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
+/* Two-column desktop layout; will collapse on mobile */
 .about-content-wrapper {
   display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: var(--spacing-2xl);
-  height: 100%;
-  align-items: start;
+  grid-template-columns: 1fr 420px; /* text | image */
+  gap: var(--spacing-2xl, 32px);
+  align-items: stretch; /* stretch both columns to equal row height */
 }
 
-/* Text Section */
+/* =========================
+   TEXT SIDE
+   ========================= */
 .about-text-section {
   display: flex;
   flex-direction: column;
 }
 
+/* Grey header bar merged with the text box border */
 .about-section-header {
-  border: 1px solid var(--yo-green);
-  padding: var(--spacing-lg) var(--spacing-xl);
-  margin-bottom: var(--spacing-lg);
-  background-color: transparent;
+  background: var(--yo-panel, #d9d9d9);
+  border: 1px solid var(--yo-green, #2aa178);
+  border-width: 1px 1px 0 1px;  /* sits directly on the box below */
+  padding: var(--spacing-lg, 24px) var(--spacing-xl, 28px);
+  margin: 0;
 }
 
 .about-section-header h2 {
-  font-family: var(--font-primary);
-  font-size: var(--text-xl);
-  color: var(--yo-green);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: normal;
+  color: var(--yo-ink, #0b0b0b);
 }
 
+/* Text box with yo-green border & yo-green copy */
 .about-text-content {
-  border: 1px solid var(--yo-green);
-  padding: var(--spacing-xl);
-  background-color: transparent;
+  border: 1px solid var(--yo-green, #2aa178);
+  padding: var(--spacing-xl, 28px);
+  background: transparent;
 }
 
 .about-text-content p {
-  font-family: var(--font-primary);
-  font-size: var(--text-base);
+  font-family: var(--font-primary, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: var(--text-base, 16px);
   line-height: 1.6;
-  color: var(--yo-green);
-  margin-bottom: var(--spacing-md);
+  color: var(--yo-green, #2aa178);
+  margin-bottom: var(--spacing-md, 16px);
   letter-spacing: 1px;
 }
 
-.about-text-content p:last-child {
-  margin-bottom: 0;
-}
+.about-text-content p:last-child { margin-bottom: 0; }
 
-/* Image Section */
+/* =========================
+   IMAGE SIDE
+   ========================= */
 .about-image-section {
   display: flex;
-  align-items: start;
+  align-items: stretch;   /* fill row height on desktop */
   justify-content: center;
 }
 
 .about-image-container {
+  /* No border around image */
+  border: 0;
+  padding: 0;
+  background: transparent;
   width: 100%;
-  max-width: 400px;
-  border: 1px solid var(--yo-green);
-  padding: var(--spacing-lg);
-  background-color: transparent;
+  height: 100%;           /* allows height-locking on desktop */
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;       /* crop left/right if needed on desktop */
 }
 
+/* Default/mobile-first: width lock */
 .about-image-container img {
   width: 100%;
   height: auto;
-  object-fit: contain;
-  filter: sepia(1) saturate(0) brightness(0.8) hue-rotate(20deg);
+  display: block;
+  object-fit: contain;    /* full portrait on mobile */
+  /* subtle mono/duotone to match the reference look */
+  filter: sepia(1) saturate(0) brightness(0.88) contrast(1.05);
 }
 
-/* =============================================================================
-   MOBILE LAYOUT (768px and below) - Matches Mobile Figma
-   ============================================================================= */
+/* =========================
+   RESPONSIVE TUNING
+   ========================= */
 
-/* =============================================================================
-   RESPONSIVE DESIGN - Consistent across ALL screen sizes
-   ============================================================================= */
-
+/* Large laptop */
 @media (max-width: 1439px) and (min-width: 1024px) {
-  /* Large laptop adjustments */
-  .about-page-heading h1 {
-    font-size: var(--text-3xl);
-  }
-  
   .about-page-container {
-    padding-left: var(--spacing-lg);
-    padding-right: var(--spacing-md);
+    padding-left: var(--spacing-lg, 24px);
+    padding-right: var(--spacing-md, 16px);
   }
 }
 
-@media (max-width: 1023px) and (min-width: 769px) {
-  /* Tablet adjustments */
-  .about-page-heading h1 {
-    font-size: var(--text-2xl);
-  }
-  
+/* Tablet (layout still two columns) */
+@media (max-width: 1023px) and (min-width: 761px) {
   .about-page-container {
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-sm);
+    padding-left: var(--spacing-md, 16px);
+    padding-right: var(--spacing-sm, 12px);
   }
 }
 
-@media (max-width: 768px) {
-  /* Mobile adjustments - logo and heading scroll with content */
-  .about-page-heading h1 {
-    font-size: var(--text-2xl);
+/* ===== Exact breakpoint groups you requested ===== */
+
+/* ≤374.98px (very small phones) */
+@media (max-width: 374.98px) {
+  .about-page-container { padding: 12px; }
+  .about-content-wrapper { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .about-section-header { padding: 10px 12px; }
+  .about-text-content { padding: 14px; }
+}
+
+/* 375–424.98px */
+@media (min-width: 375px) and (max-width: 424.98px) {
+  .about-page-container { padding: 14px; }
+  .about-content-wrapper { display: flex; flex-direction: column; gap: 16px; align-items: center; }
+  .about-section-header { padding: 12px 14px; }
+  .about-text-content { padding: 16px; }
+}
+
+/* 425–760.98px */
+@media (min-width: 425px) and (max-width: 760.98px) {
+  .about-page-container { padding: 18px; }
+  .about-content-wrapper { display: flex; flex-direction: column; gap: 18px; align-items: center; }
+  .about-section-header { padding: 14px 16px; }
+  .about-text-content { padding: 18px; }
+}
+
+/* Mobile (≤760.98px): enforce width lock & image first */
+@media (max-width: 760.98px) {
+  .about-image-section { order: 1; width: 100%; max-width: none; }
+  .about-text-section  { order: 2; width: 100%; }
+  .about-image-container { height: auto; }
+  .about-image-container img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
   }
-  
-  .about-page-container {
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-sm);
-  }
-  
-  /* Stack layout for mobile */
+}
+
+/* ≥761px (desktop/tablet landscape): two columns + height lock */
+@media (min-width: 761px) {
   .about-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 420px;
+    gap: var(--spacing-2xl, 32px);
+    align-items: stretch;
   }
-  
-  /* Mobile image comes first (as per Figma) */
-  .about-image-section {
-    order: 1;
-    width: 100%;
-    max-width: 300px;
-  }
-  
+
+  .about-image-section { align-self: stretch; }
+
   .about-image-container {
-    width: 100%;
-    padding: var(--spacing-md);
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;  /* equals text stack height */
   }
-  
-  /* Mobile text section */
-  .about-text-section {
-    order: 2;
-    width: 100%;
-  }
-  
-  .about-section-header {
-    padding: var(--spacing-sm) var(--spacing-md);
-  }
-  
-  .about-section-header h2 {
-    font-size: var(--text-lg);
-  }
-  
-  .about-text-content {
-    padding: var(--spacing-lg) var(--spacing-md);
-  }
-  
-  .about-text-content p {
-    font-size: var(--text-sm);
-    line-height: 1.5;
-    margin-bottom: var(--spacing-sm);
-  }
-}
 
-/* =============================================================================
-   SMALL MOBILE (480px and below)
-   ============================================================================= */
-
-@media (max-width: 480px) {
-  .about-page-container {
-    padding: var(--spacing-sm);
-  }
-  
-  .about-content-wrapper {
-    gap: var(--spacing-md);
-  }
-  
-  .about-section-header {
-    padding: var(--spacing-sm);
-  }
-  
-  .about-section-header h2 {
-    font-size: var(--text-base);
-  }
-  
-  .about-text-content {
-    padding: var(--spacing-md) var(--spacing-sm);
-  }
-  
-  .about-text-content p {
-    font-size: var(--text-sm);
-  }
-  
-  .about-image-container {
-    padding: var(--spacing-sm);
-  }
-}
-
-/* =============================================================================
-   EXTRA SMALL MOBILE (375px and below)
-   ============================================================================= */
-
-@media (max-width: 375px) {
-  .about-page-heading h1 {
-    font-size: var(--text-xl);
-  }
-  
-  .about-content-wrapper {
-    gap: var(--spacing-sm);
+  .about-image-container img {
+    height: 100% !important;  /* lock to box height on desktop */
+    width: auto !important;
+    object-fit: cover !important; /* fill vertically; crop L/R if needed */
   }
 }

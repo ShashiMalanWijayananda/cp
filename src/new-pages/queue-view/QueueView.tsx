@@ -7,12 +7,13 @@ const QueueView: FC = () => {
   return (
     <>
       {/* Page heading (colors/sizes come from your global tokens) */}
-      <div className="queue-page-heading">
-        <h1>Mission Access Queue</h1>
-      </div>
+      
 
       {/* Main page container (sits inside AppLayout Outlet) */}
       <main className="queue-page-container" role="main">
+        <div className="queue-page-heading">
+        <h1>Mission Access Queue</h1>
+      </div>
         <section className="queue-content-main">
           <div className="queue-content-wrapper">
             

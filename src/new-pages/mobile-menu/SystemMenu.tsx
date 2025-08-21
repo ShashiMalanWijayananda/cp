@@ -70,18 +70,19 @@ const SystemMenu: FC = () => {
                 <section className="system-menu-layout">
                     
                     {/* Menu Grid Component - Updated with proper CSS classes */}
-                    <div className="w-full flex flex-col items-center justify-center gap-4">
-                        <MenuGrid 
-                            onClickProfile={() => navigate("/my-profile")} 
-                            onClickMyTicket={() => navigate("/my-tickets")}
-                            onClickChat={() => navigate("/chat")} 
-                            onClickAbout={() => navigate("/about")}
-                            onClickSupport={() => navigate("/contact")} 
-                            onClickProtocol={() => navigate("/terms")}
-                            onClickExplore={handleNavigation} 
-                            onClickBuyTicket={() => navigate("/mission")}
-                        />
-                    </div>
+                    <div className="w-full flex flex-col items-center justify-center gap-4 yo-force-green-borders">
+  <MenuGrid
+    onClickProfile={() => navigate("/my-profile")}
+    onClickMyTicket={() => navigate("/my-tickets")}
+    onClickChat={() => navigate("/chat")}
+    onClickAbout={() => navigate("/about")}
+    onClickSupport={() => navigate("/contact")}
+    onClickProtocol={() => navigate("/terms")}
+    onClickExplore={handleNavigation}
+    onClickBuyTicket={() => navigate("/mission")}
+  />
+</div>
+
                 </section>
             </main>
 

@@ -60,8 +60,8 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(2px);
+  background-color: transparent;
+  /* backdrop removed for mobile clarity */
 }
 
 .purchase-card-box-header {
@@ -137,10 +137,14 @@
   transition: all var(--transition-normal);
   font-family: var(--font-primary);
   font-size: var(--text-2xl);
+
+  padding: 0;
+  min-width: 0;
+  line-height: 0;
 }
 
 .circle-button:hover {
-  background-color: var(--theme-color, var(--yo-green));
+  background-color: #c7d3d1;
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
 }
@@ -179,7 +183,7 @@
    ============================================================================= */
 
 .content-text {
-  color: var(--yo-shade-blue);
+  color: var(--yo-dark-rose);
   font-family: var(--font-primary);
   font-size: var(--text-lg);
   letter-spacing: 1px;
@@ -217,8 +221,8 @@
   padding: var(--input-padding);
   border: 1px solid var(--theme-color, var(--yo-green));
   border-radius: var(--input-border-radius);
-  background-color: rgba(0, 0, 0, 0.3);
-  color: var(--yo-shade-blue);
+  background-color: transparent;
+  color: var(--yo-dark-rose);
   letter-spacing: 1px;
   outline: none;
   transition: all var(--transition-normal);
@@ -269,12 +273,10 @@
 .custom-button:hover {
   background-color: var(--yo-white);
   color: var(--yo-black);
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
 }
 
 .custom-button:active {
-  transform: translateY(0);
   box-shadow: 0 2px 6px rgba(159, 255, 130, 0.2);
 }
 
@@ -285,6 +287,27 @@
   transform: none;
   box-shadow: none;
 }
+
+/* Specific "APPLY" button look from mocks */
+.apply-btn {
+  background-color: #6f7f7a;         /* muted grey */
+  border-color: #8aa3a0;
+  color: #e6eeee;
+  text-transform: uppercase;
+  min-width: 100px;
+}
+
+.apply-btn:hover {
+  background-color: #83938e;
+  color: #0b211a;
+}
+
+.apply-btn:disabled {
+  background-color: #55615d;
+  color: rgba(255,255,255,0.6);
+  border-color: #6f7f7a;
+}
+
 
 .purchase-btn {
   /* Main purchase button */
@@ -313,12 +336,10 @@
 .purchase-btn:hover {
   background-color: var(--yo-white);
   color: var(--yo-black);
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
 }
 
 .purchase-btn:active {
-  transform: translateY(0);
   box-shadow: 0 2px 6px rgba(159, 255, 130, 0.2);
 }
 
@@ -433,20 +454,20 @@
   .purchase-card {
     gap: var(--spacing-md);
   }
-  
+
   .purchase-card-header {
     font-size: var(--h2-size);
   }
-  
+
   .purchase-card-box-header {
     font-size: var(--h3-size);
     padding: var(--spacing-sm);
   }
-  
+
   .purchase-card-box-content {
     padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
   }
-  
+
   .inner-box-content {
     padding: var(--spacing-md);
     gap: var(--spacing-sm);
@@ -458,84 +479,88 @@
     gap: var(--spacing-sm);
     padding: var(--spacing-sm);
   }
-  
+
   .purchase-card-header {
     font-size: var(--h3-size);
   }
-  
+
   .purchase-card-box-header {
     font-size: var(--h4-size);
     padding: var(--spacing-xs) var(--spacing-sm);
   }
-  
+
   .purchase-card-box-content {
     padding: var(--spacing-xs) var(--spacing-md) var(--spacing-md) var(--spacing-md);
   }
-  
+
   .inner-box-content {
     padding: var(--spacing-sm);
     gap: var(--spacing-xs);
   }
-  
+
   .ticket-counter {
     padding: var(--spacing-sm);
     gap: var(--spacing-sm);
   }
-  
+
   .circle-button {
     width: 40px;
     height: 40px;
     font-size: var(--text-xl);
-  }
-  
+
+  padding: 0;
+  min-width: 0;
+  line-height: 0;
+}
+
   .circle-button img {
     width: 16px;
     height: 16px;
   }
-  
+
   .number-of-ticket {
     font-size: var(--h3-size);
   }
-  
+
   .content-text {
     font-size: var(--text-base);
   }
-  
+
   .content-row {
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .content-row input {
     font-size: var(--text-sm);
     height: 36px;
     padding: 8px 12px;
   }
-  
+
   .custom-button {
     font-size: var(--text-sm);
     height: 36px;
     padding: 8px 12px;
   }
-  
+
   .purchase-btn {
     font-size: var(--text-lg);
     padding: var(--spacing-sm) var(--spacing-md);
     margin-top: var(--spacing-md);
   }
-  
+
   .queue-button {
     font-size: var(--text-sm);
     height: 36px;
     padding: 8px 12px;
     min-width: 180px;
   }
-  
+
   .queue-button .cicon {
     width: 16px;
     height: 16px;
   }
-  
+
   .queue-button .label {
     font-size: var(--text-xs);
   }
@@ -545,123 +570,129 @@
   .purchase-card {
     padding: var(--spacing-xs);
   }
-  
+
   .purchase-card-header {
     font-size: var(--h4-size);
   }
-  
+
   .purchase-card-box-header {
     font-size: var(--h5-size);
     padding: var(--spacing-xs);
   }
-  
+
   .purchase-card-box-content {
     padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-sm) var(--spacing-sm);
   }
-  
+
   .inner-box-content {
     padding: var(--spacing-xs);
     gap: var(--spacing-xs);
   }
-  
+
   .ticket-counter {
     padding: var(--spacing-xs);
     gap: var(--spacing-xs);
   }
-  
+
   .circle-button {
     width: 35px;
     height: 35px;
     font-size: var(--text-lg);
-  }
-  
+
+  padding: 0;
+  min-width: 0;
+  line-height: 0;
+}
+
   .circle-button img {
     width: 14px;
     height: 14px;
   }
-  
+
   .number-of-ticket {
     font-size: var(--h4-size);
   }
-  
+
   .content-text {
     font-size: var(--text-sm);
   }
-  
+
   .content-row {
     gap: var(--spacing-xs);
     margin-bottom: 4px;
   }
-  
+
   .content-row input {
     font-size: var(--text-xs);
     height: 32px;
     padding: 6px 8px;
   }
-  
+
   .custom-button {
     font-size: var(--text-xs);
     height: 32px;
     padding: 6px 8px;
   }
-  
+
   .purchase-btn {
     font-size: var(--text-base);
     padding: var(--spacing-xs) var(--spacing-sm);
     margin-top: var(--spacing-sm);
   }
-  
+
   .queue-button {
     font-size: var(--text-xs);
     height: 32px;
     padding: 6px 8px;
     min-width: 160px;
   }
-  
+
   .queue-button .cicon {
     width: 14px;
     height: 14px;
   }
-  
+
   .queue-button .label {
     font-size: var(--text-xs);
   }
 }
 
 @media (max-width: 360px) {
-  .purchase-card-box {
-    border: none;
-  }
-  
+
+
   .purchase-card {
     padding: 2px;
   }
-  
+
   .purchase-card-box-content {
     padding: 2px var(--spacing-xs) 0 var(--spacing-xs);
   }
-  
+
   .inner-box-content {
     padding: 4px;
     gap: 4px;
   }
-  
+
   .ticket-counter {
     gap: 4px;
     padding: 4px;
   }
-  
+
   .circle-button {
     width: 30px;
     height: 30px;
     font-size: var(--text-base);
-  }
-  
+
+  padding: 0;
+  min-width: 0;
+  line-height: 0;
+}
+
   .circle-button img {
     width: 12px;
     height: 12px;
   }
-  
+
   .purchase-btn {
     margin-top: 4px;
     padding: 4px 6px;
@@ -712,13 +743,13 @@
     background: white;
     color: black;
   }
-  
+
   .purchase-card-box,
   .purchase-card-inner-box {
     border-color: black;
     background: white;
   }
-  
+
   .circle-button,
   .custom-button,
   .purchase-btn,

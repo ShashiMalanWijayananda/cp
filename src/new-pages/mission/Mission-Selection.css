@@ -8,28 +8,27 @@
    ============================================================================= */
 
 .mission-selection-page-heading {
-  position: fixed;
-  top: calc(150px + 4vh);
-  left: 0;
-  right: 0;
-  height: 60px;
+  position: static;          /* was: fixed */
+  top: auto;
+  left: auto;
+  right: auto;
+  height: auto;              /* let content define height */
+  padding: var(--spacing-md) 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+  z-index: auto;
 }
 
 .mission-selection-page-heading h1 {
-  font-size: var(--text-3xl);
   color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-family: var(--font-primary);
 }
 
 .mission-selection-page-container {
-  margin-top: calc(100px + 4vh);
+  margin-top: 0;
   margin-bottom: 50px;
   min-height: calc(100vh - 200px - 4vh);
   padding: var(--spacing-lg) var(--spacing-md);
@@ -47,7 +46,7 @@
    ============================================================================= */
 
 .mission-selection-content-main {
-  max-width: 1200px;
+  max-width: 1400px; /* Increased to allow more width */
   width: 100%;
   margin: 0 auto 75px;
   display: flex;
@@ -68,21 +67,25 @@
 }
 
 /* =============================================================================
-   MISSION CARDS GRID - Desktop: 2 columns, Mobile: 1 column
+   MISSION CARDS GRID - Desktop: 2 columns side by side, Mobile: 1 column
    ============================================================================= */
 
 .mission-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex; /* Changed from grid to flex for better control */
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
   gap: var(--spacing-2xl);
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 /* Individual mission card - matches the green bordered cards in images */
 .mission-card-container {
-  width: 100%;
+  flex: 1; /* Each card takes equal space */
+  max-width: 500px; /* Limit maximum width per card */
+  min-width: 300px; /* Ensure minimum width */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +97,7 @@
 
 .mission-skeleton {
   width: 100%;
-  max-width: 450px;
+  max-width: 500px; /* Increased max width */
   min-height: 500px;
   border: 2px solid var(--yo-green);
   background: linear-gradient(
@@ -166,19 +169,29 @@
 /* Large Desktop (≥1440px) */
 @media (min-width: 1440px) {
   .mission-selection-page-heading h1 {
-    font-size: var(--text-4xl);
+    /* Add specific styles if needed */
   }
   
   .mission-selection-page-container {
     padding-left: var(--spacing-2xl);
     padding-right: var(--spacing-xl);
   }
+
+  .mission-cards-grid {
+    gap: 60px; /* Increased gap between cards for 1440px+ screens */
+    max-width: 500px; /* Using mobile card width for large screens */
+  }
+
+  .mission-card-container {
+    max-width: 100%; /* Same as mobile */
+    min-width: 100%; /* Same as mobile */
+  }
 }
 
 /* Desktop (1024px - 1439px) */
 @media (max-width: 1439px) and (min-width: 1024px) {
   .mission-selection-page-heading h1 {
-    font-size: var(--text-3xl);
+    /* Add specific styles if needed */
   }
   
   .mission-selection-page-container {
@@ -188,14 +201,19 @@
   
   .mission-cards-grid {
     gap: var(--spacing-lg);
-    max-width: 900px;
+    max-width: 400px; /* Much smaller container for 1024px screens */
+  }
+
+  .mission-card-container {
+    max-width: 100%; /* Same as mobile but within smaller container */
+    min-width: 100%; /* Same as mobile but within smaller container */
   }
 }
 
 /* Tablet (769px - 1023px) */
 @media (max-width: 1023px) and (min-width: 769px) {
   .mission-selection-page-heading h1 {
-    font-size: var(--text-2xl);
+    /* Add specific styles if needed */
   }
   
   .mission-selection-page-container {
@@ -206,6 +224,10 @@
   .mission-cards-grid {
     gap: var(--spacing-lg);
     max-width: 900px;
+  }
+
+  .mission-card-container {
+    min-width: 250px; /* Smaller minimum on tablet */
   }
 }
 
@@ -226,9 +248,14 @@
   
   /* Switch to single column layout on mobile */
   .mission-cards-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column; /* Stack vertically on mobile */
     gap: var(--spacing-lg);
     max-width: 500px;
+  }
+
+  .mission-card-container {
+    max-width: 100%;
+    min-width: 100%;
   }
   
   .mission-skeleton {
@@ -236,23 +263,6 @@
     min-height: 350px;
   }
 }
-  
-  /* Switch to single column layout on mobile - matches image 2 */
-  .mission-cards-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-    max-width: 500px;
-  }
-  
-  /* Show "Available Missions" label on mobile - NOT visible in your images, so keeping hidden */
-  .mission-card-viewer-label {
-    display: none; /* Keep hidden to match your exact design */
-  }
-  
-  .mission-skeleton {
-    max-width: 100%;
-    min-height: 350px;
-  }
 
 @media (max-width: 480px) {
   .mission-selection-page-container {
@@ -338,7 +348,7 @@
   }
   
   .mission-cards-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 1rem;
   }
 }

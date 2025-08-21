@@ -74,3 +74,28 @@
         width: 90px;
     }
 }
+
+/* Move logo down on laptop & larger screens */
+@media (min-width: 1024px) {
+    .common-header-container {
+    position: relative;
+    /* keep whatever margin-top you already added for the header offset */
+    margin-inline: 20px;                 /* nice left/right breathing room */
+    width: calc(100% - 40px);            /* match the margin-inline */
+    padding: 16px 24px;                  /* space between border and logo */
+    border: 1px solid var(--yo-green);   /* theme light color (green in your UI) */
+    border-radius: 6px;                  /* subtle rounding; adjust if needed */
+    box-sizing: border-box;
+  }
+  .common-header-container {
+    margin-top: 45px; /* 50px fixed header + ~20px breathing room */
+  }
+}
+
+/* Give big laptops/desktops a touch more space */
+@media (min-width: 1440px) {
+  .common-header-container {
+    margin-top: 59px;
+    padding: 20px 28px;
+  }
+}

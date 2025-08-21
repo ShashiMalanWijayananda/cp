@@ -178,13 +178,13 @@ const MissionSelection: FC = () => {
   return (
     <>
       {/* Page heading */}
-      <div className="mission-selection-page-heading">
-        <h1>Mission Selection</h1>
-      </div>
+      
 
       {/* Main page container */}
       <main className="mission-selection-page-container" role="main">
-        
+         <div className="mission-selection-page-heading">
+    <h1>Mission Selection</h1>
+  </div>
         {/* Main content */}
         <div className="mission-selection-content-main">
           
