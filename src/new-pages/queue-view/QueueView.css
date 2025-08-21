@@ -1,149 +1,60 @@
 /* =============================================================================
-   QUEUE VIEW PAGE - ALIGNED WITH GLOBAL DESIGN SYSTEM
-   Using global fonts, colors, spacing, and layout patterns
+   QUEUE VIEW PAGE — centers the card and keeps room for global header/footer
    ============================================================================= */
 
-/* =============================================================================
-   PAGE LAYOUT - Following Global Pattern
-   ============================================================================= */
-
-.queue-page-heading {
-  position: static;   /* was: fixed */
-  top: auto;
-  left: auto;
-  right: auto;
-  height: auto;       /* let content define height */
-  margin: 0;          /* rely on padding for spacing */
-  padding: var(--spacing-md) 0;
-  z-index: auto;
+.queue-page-container{
+  min-height:100vh;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  background:var(--yo-primary); /* dark green background from globals */
+  overflow:hidden;
 }
-
-.queue-page-heading h1 {
-color: var(--yo-blue);
-  margin: 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.queue-page-container {
-  margin-top: 0; /* Header (50px) + Logo (4vh) + Title (60px) */
-  margin-bottom: 50px; /* Footer space */
-  min-height: auto; /* Full height minus header, logo, title, footer */
-  padding: var(--spacing-lg) var(--spacing-md);
-  overflow-y: visible;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* =============================================================================
-   MAIN LAYOUT - Centered Content
-   ============================================================================= */
-
-.queue-content-main {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.queue-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-lg);
-}
-
-.queue-component-container {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* =============================================================================
-   RESPONSIVE DESIGN - Following Global Patterns
-   ============================================================================= */
-
-@media (max-width: 1024px) {
-  .queue-page-container {
-    padding: var(--spacing-md);
-  }
-  
-  .queue-content-wrapper {
-    gap: var(--spacing-md);
-  }
-}
-
 @media (max-width: 768px) {
-  /* Mobile adjustments - logo and heading now scroll with content on ALL mobile sizes */
-  .queue-page-heading {
-    position: static; /* ensure no accidental override */
-    top: auto;
-    height: auto;
-    margin: 0;
-    padding: var(--spacing-md) 0;
-  }
-  
-  .queue-page-heading h1 {
+    .queue-page-heading h1 {
+        font-size: larger;
+    }
 }
-  
-  .queue-page-container {
-    padding-top: 0; /* Reset padding since logo and heading are now in content flow */
-    padding-bottom: 50px; /* Footer space */
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-sm);
-    min-height: auto; /* Let content determine height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .queue-content-wrapper {
-    gap: var(--spacing-md);
-  }
+/* Optional page H1 in markup — hidden to match Figma (card header is primary) */
+.queue-page-heading{ display:none; }
+
+.queue-content-main{
+  flex:1;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding: clamp(16px, 3vw, 28px);
 }
 
-@media (max-width: 480px) {
-  .queue-page-container {
-    padding: var(--spacing-sm);
-  }
-  
-  .queue-content-wrapper {
-    gap: var(--spacing-sm);
-  }
-  
-  .queue-page-heading h1 {
-}
+.queue-content-wrapper{
+  width:100%;
+  max-width:1100px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: var(--spacing-lg, 24px);
 }
 
-/* =============================================================================
-   ACCESSIBILITY & PERFORMANCE
-   ============================================================================= */
-
-.queue-page-container {
-  scroll-behavior: smooth;
+/* The inner container that holds <Queue /> */
+.queue-component-container{
+  width:100%;
+  max-width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .queue-page-container {
-    scroll-behavior: auto;
-  }
+/* ------------------------------- Responsive ------------------------------- */
+@media (max-width:1024px){
+  .queue-content-main{ padding:20px; }
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .queue-page-heading {
-    border-bottom: 2px solid var(--yo-blue);
-  }
+@media (max-width:768px){
+  .queue-content-main{ padding:16px; }
+  .queue-content-wrapper{ gap:16px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .queue-page-container{ scroll-behavior:auto; }
 }

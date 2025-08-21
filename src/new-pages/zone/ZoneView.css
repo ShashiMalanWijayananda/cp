@@ -10,7 +10,7 @@
 .zone-view-page-heading { display: none; }
 
 .zone-view-page-container {
-  margin-top: calc(95px + 4vh);
+  margin-top: calc(0px+ 4vh);
   margin-bottom: 50px;
   min-height: auto;
   padding: var(--spacing-2xl) var(--spacing-md);

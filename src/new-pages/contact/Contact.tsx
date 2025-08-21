@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, {FC} from "react";
 import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
 import "./Contact.css";
 
@@ -14,36 +14,24 @@ const Contact: FC = () => {
       <main className="contact-page-container" role="main">
         <section className="contact-content-main">
           <div className="contact-content-wrapper">
-            
+
             {/* Introduction section */}
             <div className="contact-intro-section">
               <div className="contact-intro-content">
-                <p>You&apos;ve reached HQ. Need backup, intel, or direct orders?</p>
-                <p>Our field operatives are standing by across multiple channels.</p>
-                <p>Choose your preferred communication protocol below.</p>
+                <p>You've reached HQ. Need backup, intel, or direct orders? We’re locked, loaded, and ready to respond.</p>
+                <p>We operate on a tight response protocol. Expect a reply within 24 hours—faster during mission-critical periods.</p>
               </div>
             </div>
 
             {/* Contact details grid */}
             <div className="contact-details-grid">
-              
-              {/* Instagram Section */}
+
+              {/* Social Channels Section */}
               <div className="contact-section">
-                <header className="contact-section-title" aria-label="section heading">Official Instagram Page</header>
+                <header className="contact-section-title" aria-label="section heading">Social Surveillance Channels</header>
                 <div className="contact-section-content">
-                  <p><strong>Handle:</strong> @yogeshwari_live</p>
-                  <p><strong>Status:</strong> Active 24/7</p>
-                  <p><strong>Best for:</strong> Updates, behind-the-scenes intel, and mission briefings</p>
-                  <p>
-                    <a 
-                      href="https://instagram.com/yogeshwari_live" 
-                      className="contact-link" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      → Access Channel
-                    </a>
-                  </p>
+                  <p><strong>Facebook:</strong> <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/share/1B1V4LBMZq/" className="contact-link">Facebook Recon Base</a></p>
+                  <p><strong>Instagram:</strong> <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/kuweni.concert?igsh=YXJjaHZuMmk3ajZl" className="contact-link">Instagram Command Feed</a></p>
                 </div>
               </div>
 
@@ -51,8 +39,8 @@ const Contact: FC = () => {
               <div className="contact-section">
                 <header className="contact-section-title" aria-label="section heading">Direct Support Coordination</header>
                 <div className="contact-section-content">
-                  <p><strong>Contact:</strong> +94 77X XXX XXX</p>
-                  <p><strong>Hours:</strong> 0900-2100 (Sri Lanka Time)</p>
+                  <p><strong>Contact:</strong> +94 70 621 8825</p>
+                  <p><em>Available during operation hours and on event deployment days</em></p>
                   <p><strong>Protocol:</strong> SMS/WhatsApp preferred</p>
                   <p><strong>Use for:</strong> Critical support, technical issues, emergency coordination</p>
                 </div>
@@ -62,13 +50,13 @@ const Contact: FC = () => {
               <div className="contact-section">
                 <header className="contact-section-title" aria-label="section heading">Digital Operations</header>
                 <div className="contact-section-content">
-                  <p><strong>Email:</strong> support@yogeshwari.one</p>
-                  <p><strong>Response Time:</strong> 24-48 hours</p>
+                  <p><strong>Email:</strong> info@yogeshwari.one</p>
+                  <p><strong>Response Time:</strong> 24 hours (faster during mission-critical periods)</p>
                   <p><strong>Best for:</strong> Detailed inquiries, documentation requests, technical reports</p>
                   <p>
-                    <a 
-                      href="mailto:support@yogeshwari.one" 
-                      className="contact-link"
+                    <a
+                        href="mailto:info@yogeshwari.one"
+                        className="contact-link"
                     >
                       → Send Message
                     </a>
@@ -76,7 +64,7 @@ const Contact: FC = () => {
                 </div>
               </div>
 
-              {/* Mission Coordination Section */}
+              {/* Mission Coordination Section (kept from existing content) */}
               <div className="contact-section">
                 <header className="contact-section-title" aria-label="section heading">Mission Coordination</header>
                 <div className="contact-section-content">
@@ -91,27 +79,24 @@ const Contact: FC = () => {
                   </div>
                 </div>
               </div>
-              
+
             </div>
 
             {/* Support image */}
             <aside className="contact-image-section" aria-label="Support operations">
-              <div className="contact-image-container">
-                <img 
-                  src="/images/contact-support.jpg" 
-                  alt="Support Operations"
-                  loading="lazy"
-                />
+              <div className="contact-section">
+                <div className="section-title">Ticketing Guide:</div>
+                <a href="https://drive.google.com/file/d/13p5boSXDeLnjkZ2kNnIq1oS1iac7ePNI/view?usp=sharing" target="_blank"><p className="pl-4 pt-4 pb-4">Download.</p></a>
               </div>
             </aside>
-            
+
           </div>
         </section>
       </main>
-      
+
       {/* Global scrolling footer message */}
       <GlobalFooter text="**** AGENT SUPPORT ACTIVE **** COMMUNICATION CHANNELS OPERATIONAL **** HQ STANDING BY **** " />
-      
+
     </>
   );
 };

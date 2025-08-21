@@ -1,6 +1,7 @@
 
 import React from "react";
 import "./Terms.css";
+import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
 
 const Terms: React.FC = () => {
   return (
@@ -170,7 +171,7 @@ const Terms: React.FC = () => {
                 <div className="section-content">
                   <ul className="bullet-list">
                     <li>For official event updates, visit:<br/>Official Instagram/Facebook page — Yogeshwari Live</li>
-                    <li>For support or shuttle coordination, contact our hot line:<br/>+94 77X XXX XXX</li>
+                    <li>For support or shuttle coordination, contact our hot line:<br/>+94 70 621 8825</li>
                     <li>Thank You For Being a Part of Yogeshwari Concert</li>
                     <li>Let’s create a respectful, immersive, and unforgettable live musical experience.</li>
                   </ul>
@@ -180,7 +181,11 @@ const Terms: React.FC = () => {
           </div>
         </div>
       </div>
+       {/* Global scrolling footer message */}
+      <GlobalFooter text="**** AGENT SUPPORT ACTIVE **** COMMUNICATION CHANNELS OPERATIONAL **** HQ STANDING BY **** " />
+
     </div>
+
   );
 };
 

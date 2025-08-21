@@ -1,0 +1,27 @@
+/* =============================================================================
+   CHAT VIEW CONTAINER - MAIN LAYOUT WRAPPER
+   ============================================================================= */
+
+.chat-view-container{
+  min-height:100vh;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  background:var(--yo-primary,#031e16);
+  overflow:hidden;
+}
+
+/* Ensure proper layering and no conflicts */
+.chat-view-container > :first-child {
+  flex: 1;
+}
+
+/* Global footer stays at bottom */
+.chat-view-container > :last-child {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}

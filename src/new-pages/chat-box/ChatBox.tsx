@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLogin } from "../../context/login.context";
+import "./ChatBox.css";
 
 interface Message {
   id: string;
@@ -235,123 +236,75 @@ const ChatBox: React.FC = () => {
     connectionStatus === "connected" &&
     wsRef.current?.readyState === WebSocket.OPEN;
   const canSendMessage = isConnected && inputText.trim();
-
-  return (
-    <div className="w-full flex flex-col text-[var(--yo-green)] padding-10px-19px">
-      {/* Transcript: single-frame terminal style */}
-      <div className="w-full border" style={{ borderColor: "var(--yo-green)" }}>
-        <div className="p-5 md:p-6 lg:p-7 h-[60vh] md:h-[65vh] overflow-y-auto">
-          {messages.length === 0 && (
-            <div className="opacity-70 text-center">
-              <p>Welcome to Yogeshwari Archives. The tale awaits your inquiry</p>
+return (
+    <div className="chat-container">
+      {/* NEW: hero panel to match Figma (logo centered in a bordered box) */}
+     
+      {/* messages */}
+      <div className="chat-messages-container">
+        {messages.length === 0 && (
+          <div className="welcome-message-container yog-message">
+            <div className="welcome-message">
+              Hello Agent Kasun,{'\n'}
+              Welcome to Yogeshwari Archives. The tale awaits your inquiry
             </div>
-          )}
+            <div className="message-timestamp">{formatTime(new Date())}</div>
+          </div>
+        )}
 
-          {messages.map((m) => {
-            const isAgent = m.sender === "user";
-            return (
-              <div key={m.id} className="mb-6">
-                <div
-                  className="whitespace-pre-wrap leading-relaxed tracking-wide"
-                  style={{
-                    fontFamily:
-                      'var(--font-primary, "VT323", ui-monospace, monospace)',
-                  }}
-                >
-                  <span
-                    className="pr-2"
-                    style={{
-                      color: isAgent
-                        ? "var(--yo-blue)"
-                        : "var(--yo-green)",
-                    }}
-                  >
-                    {isAgent ? "Agent:" : "Yog  :"}
-                  </span>
-                  <span
-                    style={{
-                      color: isAgent
-                        ? "var(--yo-blue)"
-                        : "var(--yo-green)",
-                    }}
-                  >
-                    {m.text}
-                  </span>
-                </div>
-                <div className="text-xs opacity-70 mt-2">
-                  {formatTime(m.timestamp)}
-                </div>
-              </div>
-            );
-          })}
-
-          {isTyping && (
-            <div className="mb-6">
-              <span className="inline-flex gap-1 items-center opacity-80">
-                <span>Yog&nbsp;:</span>
-                <span className="inline-block animate-pulse">●</span>
-                <span className="inline-block animate-pulse [animation-delay:.1s]">
-                  ●
-                </span>
-                <span className="inline-block animate-pulse [animation-delay:.2s]">
-                  ●
-                </span>
-              </span>
+        {messages.map((m) => {
+          const isAgent = m.sender === "user";
+          return (
+            <div
+              key={m.id}
+              className={`message-container ${isAgent ? "agent-message" : "yog-message"}`}
+            >
+              <div className="message-content">{m.text}</div>
+              <div className="message-timestamp">{formatTime(m.timestamp)}</div>
             </div>
-          )}
+          );
+        })}
 
-          <div ref={messagesEndRef} />
-        </div>
+        {isTyping && (
+          <div className="typing-indicator yog-message">
+            <div className="typing-content">
+              <span className="typing-dots"><span>●</span><span>●</span><span>●</span></span>
+            </div>
+          </div>
+        )}
+
+        <div ref={messagesEndRef} />
       </div>
 
-      {/* Input bar — fixed ABOVE footer */}
-      <div className="fixed left-0 right-0 bottom-14 z-50 px-4 pb-0">
-        <div className="w-full max-w-5xl mx-auto flex items-stretch gap-2">
+      {/* input bar (unchanged functional behavior, Figma-styled in CSS) */}
+      <div className="chat-input-container">
+        <div className="chat-input-wrapper">
           <input
             ref={inputRef}
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder={
-              isConnected ? "What is yogeshwari? what" : "Connecting to AI..."
-            }
+            placeholder={isConnected ? "What is yogeshwari? what" : "Connecting to AI..."}
             disabled={!isConnected}
-            className="flex-1 px-4 py-3 bg-[#2f3532] text-[var(--yo-green)] border outline-none"
-            style={{
-              borderColor: "var(--yo-green)",
-              boxShadow: "none",
-            }}
+            className="chat-input"
           />
           <button
             onClick={handleSendMessage}
             disabled={!canSendMessage}
-            className="px-6 font-medium"
-            style={{
-              background: "var(--yo-green)",
-              color: "#0b0b0b",
-              opacity: canSendMessage ? 1 : 0.5,
-              cursor: canSendMessage ? "pointer" : "not-allowed",
-            }}
-            title={
-              !isConnected
-                ? "Not connected to AI"
-                : !inputText.trim()
-                ? "Enter a message"
-                : "Send to AI"
-            }
+            className="chat-send-button"
+            title={!isConnected ? "Not connected to AI"
+                  : !inputText.trim() ? "Enter a message" : "Send to AI"}
           >
             Send
           </button>
         </div>
 
         {!isConnected && (
-          <div className="text-center mt-2">
-            <span className="text-xs" style={{ color: "var(--yo-blue)" }}>
-              {connectionStatus === "connecting"
-                ? "Connecting to AI agent..."
-                : "Connection lost. Attempting to reconnect..."}
-            </span>
+          <div className="connection-status">
+            {connectionStatus === "connecting"
+              ? "Connecting to AI agent..."
+              : "Connection lost. Attempting to reconnect..."}
           </div>
         )}
       </div>

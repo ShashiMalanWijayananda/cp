@@ -34,7 +34,7 @@
   padding-top: 0; /* No fixed elements to account for */
   padding-bottom: 50px;
   padding-left: var(--spacing-lg);
-  padding-right: var(--spacing-md);
+  padding-right: var(--spacing-lg); /* FIXED: Increased right padding */
   min-height: 100vh;
   overflow-y: visible;
   overflow-x: hidden;
@@ -60,6 +60,7 @@
   flex-direction: column;
   gap: var(--spacing-2xl);
   padding: var(--spacing-2xl);
+  box-sizing: border-box; /* FIXED: Added box-sizing */
 }
 
 /* =============================================================================
@@ -250,7 +251,7 @@
 }
 
 /* =============================================================================
-   PROFILE FORM LAYOUT - Match Figma Design (One line on desktop)
+   PROFILE FORM LAYOUT - FIXED: Proper container and responsiveness
    ============================================================================= */
 
 .details-form {
@@ -259,50 +260,105 @@
   gap: var(--spacing-md);
   width: 100%;
   max-width: 100%;
+  box-sizing: border-box; /* FIXED: Added box-sizing */
 }
 
-/* Form Group Layout - Horizontal Side-by-Side on Desktop */
+/* Form Group Layout - DESKTOP: Horizontal Side-by-Side with Terminal Style */
 .profile-main .form-group {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-  width: 100%;
-  margin-bottom: var(--spacing-sm);
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: var(--spacing-md) !important;
+  width: 100% !important;
+  margin-bottom: var(--spacing-sm) !important;
+  box-sizing: border-box;
+  position: relative;
 }
 
-/* Label Layout - Fixed Width Left Column on Desktop */
+/* Label Layout - DESKTOP: Fixed Width Left Column with Terminal Arrow */
 .profile-main .form-group label {
-  min-width: 180px;
-  flex-shrink: 0;
-  text-align: left;
-  margin: 0;
+  min-width: 200px !important;
+  max-width: 200px !important;
+  width: 200px !important;
+  flex-shrink: 0 !important;
+  text-align: left !important;
+  margin: 0 !important;
   font-family: var(--font-primary);
   font-size: var(--text-base);
   color: var(--yo-green);
   letter-spacing: 1px;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block !important;
 }
 
-/* Input Wrapper Layout - Flexible Right Column on Desktop */
+/* Terminal Arrow Prefix for Labels */
+.profile-main .form-group label::before {
+  content: '>';
+  color: var(--yo-green);
+  margin-right: 8px;
+  font-weight: bold;
+  font-family: var(--font-primary);
+}
+
+/* Input Wrapper Layout - DESKTOP: Flexible Right Column with Terminal Cursor */
 .profile-main .input-wrapper {
-  flex: 1;
-  width: auto;
-  max-width: none;
+  flex: 1 !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+  position: relative;
 }
 
-/* Form Input Styling - Editable Fields */
+/* Terminal Cursor Animation - Same as RetroTextBox */
+.profile-main .form-group.focused .input-wrapper::after {
+  content: '█';
+  position: absolute;
+  left: var(--cursor-left, 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--yo-green);
+  font-weight: bold;
+  font-size: clamp(20px, 4vw, 30px);
+  animation: cursor-blink 1s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 5;
+  transition: left 0.1s ease;
+  font-family: VT323, monospace;
+  max-width: calc(100% - 16px);
+  overflow: hidden;
+  line-height: 1;
+  margin-left: -1px;
+}
+
+@keyframes cursor-blink {
+  0%, 45% {
+    opacity: 1;
+  }
+  50%, 95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Form Input Styling - DESKTOP: Full width within container */
 .field-value-profile {
   font-family: var(--font-primary);
   font-size: var(--text-base);
   padding: var(--spacing-sm);
   border: 1px solid var(--yo-green);
-  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  border-radius: 0;
   background-color: transparent;
   color: var(--yo-green);
   letter-spacing: 1px;
   height: 40px;
   box-sizing: border-box;
   transition: all var(--transition-fast);
-  width: 100%;
+  width: 100% !important;
+  min-width: 0;
 }
 
 .field-value-profile:focus {
@@ -316,45 +372,50 @@
   opacity: 0.7;
 }
 
-/* Non-Editable Fields - Display Only */
+/* Non-Editable Fields - DESKTOP: Display Only */
 .field-value-readonly {
   font-family: var(--font-primary);
   font-size: var(--text-base);
   padding: var(--spacing-sm);
   border: 1px solid var(--yo-gray);
-  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  border-radius: 0;
   background-color: rgba(217, 217, 217, 0.1);
   color: var(--yo-gray);
   letter-spacing: 1px;
   height: 40px;
   box-sizing: border-box;
-  width: 100%;
+  width: 100% !important;
+  min-width: 0;
   cursor: not-allowed;
   opacity: 0.7;
 }
 
-/* Submit Button */
+/* Submit Button - Full width from label start to input end */
 .update-button {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  padding: var(--spacing-md) var(--spacing-xl);
-  height: 50px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  height: 40px; /* Same height as input fields */
   border: 1px solid var(--yo-green);
-  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  border-radius: 0;
   background-color: var(--yo-green);
   color: var(--yo-primary);
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
   transition: all var(--transition-normal);
-  align-self: center;
-  min-width: 200px;
+  box-sizing: border-box;
+  
+  /* Button spans full form width (from label start to input end) */
+  width: 100%;
+  margin-top: var(--spacing-md);
+  margin-left: 0;
 }
 
 .update-button:hover {
   background-color: transparent;
   color: var(--yo-green);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .update-button:active {
@@ -367,23 +428,63 @@
   transform: none;
 }
 
-/* =============================================================================
-   RESPONSIVE DESIGN - Consistent with other pages
-   ============================================================================= */
-
-/* Large Desktop (≥1440px) */
-@media (min-width: 1440px) {
-  .profile-page-container {
-    padding-left: var(--spacing-2xl);
-    padding-right: var(--spacing-xl);
+/* All screen sizes: button takes full form width */
+@media (min-width: 769px) {
+  .update-button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: var(--spacing-xs);
   }
 }
 
-/* Desktop (1024px - 1439px) */
+@media (max-width: 768px) {
+  .update-button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: var(--spacing-md);
+  }
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN - FIXED: Better container handling
+   ============================================================================= */
+
+/* Large Desktop (≥1440px) - FORCE HORIZONTAL LAYOUT */
+@media (min-width: 1440px) {
+  .profile-page-container {
+    padding-left: var(--spacing-2xl);
+    padding-right: var(--spacing-2xl);
+  }
+
+  /* FORCE HORIZONTAL LAYOUT FOR LARGE DESKTOP */
+  .profile-main .form-group {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: var(--spacing-lg) !important;
+    margin-bottom: var(--spacing-md) !important;
+  }
+
+  .profile-main .form-group label {
+    min-width: 220px !important;
+    max-width: 220px !important;
+    width: 220px !important;
+    flex-shrink: 0 !important;
+    text-align: left !important;
+  }
+
+  .profile-main .input-wrapper {
+    flex: 1 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
+/* Desktop (1024px - 1439px) - FORCE HORIZONTAL LAYOUT */
 @media (max-width: 1439px) and (min-width: 1024px) {
   .profile-page-container {
     padding-left: var(--spacing-lg);
-    padding-right: var(--spacing-md);
+    padding-right: var(--spacing-lg);
   }
   
   .profile-main {
@@ -400,13 +501,36 @@
     width: 70px;
     height: 70px;
   }
+  
+  /* FORCE HORIZONTAL LAYOUT FOR DESKTOP */
+  .profile-main .form-group {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: var(--spacing-md) !important;
+    margin-bottom: var(--spacing-sm) !important;
+  }
+
+  .profile-main .form-group label {
+    min-width: 180px !important;
+    max-width: 180px !important;
+    width: 180px !important;
+    flex-shrink: 0 !important;
+    text-align: left !important;
+  }
+
+  .profile-main .input-wrapper {
+    flex: 1 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
 }
 
-/* Tablet (769px - 1023px) */
+/* Tablet (769px - 1023px) - FORCE HORIZONTAL LAYOUT */
 @media (max-width: 1023px) and (min-width: 769px) {
   .profile-page-container {
     padding-left: var(--spacing-md);
-    padding-right: var(--spacing-sm);
+    padding-right: var(--spacing-md);
   }
   
   .profile-main {
@@ -432,13 +556,36 @@
     width: 60px;
     height: 60px;
   }
+  
+  /* FORCE HORIZONTAL LAYOUT FOR TABLET */
+  .profile-main .form-group {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: var(--spacing-md) !important;
+    margin-bottom: var(--spacing-sm) !important;
+  }
+
+  .profile-main .form-group label {
+    min-width: 160px !important;
+    max-width: 160px !important;
+    width: 160px !important;
+    flex-shrink: 0 !important;
+    text-align: left !important;
+  }
+
+  .profile-main .input-wrapper {
+    flex: 1 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
 }
 
 /* Mobile (≤768px) - Stack labels above inputs */
 @media (max-width: 768px) {
   .profile-page-container {
     padding-left: var(--spacing-md);
-    padding-right: var(--spacing-sm);
+    padding-right: var(--spacing-md); /* FIXED: Consistent padding */
   }
   
   .profile-main {
@@ -502,7 +649,7 @@
 @media (max-width: 480px) {
   .profile-page-container {
     padding-left: var(--spacing-sm);
-    padding-right: var(--spacing-xs);
+    padding-right: var(--spacing-sm); /* FIXED: Consistent padding */
   }
   
   .profile-main {

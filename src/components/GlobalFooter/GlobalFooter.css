@@ -1,4 +1,43 @@
-/* GlobalFooter.css */
+/* Zone-aware footer styling. Keeps existing layout classes; only colors are overridden here. */
+.global-footer {
+  /* Default colors; will be overridden by zone classes below */
+  --bar-color: var(--yo-light);
+  --text-color: #000;
+  background: var(--bar-color) !important;
+  color: var(--text-color) !important;
+  border-top: 1px solid var(--line);
+}
+
+/* Match the header's zone palette (see Header.css) */
+.global-footer.default {
+  --bar-color: var(--yo-light);
+}
+
+.global-footer.zoneA {
+  --bar-color: var(--yo-dark-rose);
+}
+
+.global-footer.zoneZ {
+  --bar-color: var(--yo-purple);
+}
+
+/* Ensure our formatted casing is respected */
+.global-footer-text {
+  text-transform: none !important;
+  letter-spacing: 3px;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+/* Optional: alignment helper if needed */
+.global-footer-marquee {
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  align-items: center;
+}
+
+/* Keep existing scrolling classes intact */
 .global-footer-scrolling {
     width: 100vw;
     position: fixed;
@@ -33,17 +72,11 @@
 }
 
 @keyframes scroll-left-system {
-    0% {
-        transform: translateX(100vw);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
 }
 
 /* Accessibility: Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .global-scroll-content {
-        animation-duration: 300s;
-    }
+    .global-scroll-content { animation-duration: 300s; }
 }

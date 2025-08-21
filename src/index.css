@@ -202,7 +202,7 @@ select {
     padding: 12px 15px;
     border: 1px solid var(--yo-green);
     border-radius: var(--border-radius);
-    background-color: var(--yo-white);
+    /* background-color: var(--yo-white); */
     color: var(--yo-black);
     letter-spacing: 1px;
     outline: none;

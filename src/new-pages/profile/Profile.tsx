@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useState, useRef } from "react";
 import "./Profile.css";
 import { GET_ARCHIVE_CONCERT, GET_MY_PROFILE, UPDATE_PROFILE } from "../../graphql/queries";
 import { useLazyQuery, useMutation } from "@apollo/client";
@@ -34,6 +34,10 @@ const Profile: FC = () => {
     const [isBadgePopupOpen, setIsBadgePopupOpen] = useState(false);
     const [selectedBadgeDetails, setSelectedBadgeDetails] = useState<BadgeDetails | null>(null);
     const [response, setResponse] = useState<IAPIResponse>({ code: null, data: null, message: null, error: null });
+
+    // Terminal cursor functionality refs
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const inputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
 
     const [getUserProfile, {
         data: myProfile,
@@ -79,6 +83,115 @@ const Profile: FC = () => {
             setArchiveConcert(response?.data);
         }
     }, [concerts]);
+
+    // Terminal cursor setup and management
+    useEffect(() => {
+        if (!canvasRef.current) {
+            const canvas = document.createElement('canvas');
+            canvas.style.display = 'none';
+            document.body.appendChild(canvas);
+            canvasRef.current = canvas;
+        }
+
+        const canvas = canvasRef.current;
+
+        const measureTextWidth = (text: string, inputElement: HTMLInputElement): number => {
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return 0;
+
+            const computedStyle = window.getComputedStyle(inputElement);
+            const fontSize = computedStyle.fontSize;
+            const fontFamily = computedStyle.fontFamily;
+            const fontWeight = computedStyle.fontWeight;
+
+            ctx.font = `${fontWeight} ${fontSize} ${fontFamily}`;
+            const metrics = ctx.measureText(text);
+            return Math.floor(metrics.width);
+        };
+
+        const updateCursorPosition = (inputElement: HTMLInputElement) => {
+            const formGroup = inputElement.closest('.form-group') as HTMLElement;
+            if (formGroup && formGroup.classList.contains('focused')) {
+                setTimeout(() => {
+                    const cursorPos = inputElement.selectionStart || 0;
+                    const textBeforeCursor = inputElement.value.substring(0, cursorPos);
+                    const textWidth = measureTextWidth(textBeforeCursor, inputElement);
+                    const computedStyle = window.getComputedStyle(inputElement);
+                    const paddingLeft = parseFloat(computedStyle.paddingLeft) || 12;
+                    const borderLeft = parseFloat(computedStyle.borderLeftWidth) || 0;
+                    const cursorPosition = Math.round(paddingLeft + borderLeft + textWidth);
+                    formGroup.style.setProperty('--cursor-left', `${cursorPosition}px`);
+                }, 10);
+            }
+        };
+
+        const setupInputHandlers = (input: HTMLInputElement) => {
+            const handleFocus = () => {
+                const formGroup = input.closest('.form-group') as HTMLElement;
+                if (formGroup) {
+                    formGroup.classList.add('focused');
+                    updateCursorPosition(input);
+                }
+            };
+
+            const handleBlur = () => {
+                const formGroup = input.closest('.form-group') as HTMLElement;
+                if (formGroup) {
+                    formGroup.classList.remove('focused');
+                }
+            };
+
+            const handleInput = () => {
+                setTimeout(() => updateCursorPosition(input), 5);
+            };
+
+            const handleKeyUp = () => {
+                setTimeout(() => updateCursorPosition(input), 5);
+            };
+
+            const handleClick = () => {
+                setTimeout(() => updateCursorPosition(input), 5);
+            };
+
+            const handleKeyDown = (event: KeyboardEvent) => {
+                const navigationKeys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+                if (navigationKeys.includes(event.key)) {
+                    setTimeout(() => updateCursorPosition(input), 5);
+                }
+            };
+
+            input.addEventListener('focus', handleFocus);
+            input.addEventListener('blur', handleBlur);
+            input.addEventListener('input', handleInput);
+            input.addEventListener('keyup', handleKeyUp);
+            input.addEventListener('click', handleClick);
+            input.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                input.removeEventListener('focus', handleFocus);
+                input.removeEventListener('blur', handleBlur);
+                input.removeEventListener('input', handleInput);
+                input.removeEventListener('keyup', handleKeyUp);
+                input.removeEventListener('click', handleClick);
+                input.removeEventListener('keydown', handleKeyDown);
+            };
+        };
+
+        // Setup handlers for all inputs
+        const cleanupFunctions: (() => void)[] = [];
+        Object.values(inputRefs.current).forEach(input => {
+            if (input) {
+                cleanupFunctions.push(setupInputHandlers(input));
+            }
+        });
+
+        return () => {
+            cleanupFunctions.forEach(cleanup => cleanup());
+            if (canvasRef.current && document.body.contains(canvasRef.current)) {
+                document.body.removeChild(canvasRef.current);
+            }
+        };
+    }, [systemUser]);
 
     const handleUserInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -135,14 +248,17 @@ const Profile: FC = () => {
             });
     };
 
-    const isFormChanged = () => {
-        if (!originalUser || !systemUser) return false;
-        return (
-            originalUser.firstName !== systemUser.firstName ||
-            originalUser.lastName !== systemUser.lastName ||
-            (systemUser.provider === "LOCAL" && originalUser.password !== systemUser.password)
-        );
-    };
+const isFormChanged = () => {
+  if (!originalUser || !systemUser) return false;
+  return (
+    (originalUser.firstName ?? "") !== (systemUser.firstName ?? "") ||
+    (originalUser.lastName ?? "")  !== (systemUser.lastName ?? "")  ||
+    (originalUser.password ?? "")  !== (systemUser.password ?? "")
+  );
+};
+
+
+
 
     const groupByConcert = (data?: IAConcert[]): IGroupedConcert[] => {
         if (!data || data.length === 0) return [];
@@ -309,7 +425,7 @@ const Profile: FC = () => {
                             </div>
                         </div>
 
-                        {/* Form - Profile fields */}
+                        {/* Form - Profile fields with terminal-style cursor */}
                         <form className="details-form" onSubmit={(e) => e.preventDefault()}>
                             
                             {/* First Name Field - EDITABLE */}
@@ -317,6 +433,7 @@ const Profile: FC = () => {
                                 <label htmlFor="firstName">First Name :</label>
                                 <div className="input-wrapper">
                                     <input
+                                        ref={(el) => (inputRefs.current.firstName = el)}
                                         id="firstName"
                                         type="text"
                                         value={systemUser?.firstName || ""}
@@ -333,6 +450,7 @@ const Profile: FC = () => {
                                 <label htmlFor="lastName">Last Name :</label>
                                 <div className="input-wrapper">
                                     <input
+                                        ref={(el) => (inputRefs.current.lastName = el)}
                                         id="lastName"
                                         type="text"
                                         value={systemUser?.lastName || ""}
@@ -394,25 +512,25 @@ const Profile: FC = () => {
                                     />
                                 </div>
                             </div>
+{/* Password – always visible */}
+<div className="form-group">
+  <label htmlFor="password">Password :</label>
+  <div className="input-wrapper">
+    <input
+      ref={(el) => (inputRefs.current.password = el)}
+      id="password"
+      type="password"
+      value={systemUser?.password ?? ""}
+      onChange={handleUserInput}
+      name="password"
+      className="field-value-profile"
+      placeholder="**************"
+      aria-label="Password"
+    />
+  </div>
+</div>
 
-                            {/* Password Field - EDITABLE (Only for LOCAL provider) */}
-                            {systemUser?.provider === "LOCAL" && (
-                                <div className="form-group">
-                                    <label htmlFor="password">Password :</label>
-                                    <div className="input-wrapper">
-                                        <input
-                                            id="password"
-                                            type="password"
-                                            value={systemUser?.password || ""}
-                                            onChange={handleUserInput}
-                                            name="password"
-                                            className="field-value-profile"
-                                            placeholder="**************"
-                                            aria-label="Password"
-                                        />
-                                    </div>
-                                </div>
-                            )}
+
 
                             {/* Update Button */}
                             <button
