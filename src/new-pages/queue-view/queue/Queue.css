@@ -1,261 +1,400 @@
 /* =============================================================================
-   QUEUE COMPONENT — Figma-exact card (colors, fonts, sizes)
-   Only styles the queue card. Global header/logo/footer remain unchanged.
+   QUEUE COMPONENT - FIGMA-EXACT STYLING WITH YOGESHWARI THEME
+   Updated to match exact design specifications from Figma images
    ============================================================================= */
 
 /* --------------------------- Zone theme variables --------------------------- */
-/* Zone Z (purple header bar in screenshot, yellow lines in card) */
-.queue-loader.blue{
-  /* Lines, borders, progress fill */
-  --theme-color: var(--yo-light-green);
-  /* Accent text like “Checking …” */
-  --theme-accent: var(--yo-purple, #8b5cf6);
-  /* “Queue Status” title color */
-  --theme-title: var(--yo-purple, #8b5cf6);
+/* Zone Z (purple header, yellow/green accents) */
+.queue-loader.blue {
+  --theme-color: var(--yo-light-green);        /* Green accent color */
+  --theme-accent: var(--yo-purple);            /* Purple for "Queue Status" and subtitle */
+  --theme-title: var(--yo-purple);             /* Purple for "Queue Status" title */
+  --theme-description-bg: var(--yo-light-green); /* Green background strip */
 }
 
-/* Zone A (blue lines, pink subtitle) */
-.queue-loader.green{
-  --theme-color: var(--yo-blue);
-  --theme-accent: var(--yo-blue);
-  --theme-title: var(--yo-dark-rose);
+/* Zone A (blue header, rose accents) */
+.queue-loader.green {
+  --theme-color: var(--yo-blue);               /* Blue accent color */
+  --theme-accent: var(--yo-dark-rose);         /* Rose for "Queue Status" and subtitle */
+  --theme-title: var(--yo-dark-rose);          /* Rose for "Queue Status" title */
+  --theme-description-bg: var(--yo-blue);      /* Blue background strip */
 }
 
 /* ------------------------------- Card wrapper ------------------------------ */
-.queue-loader{
-  font-family: var(--font-primary); /* VT323 in your globals */
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  width:100%;
-  max-width:600px;
-  margin:0 auto;
-  gap:24px;
+.queue-loader {
+  font-family: var(--font-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: var(--spacing-lg);
 }
 
 /* --------------------------------- Header --------------------------------- */
-.queue-header{
-  width:100%;
-  max-width:480px;
-  border:1px solid var(--theme-color);
-  background:transparent;
-  padding:0;
-  box-shadow:none;
+.queue-header {
+  width: 100%;
+  max-width: 480px;
+  border: 2px solid var(--theme-color);
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  position: relative;
 }
 
-.queue-title{
-  font-family: var(--font-primary);
-  font-size: clamp(36px,5vw,64px);
-  line-height:1;
-  letter-spacing:1px;
-  text-transform:uppercase;
+.queue-title {
+  font-family: "Jersey 25";
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--theme-color);
-  margin:28px 0 8px 0;
-  font-weight:400;
-  text-align:center;
+  margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+  font-weight: normal;
+  text-align: center;
 }
 
-.queue-subtitle{
-  font-family: var(--font-primary);
-  font-size: clamp(18px,2.5vw,28px);
-  line-height:1;
-  letter-spacing:1px;
-  text-transform:uppercase;
+.queue-subtitle {
+  font-family: "Jersey 25";
+  font-size: clamp(16px, 2.5vw, 24px);
+  line-height: 1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   color: var(--theme-accent);
-  margin:0 0 6px 0;
-  font-weight:400;
-  text-align:center;
+  margin: 0 0 var(--spacing-sm) 0;
+  font-weight: normal;
+  text-align: center;
 }
 
-.queue-description{
-  font-family: var(--font-primary);
-  font-size: clamp(14px,2vw,20px);
-  letter-spacing:1px;
-  text-transform:uppercase;
-  background: var(--theme-color);
-  color: var(--yo-black); /* dark text on the strip */
-  padding:12px 0;
-  margin:0;
-  text-align:center;
+.queue-description {
+  font-family: "Jersey 25";
+  font-size: clamp(16px, 2vw, 20px);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: var(--theme-description-bg);
+  color: var(--yo-primary);
+  padding: var(--spacing-md) 0;
+  margin: 0;
+  text-align: center;
+  font-weight: normal;
 }
 
 /* ------------------------------- Status box -------------------------------- */
-.queue-box{
-  width:100%;
-  max-width:480px;
-  border:1px solid var(--theme-color);
-  background:transparent;
-  padding:28px;
+.queue-box {
+  width: 100%;
+  max-width: 480px;
+  border: 2px solid var(--theme-color);
+  background: transparent;
+  padding: var(--spacing-xl);
+  box-sizing: border-box;
 }
 
-.queue-status-title{
-  font-family: var(--font-primary);
-  font-size: clamp(32px,4vw,48px);
+.queue-status-title {
+  font-family: "Jersey 25";
+  font-size: clamp(28px, 4vw, 40px);
   color: var(--theme-title);
-  line-height:1;
-  letter-spacing:1px;
-  text-align:left;        /* matches Figma */
-  text-transform:none;    /* “Queue Status” case preserved */
-  margin:0 0 18px 0;
-  font-weight:400;
+  line-height: 1.2;
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 var(--spacing-lg) 0;
+  font-weight: normal;
 }
 
-.queue-info{
-  margin-bottom:18px;
-  line-height:1;
+.queue-info {
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.4;
 }
 
-.queue-total-seats,
-.queue-checking-position{
+.queue-total-seats {
   font-family: var(--font-primary);
-  font-size: clamp(16px,2vw,18px);
-  letter-spacing:1px;
-  text-align:left;
-  margin-bottom:10px;
+  font-size: clamp(14px, 2vw, 18px);
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  color: var(--yo-green);
 }
 
-.queue-checking-position{ color: var(--theme-accent); }
-
-.queue-arrow{
-  display:inline-block;
-  width:0.9em;
-  height:0.9em;
-  margin-right:8px;
-  border-right:2px solid var(--theme-accent);
-  border-bottom:2px solid var(--theme-accent);
-  transform:rotate(-45deg) translateY(-1px);
-  animation:queue-blink 1s infinite;
+.queue-checking-position {
+  font-family: var(--font-primary);
+  font-size: clamp(14px, 2vw, 18px);
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--yo-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
 }
 
-@keyframes queue-blink{ 0%,50%{opacity:1} 51%,100%{opacity:0} }
-
-/* ---------------------------- Depth rows with — ---------------------------- */
-.queue-depth-info{
-  padding:12px 16px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.queue-arrow {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  border-right: 2px solid var(--yo-green);
+  border-bottom: 2px solid var(--yo-green);
+  transform: rotate(-45deg);
+  animation: queue-blink 1s infinite;
 }
 
-.queue-depth-row{
-  display:grid;
+@keyframes queue-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ---------------------------- Depth rows with dashes ---------------------------- */
+.queue-depth-info {
+  padding: var(--spacing-md) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.queue-depth-row {
+  display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items:center;
-  font-size: clamp(16px,2vw,18px);
+  align-items: center;
+  font-size: clamp(14px, 2vw, 18px);
+  gap: var(--spacing-sm);
 }
 
 .queue-depth-label,
-.queue-depth-value{
+.queue-depth-value {
   font-family: var(--font-primary);
-  letter-spacing:1px;
+  letter-spacing: 1px;
   color: var(--theme-title);
 }
 
-.queue-depth-label{ justify-self:start; }
-
-.queue-depth-dashes{
-  color: var(--theme-title);
-  opacity:.8;
-  letter-spacing:1.5px;
-  text-align:center;
-  font-family: var(--font-primary);
+.queue-depth-label {
+  justify-self: start;
 }
 
-.queue-depth-value{ justify-self:end; }
+.queue-depth-dashes {
+  color: var(--theme-title);
+  opacity: 0.8;
+  letter-spacing: 2px;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: clamp(12px, 1.5vw, 16px);
+}
+
+.queue-depth-value {
+  justify-self: end;
+  font-weight: normal;
+}
 
 /* ------------------------------ Progress bar ------------------------------- */
-.queue-progress-container{
-  width:100%;
-  max-width:480px;
+.queue-progress-container {
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: var(--spacing-md);
 }
 
-.queue-progress-bar{
-  display:grid;
-  grid-template-columns:repeat(30, 1fr);
-  gap:4px;
-  height:22px;
-  width:100%;
-  padding:4px;
-  border:1px solid var(--theme-color);
-  background:transparent;
-  margin-bottom:18px;
+.queue-progress-bar {
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  gap: 3px;
+  height: 24px;
+  width: 100%;
+  padding: 4px;
+  border: 2px solid var(--theme-color);
+  background: transparent;
+  margin-bottom: var(--spacing-lg);
+  box-sizing: border-box;
 }
 
-.queue-progress-segment{
-  border:1px solid var(--yo-dark-gray);
-  background:transparent;
-  transition:all .15s ease;
+.queue-progress-segment {
+  border: 1px solid var(--yo-dark-gray);
+  background: transparent;
+  transition: all 0.3s ease;
 }
 
-.queue-progress-segment.queue-active{
-  background:var(--theme-color);
-  border-color:var(--theme-color);
+.queue-progress-segment.queue-active {
+  background: var(--theme-color);
+  border-color: var(--theme-color);
 }
 
 /* --------------------------------- Buttons -------------------------------- */
-.horizontal-buttons{
-  display:flex;
-  gap:16px;
-  width:100%;
-  max-width:480px;
-  margin:0;
+.horizontal-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 480px;
+  margin: 0;
 }
 
-.queue-button{
+.queue-button {
   font-family: var(--font-primary);
-  font-size: clamp(14px,2.5vw,18px);
-  height:42px;
-  padding:10px 18px;
-  line-height:1;
-  font-weight:400;
-  border:1px solid var(--theme-color);
-  border-radius:0;
-  background:transparent;
-  color:var(--yo-white);
-  text-transform:uppercase;
-  letter-spacing:1px;
-  flex:1;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  transition:transform .15s, box-shadow .15s, background-color .15s, color .15s;
+  font-size: clamp(12px, 2.5vw, 16px);
+  height: 44px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  line-height: 1;
+  font-weight: normal;
+  border: 2px solid var(--theme-color);
+  border-radius: 0;
+  background: transparent;
+  color: var(--yo-white);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  outline: none;
 }
 
 .queue-button .bicon,
-.queue-button .cicon{
-  width:20px;
-  height:20px;
-  filter:invert(1);
+.queue-button .cicon {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  transition: filter var(--transition-fast);
 }
 
-.queue-button:hover{
-  background:var(--theme-color);
-  color:var(--yo-black);
-  transform:translateY(-1px);
-  box-shadow:0 4px 10px rgba(0,0,0,.25);
+.queue-button:hover {
+  background: var(--theme-color);
+  color: var(--yo-black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .queue-button:hover .bicon,
-.queue-button:hover .cicon{ filter:invert(0); }
+.queue-button:hover .cicon {
+  filter: invert(0);
+}
+
+.queue-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.queue-button .label {
+  font-family: var(--font-primary);
+  letter-spacing: 1px;
+
+}
 
 /* -------------------------------- Responsive ------------------------------- */
-@media (max-width:768px){
-  .queue-loader{ gap:18px; }
-  .queue-header{ border-width:1px; }
-  .queue-title{ margin-top:22px; }
-  .queue-box{ padding:16px; }
-  .horizontal-buttons{ flex-direction:column; gap:10px; }
-  .queue-button{ height:36px; padding:10px 14px; }
-  .queue-progress-bar{ height:18px; gap:2px; padding:2px; }
+@media (max-width: 768px) {
+  .queue-loader {
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-sm);
+  }
+
+  .queue-header {
+    border-width: 2px;
+  }
+
+  .queue-title {
+    margin-top: var(--spacing-md);
+    font-size: clamp(24px, 6vw, 36px);
+  }
+
+  .queue-subtitle {
+    font-size: clamp(14px, 3vw, 20px);
+  }
+
+  .queue-box {
+    padding: var(--spacing-lg);
+  }
+
+  .queue-status-title {
+    font-size: clamp(24px, 5vw, 32px);
+  }
+
+  .horizontal-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .queue-button {
+    height: 40px;
+    padding: var(--spacing-sm);
+    font-size: clamp(12px, 3vw, 14px);
+  }
+
+  .queue-progress-bar {
+    height: 20px;
+    gap: 2px;
+    padding: 3px;
+  }
+
+  .queue-depth-row {
+    gap: var(--spacing-xs);
+  }
+
+  .queue-depth-dashes {
+    letter-spacing: 1px;
+  }
 }
 
-@media (max-width:480px){
-  .queue-loader{ gap:12px; }
+@media (max-width: 480px) {
+  .queue-loader {
+    gap: var(--spacing-sm);
+  }
+
+  .queue-title {
+    font-size: clamp(20px, 7vw, 28px);
+  }
+
+  .queue-subtitle {
+    font-size: clamp(12px, 4vw, 16px);
+  }
+
+  .queue-description {
+    font-size: clamp(11px, 3vw, 14px);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .queue-box {
+    padding: var(--spacing-md);
+  }
+
+  .queue-status-title {
+    font-size: clamp(20px, 6vw, 28px);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .queue-button {
+    height: 36px;
+    font-size: clamp(10px, 3.5vw, 12px);
+  }
+
+  .queue-button .bicon,
+  .queue-button .cicon {
+    width: 16px;
+    height: 16px;
+  }
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion:reduce){
-  .queue-progress-segment, .queue-button{ transition:none }
-  .queue-arrow{ animation:none }
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .queue-progress-segment,
+  .queue-button {
+    transition: none;
+  }
+
+  .queue-arrow {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .queue-header,
+  .queue-box,
+  .queue-progress-bar,
+  .queue-button {
+    border-width: 3px;
+  }
+}
+
+/* Focus states for accessibility */
+.queue-button:focus-visible {
+  outline: 2px solid var(--theme-color);
+  outline-offset: 2px;
 }

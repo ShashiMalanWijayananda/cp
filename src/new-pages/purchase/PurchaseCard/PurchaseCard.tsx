@@ -343,7 +343,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
 
               {/* Box Header - Event Name */}
               <div className="purchase-card-box-header">
-                <span>{event?.eventName ?? ""}</span>
+                <span>{(event?.eventName && /concert/i.test(event.eventName) ? event.eventName : (event?.eventName ? `${event.eventName} Concert` : "Yogeshwari Concert"))}</span>
               </div>
 
               {/* Box Content */}
@@ -381,6 +381,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                     {/* Coupon Code Input */}
                     <div className="content-row">
                       <input
+                          style={{borderRadius: "unset"}}
                           placeholder="Discount Code (Optional)"
                           value={couponCode}
                           onChange={handleCouponCodeChange}
@@ -415,7 +416,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                     {zone?.remainingTicket <= 4 && (
                         <div className="content-row">
                           <div className="content-text">Remaining Slots:</div>
-                          <div className="content-text">
+                          <div className="content-text value">
                             {zone?.remainingTicket - ticketCount}
                           </div>
                         </div>
@@ -424,7 +425,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                     {/* Price per Entry */}
                     <div className="content-row">
                       <div className="content-text">Price per Entry</div>
-                      <div className="content-text">
+                      <div className="content-text value">
                         {formatAmount(zone?.price ?? 0)}
                       </div>
                     </div>
@@ -447,7 +448,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                     {/* Total Cost */}
                     <div className="content-row">
                       <div className="content-text">Total Mission Cost</div>
-                      <div className="content-text">
+                      <div className="content-text value">
                         {formatAmount(Math.round(grandTotal))}
                       </div>
                     </div>
@@ -474,6 +475,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
             {/* Bottom Action Button */}
             <div className="horizontal-buttons">
               <button
+                  style={{borderRadius: "unset"}}
                   className="queue-button"
                   onClick={handleRemoveQueue}
                   aria-label="Abort mission queue"

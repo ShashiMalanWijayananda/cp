@@ -38,7 +38,6 @@ const Queue: FC = () => {
   });
   const [activeCount, setActiveCount] = useState(0);
 
-
   const isDesktop = () => {
     const userAgent = navigator.userAgent;
     return !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(userAgent);
@@ -50,7 +49,7 @@ const Queue: FC = () => {
       index++;
       setActiveCount(index);
       if (index >= 30) clearInterval(interval);
-    }, 1000); // 300ms per segment
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -115,7 +114,6 @@ const Queue: FC = () => {
       case "disconnected":
         console.log("WebSocket disconnected - handle reconnection logic");
         setWsDisconnected(true);
-        // window.location.reload();
         break;
       case "error":
         console.error("WebSocket error:", lastError);
@@ -123,6 +121,7 @@ const Queue: FC = () => {
         break;
     }
   }, [connectionStatus, lastError]);
+
   useEffect(() => {
     if (queueStatus?.queueUpdate?.queueStatus?.status == "not_found") {
       navigate(`/menu`, {replace: true});
@@ -132,7 +131,7 @@ const Queue: FC = () => {
     setQStatus(qs);
     if (qs?.currentIndex <= 500) {
       setTimeout(() => {
-      navigate(`/purchase${search}`);
+       navigate(`/purchase${search}`);
       }, 3000);
     }
   }, [queueStatus]);
@@ -163,6 +162,7 @@ const Queue: FC = () => {
     if (currentIndex >= 100) {
       return currentIndex - 100;
     }
+    return currentIndex || 0;
   };
 
   const handleNavigation = () => {
@@ -173,93 +173,122 @@ const Queue: FC = () => {
           "Some missions can only be unlocked on a larger screen."
       );
     } else {
-      navigate("/landing-page")
+      navigate("/landing-page");
     }
   };
+
+  // Get zone display name
+  const getZoneDisplayName = () => {
+    if (zoneId === "zoneZ") return "Z";
+    if (zoneId === "zoneA") return "A";
+    return zoneId?.replace("zone", "") || "";
+  };
+
   return (
       <React.Fragment>
-        {/*<Alert message={"Establishing stream..."} visible={queueLoading} type={"info"}/>*/}
         <Alert
             message={"Cannot create stream..."}
             visible={wsError}
             type={"error"}
         />
-        {/*<Alert message={"Stream has been disconnected..."} visible={wsDisconnected} type={"warning"}/>*/}
+
         <div className="flex flex-col items-center w-full">
           <div className="w-full">
             <div className={`queue-loader ${zoneId === "zoneZ" ? "blue" : "green"}`}>
-              {/* <div className="mobile-logo" aria-label="Yogeshwari logo">
-                                  <Logo/>
-                                </div> */}
-              <div className={"queue-header"}>
-                <div className={"queue-title"}>ZONE {zoneId?.split("zone")}</div>
-                <div className={"queue-subtitle"}>MISSION ACCESS QUEUE</div>
-                <div className={"queue-description"}>
+
+              {/* Header Section */}
+              <div className="queue-header">
+                <div className="queue-title">
+                  ZONE {getZoneDisplayName()}
+                </div>
+                <div className="queue-subtitle">
+                  MISSION ACCESS QUEUE
+                </div>
+                <div className="queue-description">
                   STAY IN QUEUE UNTIL YOUR TURN
                 </div>
               </div>
 
-              <div className={"queue-box"}>
-                <div className={"queue-status-title"}>QUEUE STATUS</div>
-                <div className={"queue-info"}>
-                  {/*<div className={"queue-total-seats"}>Total Seats: 4000</div>*/}
-                  <div className={"queue-checking-position"}>
-                    <span className={"queue-arrow"}></span> Checking Queue
-                    Position....
+              {/* Status Box */}
+              <div className="queue-box">
+                <div className="queue-status-title">Queue Status</div>
+
+                <div className="queue-info">
+                  <div className="queue-total-seats">
+                    Total Seats: 4000
+                  </div>
+                  <div className="queue-checking-position">
+                    <span className="queue-arrow"></span>
+                    Checking Queue Position....
                   </div>
                 </div>
 
-                <div className={"queue-depth-info"}>
-                  <div className={"queue-depth-row"}>
-                    <span className={"queue-depth-label"}>Total Depth</span>
-                    <span className={"queue-depth-dashes"}>----------------</span>
-                    <span className={"queue-depth-value"}>
-                {qStatus?.totalQueue ?? 0}
-              </span>
+                <div className="queue-depth-info">
+                  <div className="queue-depth-row">
+                    <span className="queue-depth-label">Total Depth</span>
+                    <span className="queue-depth-dashes">----------------</span>
+                    <span className="queue-depth-value">
+                      {qStatus?.totalQueue ?? 100}
+                    </span>
                   </div>
-                  <div className={"queue-depth-row"}>
-                    <span className={"queue-depth-label"}>Your Depth</span>
-                    <span className={"queue-depth-dashes"}>----------------</span>
-                    <span className={"queue-depth-value"}>
-                {batchSize(qStatus?.currentIndex) ?? 0}
-              </span>
+                  <div className="queue-depth-row">
+                    <span className="queue-depth-label">Your Depth</span>
+                    <span className="queue-depth-dashes">----------------</span>
+                    <span className="queue-depth-value">
+                      {batchSize(qStatus?.currentIndex) || "05"}
+                    </span>
                   </div>
                 </div>
               </div>
 
-              <div className={"queue-progress-container"}>
-                <div className="queue-progress-bar">
-                  {Array.from({length: 30}).map((_, i) => (
-                      <div
-                          key={i}
-                          className={`queue-progress-segment ${
-                              qStatus?.currentIndex <= 200 ? "queue-active" : ""
-                          }`}
-                      ></div>
-                  ))}
-                </div>
-
-                {/*<div className="queue-options">*/}
-                {/*    <div className="queue-buttons hide-on-mobile">*/}
-                {/*        <img src="images/icon/explore.svg" className="btn-image"/>*/}
-                {/*        <span>Explore Yogeshwari</span>*/}
-                {/*    </div>*/}
-
-                {/*    <div className="queue-buttons" onClick={handleRemoveQueue}>*/}
-                {/*        <img src="images/icon/bin.png" className="btn-image"/>*/}
-                {/*        <span>{queueRemoveLoading ? "Removing..." : "Exit From Queue"}</span>*/}
-                {/*    </div>*/}
+              {/* Progress Bar */}
+              <div className="queue-progress-container">
+                {/*<div className="queue-progress-bar">*/}
+                {/*  {Array.from({length: 30}).map((_, i) => (*/}
+                {/*      <div*/}
+                {/*          key={i}*/}
+                {/*          className={`queue-progress-segment ${*/}
+                {/*              (qStatus?.currentIndex <= 200 || i < 7) ? "queue-active" : ""*/}
+                {/*          }`}*/}
+                {/*      ></div>*/}
+                {/*  ))}*/}
                 {/*</div>*/}
+
+                {/* Action Buttons */}
                 <div className="horizontal-buttons">
-                  <button className="queue-button" onClick={handleNavigation}>
-                    <img className="bicon" src="images/icon/explore.svg" width={30}/>
+                  <button
+                    className="queue-button"
+                    onClick={handleNavigation}
+                    type="button"
+                    aria-label="Explore Yogeshwari"
+                  >
+                    <img
+                        style={{filter: 'invert(0)'}}
+                      className="cicon"
+                      src="images/icon/explore.svg"
+                      alt="Explore"
+                      width={20}
+                      height={20}
+                    />
                     <div className="label">Explore Yogeshwari</div>
                   </button>
 
-                  <button className="queue-button" onClick={handleRemoveQueue}>
-                    <img className="cicon" src="images/icon/close.svg" width={30}/>
+                  <button
+                    className="queue-button"
+                    onClick={handleRemoveQueue}
+                    type="button"
+                    disabled={queueRemoveLoading}
+                    aria-label={queueRemoveLoading ? "Removing from queue" : "Exit from queue"}
+                  >
+                    <img
+                      className="cicon"
+                      src="images/icon/close.svg"
+                      alt="Exit"
+                      width={20}
+                      height={20}
+                    />
                     <div className="label">
-                      {queueRemoveLoading ? "Removing..." : "Exit From Queue"}
+                      {queueRemoveLoading ? "Removing..." : "Exit from queue"}
                     </div>
                   </button>
                 </div>

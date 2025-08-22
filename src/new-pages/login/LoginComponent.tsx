@@ -6,7 +6,8 @@ import {AuthProvider, useLogin, User} from "../../context/login.context";
 import RetroTextBox from "../../components/retro/RetroTextBox/RetroTextBox";
 import "../../App.css";
 import {useLocation, useNavigate} from "react-router-dom";
-import Alert, {AlertProps} from "../../components/retro/Alert/Alert";
+import CustomDialog from "../../components/CustomDialog/CustomDialog";
+import {useAppContext} from "../../context/app.context";
 
 interface LoginComponentProps {
   logoSrc?: string;
@@ -36,12 +37,8 @@ interface LoginUser {
 const LoginComponent: FC<LoginComponentProps> = () => {
   const navigation = useNavigate();
   const location = useLocation();
+  const {appContext} = useAppContext();
   const queryParams = new URLSearchParams(location.search);
-  const [alert, setAlert] = useState<AlertProps>({
-    type: "info",
-    visible: false,
-    message: null
-  });
   const [user, setUser] = useState<LoginUser>({
     email: "",
     password: "",
@@ -83,29 +80,14 @@ const LoginComponent: FC<LoginComponentProps> = () => {
     const errors = { email: "", password: "", general: "" };
     if (!user.email) {
       errors.email = "Email is required";
-      setAlert({
-        ...alert,
-        message: "Email is required",
-        visible: true,
-        type: "error"
-      })
+      appContext.showSuccessDialog("REQUIRED!!!", "Email is required")
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(user.email)) {
       errors.email = "Please enter a valid email address";
-      setAlert({
-        ...alert,
-        message: "Please enter a valid email address",
-        visible: true,
-        type: "error"
-      })
+      appContext.showSuccessDialog("REQUIRED!!!", "Required valid email address")
       isValid = false;
     } else if (user.password == "") {
-      setAlert({
-        ...alert,
-        message: "Please enter password",
-        visible: true,
-        type: "error"
-      })
+      appContext.showSuccessDialog("REQUIRED!!!", "Required password")
     }
     setFormErrors(errors);
     return isValid;
@@ -172,32 +154,21 @@ const LoginComponent: FC<LoginComponentProps> = () => {
     const verifyStatus = queryParams.get("verification-success") as string | null;
     const email = queryParams.get("email");
     if (verifyStatus == "activated") {
-      setAlert({visible: true, type: "info", message: "Hi agent, Your account has already activated!!!"})
+      appContext.showSuccessDialog("SYSTEM GRANTED!!!", "Hi agent, Your account has already activated!!!!")
     } else if (verifyStatus == "active") {
-      setAlert({visible: true, type: "info", message: "Hi agent, Your account has been activated!!!"})
+      appContext.showSuccessDialog("SYSTEM GRANTED!!!", "Hi agent, Your account has been activated!!!")
     } else if (verifyStatus == "failed") {
-      setAlert({visible: true, type: "error", message: "Hi agent, Activation Process Error.."})
+      appContext.showSuccessDialog("SYSTEM ERROR!!!", "Hi agent, Activation Process Error..")
+
     }
   }, [])
 
   return (
       <>
-        <Alert
-            message={alert.message ?? ""}
-            visible={alert.visible}
-            type={alert.type}
-            onClose={() => setAlert(prev => ({
-              ...prev,
-              visible: false,
-            }))}
-            className="label-right"
-            autoClose={true}
-            autoCloseDelay={5000}
-        />
-        
+        <CustomDialog/>
         <div className="login-main-container">
           <div className="login-content-area">
-            
+
             {/* Logo Section - Left Column (Desktop) / Top (Mobile) */}
             <div className="login-logo-section">
               <div className="login-logo-container">
@@ -211,10 +182,10 @@ const LoginComponent: FC<LoginComponentProps> = () => {
             {/* Login Form Section - Right Column (Desktop) / Bottom (Mobile) */}
             <div className="login-form-section">
               <div className="login-form-panel">
-                
+
                 {/* Login Title */}
                 <h1 className="login-form-title">LOGIN TO BOARDING PROCESS</h1>
-                
+
                 {/* Google Login Button */}
                 <div className="login-google-container">
                   <GoogleLogin
@@ -231,10 +202,10 @@ const LoginComponent: FC<LoginComponentProps> = () => {
                     useOneTap
                   />
                 </div>
-                
+
                 {/* Divider */}
                 <div className="login-form-divider">OR USE EMAIL ADDRESS</div>
-                
+
                 {/* Login Form */}
                 <div className="login-form-container">
                   <form
@@ -285,16 +256,16 @@ const LoginComponent: FC<LoginComponentProps> = () => {
                     >
                       I don't have an account
                     </div>
-                    
+
                   </form>
                 </div>
-                
+
               </div>
             </div>
-            
+
           </div>
         </div>
-        
+
       </>
   );
 };

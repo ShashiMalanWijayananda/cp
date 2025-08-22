@@ -55,7 +55,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin: 0;
 }
 
@@ -68,7 +68,7 @@
   display: flex;
   gap: var(--spacing-2xl);
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   margin-bottom: var(--spacing-xl);
 }
@@ -454,4 +454,11 @@
   .authorize-tickets-desktop-view {
     display: flex;
   }
+}
+
+/* --- Patch: keep ticket cards pinned to the top even when unlocked (no vertical re-centering) --- */
+.authorize-tickets-desktop-view > *,
+.authorize-tickets-layout > * {
+  align-self: flex-start !important;
+  margin-top: 0 !important;
 }

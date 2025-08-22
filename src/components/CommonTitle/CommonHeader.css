@@ -5,16 +5,17 @@
 
 .common-header-container {
     width: 100%;
+    background: #092313;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     gap: 10px;
-    z-index: 5;
+    z-index: 99999999;
     padding-top: 20px;
     padding-bottom: 20px;
-    position: relative; /* Always scrolls with content */
+    position: absolute; /* Always scrolls with content */
 }
 
 .common-header-logo {
@@ -35,6 +36,7 @@
 
 /* Large Desktop */
 @media (min-width: 1440px) {
+
     .common-header-logo {
         width: 180px;
     }
@@ -45,6 +47,7 @@
     .common-header-logo {
         width: 160px;
     }
+
 }
 
 /* Tablets */
@@ -52,10 +55,17 @@
     .common-header-logo {
         width: 140px;
     }
+    .common-header-logo img{
+        padding-top:50px;
+    }
+
 }
 
 /* Mobile */
 @media (max-width: 768px) {
+    .common-header-logo img{
+        padding-top:20px;
+    }
     .common-header-logo {
         width: 120px;
     }
@@ -82,9 +92,9 @@
     /* keep whatever margin-top you already added for the header offset */
     margin-inline: 20px;                 /* nice left/right breathing room */
     width: calc(100% - 40px);            /* match the margin-inline */
-    padding: 16px 24px;                  /* space between border and logo */
+    padding: 18px 24px;                  /* space between border and logo */
     border: 1px solid var(--yo-green);   /* theme light color (green in your UI) */
-    border-radius: 6px;                  /* subtle rounding; adjust if needed */
+    /* border-radius: 6px;                  subtle rounding; adjust if needed */
     box-sizing: border-box;
   }
   .common-header-container {

@@ -70,12 +70,12 @@ const ZoneView: FC = () => {
   const handleZoneSelect = useCallback(
     async (zone: IZone): Promise<void> => {
       if (!user || !zone?.available) return;
-      
+
       setSelectedZone(zone);
       localStorage.setItem("zoneId", zone?.zoneId);
       localStorage.setItem("eventId", zone?.eventId);
       localStorage.setItem("eventDate", zone?.eventDate);
-      
+
       const request: IEnqueue = {
         requestId: user.id,
         zone: {
@@ -113,35 +113,35 @@ const ZoneView: FC = () => {
 
       {/* Main page container */}
       <main className="zone-view-page-container" role="main">
-        
+
         {/* Alert messages */}
-        <Alert 
-          message="Enqueue error occurred." 
-          visible={!!enqueueError} 
-          type="error" 
+        <Alert
+          message="Enqueue error occurred."
+          visible={!!enqueueError}
+          type="error"
           autoCloseDelay={5000}
           autoClose={true}
         />
-        
-        <Alert 
-          message="Zones fetch error." 
-          visible={!!zonesError} 
-          type="error" 
+
+        <Alert
+          message="Zones fetch error."
+          visible={!!zonesError}
+          type="error"
           autoCloseDelay={5000}
           autoClose={true}
         />
 
         {/* Main content */}
         <div className="zone-view-content-main">
-          
+
           {/* Zone layout */}
           <div className="zone-layout-container">
-            
+
             {/* Zone A */}
             {sortedZones.find(zone => zone.zoneId === "zoneA") && (
               <div
                 className={`zone-card zone-a ${
-                  !sortedZones.find(zone => zone.zoneId === "zoneA")?.available ? 'sold-out' : ''
+                  !sortedZones.find(zone => zone.zoneId === "zoneA")?.available ? '' : ''
                 }`}
                 onClick={() => {
                   const zoneA = sortedZones.find(zone => zone.zoneId === "zoneA");
@@ -149,14 +149,14 @@ const ZoneView: FC = () => {
                 }}
                 role="button"
                 tabIndex={0}
-                aria-label={`Zone A - ${sortedZones.find(zone => zone.zoneId === "zoneA")?.available ? 'Available' : 'Sold Out'}`}
+                aria-label={`Zone A - ${sortedZones.find(zone => zone.zoneId === "zoneA")?.available ? 'Available' : 'Capacity Maxed'}`}
               >
                 <div className="zone-card-content">
                   <h2 className="zone-card-title">ZONE A</h2>
                   <p className="zone-card-slots">
-                    {sortedZones.find(zone => zone.zoneId === "zoneA")?.available 
+                    {sortedZones.find(zone => zone.zoneId === "zoneA")?.available
                       ? `Available Slots: ${String(sortedZones.find(zone => zone.zoneId === "zoneA")?.remainingTicket || 0).padStart(4, "0")}`
-                      : "SOLD OUT"
+                      : "Capacity Maxed"
                     }
                   </p>
                 </div>
@@ -185,9 +185,9 @@ const ZoneView: FC = () => {
                 <div className="zone-card-content">
                   <h2 className="zone-card-title">ZONE Z</h2>
                   <p className="zone-card-slots">
-                    {sortedZones.find(zone => zone.zoneId === "zoneZ")?.available 
+                    {sortedZones.find(zone => zone.zoneId === "zoneZ")?.available
                       ? `Available Slots: ${String(sortedZones.find(zone => zone.zoneId === "zoneZ")?.remainingTicket || 0).padStart(4, "0")}`
-                      : "SOLD OUT"
+                      : "Capacity Maxed"
                     }
                   </p>
                 </div>

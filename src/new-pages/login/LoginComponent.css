@@ -286,10 +286,10 @@
 }
 
 .login-register-redirect:hover {
-  background-color: var(--yo-green);
-  color: var(--yo-black);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+   /* background-color: var(--yo-green);  */
+  color: var(--yo-light-green);
+  /* transform: translateY(-2px); */
+  /* box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3); */
 }
 
 /* =============================================================================
@@ -639,5 +639,26 @@
   .login-form-section {
     border: 1px solid black;
     background: white;
+  }
+}
+
+/* ===== Override: make the "I don't have an account" look like a plain link (no box) ===== */
+.login-register-redirect {
+  border: none !important;
+  background: transparent !important;
+  height: auto !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Mobile: ensure it sits below the Login button with extra space */
+@media (max-width: 768px) {
+  .login-register-redirect {
+    margin-top: var(--spacing-lg) !important;
+    align-self: center !important;
   }
 }

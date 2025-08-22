@@ -90,7 +90,7 @@ const MissionCard: FC<MissionCardProps> = ({ concert, onEnter, loader }) => {
                 {loader ? "Entering..." : "Enter Mission"}
               </div>
           ) : (
-              <div className={"description"}>Ticket(s) not available</div>
+              <div className={"description"}>Mission Full</div>
           )}
         </div>
       </React.Fragment>

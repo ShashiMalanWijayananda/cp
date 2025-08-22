@@ -17,14 +17,14 @@ const About: FC = () => {
             {/* Text panel */}
             <div className="about-text-section">
               <header className="about-section-header" aria-label="section heading">
-                <h2>WHAT IS YOGESHWARI?</h2>
+                <h2>What is yogeshwari?</h2>
               </header>
 
               <div className="about-text-content">
                 <p>Yogeshwari is not a continuation. It&apos;s a divergence.</p>
 
                 <p>
-                  This isn’t just a concert. It’s a story encoded into signal, sound, and visual — unfolding
+                  This isn't just a concert. It's a story encoded into signal, sound, and visual – unfolding
                   through a short film, a locked database, and a trail few will complete.
                 </p>
 
@@ -33,7 +33,7 @@ const About: FC = () => {
                 <p>Two zones will divide. But a deeper force will connect them.</p>
 
                 <p>
-                  What you’re seeing here is only part of the design, built by those who operate behind the signals.
+                  What you're seeing here is only part of the design, built by those who operate behind the signals.
                   Engineers. Storytellers. Architects of the unseen.
                 </p>
 

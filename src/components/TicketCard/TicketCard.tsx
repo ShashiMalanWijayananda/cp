@@ -24,7 +24,7 @@ const TicketCard: FC<TicketProps> = ({ticket, onClick, onDownload, locked = true
                     {/*<span className="header">{ticket?.event?.eventName?.toUpperCase()}</span>*/}
                     <span className="header">ZONE {ticket?.zoneId?.toUpperCase()?.split("ZONE") ?? ""}</span>
                     <div className={"qr-info"}>
-                        <img src="images/icon/qr.png" width="150px" height="150px"/>
+                        <img src="images/icon/qr_code.png" width="150px" height="150px"/>
                         <span className="ticket-id">#{ticket?.sequenceId}</span>
                         <span className="font-vt323" style={{color: ticket?.zoneId === "zoneA" ? "#C49799" : "#8666D5"}}>Access Code</span>
                     </div>
@@ -60,7 +60,8 @@ WELCOME TO YOGESHWARI</span></span>
                         </div>
                         <div className="box-row"
                              style={{background: ticket?.zoneId === "zoneA" ? "#C49799" : "#8666D5", color: "#ffffff"}}>
-                            <span className="box" style={{paddingBottom: "10px", fontSize: "2rem"}}><span
+                            <span className="box" style={{paddingBottom: "10px", fontSize: "2rem"}}>
+                                <span className="box" style={{paddingBottom: "10px", fontSize: "2rem"}}></span>SUB PASS COST<span
                                 className="font-vt323 text-center">{ticket?.price} (LKR)</span></span>
                         </div>
                     </div>

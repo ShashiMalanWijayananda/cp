@@ -7,9 +7,10 @@ import axiosClient from "../../axios/axiosClient";
 import {IAPIResponse} from "../../interfaces/data.interfaces";
 import "./Registration.css"
 import RetroTextBox from "../../components/retro/RetroTextBox/RetroTextBox";
-import Alert, {AlertProps} from "../../components/retro/Alert/Alert";
 import "../../App.css";
 import ReactGA from 'react-ga4'
+import {useAppContext} from "../../context/app.context";
+import CustomDialog from "../../components/CustomDialog/CustomDialog";
 
 interface GoogleCredentialResponse {
     credential: string;
@@ -40,12 +41,8 @@ interface RegistrationData {
 }
 
 const Registration: FC = () => {
-    const [alert, setAlert] = useState<AlertProps>({
-        type: "info",
-        visible: false,
-        message: null
-    });
     const navigation = useNavigate();
+    const {appContext} = useAppContext();
     const [formData, setFormData] = useState<RegistrationData>({
         firstName: '',
         lastName: '',
@@ -129,12 +126,7 @@ const Registration: FC = () => {
 
             if (registrationResponse.data.code === "CODE-001") {
                 if (newUser?.provider == AuthProvider.LOCAL) {
-                    setAlert({
-                        ...alert,
-                        message: `Hi ${newUser?.lastName} verification email has been sent please check and continue.`,
-                        visible: true,
-                        type: "info"
-                    })
+                    appContext.showSuccessDialog("VERIFICATION REQUIRED!!!", `Hi ${newUser?.lastName} verification email has been sent please check and continue.`)
                     setFormData({
                         ...formData,
                         firstName: "",
@@ -154,14 +146,8 @@ const Registration: FC = () => {
                     }, 3000)
 
                 } else if (newUser?.provider == AuthProvider.GOOGLE) {
-                    setAlert({
-                        ...alert,
-                        message: `Hi ${newUser?.lastName} Your account has been created!!!`,
-                        visible: true,
-                        type: "info"
-                    });
+                    appContext.showSuccessDialog("ACCESS ACCOUNT!!!", `Hi ${newUser?.lastName} Your account has been created!!!`)
                     setTimeout(() => {
-                            setAlert({...alert, visible: false});
                             navigation("/login", {replace: true})
                         },
                         3000
@@ -173,38 +159,23 @@ const Registration: FC = () => {
             const extractError = error.response?.data as IAPIResponse;
             setResponse(extractError);
             if (extractError?.code === "CODE-300") {
-                setAlert({
-                    ...alert,
-                    message: (
-                        <div>
-                            <p>Validation error. Please fix the issues in the form:</p>
-                            <ul style={{margin: '8px 0', paddingLeft: '20px'}}>
-                                {extractError?.error?.map((error: { field: string, message: string }) => (
-                                    <li key={error?.field} style={{marginBottom: '4px'}}>
-                                        <strong>{error?.field?.toUpperCase()}:</strong> {error.message}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ),
-                    visible: true,
-                    type: "error"
-                });
+                appContext.showContentDialog("ERROR!!!",
+                    <div>
+                        <p>Validation error. Please fix the issues in the form:</p>
+                        <ul style={{margin: '8px 0', paddingLeft: '20px',  color:"#9ef0a3"}}>
+                            {extractError?.error?.map((error: { field: string, message: string }) => (
+                                <li key={error?.field} style={{marginBottom: '4px'}}>
+                                    <strong>{error?.field?.toUpperCase()}:</strong> {error.message}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                );
 
             } else if (extractError?.code === "CODE-003") {
-                setAlert({
-                    ...alert,
-                    message: extractError?.message,
-                    visible: true,
-                    type: "error"
-                })
+                appContext.showSuccessDialog("ERROR!!!", `${extractError?.message}`)
             } else {
-                setAlert({
-                    ...alert,
-                    message: "Registration failed. Please try again.",
-                    visible: true,
-                    type: "error"
-                })
+                appContext.showSuccessDialog("ERROR!!!", `Cannot create account`)
             }
         } finally {
             setLoading(false);
@@ -253,22 +224,10 @@ const Registration: FC = () => {
 
     return (
         <>
-            <Alert
-                message={alert.message ?? ""}
-                visible={alert.visible}
-                type={alert.type}
-                onClose={() => setAlert(prev => ({
-                    ...prev,
-                    visible: false,
-                }))}
-                className="label-right"
-                autoClose={false}
-                autoCloseDelay={5000}
-            />
-            
+<CustomDialog/>
             <div className="registration-main-container">
                 <div className="registration-content-area">
-                    
+
                     {/* Logo Section - Left Column (Desktop) / Top (Mobile) */}
                     <div className="registration-logo-section">
                         <div className="registration-logo-container">
@@ -282,10 +241,10 @@ const Registration: FC = () => {
                     {/* Registration Form Section - Right Column (Desktop) / Bottom (Mobile) */}
                     <div className="registration-form-section">
                         <div className="registration-form-panel">
-                            
+
                             {/* Registration Title */}
                             <h1 className="registration-form-title">REGISTER TO BOARDING PROCESS</h1>
-                            
+
                             {/* Google Registration Button */}
                             <div className="registration-google-container">
                                 <GoogleLogin
@@ -299,10 +258,10 @@ const Registration: FC = () => {
                                     useOneTap
                                 />
                             </div>
-                            
+
                             {/* Divider */}
                             <div className="registration-form-divider">OR USE EMAIL ADDRESS</div>
-                            
+
                             {/* Registration Form */}
                             <div className="registration-form-container">
                                 <form
@@ -359,7 +318,7 @@ const Registration: FC = () => {
                                         id="nic"
                                         value={formData.nic}
                                         onChange={handleInputChange}
-                                        placeholder=""
+                                        placeholder="For validation"
                                         required
                                     />
 
@@ -372,7 +331,7 @@ const Registration: FC = () => {
                                         value={formData.contactNumber}
                                         required
                                         onChange={handleInputChange}
-                                        placeholder=""
+                                        placeholder="+947*******"
                                     />
 
                                     {/* Password Fields - Only show for system registration */}
@@ -428,16 +387,16 @@ const Registration: FC = () => {
                                     >
                                         I already have an account
                                     </div>
-                                    
+
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
         </>
     );
 };

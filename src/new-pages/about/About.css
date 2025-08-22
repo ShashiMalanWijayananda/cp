@@ -1,3 +1,12 @@
+
+/* === SAFE AREAS (header/footer offsets) === */
+:root {
+  --app-header-h-mobile: var(--global-header-height, 64px);
+  --app-footer-h-mobile: var(--global-footer-height, 56px);
+  --app-header-h-desktop: var(--global-header-height-desktop, 88px);
+  --app-footer-h-desktop: var(--global-footer-height-desktop, 72px);
+}
+
 /* =============================================================================
    ABOUT PAGE - EXACT FIGMA MATCH THEME
    Consistent with Terms/Protocol and Contact page styling
@@ -11,18 +20,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--spacing-md, 16px);
-  margin-bottom: var(--spacing-md, 16px);
-  z-index: 50;
+
 }
 
 .about-page-heading h1 {
-  font-family: var(--font-primary); /* VT323 or Jersey 25 */
+  font-weight: bold;
+  /* font-family: var(--font-primary); VT323 or Jersey 25 */
   font-size: var(--text-3xl);
   color: var(--yo-blue, #8bd1e5);
   margin: 0;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  /* text-transform: lowercase; Changed from uppercase to lowercase */
 }
 
 /* Page container */
@@ -74,7 +82,7 @@
   font-family: var(--font-primary);
   font-size: var(--text-xl);
   font-weight: normal;
-  text-transform: uppercase;
+  /* text-transform: lowercase; Changed from uppercase to lowercase */
   letter-spacing: 1px;
   margin: 0;
   padding: var(--spacing-md);
@@ -85,7 +93,7 @@
 .about-section-header h2 {
   margin: 0;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  /* text-transform: lowercase; Changed from uppercase to lowercase */
   font-weight: normal;
   color: var(--yo-black);
   font-family: var(--font-primary);
@@ -113,8 +121,8 @@
   letter-spacing: 1px;
 }
 
-.about-text-content p:last-child { 
-  margin-bottom: 0; 
+.about-text-content p:last-child {
+  margin-bottom: 0;
 }
 
 /* =========================
@@ -173,7 +181,7 @@
     padding-left: var(--spacing-md, 16px);
     padding-right: var(--spacing-sm, 12px);
   }
-  
+
   .about-text-content {
     padding: var(--spacing-lg);
   }
@@ -183,87 +191,87 @@
 
 /* ≤374.98px (very small phones) */
 @media (max-width: 374.98px) {
-  .about-page-container { 
-    padding: 12px; 
+  .about-page-container {
+    padding: 12px;
   }
-  
-  .about-content-wrapper { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 12px; 
-    align-items: center; 
+
+  .about-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
   }
-  
-  .about-section-header { 
-    padding: 10px 12px; 
+
+  .about-section-header {
+    padding: 10px 12px;
   }
-  
-  .about-text-content { 
-    padding: 14px; 
+
+  .about-text-content {
+    padding: 14px;
   }
 }
 
 /* 375–424.98px */
 @media (min-width: 375px) and (max-width: 424.98px) {
-  .about-page-container { 
-    padding: 14px; 
+  .about-page-container {
+    padding: 14px;
   }
-  
-  .about-content-wrapper { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 16px; 
-    align-items: center; 
+
+  .about-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
   }
-  
-  .about-section-header { 
-    padding: 12px 14px; 
+
+  .about-section-header {
+    padding: 12px 14px;
   }
-  
-  .about-text-content { 
-    padding: 16px; 
+
+  .about-text-content {
+    padding: 16px;
   }
 }
 
 /* 425–760.98px */
 @media (min-width: 425px) and (max-width: 760.98px) {
-  .about-page-container { 
-    padding: 18px; 
+  .about-page-container {
+    padding: 18px;
   }
-  
-  .about-content-wrapper { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 18px; 
-    align-items: center; 
+
+  .about-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
   }
-  
-  .about-section-header { 
-    padding: 14px 16px; 
+
+  .about-section-header {
+    padding: 14px 16px;
   }
-  
-  .about-text-content { 
-    padding: 18px; 
+
+  .about-text-content {
+    padding: 18px;
   }
 }
 
 /* Mobile (≤760.98px): enforce width lock & image first */
 @media (max-width: 760.98px) {
-  .about-image-section { 
-    order: 1; 
-    width: 100%; 
-    max-width: none; 
+  .about-image-section {
+    order: 1;
+    width: 100%;
+    max-width: none;
   }
-  
-  .about-text-section  { 
-    order: 2; 
-    width: 100%; 
+
+  .about-text-section  {
+    order: 2;
+    width: 100%;
   }
-  
-  .about-image-container { 
-    height: auto; 
+
+  .about-image-container {
+    height: auto;
   }
-  
+
   .about-image-container img {
     width: 100% !important;
     height: auto !important;
@@ -280,8 +288,8 @@
     align-items: stretch;
   }
 
-  .about-image-section { 
-    align-self: stretch; 
+  .about-image-section {
+    align-self: stretch;
   }
 
   .about-image-container {
@@ -311,7 +319,7 @@
   .about-page-container {
     scroll-behavior: auto;
   }
-  
+
   .about-text-section,
   .about-image-container {
     transition: none;
@@ -340,22 +348,37 @@
     background: white;
     color: black;
   }
-  
+
   .about-page-container {
     margin: 0;
     padding: 1rem;
   }
-  
+
   .about-content-wrapper {
     display: block;
   }
-  
+
   .about-text-section {
     break-inside: avoid;
   }
-  
+
   .about-section-header h2,
   .about-text-content p {
     color: black !important;
+  }
+}
+
+
+/* === SAFE SPACING OVERRIDES • ABOUT === */
+
+.about-page-container {
+  padding-top: calc(var(--app-header-h-mobile) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--app-footer-h-mobile) + 28px + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 1024px) {
+
+  .about-page-container {
+    padding-top: calc(var(--app-header-h-desktop) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--app-footer-h-desktop) + 32px + env(safe-area-inset-bottom, 0px));
   }
 }

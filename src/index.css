@@ -45,11 +45,11 @@
     --yo-dark-gray: #3A3C3C;
     --yo-white: #ffffff;
     --yo-black: #000000;
-    
+
     /* Typography */
     --font-primary: 'VT323', monospace;
     --font-secondary: 'Jersey 25', sans-serif;
-    
+
     /* Responsive Font Sizes */
     --text-xs: clamp(0.75rem, 2vw, 0.875rem);
     --text-sm: clamp(0.875rem, 2.5vw, 1rem);
@@ -60,7 +60,7 @@
     --text-3xl: clamp(1.875rem, 5vw, 2.25rem);
     --text-4xl: clamp(2.25rem, 6vw, 3rem);
     --text-5xl: clamp(3rem, 8vw, 4rem);
-    
+
     /* Heading Sizes */
     --h1-size: clamp(2.5rem, 6vw, 4rem);
     --h2-size: clamp(2rem, 5vw, 3rem);
@@ -68,7 +68,7 @@
     --h4-size: clamp(1.5rem, 4vw, 2rem);
     --h5-size: clamp(1.25rem, 3.5vw, 1.75rem);
     --h6-size: clamp(1.125rem, 3vw, 1.5rem);
-    
+
     /* Spacing System */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -76,11 +76,11 @@
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-    
+
     /* Component Variables */
     --input-height: 40px;
     --btn-height: 40px;
-    --border-radius: 0px;
+    /*--border-radius: 0px;*/
     --transition: 0.3s ease;
 }
 
@@ -126,8 +126,8 @@ body {
    TYPOGRAPHY - Headings & Paragraphs
    ============================================================================= */
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-primary);
+h1, h2, h3, h4, h5, h6, header ,.section-title {
+    font-family: var(--font-secondary);
     font-weight: normal;
     line-height: 1.2;
     margin: 0 0 var(--spacing-md) 0;
@@ -201,7 +201,7 @@ select {
     width: 100%;
     padding: 12px 15px;
     border: 1px solid var(--yo-green);
-    border-radius: var(--border-radius);
+    /*border-radius: var(--border-radius);*/
     /* background-color: var(--yo-white); */
     color: var(--yo-black);
     letter-spacing: 1px;
@@ -232,7 +232,6 @@ input:disabled, textarea:disabled, select:disabled {
 
 input::placeholder, textarea::placeholder {
     color: rgba(0, 0, 0, 0.5);
-    font-style: italic;
     letter-spacing: 1px;
 }
 
@@ -246,7 +245,7 @@ button, .btn, .button {
     height: var(--btn-height);
     padding: 12px 20px;
     border: 1px solid var(--yo-green);
-    border-radius: var(--border-radius);
+    /*border-radius: var(--border-radius);*/
     background-color: var(--yo-green);
     color: var(--yo-black);
     letter-spacing: 1px;
@@ -351,16 +350,16 @@ button:disabled, .btn:disabled, .button:disabled {
         gap: var(--spacing-xs);
         margin-bottom: var(--spacing-sm);
     }
-    
+
     .form-group label {
         font-size: var(--text-lg);
     }
-    
+
     input, textarea, select {
         font-size: var(--text-lg);
         padding: 10px 12px;
     }
-    
+
     button, .btn {
         font-size: var(--text-lg);
         padding: 10px 16px;

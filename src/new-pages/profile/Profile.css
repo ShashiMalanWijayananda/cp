@@ -88,8 +88,8 @@
 }
 
 .badge-item {
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -106,8 +106,8 @@
 }
 
 .badge-placeholder {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border: 2px dashed var(--yo-gray);
   border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   background-color: rgba(217, 217, 217, 0.1);
@@ -257,7 +257,7 @@
 .details-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-xs);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box; /* FIXED: Added box-sizing */
@@ -268,7 +268,7 @@
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  gap: var(--spacing-md) !important;
+  gap: var(--spacing-xs) !important;
   width: 100% !important;
   margin-bottom: var(--spacing-sm) !important;
   box-sizing: border-box;
@@ -303,6 +303,7 @@
 
 /* Input Wrapper Layout - DESKTOP: Flexible Right Column with Terminal Cursor */
 .profile-main .input-wrapper {
+          margin-right: 10px;
   flex: 1 !important;
   width: auto !important;
   max-width: none !important;
@@ -498,8 +499,8 @@
   
   .badge-item,
   .badge-placeholder {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
   
   /* FORCE HORIZONTAL LAYOUT FOR DESKTOP */
@@ -575,6 +576,7 @@
   }
 
   .profile-main .input-wrapper {
+    margin-right: 10px;
     flex: 1 !important;
     width: auto !important;
     max-width: none !important;
@@ -627,6 +629,7 @@
   }
 
   .profile-main .input-wrapper {
+    margin-right: 10px;
     width: 100% !important;
     max-width: 100% !important;
   }
@@ -766,5 +769,62 @@
   .badge-title,
   .badge-description {
     color: black !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE EDGE ALIGNMENT PATCH v2 (<=768px)
+   Force the Update button to align exactly with input edges on phones.
+   ========================================================================== */
+@media (max-width: 768px) {
+  .details-form { 
+    display: block !important; 
+    padding-left: 0 !important; 
+    padding-right: 0 !important; 
+  }
+
+  /* Make each row stretch edge-to-edge */
+  .details-form .form-group { 
+    width: 100% !important; 
+    margin-left: 0 !important; 
+    margin-right: 0 !important; 
+    padding-left: 0 !important; 
+    padding-right: 0 !important; 
+  }
+
+  /* Inputs: remove any residual wrapper margins */
+  .details-form .input-wrapper {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .details-form .input-wrapper input,
+  .details-form .input-wrapper .field-value-profile,
+  .details-form .input-wrapper .field-value-readonly {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Button: match the same edges as inputs */
+  .details-form > .update-button {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: var(--spacing-md) !important;
+  }
+}
+
+/* Ultra‑small phones where inner container padding causes visible offset */
+@media (max-width: 360px) {
+  .profile-main { 
+    padding-left: var(--spacing-md) !important;
+    padding-right: var(--spacing-md) !important;
   }
 }

@@ -28,7 +28,6 @@ import PublicTicketView from "./new-pages/public-ticket-view/PublicTicketView";
 import Room from "./Pages/Room/Room";
 import Contact from "./new-pages/contact/Contact";
 import {QueueProvider} from "./graphql/graphql-subscrption";
-import ChatBox from "./new-pages/chat-box/ChatBox";
 import ChatView from "./new-pages/chat-box/ChatView";
 
 const AppRoutes: FC = () => {
@@ -55,19 +54,19 @@ const AppRoutes: FC = () => {
 
     if (isEnable) {
         return (
-           <LockScreen milliseconds={milliseconds}/>
+            <LockScreen milliseconds={milliseconds}/>
         );
     }
 
     return (
         <Routes>
-            <Route path="/login" element={< LoginComponent/>} />
-            <Route path="/splash" element={<Splash />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/view-ticket" element={<PublicTicketView />} />
-            <Route element={<AuthenticatedRoutes />}>
-                <Route element={<AppLayout />}>
-                    <Route path="/mission" element={<MissionSelection />} />
+            <Route path="/login" element={< LoginComponent/>}/>
+            <Route path="/splash" element={<Splash/>}/>
+            <Route path="/registration" element={<Registration/>}/>
+            <Route path="/view-ticket" element={<PublicTicketView/>}/>
+            <Route element={<AuthenticatedRoutes/>}>
+                <Route element={<AppLayout/>}>
+                    <Route path="/mission" element={<MissionSelection/>}/>
                     <Route path="/menu" element={<SystemMenu/>}/>
                     <Route path="/my-profile" element={<Profile/>}/>
                     <Route path="/landing-page" element={<Room/>}/>
@@ -88,7 +87,7 @@ const AppRoutes: FC = () => {
 };
 
 export const App: FC = () => {
-    const clientId =import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
     return (
         <React.Fragment>
             <SiteContextProvider>
@@ -96,10 +95,10 @@ export const App: FC = () => {
                     <GoogleOAuthProvider clientId={clientId}>
                         <Router>
                             <AppContextProvider>
-                                <QueueProvider>
-                                    <LoginContextProvider>
-                                        <QualitySettingsProvider>
-                                            <DialogContextProvider>
+                                <DialogContextProvider>
+                                    <QueueProvider>
+                                        <LoginContextProvider>
+                                            <QualitySettingsProvider>
                                                 <AppRoutes/>
                                                 {/*<Routes>*/}
                                                 {/*    <Route path="/login" element={<LoginComponent/>}/>*/}
@@ -126,17 +125,19 @@ export const App: FC = () => {
                                                 {/*    <Route path="*" element={<Navigate to="/splash" replace/>}/>*/}
                                                 {/*    <Route path="" element={<Navigate to="/splash" replace/>}/>*/}
                                                 {/*</Routes>*/}
-                                            </DialogContextProvider>
-                                        </QualitySettingsProvider>
-                                    </LoginContextProvider>
-                                </QueueProvider>
+
+                                            </QualitySettingsProvider>
+                                        </LoginContextProvider>
+                                    </QueueProvider>
+                                </DialogContextProvider>
                             </AppContextProvider>
                         </Router>
                     </GoogleOAuthProvider>
                 </ApolloProvider>
             </SiteContextProvider>
         </React.Fragment>
-    );
+    )
+        ;
 };
 
 export default App;

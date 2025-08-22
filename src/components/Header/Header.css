@@ -11,7 +11,7 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    height: 50px;
+    height: 40px; /* Reduced from 50px to 35px */
     font-size: 28px;
     font-family: VT323, monospace;
     color: #000000;
@@ -39,8 +39,32 @@
     justify-content: start;
 }
 
+.header-exit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
+    min-width: 40px;
+    height: 40px;
+}
 
+.header-exit-button:hover {
+    transform: scale(1.1);
+}
 
+.header-exit-button .logout-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0);
+    transition: all 0.3s ease;
+}
+
+.header-exit-button:hover .logout-icon {
+    filter: brightness(0) invert(1);
+    transform: scale(1.2);
+}
 
 .button-text {
     cursor: pointer;
@@ -74,13 +98,35 @@ content:'>';
 }
 
 
+.mobile-exit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
 
+.mobile-exit-button:hover {
+    transform: scale(1.1);
+}
 
+.mobile-exit-button .logout-icon {
+    width: 25px;
+    height: 25px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
 
+.mobile-exit-button:hover .logout-icon {
+    transform: scale(1.2);
+}
 
 /* Show mobile nav on mobile devices */
 @media (max-width: 768px) {
-  
+    .mobile-exit-button {
+        padding: 80px 10px;
+    }
 
     .custom-footer {
         display: none;
@@ -115,68 +161,4 @@ content:'>';
     padding: 10px; /* Add some padding for better touch target */
 }
 
-/* Legacy logout button styles - keeping for compatibility */
-.logout-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Jersey 25', sans-serif;
-    zoom: 2;
-    width: 20px;
-    height: 20px;
-}
-
-.logout-button:hover {
-    background-color: transparent;
-    transform: translateY(-1px);
-    box-shadow: none;
-}
-
-.logout-button:active {
-    transform: translateY(0);
-}
-
-
-
-.logout-text {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.logout-button:hover .logout-text {
-    color: #000000;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .header-nav-links {
-        gap: 25px;
-        font-size: 22px;
-    }
-
-    .header-logo-container > * {
-        height: 30px !important;
-        max-height: 30px !important;
-    }
-}
-
-@media (max-width: 900px) {
-    .header-nav-links {
-        gap: 15px;
-        font-size: 18px;
-    }
-
-    .common-header {
-        padding: 0 15px;
-    }
-}
-
-
+/* Legacy logout button styles preserved */

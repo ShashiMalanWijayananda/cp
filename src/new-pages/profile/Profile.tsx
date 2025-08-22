@@ -1,12 +1,12 @@
-import React, { ChangeEvent, FC, useEffect, useState, useRef } from "react";
+import React, {ChangeEvent, FC, useEffect, useRef, useState} from "react";
 import "./Profile.css";
-import { GET_ARCHIVE_CONCERT, GET_MY_PROFILE, UPDATE_PROFILE } from "../../graphql/queries";
-import { useLazyQuery, useMutation } from "@apollo/client";
-import { useLogin, User } from "../../context/login.context";
-import { IAConcert, IAPIResponse, IGroupedConcert } from "../../interfaces/data.interfaces";
-import Alert, { AlertProps } from "../../components/retro/Alert/Alert";
-import { useAppContext } from "../../context/app.context";
-import { useLocation } from "react-router-dom";
+import {GET_ARCHIVE_CONCERT, GET_MY_PROFILE, UPDATE_PROFILE} from "../../graphql/queries";
+import {useLazyQuery, useMutation} from "@apollo/client";
+import {useLogin, User} from "../../context/login.context";
+import {IAConcert, IAPIResponse, IGroupedConcert} from "../../interfaces/data.interfaces";
+import Alert from "../../components/retro/Alert/Alert";
+import {useAppContext} from "../../context/app.context";
+import {useLocation} from "react-router-dom";
 import axiosClient from "../../axios/axiosClient";
 import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
 
@@ -25,11 +25,6 @@ const Profile: FC = () => {
     const [systemUser, setSystemUser] = useState<User>(null);
     const [originalUser, setOriginalUser] = useState<User>(null);
     const [archiveConcert, setArchiveConcert] = useState<IAConcert[]>([]);
-    const [alert, setAlert] = useState<AlertProps>({
-        type: "info",
-        visible: false,
-        message: null
-    });
     const { appContext } = useAppContext();
     const [isBadgePopupOpen, setIsBadgePopupOpen] = useState(false);
     const [selectedBadgeDetails, setSelectedBadgeDetails] = useState<BadgeDetails | null>(null);
@@ -202,7 +197,7 @@ const Profile: FC = () => {
     };
 
     const handlingCloseAlert = () => {
-        setAlert(prev => ({ ...prev, visible: false }));
+        // setAlert(prev => ({ ...prev, visible: false }));
     };
 
     const handleUpdate = async () => {
@@ -216,34 +211,24 @@ const Profile: FC = () => {
                 console.log(response?.data);
                 if (data?.code === "CODE-011") {
                     setOriginalUser(JSON.parse(JSON.stringify(systemUser)));
-                    setAlert({
-                        ...alert,
-                        message: "Your account has been updated successfully!",
-                        visible: true,
-                        type: "info"
-                    });
+                    appContext.showSuccessDialog("Update Profile", "Your account has been updated successfully!");
                 }
             })
             .catch(error => {
                 const errorResponse = error?.response?.data as IAPIResponse;
                 if (errorResponse?.code == "CODE-300") {
-                    setAlert({
-                        ...alert,
-                        message: (
-                            <div>
-                                <p>Validation error. Please fix the issues in the form:</p>
-                                <ul style={{ margin: '8px 0', paddingLeft: '20px' }}>
-                                    {errorResponse?.error?.map((error) => (
-                                        <li key={error?.field} style={{ marginBottom: '4px' }}>
-                                            <strong>{error?.field?.toUpperCase()}:</strong> {error.message}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ),
-                        visible: true,
-                        type: "error"
-                    });
+                    appContext.showContentDialog("ERROR!!!",
+                        <div>
+                            <p>Validation error. Please fix the issues in the form:</p>
+                            <ul style={{margin: '8px 0', paddingLeft: '20px', color:"#9ef0a3"}}>
+                                {errorResponse?.error?.map((error) => (
+                                    <li key={error?.field} style={{marginBottom: '4px'}}>
+                                        <strong>{error?.field?.toUpperCase()}:</strong> {error.message}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    );
                 }
             });
     };
@@ -251,9 +236,9 @@ const Profile: FC = () => {
 const isFormChanged = () => {
   if (!originalUser || !systemUser) return false;
   return (
-    (originalUser.firstName ?? "") !== (systemUser.firstName ?? "") ||
-    (originalUser.lastName ?? "")  !== (systemUser.lastName ?? "")  ||
-    (originalUser.password ?? "")  !== (systemUser.password ?? "")
+            originalUser.firstName !== systemUser.firstName ||
+            originalUser.lastName !== systemUser.lastName ||
+            (systemUser.provider === "LOCAL" && originalUser.password !== systemUser.password)
   );
 };
 
@@ -396,28 +381,16 @@ const isFormChanged = () => {
 
     return (
         <>
-            {/* Page heading that scrolls with content */}
-            <div className="profile-page-heading">
-                <h1>Profile</h1>
-            </div>
+
 
             {/* Main page container (sits inside AppLayout Outlet) */}
             <main className="profile-page-container" role="main">
-                
-                {/* Alerts */}
-                <Alert 
-                    message={alert.message} 
-                    type={alert.type}
-                    visible={alert.visible}
-                    autoCloseDelay={3000} 
-                    autoClose={true}
-                    onClose={handlingCloseAlert}
-                />
+
 
                 {/* Main content area */}
                 <section className="profile-content-main">
                     <div className="profile-main">
-                        
+
                         {/* Profile info row with badges */}
                         <div className="profile-info-row">
                             <div className="badge-container" aria-label="Achievement badges">
@@ -427,7 +400,7 @@ const isFormChanged = () => {
 
                         {/* Form - Profile fields with terminal-style cursor */}
                         <form className="details-form" onSubmit={(e) => e.preventDefault()}>
-                            
+
                             {/* First Name Field - EDITABLE */}
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name :</label>
@@ -512,7 +485,9 @@ const isFormChanged = () => {
                                     />
                                 </div>
                             </div>
-{/* Password – always visible */}
+
+                            {/* Password Field - EDITABLE (Only for LOCAL provider) */}
+                            {systemUser?.provider === "LOCAL" && (
 <div className="form-group">
   <label htmlFor="password">Password :</label>
   <div className="input-wrapper">
@@ -520,7 +495,7 @@ const isFormChanged = () => {
       ref={(el) => (inputRefs.current.password = el)}
       id="password"
       type="password"
-      value={systemUser?.password ?? ""}
+                                            value={systemUser?.password || ""}
       onChange={handleUserInput}
       name="password"
       className="field-value-profile"
@@ -529,8 +504,7 @@ const isFormChanged = () => {
     />
   </div>
 </div>
-
-
+                            )}
 
                             {/* Update Button */}
                             <button
@@ -545,13 +519,13 @@ const isFormChanged = () => {
                         </form>
                     </div>
                 </section>
-                
+
             </main>
 
             {/* Badge popup modal */}
             {isBadgePopupOpen && selectedBadgeDetails && (
-                <div 
-                    className="badge-popup-overlay" 
+                <div
+                    className="badge-popup-overlay"
                     onClick={closeBadgePopup}
                     role="dialog"
                     aria-modal="true"
@@ -560,8 +534,8 @@ const isFormChanged = () => {
                 >
                     <div className="badge-popup-content" onClick={(e) => e.stopPropagation()}>
                         <header className="badge-popup-header">
-                            <button 
-                                className="badge-popup-close" 
+                            <button
+                                className="badge-popup-close"
                                 onClick={closeBadgePopup}
                                 aria-label="Close badge details"
                             >
@@ -579,25 +553,16 @@ const isFormChanged = () => {
                             <div className="badge-info">
                                 <h2 id="badge-title" className="badge-title">{selectedBadgeDetails.title}</h2>
                                 <p id="badge-description" className="badge-description">{selectedBadgeDetails.description}</p>
-                                {selectedBadgeDetails.concerts.length > 0 && (
-                                    <div className="badge-popup-concerts">
-                                        <h4>Related Concerts:</h4>
-                                        <ul>
-                                            {selectedBadgeDetails.concerts.map((concert, index) => (
-                                                <li key={index}>{concert.concert}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
+
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-            
+
             {/* Global scrolling footer message */}
             <GlobalFooter text="**** AGENT PORTAL ACTIVE **** SECURE CONNECTION **** DATA ENCRYPTED **** SYSTEM OPERATIONAL **** " />
-            
+
         </>
     );
 };

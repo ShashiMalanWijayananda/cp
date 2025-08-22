@@ -1,11 +1,20 @@
+
+/* === SAFE AREAS (header/footer offsets) === */
+:root {
+  --app-header-h-mobile: var(--global-header-height, 64px);
+  --app-footer-h-mobile: var(--global-footer-height, 56px);
+  --app-header-h-desktop: var(--global-header-height-desktop, 88px);
+  --app-footer-h-desktop: var(--global-footer-height-desktop, 72px);
+}
+
 /* =============================================================================
-   TERMS PAGE - EXACT FIGMA MATCH
+   TERMS PAGE - EXACT FIGMA MATCH WITH BALANCED SPACING
    ============================================================================= */
 
 .terms-page-container {
   background: var(--yo-primary);
   min-height: 100vh;
-  padding: 0 var(--spacing-lg) 50px var(--spacing-2xl);
+  padding: 30px;
   scroll-behavior: smooth;
 }
 
@@ -15,17 +24,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: var(--spacing-md) 0;
+  /* margin: var(--spacing-md) 0; */
   z-index: 2;
 }
 
 .terms-page-heading h1 {
-  font-family: var(--font-primary); /* VT323 or Jersey 25 */
+  font-weight: bold;
+  /* font-family: var(--font-primary); VT323 or Jersey 25 */
   font-size: var(--text-3xl);
   color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  /* text-transform: lowercase; Changed from uppercase to lowercase */
 }
 
 .terms-content-main { 
@@ -38,19 +48,20 @@
   flex-direction: column;
 }
 
-/* Two-column grid */
+/* Two-column grid with balanced heights */
 .terms-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-xl);
-  align-items: stretch; /* make columns same height */
+  align-items: start; /* Start alignment for proper spacing control */
 }
 
-/* Column behaves as a vertical stack */
+/* Column behaves as a vertical stack with justified spacing */
 .terms-column {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
+  height: 100%; /* Ensure full height usage */
 }
 
 /* Card - REMOVED BORDER RADIUS to match Figma */
@@ -62,6 +73,7 @@
   overflow: hidden;
   background: transparent;
   transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
+  flex: 0 0 auto; /* Prevent flex shrinking/growing */
 }
 
 .terms-section:hover {
@@ -77,7 +89,7 @@
   font-size: var(--text-xl);
   font-weight: normal;
   letter-spacing: 1px;
-  text-transform: uppercase;
+  /* text-transform: lowercase; Changed from uppercase to lowercase */
   padding: var(--spacing-md);
   margin: 0;
   line-height: 1.2;
@@ -191,11 +203,34 @@
   text-underline-offset: 2px; 
 }
 
-/* ---------------------- KEY FIX: align last box bottoms on desktop ---------------------- */
+/* ---------------------- BALANCED SPACING FIX ---------------------- */
 @media (min-width: 1024px) {
-  /* Push the last card in each column to the bottom so both columns end aligned */
-  .terms-column .terms-section:last-child { 
-    margin-top: auto; 
+  /* Create equal height columns with proper spacing distribution */
+  .terms-grid {
+    align-items: stretch; /* Make columns equal height */
+  }
+  
+  .terms-column {
+    justify-content: space-between; /* Distribute space evenly */
+  }
+  
+  /* For left column (4 items), add specific spacing */
+  .terms-column:first-child {
+    gap: calc(var(--spacing-lg) * 1.2); /* Slightly more space between items */
+  }
+  
+  /* For right column (5 items), keep standard spacing */
+  .terms-column:last-child {
+    gap: var(--spacing-lg);
+  }
+  
+  /* Alternative approach: Add extra margin to specific sections for balance */
+  .terms-column:first-child .terms-section:nth-child(2) {
+    margin-bottom: var(--spacing-md); /* Extra space after Parking & Shuttle */
+  }
+  
+  .terms-column:first-child .terms-section:nth-child(3) {
+    margin-bottom: var(--spacing-md); /* Extra space after Prohibited Items */
   }
 }
 
@@ -211,9 +246,9 @@
     padding: var(--spacing-xl); 
   }
   
-  /* Ensure bottom alignment also at this breakpoint */
-  .terms-column .terms-section:last-child { 
-    margin-top: auto; 
+  /* Maintain balanced spacing at larger screens */
+  .terms-column:first-child {
+    gap: calc(var(--spacing-lg) * 1.3);
   }
 }
 
@@ -229,6 +264,12 @@
   
   .terms-column { 
     gap: var(--spacing-md); 
+    justify-content: flex-start; /* Reset to normal spacing on tablet */
+  }
+  
+  .terms-column:first-child .terms-section:nth-child(2),
+  .terms-column:first-child .terms-section:nth-child(3) {
+    margin-bottom: 0; /* Reset extra margins on tablet */
   }
   
   .section-content,
@@ -238,7 +279,7 @@
   }
 }
 
-/* Mobile (≤768px) -> single column, no forced bottom alignment */
+/* Mobile (≤768px) -> single column, no special spacing needed */
 @media (max-width: 768px) {
   .terms-page-container { 
     padding: 0 var(--spacing-sm) 40px var(--spacing-sm); 
@@ -249,8 +290,14 @@
     gap: var(--spacing-lg); 
   }
   
-  .terms-column .terms-section:last-child { 
-    margin-top: 0; 
+  .terms-column {
+    justify-content: flex-start; /* Normal spacing on mobile */
+    gap: var(--spacing-lg);
+  }
+  
+  .terms-column:first-child .terms-section:nth-child(2),
+  .terms-column:first-child .terms-section:nth-child(3) {
+    margin-bottom: 0; /* Reset all extra margins on mobile */
   }
   
   .section-content { 
@@ -283,5 +330,20 @@
   
   .terms-section { 
     transition: none; 
+  }
+}
+
+
+/* === SAFE SPACING OVERRIDES • TERMS === */
+
+.terms-page-container {
+  padding-top: calc(var(--app-header-h-mobile) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--app-footer-h-mobile) + 40px + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 1024px) {
+ 
+  .terms-page-container {
+    padding-top: calc(var(--app-header-h-desktop) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--app-footer-h-desktop) + 60px + env(safe-area-inset-bottom, 0px));
   }
 }

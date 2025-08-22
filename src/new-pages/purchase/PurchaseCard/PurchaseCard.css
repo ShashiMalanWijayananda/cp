@@ -43,10 +43,11 @@
 
 /* Top heading "ZONE A" (outside card) */
 .purchase-card-header {
+  font-family: "Jersey 25";
   color: var(--yo-blue);
   text-align: center;
-  text-transform: uppercase;
-  font-weight: 400;
+  text-transform: none;
+  font-weight: 800;
   font-size: 48px;        /* exact desktop size */
   line-height: 1.1;
 }
@@ -63,11 +64,14 @@
 .purchase-card-box-header {
   color: var(--yo-dark-rose);
   text-transform: uppercase;
+  font-family: "Jersey 25";
   text-align: center;
-  font-weight: 400;
-  font-size: 28px;        /* desktop */
-  padding: 14px 16px;
+  font-weight: 800;
+  font-size: 38px;        /* desktop */
+  /* padding: 14px 16px; */
   border-bottom: 0;
+  line-height: 2;
+
 }
 
 /* Wrapper that holds inner bordered box */
@@ -103,6 +107,7 @@
   grid-column: 1 / -1;
   font-size: 18px;       /* desktop label size */
   color: var(--yo-dark-rose);
+  font-family: "Jersey 25";
 }
 
 /* +/- buttons */
@@ -138,7 +143,7 @@
 .content-text {
   color: var(--yo-dark-rose);
   font-size: 18px;        /* desktop body size */
-  font-variant-numeric: tabular-nums;
+  font-family: "Jersey 25";
 }
 
 /* Coupon row */
@@ -146,6 +151,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  font-size: 6px;
 }
 
 /* Text input */
@@ -154,7 +160,7 @@
   height: 40px;
   border: 1px solid var(--theme-color);
   background: transparent;
-  border-radius: var(--input-border-radius);
+  /* border-radius: var(--input-border-radius); */
   padding: 0 10px;
   outline: none;
   color: var(--yo-dark-rose);
@@ -184,9 +190,10 @@
   background: #6f7f7a;
   color: #e9f0ee;
   border-radius: var(--btn-border-radius);
-  text-transform: uppercase;
+  text-transform: none;
   font-family: var(--font-primary);
   font-size: 18px;
+  border-radius: unset;
   cursor: pointer;
   transition: transform var(--transition-normal), filter var(--transition-normal);
 }
@@ -200,12 +207,12 @@
   margin-top: 10px;
   height: 46px;
   border: 2px solid var(--theme-color);
-  border-radius: var(--btn-border-radius);
-  background: var(--theme-color);
+  /* border-radius: var(--btn-border-radius); */
+  background: var(--bluegray-50);
   color: var(--yo-black);
   font-family: var(--font-primary);
   font-size: 22px;       /* desktop */
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 1px;
   cursor: pointer;
   transition: filter var(--transition-normal);
@@ -213,9 +220,10 @@
 .purchase-btn:hover { filter: brightness(1.06); }
 
 /* Abort button */
-.horizontal-buttons { display: flex; justify-content: center; width: 100%; margin-top: 16px; }
+.horizontal-buttons {
+  display: flex; justify-content: center; width: 100%; margin-top: 16px;
+}
 .queue-button {
-  min-width: 260px;
   height: 44px;
   border-radius: var(--btn-border-radius);
   border: 2px solid var(--theme-color);
@@ -223,7 +231,7 @@
   color: var(--yo-white);
   font-family: var(--font-primary);
   font-size: 18px;
-  text-transform: uppercase;
+  text-transform: none;
   display: inline-flex;
   gap: 8px;
   align-items: center;
@@ -240,7 +248,7 @@
   .purchase-card-header { font-size: 40px; }
   .purchase-card-box-header { font-size: 24px; }
   .content-text, .content-row input { font-size: 16px; }
-  .number-of-ticket { font-size: 28px; }
+  .number-of-ticket { font-size: 32px; }
   .circle-button { width: 44px; height: 44px; font-size: 24px; }
   .purchase-btn { font-size: 20px; height: 44px; }
   .queue-button { font-size: 16px; height: 42px; min-width: 240px; }
@@ -262,8 +270,9 @@
 
 /* ≤ 425 */
 @media (max-width: 425px) {
+  .purchase-card-box-header{font-size:26px;font-weight:800;} /* title size */
   .purchase-card { max-width: 360px; }
-  .purchase-card-header { font-size: 28px; }
+  .purchase-card-header { font-size: 32px; }
   .purchase-card-box-header { font-size: 20px; }
   .content-text, .content-row input { font-size: 14px; }
   .number-of-ticket { font-size: 22px; }
@@ -350,14 +359,14 @@
 }
 
 /* If inline SVGs: paint them white */
-.circle-button svg { 
-  fill: var(--yo-white) !important; 
-  stroke: var(--yo-white) !important; 
+.circle-button svg {
+  fill: var(--yo-white) !important;
+  stroke: var(--yo-white) !important;
 }
 
 /* If using <img src="*.svg">: invert to white */
-.circle-button img { 
-  filter: invert(1) brightness(1.1) !important; 
+.circle-button img {
+  filter: invert(1) brightness(1.1) !important;
 }
 
 .number-of-ticket {

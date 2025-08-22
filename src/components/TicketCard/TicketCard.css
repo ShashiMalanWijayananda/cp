@@ -265,8 +265,9 @@
 /* FIXED: QR CODE "Access Code" font styling to match Figma exactly */
 .ticket-card .ticket-card-view .ticket-layout .qr-info .font-vt323,
 .ticket-card .ticket-card-view .font-vt323 {
-    font-family: var(--font-primary) !important; /* Force consistent font */
-    font-size: clamp(14px, 3vw, 18px) !important;
+    font-weight: 400 !important;
+    font-family: var(--font-secondery) !important; /* Force consistent font */
+    /* font-size: clamp(14px, 3vw, 18px) !important; */
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -305,6 +306,7 @@
 }
 
 .ticket-card .ticket-card-view .ticket-layout .ticket-venue-info .box {
+    align-items: center;
     margin-top: 10px;
     width: 100%;
     padding: 5px;

@@ -1,13 +1,13 @@
 /* =============================================================================
-   SYSTEM MENU PAGE - SPECIFIC STYLING ONLY
-   Using global fonts, colors, spacing - no redundant definitions
+   SYSTEM MENU PAGE - SIMPLIFIED UNIQUE CLASSES
+   Simple, unique classes that cannot be changed by external updates
    ============================================================================= */
 
 /* =============================================================================
-   PAGE LAYOUT - SystemMenu Specific Structure
+   SYSTEM MENU - CORE PAGE STRUCTURE
    ============================================================================= */
 
-.system-menu-page-container {
+.sys-menu-page {
   width: 100vw;
   height: 100vh;
   margin: 0;
@@ -20,38 +20,123 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.system-menu-layout {
+.sys-menu-layout {
   width: 100%;
+  max-width: 1000px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  flex: 1;
-  padding: var(--spacing-xl) var(--spacing-md);
-  gap: var(--spacing-xl);
-  min-height: 100vh;
+  min-height: 80vh;
 }
-
 /* =============================================================================
-   HEADER BAR - Desktop Only
+   SYSTEM MENU - HEADER BAR (Desktop Only)
    ============================================================================= */
 
-.system-menu-header-bar {
+.sys-menu-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 45px;
   background-color: var(--yo-gray);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0 var(--spacing-lg);
   z-index: 100;
   border-bottom: 1px solid var(--yo-green);
 }
 
-.system-menu-timestamp {
+.sys-menu-header-left {
+  flex: 1;
+}
+
+.sys-menu-header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.sys-menu-header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* =============================================================================
+   SYSTEM MENU - LOGOUT BUTTON
+   ============================================================================= */
+
+.sys-menu-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+  /*transition: all 0.3s ease;*/
+  min-width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.sys-menu-logout-btn:hover {
+  /*transform: scale(1.1);*/
+}
+
+.sys-menu-logout-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0);
+  /*transition: all 0.3s ease;*/
+}
+
+.sys-menu-logout-btn:hover .sys-menu-logout-icon {
+  /*filter: brightness(0) invert(1);*/
+  /*transform: scale(1.2);*/
+}
+
+/* Mobile Logout Button */
+.sys-menu-mobile-logout {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 8px;
+  /*transition: all 0.3s ease;*/
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.sys-menu-mobile-logout:hover {
+  /*transform: scale(1.1);*/
+}
+
+.sys-menu-mobile-logout-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  /*transition: all 0.3s ease;*/
+}
+
+.sys-menu-mobile-logout:hover .sys-menu-mobile-logout-icon {
+  /*transform: scale(1.2);*/
+}
+
+.sys-menu-timestamp {
   font-family: var(--font-primary);
   font-size: var(--text-base);
   color: var(--yo-black);
@@ -59,84 +144,94 @@
   text-transform: uppercase;
 }
 
-/* =============================================================================
-   MENU GRID SYSTEM
-   ============================================================================= */
-
-.system-menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: var(--spacing-md);
+.sys-menu-container {
   width: 100%;
-  max-width: 900px;
-  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  max-width: 800px;
 }
 
-.system-menu-item {
+.sys-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+}
+
+.sys-menu-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+/* =============================================================================
+   SYSTEM MENU - MENU ITEMS (Small Grid Items)
+   ============================================================================= */
+
+.sys-menu-item {
   border: 2px solid var(--yo-green);
   background-color: transparent;
-  padding: var(--spacing-md) var(--spacing-sm);
+  padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all var(--transition-normal);
-  height: 100px;
+  /*transition: all var(--transition-normal);*/
+  height: 120px;
   width: 100%;
   position: relative;
   overflow: hidden;
 }
 
-.system-menu-item:hover {
-  background-color: rgba(159, 255, 130, 0.1);
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(159, 255, 130, 0.3);
+.sys-menu-item:hover {
+  /*background-color: rgba(159, 255, 130, 0.1);*/
+  /*transform: scale(1.05);*/
+  /*box-shadow: 0 0 20px rgba(159, 255, 130, 0.3);*/
 }
 
-.system-menu-item:active {
+.sys-menu-item:active {
   transform: scale(0.98);
 }
 
-.system-menu-item .menu-icon {
+.sys-menu-icon {
   margin-bottom: var(--spacing-xs);
-  max-width: 40px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.system-menu-item .menu-icon img {
-  width: 40px;
-  height: 40px;
+.sys-menu-icon img {
+  width: 100%;
+  height: 100%;
   filter: brightness(0) invert(1);
-  transition: all var(--transition-fast);
+  /*transition: all var(--transition-fast);*/
+  object-fit: contain;
 }
 
-.system-menu-item .menu-label {
+.sys-menu-label {
+  font-weight: bold;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.4;
   font-family: var(--font-primary);
-  font-size: var(--text-base);
-  color: var(--yo-green);
+  font-size: var(--text-lg);
+  color: var(--yo-white);
   letter-spacing: 1px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 /* =============================================================================
-   FULL WIDTH BUTTONS
+   SYSTEM MENU - LARGE BUTTONS (Bottom Row)
    ============================================================================= */
 
-.system-menu-full-width-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: var(--spacing-md);
-  width: 100%;
-  max-width: 900px;
-}
-
-.system-menu-full-width-item {
+.sys-menu-large-btn {
   border: 2px solid var(--yo-green);
   background-color: transparent;
   padding: var(--spacing-md);
@@ -145,378 +240,351 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all var(--transition-normal);
-  height: 70px;
-  flex: 1;
+  /*transition: all var(--transition-normal);*/
+  height: 80px;
+  width: 100%;
   gap: var(--spacing-sm);
 }
 
-.system-menu-full-width-item:hover {
-  background-color: rgba(159, 255, 130, 0.1);
-  transform: scale(1.02);
-  box-shadow: 0 0 15px rgba(159, 255, 130, 0.3);
+.sys-menu-large-btn:hover {
+  /*background-color: rgba(159, 255, 130, 0.1);*/
+  /*transform: scale(1.02);*/
+  /*box-shadow: 0 0 15px rgba(159, 255, 130, 0.3);*/
 }
 
-.system-menu-full-width-item:active {
+.sys-menu-large-btn:active {
   transform: scale(0.98);
 }
 
-.system-menu-full-width-item .menu-icon {
+.sys-menu-large-btn.highlight {
+  background-color: var(--yo-green);
+  color: var(--yo-black);
+}
+
+.sys-menu-large-btn.highlight:hover {
+  /*background-color: var(--yo-light-green);*/
+}
+
+.sys-menu-large-btn.highlight .sys-menu-large-icon img {
+  filter: brightness(0);
+}
+
+.sys-menu-large-btn.highlight .sys-menu-large-label {
+  color: var(--yo-black);
+}
+
+.sys-menu-large-icon {
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.system-menu-full-width-item .menu-icon img {
-  width: 30px;
-  height: 30px;
+.sys-menu-large-icon img {
+  width: 100%;
+  height: 100%;
   filter: brightness(0) invert(1);
-  transition: all var(--transition-fast);
+  /*transition: all var(--transition-fast);*/
+  object-fit: contain;
 }
 
-.system-menu-full-width-item .menu-label {
+.sys-menu-large-label {
+  font-weight: bold;
   text-align: center;
   line-height: 1.2;
   font-family: var(--font-primary);
   font-size: var(--text-lg);
-  color: var(--yo-green);
+  color: var(--yo-white);
   letter-spacing: 2px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 /* =============================================================================
-   DIALOG STYLES
+   SYSTEM MENU - RESPONSIVE DESIGN
    ============================================================================= */
 
-.system-menu-dialog {
-  background-color: var(--yo-primary);
-  border: 2px solid var(--yo-green);
-  border-radius: 0;
-  color: var(--yo-green);
-  font-family: var(--font-primary);
-  max-width: 500px;
-  width: 90%;
+@media screen and (min-width: 1024px){
+  .sys-menu-layout {
+    top: 35%;
+    position: relative;
+  }
 }
 
-.system-menu-dialog .dialog-header {
-  background-color: transparent;
-  border-bottom: 1px solid var(--yo-green);
-  padding: var(--spacing-md) var(--spacing-lg);
-}
 
-.system-menu-dialog .dialog-title {
-  font-size: var(--text-xl);
-  color: var(--yo-green);
-  margin: 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+/* Large Screens (1200px+) */
+@media (min-width: 1200px) {
+  .sys-menu-layout {
 
-.system-menu-dialog .dialog-content {
-  padding: var(--spacing-lg);
-}
-
-.system-menu-dialog .dialog-content p {
-  font-size: var(--text-base);
-  color: var(--yo-green);
-  line-height: 1.6;
-  letter-spacing: 1px;
-  margin: 0;
-}
-
-.system-menu-dialog .dialog-buttons {
-  display: flex;
-  gap: var(--spacing-md);
-  justify-content: flex-end;
-  padding: var(--spacing-lg);
-  border-top: 1px solid var(--yo-green);
-  background-color: transparent;
-  margin: var(--spacing-lg) calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg));
-}
-
-.system-menu-dialog .dialog-button {
-  font-family: var(--font-primary);
-  font-size: var(--text-base);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border: 2px solid var(--yo-green);
-  border-radius: 0;
-  background-color: transparent;
-  color: var(--yo-green);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  min-width: 80px;
-}
-
-.system-menu-dialog .dialog-button:hover {
-  background-color: rgba(159, 255, 130, 0.1);
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(159, 255, 130, 0.3);
-}
-
-.system-menu-dialog .dialog-button:active {
-  transform: scale(0.98);
-}
-
-.system-menu-dialog .dialog-button.primary {
-  background: var(--yo-green) !important;
-  color: var(--yo-black) !important;
-}
-
-.system-menu-dialog .dialog-button.primary:hover {
-  background: var(--yo-light-green) !important;
-  color: var(--yo-black) !important;
-}
-
-/* =============================================================================
-   RESPONSIVE DESIGN
-   ============================================================================= */
-
-@media (max-width: 1024px) {
-  .system-menu-layout {
-    padding: var(--spacing-xl) var(--spacing-lg);
   }
 
-  .system-menu-grid {
-    gap: var(--spacing-sm);
+  .sys-menu-grid {
+    gap: var(--spacing-lg);
   }
 
-  .system-menu-full-width-buttons {
-    flex-direction: column;
-    gap: var(--spacing-sm);
+  .sys-menu-buttons {
+    gap: var(--spacing-lg);
   }
 
-  .system-menu-item {
+  .sys-menu-item {
+    height: 140px;
+  }
+
+  .sys-menu-large-btn {
     height: 90px;
   }
-
-  .system-menu-full-width-item {
-    height: 65px;
-  }
 }
 
-@media (max-width: 768px) {
-  /* Mobile adjustments - logo now scrolls with content */
-  .system-menu-layout {
-    padding: var(--spacing-xl) var(--spacing-md);
-    justify-content: flex-start;
-    padding-top: 20px; /* Reduced since logo is now in content flow */
-    min-height: auto; /* Let content determine height */
+/* Medium Large Screens (1025px - 1199px) */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .sys-menu-layout {
+
   }
 
-  .system-menu-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
+  .sys-menu-item {
+    height: 130px;
   }
 
-  .system-menu-item {
+  .sys-menu-large-btn {
     height: 85px;
-    padding: var(--spacing-sm) var(--spacing-xs);
-  }
-
-  .system-menu-item .menu-icon img {
-    width: 32px;
-    height: 32px;
-  }
-
-  .system-menu-full-width-buttons {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .system-menu-full-width-item {
-    height: 60px;
-    padding: var(--spacing-sm) var(--spacing-md);
-  }
-
-  .system-menu-full-width-item .menu-icon img {
-    width: 25px;
-    height: 25px;
-  }
-
-  .system-menu-header-bar {
-    display: none;
-  }
-
-  .system-menu-dialog {
-    margin: var(--spacing-lg);
-    max-width: calc(100vw - 2 * var(--spacing-lg));
-  }
-
-  .system-menu-dialog .dialog-header {
-    padding: var(--spacing-sm) var(--spacing-md);
-  }
-
-  .system-menu-dialog .dialog-content {
-    padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
-  }
-
-  .system-menu-dialog .dialog-buttons {
-    padding: var(--spacing-md);
-    margin: var(--spacing-md) calc(-1 * var(--spacing-md)) calc(-1 * var(--spacing-md)) calc(-1 * var(--spacing-md));
-  }
-
-  .system-menu-dialog .dialog-button {
-    padding: var(--spacing-xs) var(--spacing-md);
-    min-width: 70px;
   }
 }
 
-@media (max-width: 480px) {
-  .system-menu-layout {
-    padding: var(--spacing-lg) var(--spacing-sm);
-    padding-top: 20px;
+/* Tablet (769px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sys-menu-layout {
+
   }
 
-  .system-menu-grid {
-    gap: var(--spacing-xs);
-    margin-bottom: var(--spacing-sm);
+  .sys-menu-container {
+    max-width: 600px;
   }
 
-  .system-menu-item {
+  .sys-menu-grid {
+    gap: 12px;
+  }
+
+  .sys-menu-buttons {
+    gap: 12px;
+  }
+
+  .sys-menu-item {
+    height: 100px;
+    padding: var(--spacing-sm);
+  }
+
+  .sys-menu-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .sys-menu-label {
+    font-size: var(--text-sm);
+  }
+
+  .sys-menu-large-btn {
     height: 70px;
-    padding: var(--spacing-xs);
+    padding: var(--spacing-sm);
   }
 
-  .system-menu-item .menu-icon img {
+  .sys-menu-large-icon {
     width: 28px;
     height: 28px;
   }
 
-  .system-menu-full-width-buttons {
-    gap: var(--spacing-xs);
-    margin-bottom: var(--spacing-md);
+  .sys-menu-large-label {
+    font-size: var(--text-base);
+  }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .sys-menu-layout{
+
+  }
+  .sys-menu-header {
+    display: none;
   }
 
-  .system-menu-full-width-item {
-    height: 55px;
+  .sys-menu-mobile-logout {
+    display: flex;
+  }
+
+  .sys-menu-layout {
+
+  }
+
+  .sys-menu-container {
+    max-width: 360px;
+  }
+
+  .sys-menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .sys-menu-buttons {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .sys-menu-item {
+    height: 75px;
+    padding: var(--spacing-xs);
+  }
+
+  .sys-menu-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .sys-menu-label {
+    font-size: var(--text-xs);
+  }
+
+  .sys-menu-large-btn {
+    height: 50px;
     padding: var(--spacing-xs) var(--spacing-sm);
   }
 
-  .system-menu-full-width-item .menu-icon img {
-    width: 22px;
-    height: 22px;
+  .sys-menu-large-icon {
+    width: 20px;
+    height: 20px;
   }
 
-  .system-menu-dialog .dialog-buttons {
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-
-  .system-menu-dialog .dialog-button {
-    width: 100%;
-    text-align: center;
+  .sys-menu-large-label {
+    font-size: var(--text-sm);
   }
 }
 
 @media (max-width: 375px) {
-  .system-menu-grid {
-    grid-template-columns: 1fr;
+  .sys-menu-layout {
+    position: relative;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .sys-menu-layout {
+
+  }
+
+  .sys-menu-grid {
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .sys-menu-buttons {
     gap: var(--spacing-xs);
   }
 
-  .system-menu-item {
+  .sys-menu-item {
+    height: 70px;
+  }
+
+  .sys-menu-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .sys-menu-large-btn {
+    height: 55px;
+  }
+
+  .sys-menu-large-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Very Small Mobile (max-width: 375px) */
+@media (max-width: 375px) {
+  .sys-menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sys-menu-item {
     height: 60px;
   }
 
-  .system-menu-item .menu-icon img {
+  .sys-menu-icon {
     width: 24px;
     height: 24px;
   }
 
-  .system-menu-full-width-item {
+  .sys-menu-large-btn {
     height: 50px;
   }
 
-  .system-menu-full-width-item .menu-icon img {
+  .sys-menu-large-icon {
     width: 20px;
     height: 20px;
   }
 }
 
+/* Ultra Small Mobile (max-width: 320px) */
 @media (max-width: 320px) {
-  .system-menu-item {
+  .sys-menu-layout {
+
+  }
+
+  .sys-menu-grid {
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .sys-menu-buttons {
+    gap: var(--spacing-xs);
+  }
+
+  .sys-menu-item {
+    height: 70px;
+  }
+
+  .sys-menu-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .sys-menu-large-btn {
     height: 55px;
-    padding: 4px 2px;
   }
 
-  .system-menu-item .menu-icon img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .system-menu-full-width-item {
-    height: 45px;
-    padding: 4px var(--spacing-xs);
-  }
-
-  .system-menu-full-width-item .menu-icon img {
-    width: 18px;
-    height: 18px;
+  .sys-menu-large-icon {
+    width: 22px;
+    height: 22px;
   }
 }
 
 /* =============================================================================
-   ACCESSIBILITY & PERFORMANCE
+   SYSTEM MENU - ACCESSIBILITY & PERFORMANCE
    ============================================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .system-menu-item,
-  .system-menu-full-width-item,
-  .system-menu-dialog .dialog-button {
-    transition: none;
+  .sys-menu-item,
+  .sys-menu-large-btn {
+    /*transition: none;*/
   }
 }
 
 @media (prefers-contrast: high) {
-  .system-menu-item,
-  .system-menu-full-width-item,
-  .system-menu-dialog {
+  .sys-menu-item,
+  .sys-menu-large-btn {
     border-width: 3px;
   }
 }
 
-.system-menu-item:focus,
-.system-menu-full-width-item:focus {
+.sys-menu-item:focus,
+.sys-menu-large-btn:focus {
   outline: 2px solid var(--yo-green);
   outline-offset: 2px;
 }
 
-.system-menu-dialog .dialog-button:focus-visible {
-  outline: 2px solid var(--yo-green);
-  outline-offset: 2px;
-}
+/* =============================================================================
+   SYSTEM MENU - FORCE GREEN BORDERS (Page Specific)
+   ============================================================================= */
 
-
-
-
-/* === FORCE ALL BOX BORDERS TO YO-GREEN (page-scoped) === */
-:root { /* optional alias if you like */
-  --yo-border-color: var(--yo-green);
-}
-
-/* Core system menu boxes + related frames */
-.system-menu-item,
-.system-menu-full-width-item,
-.system-menu-dialog,
-.system-menu-dialog .dialog-header,
-.system-menu-dialog .dialog-buttons,
-.system-menu-header-bar {
-  border-color: var(--yo-border-color) !important;
-}
-
-/* If any Tailwind/utility classes apply a different border color, unify them here */
-.system-menu-page-container .yo-force-green-borders .border,
-.system-menu-page-container .yo-force-green-borders [class*="border-"] {
+.sys-menu-page * {
   border-color: var(--yo-green) !important;
-}
-
-/* Keep focus states consistent too */
-.system-menu-item:focus,
-.system-menu-full-width-item:focus,
-.system-menu-dialog .dialog-button:focus-visible {
-  outline-color: var(--yo-green) !important;
 }

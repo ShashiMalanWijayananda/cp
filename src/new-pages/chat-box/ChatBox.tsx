@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLogin } from "../../context/login.context";
+import { useNavigate } from "react-router-dom";
 import "./ChatBox.css";
 
 interface Message {
@@ -29,6 +30,7 @@ const ChatBox: React.FC = () => {
     useState<"connecting" | "connected" | "disconnected">("disconnected");
   const [sessionInfo, setSessionInfo] = useState<any>(null);
   const [activeConnections, setActiveConnections] = useState(0);
+  const [timestamp, setTimestamp] = useState<string>(new Date().toLocaleString());
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -39,6 +41,15 @@ const ChatBox: React.FC = () => {
   const isConnectingRef = useRef(false);
   const shouldReconnectRef = useRef(true);
   const { user } = useLogin();
+  const navigate = useNavigate();
+
+  // Update timestamp every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimestamp(new Date().toLocaleString());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -236,16 +247,48 @@ const ChatBox: React.FC = () => {
     connectionStatus === "connected" &&
     wsRef.current?.readyState === WebSocket.OPEN;
   const canSendMessage = isConnected && inputText.trim();
-return (
+
+  return (
     <div className="chat-container">
-      {/* NEW: hero panel to match Figma (logo centered in a bordered box) */}
+      {/* Desktop Header Navigation Bar */}
+      {/* <div className="chat-header-nav">
+        <div className="chat-nav-links">
+          <div className="chat-nav-link" onClick={() => navigate("/")}>
+            Home
+          </div>
+          <div className="chat-nav-link" onClick={() => navigate("/my-profile")}>
+            Profile
+          </div>
+          <div className="chat-nav-link active">
+            Chat
+          </div>
+          <div className="chat-nav-link" onClick={() => navigate("/mission")}>
+            Buy Tickets
+          </div>
+          <div className="chat-nav-link" onClick={() => navigate("/my-tickets")}>
+            My Tickets
+          </div>
+          <div className="chat-nav-link" onClick={() => navigate("/about")}>
+            About
+          </div>
+          <div className="chat-nav-link" onClick={() => navigate("/terms")}>
+            Protocol
+          </div>
+          <div className="chat-nav-link" onClick={() => navigate("/contact")}>
+            Support
+          </div>
+        </div>
+        <div className="chat-timestamp">{timestamp}</div>
+      </div> */}
+
      
-      {/* messages */}
+
+      {/* Messages container */}
       <div className="chat-messages-container">
         {messages.length === 0 && (
           <div className="welcome-message-container yog-message">
             <div className="welcome-message">
-              Hello Agent Kasun,{'\n'}
+              Hello Agent {user?.lastName || 'Kasun'},{'\n'}
               Welcome to Yogeshwari Archives. The tale awaits your inquiry
             </div>
             <div className="message-timestamp">{formatTime(new Date())}</div>
@@ -268,7 +311,11 @@ return (
         {isTyping && (
           <div className="typing-indicator yog-message">
             <div className="typing-content">
-              <span className="typing-dots"><span>●</span><span>●</span><span>●</span></span>
+              <span className="typing-dots">
+                <span>●</span>
+                <span>●</span>
+                <span>●</span>
+              </span>
             </div>
           </div>
         )}
@@ -276,7 +323,7 @@ return (
         <div ref={messagesEndRef} />
       </div>
 
-      {/* input bar (unchanged functional behavior, Figma-styled in CSS) */}
+      {/* Input bar */}
       <div className="chat-input-container">
         <div className="chat-input-wrapper">
           <input
@@ -285,7 +332,7 @@ return (
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder={isConnected ? "What is yogeshwari? what" : "Connecting to AI..."}
+            placeholder={isConnected ? "Ask Anything..." : "Connecting to AI..."}
             disabled={!isConnected}
             className="chat-input"
           />

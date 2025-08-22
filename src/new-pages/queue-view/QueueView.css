@@ -1,60 +1,124 @@
 /* =============================================================================
-   QUEUE VIEW PAGE — centers the card and keeps room for global header/footer
+   QUEUE VIEW PAGE - LAYOUT CONTAINER FOR QUEUE COMPONENT
+   Provides proper spacing and centering for the queue card
    ============================================================================= */
 
-.queue-page-container{
-  min-height:100vh;
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  background:var(--yo-primary); /* dark green background from globals */
-  overflow:hidden;
+.queue-page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--yo-primary);
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
 }
+
+/* Page heading - hidden to match Figma design */
+.queue-page-heading {
+  display: none;
+}
+
+.queue-page-heading h1 {
+  font-family: var(--font-primary);
+  font-size: var(--h1-size);
+  color: var(--yo-green);
+  text-align: center;
+  margin: 0;
+  padding: var(--spacing-lg) 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Main content area */
+.queue-content-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 3vw, 32px);
+  /* Account for header/footer */
+}
+
+.queue-content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+/* Container for the Queue component */
+.queue-component-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* -------------------------------- Responsive ------------------------------- */
+@media (max-width: 1024px) {
+  .queue-content-main {
+
+    padding: clamp(50px, 4vw, 70px);
+  }
+}
+
 @media (max-width: 768px) {
-    .queue-page-heading h1 {
-        font-size: larger;
-    }
-}
-/* Optional page H1 in markup — hidden to match Figma (card header is primary) */
-.queue-page-heading{ display:none; }
+  .queue-content-main {
+    padding: var(--spacing-md);
+    align-items: flex-start;
+    padding-top: clamp(20px, 5vw, 40px);
+  }
 
-.queue-content-main{
-  flex:1;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding: clamp(16px, 3vw, 28px);
-}
+  .queue-content-wrapper {
+    gap: var(--spacing-md);
+  }
 
-.queue-content-wrapper{
-  width:100%;
-  max-width:1100px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap: var(--spacing-lg, 24px);
+  .queue-page-heading h1 {
+    font-size: clamp(24px, 6vw, 36px);
+    padding: var(--spacing-md) 0;
+  }
 }
 
-/* The inner container that holds <Queue /> */
-.queue-component-container{
-  width:100%;
-  max-width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+@media (max-width: 480px) {
+  .queue-content-main {
+    padding: var(--spacing-sm);
+    padding-top: var(--spacing-lg);
+  }
+
+  .queue-content-wrapper {
+    gap: var(--spacing-sm);
+  }
 }
 
-/* ------------------------------- Responsive ------------------------------- */
-@media (max-width:1024px){
-  .queue-content-main{ padding:20px; }
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .queue-content-main {
+    align-items: flex-start;
+    padding-top: var(--spacing-sm);
+  }
 }
 
-@media (max-width:768px){
-  .queue-content-main{ padding:16px; }
-  .queue-content-wrapper{ gap:16px; }
+/* Large screens */
+@media (min-width: 1200px) {
+  .queue-content-main {
+    padding: clamp(32px, 4vw, 48px);
+  }
 }
 
 /* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .queue-page-container{ scroll-behavior:auto; }
+@media (prefers-reduced-motion: reduce) {
+  .queue-page-container {
+    scroll-behavior: auto;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .queue-page-container {
+    background: var(--yo-black);
+  }
 }

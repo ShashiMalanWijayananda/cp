@@ -5,11 +5,10 @@ import { useLogin } from "../../context/login.context";
 import { useAppContext } from "../../context/app.context";
 import { useQueue } from "../../graphql/graphql-subscrption";
 import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
-import MenuGrid from "../../components/MenuGrid/MenuGrid";
 
 const SystemMenu: FC = () => {
     const navigate = useNavigate();
-    const { user } = useLogin();
+    const { user, logoutUser } = useLogin();
     const [timestamp, setTimestamp] = useState<string>(new Date().toLocaleString());
     const { appContext } = useAppContext();
     const { subscribe } = useQueue();
@@ -58,30 +57,113 @@ const SystemMenu: FC = () => {
 
     return (
         <>
-            {/* Desktop-only header bar with timestamp */}
-            <div className="system-menu-header-bar">
-                <div className="system-menu-timestamp" aria-live="polite">
-                    {timestamp}
+            {/* Desktop-only header bar with timestamp and logout */}
+            <div className="sys-menu-header">
+                <div className="sys-menu-header-left"></div>
+                <div className="sys-menu-header">
+                <div className="sys-menu-header-left"></div>
+                <div className="sys-menu-header-center"></div>
+                <div className="sys-menu-header-right">
+                    <div className="sys-menu-timestamp" aria-live="polite">{timestamp}</div>
+                    <button className="sys-menu-logout-btn" onClick={() => logoutUser()}>
+                        <img src="images/icon/exit.svg" className="sys-menu-logout-icon" alt="Logout" />
+                    </button>
+                </div>
+            </div>
+                <div className="sys-menu-header-right">
+                    <button className="sys-menu-logout-btn" onClick={() => logoutUser()}>
+                        <img src="images/icon/exit.svg" className="sys-menu-logout-icon" alt="Logout" />
+                    </button>
                 </div>
             </div>
 
+            {/* Mobile-only logout button */}
+            <button className="sys-menu-mobile-logout" onClick={() => logoutUser()}>
+                <img src="images/icon/exit.svg" className="sys-menu-mobile-logout-icon" alt="Logout" />
+            </button>
+
             {/* Main page container */}
-            <main className="system-menu-page-container" role="main">
-                <section className="system-menu-layout">
+            <main className="sys-menu-page" role="main">
+                <section className="sys-menu-layout">
                     
-                    {/* Menu Grid Component - Updated with proper CSS classes */}
-                    <div className="w-full flex flex-col items-center justify-center gap-4 yo-force-green-borders">
-  <MenuGrid
-    onClickProfile={() => navigate("/my-profile")}
-    onClickMyTicket={() => navigate("/my-tickets")}
-    onClickChat={() => navigate("/chat")}
-    onClickAbout={() => navigate("/about")}
-    onClickSupport={() => navigate("/contact")}
-    onClickProtocol={() => navigate("/terms")}
-    onClickExplore={handleNavigation}
-    onClickBuyTicket={() => navigate("/mission")}
-  />
-</div>
+                    {/* Menu Grid Container - Using unique SystemMenu classes */}
+                    <div className="sys-menu-container">
+                        
+                        {/* Top Grid - 6 Small Menu Items */}
+                        <div className="sys-menu-grid">
+                            
+                            {/* Profile */}
+                            <div className="sys-menu-item" onClick={() => navigate("/my-profile")}>
+                                <div className="sys-menu-icon">
+                                    <img src="images/icon/profile.svg" alt="Profile" />
+                                </div>
+                                <span className="sys-menu-label">Profile</span>
+                            </div>
+
+                            {/* My Tickets */}
+                            <div className="sys-menu-item" onClick={() => navigate("/my-tickets")}>
+                                <div className="sys-menu-icon">
+                                    <img src="images/icon/ticket.svg" alt="My Tickets" />
+                                </div>
+                                <span className="sys-menu-label">My Tickets</span>
+                            </div>
+
+                            {/* Chat */}
+                            <div className="sys-menu-item" onClick={() => navigate("/chat")}>
+                                <div className="sys-menu-icon">
+                                    <img src="images/icon/chat.svg" alt="Chat" />
+                                </div>
+                                <span className="sys-menu-label">Chat</span>
+                            </div>
+
+                            {/* About */}
+                            <div className="sys-menu-item" onClick={() => navigate("/about")}>
+                                <div className="sys-menu-icon">
+                                    <img src="images/icon/about.svg" alt="About" />
+                                </div>
+                                <span className="sys-menu-label">About</span>
+                            </div>
+
+                            {/* Support */}
+                            <div className="sys-menu-item" onClick={() => navigate("/contact")}>
+                                <div className="sys-menu-icon">
+                                    <img src="images/icon/Vector.svg" alt="Support" />
+                                </div>
+                                <span className="sys-menu-label">Support</span>
+                            </div>
+
+                            {/* Protocol */}
+                            <div className="sys-menu-item" onClick={() => navigate("/terms")}>
+                                <div className="sys-menu-icon">
+                                    <img src="images/icon/terms.svg" alt="Protocol" />
+                                </div>
+                                <span className="sys-menu-label">Protocol</span>
+                            </div>
+
+                        </div>
+
+                        {/* Bottom Buttons - 2 Large Buttons */}
+                        <div className="sys-menu-buttons">
+                            
+                            {/* Explore Yogeshwari */}
+                            <div className="sys-menu-large-btn" onClick={handleNavigation}>
+                                <div className="sys-menu-large-icon">
+                                    <img src="images/icon/explore.svg" alt="Explore" />
+                                </div>
+                                <span className="sys-menu-large-label">Explore Yogeshwari</span>
+                            </div>
+
+                            {/* Buy Ticket */}
+                            <div className="sys-menu-large-btn highlight" onClick={() => navigate("/mission")}>
+                                <div className="sys-menu-large-icon">
+                                    <img src="images/icon/buy.svg" alt="Buy Ticket" />
+                                </div>
+                                <span className="sys-menu-large-label">Buy Ticket</span>
+                            </div>
+
+                        </div>
+                        
+                    </div>
 
                 </section>
             </main>

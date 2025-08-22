@@ -47,8 +47,8 @@ interface ShareTicketContentProps {
 // Enhanced touch swipe functionality for ticket navigation
 // ---------------------------------------------------------------------------
 const useSwipeNavigation = (
-    currentIndex: number, 
-    totalTickets: number, 
+    currentIndex: number,
+    totalTickets: number,
     onChange: (index: number) => void
 ) => {
     const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -109,11 +109,11 @@ const useSwipeNavigation = (
     };
 };
 
-const ShareTicketContent: React.FC<ShareTicketContentProps> = ({ 
-    ticket, 
-    onAssign, 
-    onDataChange, 
-    user 
+const ShareTicketContent: React.FC<ShareTicketContentProps> = ({
+    ticket,
+    onAssign,
+    onDataChange,
+    user
 }) => {
     const [isAssignToMe, setIsAssignToMe] = useState<boolean>(false);
     const [assigner, setAssigner] = useState<SharedUserData>({
@@ -238,15 +238,15 @@ const AuthorizeTickets: FC = () => {
     const [selectedTicket, setSelectedTicket] = useState<ITicket | null>(null);
     const selectedTicketRef = useRef<ITicket | null>(null);
     const currentFormDataRef = useRef<SharedUserData>({
-        nic: "", 
-        contact: "", 
-        email: "", 
+        nic: "",
+        contact: "",
+        email: "",
         selfAssigned: false
     });
     const [assignToMe, setAssignToMe] = useState<boolean>(false);
     const [alert, setAlert] = useState<AlertProps>({
-        visible: false, 
-        message: "", 
+        visible: false,
+        message: "",
         type: "info"
     });
     const [currentTicketIndex, setCurrentTicketIndex] = useState<number>(0);
@@ -372,9 +372,9 @@ const AuthorizeTickets: FC = () => {
 
             const shareTicket: ShareTicket = {
                 ticketId: currentTicket.id,
-                assigner: { 
-                    nic: currentFormDataRef?.current?.nic, 
-                    email: currentFormDataRef?.current?.email 
+                assigner: {
+                    nic: currentFormDataRef?.current?.nic,
+                    email: currentFormDataRef?.current?.email
                 } as User,
                 eventId: currentTicket?.event?.eventId,
                 selfAssigned: currentFormDataRef?.current?.selfAssigned
@@ -519,7 +519,7 @@ const AuthorizeTickets: FC = () => {
     const pageTitle = "AUTHORIZE TICKETS";
 
     // Figma footer copy for this page (lock state notice)
-    const scrollingText = "**** TICKETS ARE LOCKED. ASSIGN TICKETS TO UNLOCK UNDER NIC **** CLICK ON ASSIGN BUTTON TO UNLOCK. ****";
+    const scrollingText = "**** CLICK ON ASSIGN BUTTON TO UNLOCK, TICKETS SHOULD UNLOCK UNDER NIC ****";
 
     // Mobile indicator: always render up to 3 compact dots (very small)
     const indicatorCount = Math.min(3, Math.max(1, tickets.length));
@@ -597,56 +597,52 @@ const AuthorizeTickets: FC = () => {
 
     return (
         <>
-            {/* Page heading (global styles handle fonts/colors) */}
-            <div className="authorize-tickets-page-heading" role="region" aria-label="Page Heading">
-                <h1>{pageTitle}</h1>
-            </div>
 
             {/* Main page container */}
             <main className="authorize-tickets-page-container" role="main">
 
                 {/* Alerts */}
-                <Alert 
-                    message={alert.message} 
-                    type={alert.type} 
-                    visible={alert.visible} 
+                <Alert
+                    message={alert.message}
+                    type={alert.type}
+                    visible={alert.visible}
                     autoCloseDelay={3000}
                     autoClose={true}
                     onClose={handlingCloseAlert}
                 />
 
-                <Alert 
-                    message="Fetching error..." 
+                <Alert
+                    message="Fetching error..."
                     type="error"
                     visible={!!errorMyTickets}
-                    autoCloseDelay={3000} 
-                    autoClose={true}
-                    onClose={handlingCloseAlert}
-                />
-
-                <Alert 
-                    message="Processing share..." 
-                    type="info" 
-                    visible={loadingShare} 
                     autoCloseDelay={3000}
                     autoClose={true}
                     onClose={handlingCloseAlert}
                 />
 
-                <Alert 
-                    message="Sharing error..." 
-                    type="error" 
-                    visible={!!shareErrorResponse}
-                    autoCloseDelay={3000} 
+                <Alert
+                    message="Processing share..."
+                    type="info"
+                    visible={loadingShare}
+                    autoCloseDelay={3000}
                     autoClose={true}
                     onClose={handlingCloseAlert}
                 />
 
-                <Alert 
-                    message="Checking error" 
+                <Alert
+                    message="Sharing error..."
+                    type="error"
+                    visible={!!shareErrorResponse}
+                    autoCloseDelay={3000}
+                    autoClose={true}
+                    onClose={handlingCloseAlert}
+                />
+
+                <Alert
+                    message="Checking error"
                     type="error"
                     visible={!!checkIsExistTicketErrorResponse}
-                    autoCloseDelay={3000} 
+                    autoCloseDelay={3000}
                     autoClose={true}
                     onClose={handlingCloseAlert}
                 />
@@ -668,9 +664,9 @@ const AuthorizeTickets: FC = () => {
                             {/* Desktop View */}
                             <div className="authorize-tickets-desktop-view">
                                 {tickets.map((ticket, index) => (
-                                    <TicketCard 
-                                        key={index} 
-                                        onClick={handleAssignTicket} 
+                                    <TicketCard
+                                        key={index}
+                                        onClick={handleAssignTicket}
                                         ticket={ticket}
                                         onDownload={handleDownload}
                                     />

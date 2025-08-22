@@ -23,7 +23,7 @@ const ZoneCard: FC<ZoneCardProps> = ({ zone, onClick }) => {
       >
         <div className={"zone-content-z"}>
           {isCompleted && (
-            <div className="mission-completed">Mission completed</div>
+            <div className="mission-completed">Zone Full- Capacity Maxed</div>
           )}
           <div className="zone-view-desc">
             <span className={"zone-text"}>

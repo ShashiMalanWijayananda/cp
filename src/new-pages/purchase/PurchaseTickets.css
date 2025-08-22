@@ -187,9 +187,9 @@ color: var(--yo-blue);
   }
 }
 .circle-button {
-  /* already had border-radius: 50%, size, etc. */
+  /* reset only basic inline paddings; sizing handled in PurchaseCard.css */
   padding: 0;
   min-width: 0;
   line-height: 0;
 }
-.circle-button img { width: 20px; height: 20px; }
+/* icon sizing is governed by the scoped rules inside PurchaseCard.css */

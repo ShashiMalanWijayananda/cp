@@ -298,10 +298,10 @@
 }
 
 .registration-login-redirect:hover {
-  background-color: var(--yo-green);
-  color: var(--yo-black);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+  /* background-color: var(--yo-green); */
+  color: var(--yo-light-green);
+  /* transform: translateY(-2px); */
+  /* box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3); */
 }
 
 /* =============================================================================
@@ -731,5 +731,94 @@
     background: white;
     height: auto;
     min-height: auto;
+  }
+}
+
+/* ===== Override: make the "I already have an account" look like a plain link (no box) ===== */
+.registration-login-redirect {
+  border: none !important;
+  background: transparent !important;
+  height: auto !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Mobile: give a little breathing room below Register button */
+@media (max-width: 768px) {
+  .registration-login-redirect {
+    margin-top: var(--spacing-md) !important;
+    align-self: center !important;
+  }
+}
+
+
+/* ===== Mobile Fix: Align Register button with inputs (make inputs full-width) ===== */
+@media (max-width: 768px) {
+  .registration-form .form-group input {
+    max-width: 100% !important;
+  }
+}/* ==========================================================================
+   REGISTRATION — MOBILE EDGE ALIGNMENT PATCH (<=768px)
+   Makes the Register button align exactly with input edges on phones.
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Ensure the whole form section doesn't add extra side space */
+  .registration-form-section,
+  .registration-form-panel,
+  .registration-form-container,
+  .registration-form {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Stretch each row and its input wrapper edge-to-edge */
+  .registration-form .form-group {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    align-self: stretch !important;
+  }
+
+  .registration-form .form-group .input-wrapper {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Inputs: full width + border-box so borders don't overflow */
+  .registration-form .form-group .input-wrapper input {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Button: use the exact same width rules as inputs */
+  .registration-submit-button {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-self: stretch !important;
+  }
+}
+
+/* Extra‑small phones: trim inner padding so edges line up perfectly */
+@media (max-width: 360px) {
+  .registration-form-section {
+    padding-left: var(--spacing-sm) !important;
+    padding-right: var(--spacing-sm) !important;
   }
 }

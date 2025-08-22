@@ -1,3 +1,12 @@
+
+/* === SAFE AREAS (header/footer offsets) === */
+:root {
+  --app-header-h-mobile: var(--global-header-height, 64px);
+  --app-footer-h-mobile: var(--global-footer-height, 56px);
+  --app-header-h-desktop: var(--global-header-height-desktop, 88px);
+  --app-footer-h-desktop: var(--global-footer-height-desktop, 72px);
+}
+
 /* =============================================================================
    CONTACT PAGE - EXACT FIGMA MATCH THEME
    Consistent with Terms/Protocol page styling
@@ -15,18 +24,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-  z-index: 50;
 }
 
 .contact-page-heading h1 {
-  font-family: var(--font-primary); /* VT323 or Jersey 25 */
+  font-weight: bold;
+
   font-size: var(--text-3xl);
   color: var(--yo-blue);
   margin: 0;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  /* text-transform: lowercase; Changed from uppercase to lowercase */
 }
 
 .contact-page-container {
@@ -123,7 +130,7 @@
   font-family: var(--font-primary);
   font-size: var(--text-xl);
   font-weight: normal;
-  text-transform: uppercase;
+  /* text-transform: lowercase; Changed from uppercase to lowercase */
   letter-spacing: 1px;
   margin: 0;
   padding: var(--spacing-md);
@@ -217,6 +224,20 @@
   display: block;
 }
 
+/* Section title in the image section - match other sections */
+.section-title {
+  background: var(--yo-white);
+  color: var(--yo-black);
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: normal;
+  /* text-transform: lowercase; Changed from uppercase to lowercase */
+  letter-spacing: 1px;
+  margin: 0;
+  padding: var(--spacing-md);
+  line-height: 1.2;
+}
+
 /* =============================================================================
    RESPONSIVE DESIGN - Consistent with Terms page
    ============================================================================= */
@@ -235,11 +256,11 @@
     padding-left: var(--spacing-md);
     padding-right: var(--spacing-sm);
   }
-  
+
   .contact-details-grid {
     gap: var(--spacing-lg);
   }
-  
+
   .contact-section-content {
     padding: var(--spacing-lg);
   }
@@ -251,41 +272,41 @@
     padding-left: var(--spacing-sm);
     padding-right: var(--spacing-sm);
   }
-  
+
   .contact-content-wrapper {
     gap: var(--spacing-lg);
   }
-  
+
   /* Single column layout on mobile */
   .contact-details-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
   }
-  
+
   .contact-intro-content {
     padding: var(--spacing-lg) var(--spacing-md);
   }
-  
+
   .contact-intro-content p {
     font-size: var(--text-base);
     margin-bottom: var(--spacing-sm);
   }
-  
+
   .contact-section-title {
     font-size: var(--text-lg);
     padding: var(--spacing-sm) var(--spacing-md);
   }
-  
+
   .contact-section-content {
     padding: var(--spacing-md);
   }
-  
+
   .contact-section-content p,
   .contact-service-item {
     font-size: var(--text-sm);
     margin-bottom: var(--spacing-sm);
   }
-  
+
   .contact-section-content strong {
     font-size: var(--text-base);
   }
@@ -295,35 +316,35 @@
   .contact-page-container {
     padding: var(--spacing-sm);
   }
-  
+
   .contact-content-wrapper {
     gap: var(--spacing-md);
   }
-  
+
   .contact-intro-content {
     padding: var(--spacing-sm);
   }
-  
+
   .contact-intro-content p {
     font-size: var(--text-sm);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .contact-section-title {
     font-size: var(--text-base);
     padding: var(--spacing-xs) var(--spacing-sm);
   }
-  
+
   .contact-section-content {
     padding: var(--spacing-sm);
   }
-  
+
   .contact-section-content p,
   .contact-service-item {
     font-size: var(--text-xs);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .contact-section-content strong {
     font-size: var(--text-sm);
   }
@@ -343,7 +364,7 @@
   .contact-page-container {
     scroll-behavior: auto;
   }
-  
+
   .contact-section,
   .contact-intro-content,
   .contact-image-container {
@@ -378,23 +399,38 @@
     background: white;
     color: black;
   }
-  
+
   .contact-page-container {
     margin: 0;
     padding: 1rem;
   }
-  
+
   .contact-details-grid {
     display: block;
   }
-  
+
   .contact-section {
     break-inside: avoid;
   }
-  
+
   .contact-section-title,
   .contact-section-content p,
   .contact-service-item {
     color: black !important;
+  }
+}
+
+
+/* === SAFE SPACING OVERRIDES • CONTACT === */
+
+.contact-page-container {
+  padding-top: calc(var(--app-header-h-mobile) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--app-footer-h-mobile) + 28px + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 1024px) {
+
+  .contact-page-container {
+    padding-top: calc(var(--app-header-h-desktop) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--app-footer-h-desktop) + 32px + env(safe-area-inset-bottom, 0px));
   }
 }
