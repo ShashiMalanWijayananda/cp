@@ -17,7 +17,7 @@ const About: FC = () => {
             {/* Text panel */}
             <div className="about-text-section">
               <header className="about-section-header" aria-label="section heading">
-                <h2>What is yogeshwari?</h2>
+                <h2>WHAT IS YOGESHWARI?</h2>
               </header>
 
               <div className="about-text-content">

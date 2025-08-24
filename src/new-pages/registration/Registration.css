@@ -167,7 +167,7 @@
   letter-spacing: 1px !important;
   margin: 0 !important;
   white-space: nowrap !important;
-  min-width: 100px !important; /* Reduced from 120px */
+  /* min-width: 100px !important; Reduced from 120px */
   flex-shrink: 0 !important;
   text-align: left !important;
 }
@@ -195,7 +195,7 @@
 }
 
 .registration-main-container .registration-form .form-group label {
-  min-width: 100px !important; /* Reduced from 120px */
+  /* min-width: 100px !important; Reduced from 120px */
   flex-shrink: 0 !important;
   width: auto !important;
   max-width: 100px !important; /* Reduced from 120px */
@@ -261,9 +261,9 @@
 }
 
 .registration-submit-button:hover {
-  background-color: var(--yo-light-green);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+  /*background-color: var(--yo-light-green);*/
+  /*transform: translateY(-2px);*/
+  /*box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);*/
 }
 
 .registration-submit-button:disabled {
@@ -313,33 +313,33 @@
     padding: var(--spacing-lg);
     min-height: 100vh;
   }
-  
+
   .registration-content-area {
     max-width: 900px;
     gap: var(--spacing-sm);
     min-height: 60vh; /* Reduced from 70vh */
   }
-  
+
   .registration-logo-section,
   .registration-form-section {
     padding: var(--spacing-md); /* Reduced from lg */
     min-height: 280px; /* Reduced from 350px */
   }
-  
+
   .registration-logo-container {
     width: 160px; /* Reduced from 180px */
     height: 160px; /* Reduced from 180px */
   }
-  
+
   .registration-form-panel {
     max-width: 500px; /* Expanded from 400px to 500px for tablet */
     gap: var(--spacing-xs); /* Reduced from sm */
   }
-  
+
   .registration-form-title {
     font-size: var(--text-lg); /* Reduced from xl */
   }
-  
+
   /* Ensure horizontal layout is maintained at 1024px with high specificity */
   .registration-main-container .registration-form-section .registration-form .form-group {
     display: flex !important;
@@ -358,7 +358,7 @@
     letter-spacing: 1px !important;
     margin: 0 !important;
     white-space: nowrap !important;
-    min-width: 80px !important; /* Reduced from 100px */
+    /* min-width: 80px !important; Reduced from 100px */
     flex-shrink: 0 !important;
     text-align: left !important;
   }
@@ -393,7 +393,7 @@
     -webkit-overflow-scrolling: touch;
     display: block; /* Change from flex to block for better scroll behavior */
   }
-  
+
   /* Single column layout for mobile */
   .registration-content-area {
     display: flex;
@@ -405,7 +405,7 @@
     justify-content: flex-start; /* Changed from center to flex-start */
     padding: var(--spacing-sm) 0; /* Add padding for scroll space */
   }
-  
+
   /* Mobile logo section */
   .registration-logo-section {
     width: 100%;
@@ -415,12 +415,12 @@
     order: 1;
     min-height: auto; /* Remove fixed height */
   }
-  
+
   .registration-logo-container {
     width: 200px;
     height: 200px;
   }
-  
+
   /* Mobile form section */
   .registration-form-section {
     width: 100%;
@@ -431,22 +431,22 @@
     min-height: auto; /* Remove fixed height */
     justify-content: flex-start;
   }
-  
+
   .registration-form-panel {
     max-width: 100%;
     gap: var(--spacing-sm);
     padding: 0 0 var(--spacing-xl) 0; /* Add bottom padding for scroll space */
   }
-  
+
   .registration-form-title {
     font-size: var(--text-xl);
     margin-bottom: var(--spacing-sm);
   }
-  
+
   .registration-form {
     gap: var(--spacing-sm);
   }
-  
+
   /* Mobile: Switch back to vertical form layout with left alignment */
   .registration-main-container .registration-form-section .registration-form .form-group {
     display: flex !important;
@@ -455,30 +455,30 @@
     gap: var(--spacing-xs) !important;
     margin-bottom: var(--spacing-sm) !important;
   }
-  
+
   .registration-main-container .registration-form-section .registration-form .form-group label {
-    min-width: auto !important;
+    /* min-width: auto !important; */
     text-align: left !important;
     white-space: normal !important;
     align-self: flex-start !important; /* Ensure label is left aligned */
   }
-  
+
   .registration-main-container .registration-form-section .registration-form .form-group .input-wrapper {
     width: 100% !important;
     justify-content: flex-start !important; /* Left align input wrapper */
     align-self: stretch !important; /* Full width */
   }
-  
+
   .registration-main-container .registration-form-section .registration-form .form-group .input-wrapper input {
     width: 100% !important;
     max-width: 100% !important; /* Use full width on mobile */
   }
-  
+
   .registration-form-divider {
     margin: var(--spacing-sm) 0;
     font-size: var(--text-sm);
   }
-  
+
   .registration-form-divider::before,
   .registration-form-divider::after {
     margin: 0 var(--spacing-sm);
@@ -498,51 +498,51 @@
     display: flex !important;
     flex-direction: column !important;
   }
-  
+
   .registration-main-container {
     padding: var(--spacing-sm);
     min-height: 100vh;
   }
-  
+
   .registration-content-area {
     gap: var(--spacing-sm);
     padding: var(--spacing-xs) 0 var(--spacing-xl) 0; /* Extra bottom padding */
   }
-  
+
   .registration-logo-section,
   .registration-form-section {
     padding: var(--spacing-md) var(--spacing-sm);
   }
-  
+
   .registration-logo-container {
     width: 160px;
     height: 160px;
   }
-  
+
   .registration-form-panel {
     gap: var(--spacing-xs);
     padding: 0 0 var(--spacing-lg) 0;
   }
-  
+
   .registration-form-title {
     font-size: var(--text-lg);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .registration-form {
     gap: var(--spacing-xs);
   }
-  
+
   .registration-form-divider {
     margin: var(--spacing-xs) 0;
     font-size: var(--text-sm);
   }
-  
+
   .registration-form-divider::before,
   .registration-form-divider::after {
     margin: 0 var(--spacing-xs);
   }
-  
+
   .registration-submit-button,
   .registration-login-redirect {
     font-size: var(--text-lg);
@@ -561,31 +561,31 @@
     padding: var(--spacing-xs);
     min-height: 100vh;
   }
-  
+
   .registration-content-area {
     gap: var(--spacing-xs);
     padding: var(--spacing-xs) 0 var(--spacing-lg) 0;
   }
-  
+
   .registration-logo-section,
   .registration-form-section {
     padding: var(--spacing-sm) var(--spacing-xs);
   }
-  
+
   .registration-logo-container {
     width: 140px;
     height: 140px;
   }
-  
+
   .registration-form-title {
     font-size: var(--text-base);
     display: none; /* Hide title on very small screens like in Figma */
   }
-  
+
   .registration-form-divider {
     font-size: var(--text-xs);
   }
-  
+
   .registration-submit-button,
   .registration-login-redirect {
     font-size: var(--text-base);
@@ -593,7 +593,7 @@
     padding: 8px 12px;
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .registration-form-panel {
     padding: 0 0 var(--spacing-md) 0;
   }
@@ -609,7 +609,7 @@
     min-height: 100vh;
     overflow-y: auto;
   }
-  
+
   .registration-content-area {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -618,19 +618,19 @@
     align-items: flex-start; /* Changed from center */
     padding: var(--spacing-sm) 0;
   }
-  
+
   .registration-logo-section {
     order: 1;
     width: auto;
     padding: var(--spacing-md);
     min-height: auto;
   }
-  
+
   .registration-logo-container {
     width: 120px;
     height: 120px;
   }
-  
+
   .registration-form-section {
     order: 2;
     flex: 1;
@@ -638,21 +638,21 @@
     min-height: auto;
     justify-content: flex-start;
   }
-  
+
   .registration-form-panel {
     gap: var(--spacing-xs);
     padding: 0 0 var(--spacing-md) 0;
   }
-  
+
   .registration-form-title {
     font-size: var(--text-base);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .registration-form {
     gap: var(--spacing-xs);
   }
-  
+
   .registration-form-divider {
     margin: var(--spacing-xs) 0;
     font-size: var(--text-sm);
@@ -669,7 +669,7 @@
   .registration-login-redirect {
     transition: none;
   }
-  
+
   .registration-main-container {
     -webkit-overflow-scrolling: auto; /* Disable smooth scrolling for reduced motion */
   }
@@ -718,13 +718,13 @@
     height: auto;
     min-height: auto;
   }
-  
+
   .registration-content-area {
     display: block;
     height: auto;
     min-height: auto;
   }
-  
+
   .registration-logo-section,
   .registration-form-section {
     border: 1px solid black;
@@ -822,3 +822,4 @@
     padding-right: var(--spacing-sm) !important;
   }
 }
+

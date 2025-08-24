@@ -1,4 +1,5 @@
 .ticket-card{
+    width: min-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -306,7 +307,6 @@
 }
 
 .ticket-card .ticket-card-view .ticket-layout .ticket-venue-info .box {
-    align-items: center;
     margin-top: 10px;
     width: 100%;
     padding: 5px;
@@ -333,6 +333,9 @@
 }
 
 @media (max-width: 768px) {
+    .ticket-venue-info:last-child{
+ margin-top: 55px;   
+}
     .ticket-card .ticket-card-view {
         width: 320px;
         height: 620px;
@@ -405,6 +408,9 @@
 }
 
 @media (max-width: 480px) {
+      .ticket-venue-info:last-child{
+ margin-top: 105px;   
+}
     .ticket-card .ticket-card-view,
     .ticket-card-view.locked {
         width: 280px;
@@ -599,3 +605,4 @@
     font-size: clamp(25px, 3vw, 20px);
     font-family: var(--font-primary); /* Use consistent font */
 }
+

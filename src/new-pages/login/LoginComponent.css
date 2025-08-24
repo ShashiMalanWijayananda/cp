@@ -95,14 +95,17 @@
 /* Title */
 .login-form-title {
   font-family: var(--font-secondary);
-  font-size: var(--text-2xl);
+  font-size: 2.5rem;
   color: var(--yo-green);
   text-align: center;
   letter-spacing: 2px;
-  margin: 0 0 var(--spacing-md) 0;
+  /* margin: 0 0 var(--spacing-md) 0; */
   text-transform: uppercase;
   line-height: 1;
   white-space: nowrap;
+
+  text-shadow: 0 0 4px rgba(0, 255, 0, 0.5), 0 0 8px rgba(0, 255, 0, 0.3),
+    0 0 12px rgba(0, 255, 0, 0.15);
 }
 
 /* Google Login Button Container */
@@ -137,7 +140,7 @@
   margin: 0 var(--spacing-md);
 }
 .password-toggle-btn svg {
-    margin-left: 90px;
+  margin-left: 90px;
 }
 /* =============================================================================
    GLOBAL FORM SYSTEM OVERRIDE FOR LOGIN - HORIZONTAL LABELS
@@ -146,7 +149,7 @@
 
 /* Override global form group to use horizontal layout for login */
 .login-main-container .login-form-section .login-form .form-group {
-  display: flex ;
+  display: flex;
   flex-direction: row !important;
   align-items: center !important;
   gap: var(--spacing-md) !important;
@@ -167,13 +170,22 @@
   text-align: left !important;
 }
 
-.login-main-container .login-form-section .login-form .form-group .input-wrapper {
+.login-main-container
+  .login-form-section
+  .login-form
+  .form-group
+  .input-wrapper {
   flex: 1 !important;
   width: 100% !important;
   max-width: 100% !important;
 }
 
-.login-main-container .login-form-section .login-form .form-group .input-wrapper input {
+.login-main-container
+  .login-form-section
+  .login-form
+  .form-group
+  .input-wrapper
+  input {
   width: 100% !important;
   box-sizing: border-box !important;
   flex: 1 !important;
@@ -231,14 +243,14 @@
 .login-submit-button {
   width: 100%;
   font-family: var(--font-primary);
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
   background-color: var(--yo-green);
   color: var(--yo-black);
   border: 1px solid var(--yo-green);
   padding: var(--btn-padding);
   height: var(--btn-height);
   letter-spacing: 1px;
-  text-transform: uppercase;
+  text-transform: none;
   cursor: pointer;
   transition: all var(--transition-normal);
   outline: none;
@@ -246,12 +258,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: -5px;
+  margin-bottom: 6px;
 }
 
 .login-submit-button:hover {
-  background-color: var(--yo-light-green);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+  /*background-color: var(--yo-light-green);*/
+  /*transform: translateY(-2px);*/
+  /*box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);*/
 }
 
 .login-submit-button:disabled {
@@ -286,7 +300,7 @@
 }
 
 .login-register-redirect:hover {
-   /* background-color: var(--yo-green);  */
+  /* background-color: var(--yo-green);  */
   color: var(--yo-light-green);
   /* transform: translateY(-2px); */
   /* box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3); */
@@ -300,31 +314,31 @@
   .login-main-container {
     padding: var(--spacing-lg);
   }
-  
+
   .login-content-area {
     max-width: 900px;
     gap: var(--spacing-sm);
   }
-  
+
   .login-logo-section,
   .login-form-section {
     padding: var(--spacing-lg);
   }
-  
+
   .login-logo-container {
     width: 180px;
     height: 180px;
   }
-  
+
   .login-form-panel {
     max-width: 400px;
     gap: var(--spacing-sm);
   }
-  
+
   .login-form-title {
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
   }
-  
+
   /* Ensure horizontal layout is maintained at 1024px with high specificity */
   .login-main-container .login-form-section .login-form .form-group {
     display: contents !important;
@@ -348,13 +362,22 @@
     text-align: left !important;
   }
 
-  .login-main-container .login-form-section .login-form .form-group .input-wrapper {
+  .login-main-container
+    .login-form-section
+    .login-form
+    .form-group
+    .input-wrapper {
     flex: 1 !important;
     width: 100% !important;
     max-width: 100% !important;
   }
 
-  .login-main-container .login-form-section .login-form .form-group .input-wrapper input {
+  .login-main-container
+    .login-form-section
+    .login-form
+    .form-group
+    .input-wrapper
+    input {
     width: 100% !important;
     box-sizing: border-box !important;
     flex: 1 !important;
@@ -373,7 +396,7 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   /* Single column layout for mobile */
   .login-content-area {
     display: flex;
@@ -385,7 +408,7 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   /* Mobile logo section */
   .login-logo-section {
     width: 100%;
@@ -394,12 +417,12 @@
     border: none;
     order: 1;
   }
-  
+
   .login-logo-container {
     width: 200px;
     height: 200px;
   }
-  
+
   /* Mobile form section */
   .login-form-section {
     width: 100%;
@@ -408,39 +431,39 @@
     border: none;
     order: 2;
   }
-  
+
   .login-form-panel {
     max-width: 100%;
     gap: var(--spacing-sm);
   }
-  
+
   .login-form-title {
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
     margin-bottom: var(--spacing-sm);
   }
-  
+
   .login-form {
     gap: var(--spacing-sm);
   }
-  
+
   /* Mobile: Switch back to vertical form layout */
   .login-form .form-group {
     flex-direction: column;
     align-items: stretch;
     gap: var(--spacing-xs);
   }
-  
+
   .login-form .form-group label {
     min-width: auto;
     text-align: left;
     white-space: normal;
   }
-  
+
   .login-form-divider {
     margin: var(--spacing-sm) 0;
     font-size: var(--text-sm);
   }
-  
+
   .login-form-divider::before,
   .login-form-divider::after {
     margin: 0 var(--spacing-sm);
@@ -452,49 +475,50 @@
    ============================================================================= */
 
 @media (max-width: 480px) {
-    .login-main-container .login-form-section .login-form .form-group {
-  display: contents !important ;}
+  .login-main-container .login-form-section .login-form .form-group {
+    display: contents !important ;
+  }
   .login-main-container {
     padding: var(--spacing-sm);
   }
-  
+
   .login-content-area {
     gap: var(--spacing-sm);
   }
-  
+
   .login-logo-section,
   .login-form-section {
     padding: var(--spacing-md) var(--spacing-sm);
   }
-  
+
   .login-logo-container {
     width: 160px;
     height: 160px;
   }
-  
+
   .login-form-panel {
     gap: var(--spacing-xs);
   }
-  
+
   .login-form-title {
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .login-form {
     gap: var(--spacing-xs);
   }
-  
+
   .login-form-divider {
     margin: var(--spacing-xs) 0;
     font-size: var(--text-sm);
   }
-  
+
   .login-form-divider::before,
   .login-form-divider::after {
     margin: 0 var(--spacing-xs);
   }
-  
+
   .login-submit-button,
   .login-register-redirect {
     font-size: var(--text-lg);
@@ -511,30 +535,30 @@
   .login-main-container {
     padding: var(--spacing-xs);
   }
-  
+
   .login-content-area {
     gap: var(--spacing-xs);
   }
-  
+
   .login-logo-section,
   .login-form-section {
     padding: var(--spacing-sm) var(--spacing-xs);
   }
-  
+
   .login-logo-container {
     width: 140px;
     height: 140px;
   }
-  
+
   .login-form-title {
     font-size: var(--text-base);
     display: none; /* Hide title on very small screens like in Figma */
   }
-  
+
   .login-form-divider {
     font-size: var(--text-xs);
   }
-  
+
   .login-submit-button,
   .login-register-redirect {
     font-size: var(--text-base);
@@ -551,7 +575,7 @@
   .login-main-container {
     padding: var(--spacing-sm);
   }
-  
+
   .login-content-area {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -559,37 +583,37 @@
     height: calc(100vh - 2 * var(--spacing-sm));
     align-items: center;
   }
-  
+
   .login-logo-section {
     order: 1;
     width: auto;
     padding: var(--spacing-md);
   }
-  
+
   .login-logo-container {
     width: 120px;
     height: 120px;
   }
-  
+
   .login-form-section {
     order: 2;
     flex: 1;
     padding: var(--spacing-md);
   }
-  
+
   .login-form-panel {
     gap: var(--spacing-xs);
   }
-  
+
   .login-form-title {
     font-size: var(--text-base);
     margin-bottom: var(--spacing-xs);
   }
-  
+
   .login-form {
     gap: var(--spacing-xs);
   }
-  
+
   .login-form-divider {
     margin: var(--spacing-xs) 0;
     font-size: var(--text-sm);
@@ -630,11 +654,11 @@
     color: black;
     padding: 1rem;
   }
-  
+
   .login-content-area {
     display: block;
   }
-  
+
   .login-logo-section,
   .login-form-section {
     border: 1px solid black;
@@ -660,5 +684,433 @@
   .login-register-redirect {
     margin-top: var(--spacing-lg) !important;
     align-self: center !important;
+  }
+}
+
+/* === Tight edge layout: make form occupy side spaces === */
+
+/* Minimal padding inside the bordered panel */
+.login-form-section {
+  padding: 8px 32px !important; /* tighten left/right space */
+  box-sizing: border-box !important;
+}
+
+/* Let the inner panel fill the entire width instead of capping at 350px */
+.login-form-panel {
+  width: 100% !important;
+  max-width: none !important; /* remove 350px cap */
+  align-items: stretch !important; /* children span full width */
+  gap: var(--spacing-sm) !important; /* modest internal gap */
+}
+
+/* Make every row and control stretch */
+.login-google-container,
+.login-form-container,
+.login-form {
+  width: 100% !important;
+}
+
+/* Horizontal label layout, but let the input area take the full width */
+.login-form .form-group {
+  margin: 0px 0 !important; /* tighter vertical spacing */
+  gap: 0px !important;
+  padding: 0 !important;
+}
+
+.login-form .form-group .input-wrapper {
+  flex: 1 !important;
+  max-width: 100% !important; /* remove 250px/other caps */
+}
+
+.login-form .form-group .input-wrapper input {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Divider spans across with short text gap */
+.login-form-divider {
+  width: 100% !important;
+  margin: 12px 0 !important;
+}
+
+.login-form-divider::before,
+.login-form-divider::after {
+  margin: 0 12px !important; /* small gap around the text */
+}
+
+/* Center the grid horizontally and avoid overflow on narrow screens */
+.login-content-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 1000px;
+  height: 80vh;
+  max-height: 600px;
+  margin: 0 auto; /* NEW: ensures perfect centering */
+  box-sizing: border-box;
+}
+
+/* ========== XL DESKTOP (≥ 1366px) ========== */
+@media (min-width: 1366px) {
+  .login-content-area {
+    max-width: 1100px; /* a touch wider on big screens */
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+  .login-form-title {
+    font-size: 3rem;
+  } /* scale headline a bit */
+}
+
+/* ========== WIDE TABLET / SMALL DESKTOP (1025–1365px) ========== */
+@media (min-width: 1025px) and (max-width: 1365px) {
+  .login-content-area {
+    max-width: 1000px;
+    grid-template-columns: 0.9fr 1.1fr; /* give form a bit more room */
+    gap: var(--spacing-sm);
+  }
+  .login-logo-section,
+  .login-form-section {
+    padding: var(--spacing-lg);
+  }
+  .login-logo-container {
+    width: 200px;
+    height: 200px;
+  }
+  .login-form-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* ========== TABLET (769–1024px) — keep two columns, tighter gutters ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .login-main-container {
+    padding: var(--spacing-lg);
+  }
+  .login-content-area {
+    max-width: 900px;
+    grid-template-columns: 0.85fr 1fr;
+    gap: var(--spacing-sm);
+    height: 78vh; /* a hair shorter to prevent overflow */
+    max-height: 560px;
+  }
+  .login-logo-section,
+  .login-form-section {
+    padding: var(--spacing-lg);
+  }
+  .login-logo-container {
+    width: 180px;
+    height: 180px;
+  }
+  .login-form-panel {
+    gap: var(--spacing-sm);
+  }
+  .login-form-title {
+    font-size: 2rem;
+  }
+}
+
+/* ========== MOBILE (≤ 768px) — stack columns ========== */
+@media (max-width: 768px) {
+  .login-main-container {
+    padding: var(--spacing-md);
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .login-content-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    height: auto;
+    min-height: calc(100vh - 2 * var(--spacing-md));
+    max-height: none;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* keep centered */
+  }
+  .login-logo-section,
+  .login-form-section {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    border: none; /* remove double borders on small screens */
+  }
+  .login-logo-container {
+    width: 200px;
+    height: 200px;
+  }
+  .login-form-panel {
+    gap: var(--spacing-sm);
+  }
+  .login-form-title {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+  }
+  .login-form {
+    gap: var(--spacing-sm);
+  }
+  .login-form-divider {
+    margin: var(--spacing-sm) 0;
+    font-size: var(--text-sm);
+  }
+  .login-form-divider::before,
+  .login-form-divider::after {
+    margin: 0 var(--spacing-sm);
+  }
+}
+
+/* ========== SMALL MOBILE (≤ 480px) ========== */
+@media (max-width: 480px) {
+  .login-main-container {
+    padding: var(--spacing-sm);
+  }
+  .login-content-area {
+    gap: var(--spacing-sm);
+  }
+  .login-logo-section,
+  .login-form-section {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  .login-logo-container {
+    width: 160px;
+    height: 160px;
+  }
+  .login-form-panel {
+    gap: var(--spacing-xs);
+  }
+  .login-form-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+  }
+  .login-form {
+    gap: var(--spacing-xs);
+  }
+  .login-form-divider {
+    margin: var(--spacing-xs) 0;
+    font-size: var(--text-sm);
+  }
+  .login-form-divider::before,
+  .login-form-divider::after {
+    margin: 0 var(--spacing-xs);
+  }
+  .login-submit-button,
+  .login-register-redirect {
+    font-size: var(--text-lg);
+    height: 36px;
+    padding: 10px 16px;
+  }
+}
+
+/* ========== EXTRA SMALL (≤ 375px) ========== */
+@media (max-width: 375px) {
+  .login-main-container {
+    padding: var(--spacing-xs);
+  }
+  .login-content-area {
+    gap: var(--spacing-xs);
+  }
+  .login-logo-section,
+  .login-form-section {
+    padding: var(--spacing-sm) var(--spacing-xs);
+  }
+  .login-logo-container {
+    width: 140px;
+    height: 140px;
+  }
+  .login-form-title {
+    font-size: var(--text-base);
+    display: none;
+  } /* match your spec */
+  .login-form-divider {
+    font-size: var(--text-xs);
+  }
+  .login-submit-button,
+  .login-register-redirect {
+    font-size: var(--text-base);
+    height: 32px;
+    padding: 8px 12px;
+  }
+}
+
+/* ========== LANDSCAPE PHONES (≤ 768px & landscape) ========== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .login-main-container {
+    padding: var(--spacing-sm);
+  }
+  .login-content-area {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-lg);
+    height: calc(100vh - 2 * var(--spacing-sm));
+    align-items: center;
+  }
+  .login-logo-section {
+    width: auto;
+    padding: var(--spacing-md);
+  }
+  .login-logo-container {
+    width: 120px;
+    height: 120px;
+  }
+  .login-form-section {
+    flex: 1;
+    padding: var(--spacing-md);
+  }
+  .login-form-panel {
+    gap: var(--spacing-xs);
+  }
+  .login-form-title {
+    font-size: var(--text-base);
+    margin-bottom: var(--spacing-xs);
+  }
+  .login-form {
+    gap: var(--spacing-xs);
+  }
+  .login-form-divider {
+    margin: var(--spacing-xs) 0;
+    font-size: var(--text-sm);
+  }
+}
+
+/* =============================================================================
+   LOGIN FORM TITLE - RESPONSIVE OVERRIDE
+   Progressive scaling from mobile to desktop with smooth transitions
+   ============================================================================= */
+
+/* Base title styling - optimized for mobile first */
+.login-form-title {
+  font-family: var(--font-secondary);
+  color: var(--yo-green);
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-shadow: 0 0 4px rgba(0, 255, 0, 0.5), 0 0 8px rgba(0, 255, 0, 0.3),
+    0 0 12px rgba(0, 255, 0, 0.15);
+
+  /* Mobile base: 1.25rem (20px) */
+  font-size: 1.25rem !important;
+  margin-bottom: var(--spacing-sm) !important;
+}
+
+/* =============================================================================
+   RESPONSIVE BREAKPOINTS - Progressive Enhancement
+   ============================================================================= */
+
+/* Small Mobile (376px+) */
+@media (min-width: 376px) {
+  .login-form-title {
+    font-size: 1.375rem !important; /* 22px */
+    display: block !important; /* ensure visibility */
+  }
+}
+
+/* Mobile Portrait (481px+) */
+@media (min-width: 481px) {
+  .login-form-title {
+    font-size: 1.5rem !important; /* 24px */
+    letter-spacing: 2.5px !important;
+  }
+}
+
+/* Mobile Landscape / Small Tablet (641px+) */
+@media (min-width: 641px) {
+  .login-form-title {
+    font-size: 1.75rem !important; /* 28px */
+    margin-bottom: var(--spacing-md) !important;
+  }
+}
+
+/* Tablet Portrait (769px+) */
+@media (min-width: 769px) {
+  .login-form-title {
+    font-size: 2rem !important; /* 32px */
+    letter-spacing: 3px !important;
+  }
+}
+
+/* Tablet Landscape (1025px+) */
+@media (min-width: 1025px) {
+  .login-form-title {
+    font-size: 2.25rem !important; /* 36px */
+    margin-bottom: var(--spacing-lg) !important;
+  }
+}
+
+/* Desktop (1201px+) */
+@media (min-width: 1201px) {
+  .login-form-title {
+    font-size: 2.5rem !important; /* 40px - original size */
+    letter-spacing: 4px !important;
+  }
+}
+
+/* Large Desktop (1367px+) */
+@media (min-width: 1367px) {
+  .login-form-title {
+    font-size: 2.75rem !important; /* 44px */
+    letter-spacing: 4.5px !important;
+  }
+}
+
+/* Ultra Wide Desktop (1601px+) */
+@media (min-width: 1601px) {
+  .login-form-title {
+    font-size: 3rem !important; /* 48px */
+    letter-spacing: 5px !important;
+  }
+}
+
+/* =============================================================================
+   SPECIAL CASES & OVERRIDES
+   ============================================================================= */
+
+/* Extra Small Screens - Keep hidden per original spec */
+@media (max-width: 375px) {
+  .login-form-title {
+    display: none !important;
+  }
+}
+
+/* Landscape Orientation Adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+  .login-form-title {
+    font-size: 1.125rem !important; /* 18px - compact for landscape */
+    letter-spacing: 1.5px !important;
+    margin-bottom: var(--spacing-xs) !important;
+  }
+}
+
+/* High DPI Displays - Slight size increase for clarity */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .login-form-title {
+    text-shadow: 0 0 2px rgba(0, 255, 0, 0.6), 0 0 6px rgba(0, 255, 0, 0.4),
+      0 0 10px rgba(0, 255, 0, 0.2) !important;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .login-form-title {
+    text-shadow: none !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .login-form-title {
+    font-size: 1.5rem !important;
+    color: black !important;
+    text-shadow: none !important;
+    letter-spacing: 1px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .login-form-title {
+    font-size: 2.875rem !important; /* ~46px */
+    letter-spacing: 4.75px !important;
   }
 }

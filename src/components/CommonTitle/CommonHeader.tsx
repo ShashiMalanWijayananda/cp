@@ -1,21 +1,26 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 import "./CommonHeader.css";
 
 const CommonHeader: FC = () => {
+  return (
+    <div className="common-header-container" role="banner" aria-label="Yogeshwari common header">
+      {/* Mobile: logo only (no border box) */}
+      <img
+        src="images/logo/Logo-animate-wothout-Blink1.gif"
+        alt="Yogeshwari logo"
+        className="common-header-logo-mobile"
+      />
 
-    return (
-        <React.Fragment>
-            <div className="common-header-container">
-                <div className="common-header-logo">
-                    <img
-                        src="images/logo/Logo-animate-wothout-Blink1.gif"
-                        alt="Yogeshwari Logo"
-                        style={{filter: 'sepia(1) saturate(0) brightness(0.8) hue-rotate(20deg)'}}
-                    />
-                </div>
-            </div>
-        </React.Fragment>
-    )
-}
+      {/* Tablet/Desktop: centered logo inside bordered bar */}
+      <div className="common-header-bar" aria-hidden="true">
+        <img
+          src="images/logo/Logo-animate-wothout-Blink1.gif"
+          alt=""
+          className="common-header-logo-desktop"
+        />
+      </div>
+    </div>
+  );
+};
 
 export default CommonHeader;

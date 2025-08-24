@@ -1,0 +1,281 @@
+/* ================== FORM GROUP BASE ================== */
+.form-group {
+  margin-bottom: 6px !important; /* tighter vertical spacing */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px !important; /* smaller label–input gap */
+  position: relative;
+  width: 100%;
+  flex: 1;
+  background: transparent;
+}
+
+.form-group.full-width {
+  width: 100%;
+  flex: 1;
+}
+
+/* ================== LABEL ================== */
+.form-group label {
+  font-size: 32px !important; /* bigger labels */
+  font-weight: 600 !important;
+  min-width: 200px;
+  position: relative;
+  color: var(--yo-green);
+  flex-shrink: 0;
+  font-family: 'VT323', 'Courier New', monospace;
+  line-height: 1.2 !important;
+
+  text-shadow: 0 0 4px rgba(0, 255, 0, 0.5), 0 0 8px rgba(0, 255, 0, 0.3),
+    0 0 12px rgba(0, 255, 0, 0.15);
+}
+
+.form-group label::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  color: var(--yo-green);
+}
+
+.form-group.focused label::before {
+  content: '>';
+  opacity: 1;
+}
+
+/* ================== INPUTS ================== */
+.input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: auto;
+  max-width: 65%;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px !important; /* taller padding */
+  background: var(--input-bg);
+  border: 2px solid var(--yo-green);
+  color: var(--yo-green);
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 26px !important; /* bigger input text */
+  line-height: 1.4 !important;
+  caret-color: transparent;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 0;
+}
+
+.form-group input:focus {
+  outline: none;
+  background: var(--input-focused-bg);
+  border-color: var(--yo-green);
+}
+
+.form-group input::placeholder {
+  color: rgba(0, 255, 0, 0.6);
+  font-style: italic;
+}
+
+.form-group .input-wrapper input[type='password'] {
+  padding: 14px 45px 14px 16px !important;
+  letter-spacing: 2px;
+}
+
+/* ================== PASSWORD TOGGLE ================== */
+.password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--yo-green);
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+}
+
+.password-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+  color: inherit;
+}
+
+/* ================== TERMINAL CURSOR ================== */
+.form-group.focused .input-wrapper::after {
+  content: '█';
+  position: absolute;
+  left: var(--cursor-left, 15px);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--yo-green);
+  font-weight: bold;
+  font-size: 26px !important; /* match input size */
+  animation: cursor-blink 1s infinite ease-in-out;
+  pointer-events: none;
+  font-family: 'VT323', 'Courier New', monospace;
+  margin-left: -2px;
+}
+
+/* ================== NAV / FOOTER ================== */
+.bottom-nav {
+  background: var(--terminal-bg);
+  color: var(--yo-green);
+  padding: 10px 20px;
+  font-size: 20px;
+  text-align: left;
+  font-family: 'VT323', 'Courier New', monospace;
+  border-top: 1px solid var(--yo-green);
+}
+
+/* ================== ACCESSIBILITY ================== */
+.required {
+  color: #ff6b6b;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+/* ====== TABLET (≤1024px) ====== */
+@media (max-width: 1024px) {
+  .form-group {
+    margin-bottom: 10px !important;
+    gap: 10px !important;
+  }
+  .form-group label {
+    font-size: 28px !important;
+    min-width: 170px !important;
+  }
+  .input-wrapper {
+    max-width: 70% !important;
+  }
+  .form-group input {
+    font-size: 24px !important;
+    padding: 12px 14px !important;
+  }
+  .form-group .input-wrapper input[type='password'] {
+    padding: 12px 42px 12px 14px !important;
+  }
+  .form-group.focused .input-wrapper::after {
+    font-size: 24px !important;
+    left: var(--cursor-left, 14px);
+  }
+  .password-toggle-btn {
+    width: 28px;
+    height: 28px;
+    right: 8px;
+  }
+  .password-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ====== LARGE MOBILE / SMALL TABLET (≤768px) ====== */
+@media (max-width: 768px) {
+  .form-group {
+    flex-direction: column !important; /* stack label over input */
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    margin-bottom: 10px !important;
+    gap: 6px !important;
+  }
+  .form-group label {
+    min-width: 0 !important; /* allow wrap */
+    width: 100% !important;
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+  }
+  .input-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .form-group input {
+    font-size: 22px !important;
+    padding: 12px 14px !important;
+  }
+  .form-group .input-wrapper input[type='password'] {
+    padding: 12px 40px 12px 14px !important;
+  }
+  .password-toggle-btn {
+    width: 26px;
+    height: 26px;
+    right: 8px;
+  }
+  .password-toggle-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+  .form-group.focused .input-wrapper::after {
+    font-size: 22px !important;
+    left: var(--cursor-left, 14px);
+  }
+}
+
+/* ====== MOBILE (≤480px) ====== */
+@media (max-width: 480px) {
+  .form-group {
+    margin-bottom: 8px !important;
+    gap: 6px !important;
+  }
+  .form-group label {
+    font-size: 22px !important;
+  }
+  .form-group input {
+    font-size: 20px !important;
+    padding: 10px 12px !important;
+  }
+  .form-group .input-wrapper input[type='password'] {
+    padding: 10px 36px 10px 12px !important;
+  }
+  .password-toggle-btn {
+    width: 24px;
+    height: 24px;
+    right: 6px;
+  }
+  .password-toggle-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+  .form-group.focused .input-wrapper::after {
+    font-size: 20px !important;
+    left: var(--cursor-left, 12px);
+  }
+}
+
+/* ====== VERY SMALL (≤360px) ====== */
+@media (max-width: 360px) {
+  .form-group label {
+    font-size: 20px !important;
+  }
+  .form-group input {
+    font-size: 18px !important;
+    padding: 8px 10px !important;
+  }
+  .form-group .input-wrapper input[type='password'] {
+    padding: 8px 34px 8px 10px !important;
+  }
+  .password-toggle-btn {
+    width: 22px;
+    height: 22px;
+    right: 4px;
+  }
+  .password-toggle-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+  .form-group.focused .input-wrapper::after {
+    font-size: 18px !important;
+    left: var(--cursor-left, 10px);
+  }
+}

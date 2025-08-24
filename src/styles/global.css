@@ -9,7 +9,10 @@
 /* =============================================================================
    ROOT VARIABLES - Updated and Organized
    ============================================================================= */
-:root {
+:root{
+  --app-header-h: 40px;
+  --app-footer-h: 35px;
+
     /* Brand Colors */
     --yo-primary: #092313;
     --yo-secondary: #0A2314;
@@ -653,4 +656,18 @@ select:focus-visible {
         background: white;
         color: black;
     }
+}
+
+
+/* ===== App chrome safe padding for mobile devices (notch/status/home bar) ===== */
+.app-safe-space {
+  padding-top: calc(var(--app-header-h) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--app-footer-h) + env(safe-area-inset-bottom, 0px));
+}
+/* Older iOS fallback using constant() */
+@supports not (padding: max(0px)) {
+  .app-safe-space {
+    padding-top: calc(var(--app-header-h) + constant(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--app-footer-h) + constant(safe-area-inset-bottom, 0px));
+  }
 }

@@ -14,7 +14,7 @@ const AppLayout: FC = () => {
                 <Header/>
                 <CustomDialog/>
 
-                {location.pathname.includes("landing-page") ? (
+                {location.pathname.includes("landing-page") || location.pathname.includes("purchase") || location.pathname.includes("queue") ? (
                     <Outlet/>
                 ) : (
                     <>

@@ -124,6 +124,12 @@ content:'>';
 
 /* Show mobile nav on mobile devices */
 @media (max-width: 768px) {
+    .mob-navi-click {
+    /* cursor: pointer; */
+    margin-top: 65px ;
+    margin-left: 20px;
+    padding: 12px;
+}
     .mobile-exit-button {
         padding: 80px 10px;
     }
@@ -156,9 +162,13 @@ content:'>';
     }
 }
 
-.mob-navi-click {
-    cursor: pointer;
-    padding: 10px; /* Add some padding for better touch target */
-}
 
 /* Legacy logout button styles preserved */
+@media (max-width: 320px) {
+    .mob-navi-click {
+    /* cursor: pointer; */
+    margin-top: 35px ;
+    padding: 12px;
+}
+   
+}

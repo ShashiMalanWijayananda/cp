@@ -161,8 +161,8 @@ const Registration: FC = () => {
             if (extractError?.code === "CODE-300") {
                 appContext.showContentDialog("ERROR!!!",
                     <div>
-                        <p>Validation error. Please fix the issues in the form:</p>
-                        <ul style={{margin: '8px 0', paddingLeft: '20px',  color:"#9ef0a3"}}>
+                        <p  style={{ color:"#ffffff"}}>Validation error. Please fix the issues in the form:</p>
+                        <ul style={{margin: '8px 0', paddingLeft: '20px',  color:"#ffffff"}}>
                             {extractError?.error?.map((error: { field: string, message: string }) => (
                                 <li key={error?.field} style={{marginBottom: '4px'}}>
                                     <strong>{error?.field?.toUpperCase()}:</strong> {error.message}

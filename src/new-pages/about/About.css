@@ -1,11 +1,5 @@
 
-/* === SAFE AREAS (header/footer offsets) === */
-:root {
-  --app-header-h-mobile: var(--global-header-height, 64px);
-  --app-footer-h-mobile: var(--global-footer-height, 56px);
-  --app-header-h-desktop: var(--global-header-height-desktop, 88px);
-  --app-footer-h-desktop: var(--global-footer-height-desktop, 72px);
-}
+
 
 /* =============================================================================
    ABOUT PAGE - EXACT FIGMA MATCH THEME
@@ -30,7 +24,7 @@
   color: var(--yo-blue, #8bd1e5);
   margin: 0;
   letter-spacing: 2px;
-  /* text-transform: lowercase; Changed from uppercase to lowercase */
+  /* Changed from uppercase to lowercase */
 }
 
 /* Page container */
@@ -52,10 +46,11 @@
 /* Two-column desktop layout; will collapse on mobile */
 .about-content-wrapper {
   display: grid;
-  grid-template-columns: 1fr 420px; /* text | image */
+  grid-template-columns: 1fr 420px; /* image column fixed width */
   gap: var(--spacing-2xl, 32px);
   align-items: stretch; /* stretch both columns to equal row height */
 }
+
 
 /* =========================
    TEXT SIDE - Match Terms/Contact styling exactly
@@ -82,23 +77,25 @@
   font-family: var(--font-primary);
   font-size: var(--text-xl);
   font-weight: normal;
-  /* text-transform: lowercase; Changed from uppercase to lowercase */
+  /*  Changed from uppercase to lowercase */
   letter-spacing: 1px;
   margin: 0;
   padding: var(--spacing-md);
   line-height: 1.2;
   border: none; /* Remove individual border since parent has it */
-}
+
+  text-transform: uppercase;}
 
 .about-section-header h2 {
   margin: 0;
   letter-spacing: 2px;
-  /* text-transform: lowercase; Changed from uppercase to lowercase */
+  /*  Changed from uppercase to lowercase */
   font-weight: normal;
   color: var(--yo-black);
   font-family: var(--font-primary);
   font-size: var(--text-xl);
-}
+
+  text-transform: uppercase;}
 
 /* Text content - Same styling as Terms/Contact content areas */
 .about-text-content {
@@ -116,7 +113,7 @@
   font-family: var(--font-primary);
   font-size: var(--text-base, 16px);
   line-height: 1.6;
-  color: var(--yo-white, #2aa178);
+  color: var(--yo-white, #fff);
   margin: 0 0 var(--spacing-md, 16px) 0;
   letter-spacing: 1px;
 }
@@ -379,6 +376,21 @@
 
   .about-page-container {
     padding-top: calc(var(--app-header-h-desktop) + env(safe-area-inset-top, 0px));
-    padding-bottom: calc(var(--app-footer-h-desktop) + 32px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(var(--app-footer-h) + 32px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+
+/* iOS legacy safe-area fallback */
+@supports not (padding: max(0px)) {
+  .about-page-container {
+    padding-top: calc(var(--app-header-h) + constant(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--app-footer-h) + 28px + constant(safe-area-inset-bottom, 0px));
+  }
+  @media (min-width: 1024px) {
+    .about-page-container {
+      padding-top: calc(var(--app-header-h) + constant(safe-area-inset-top, 0px));
+      padding-bottom: calc(var(--app-footer-h) + 32px + constant(safe-area-inset-bottom, 0px));
+    }
   }
 }

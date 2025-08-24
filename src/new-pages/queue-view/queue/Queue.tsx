@@ -228,14 +228,14 @@ const Queue: FC = () => {
                     <span className="queue-depth-label">Total Depth</span>
                     <span className="queue-depth-dashes">----------------</span>
                     <span className="queue-depth-value">
-                      {qStatus?.totalQueue ?? 100}
+                      {qStatus?.totalQueue ?? 0}
                     </span>
                   </div>
                   <div className="queue-depth-row">
                     <span className="queue-depth-label">Your Depth</span>
                     <span className="queue-depth-dashes">----------------</span>
                     <span className="queue-depth-value">
-                      {batchSize(qStatus?.currentIndex) || "05"}
+                      {batchSize(qStatus?.currentIndex)}
                     </span>
                   </div>
                 </div>
@@ -257,14 +257,15 @@ const Queue: FC = () => {
                 {/* Action Buttons */}
                 <div className="horizontal-buttons">
                   <button
-                    className="queue-button"
-                    onClick={handleNavigation}
-                    type="button"
-                    aria-label="Explore Yogeshwari"
+
+                      className="queue-button"
+                      style={{color: "#ffffff"}}
+                      onClick={handleNavigation}
+                      type="button"
+                      aria-label="Explore Yogeshwari"
                   >
                     <img
                         style={{filter: 'invert(0)'}}
-                      className="cicon"
                       src="images/icon/explore.svg"
                       alt="Explore"
                       width={20}
@@ -281,13 +282,13 @@ const Queue: FC = () => {
                     aria-label={queueRemoveLoading ? "Removing from queue" : "Exit from queue"}
                   >
                     <img
-                      className="cicon"
-                      src="images/icon/close.svg"
-                      alt="Exit"
-                      width={20}
-                      height={20}
+                        style={{filter: 'invert(1)'}}
+                        src="images/icon/close.svg"
+                        alt="Exit"
+                        width={20}
+                        height={20}
                     />
-                    <div className="label">
+                    <div className="label" style={{color: "#ffffff"}}>
                       {queueRemoveLoading ? "Removing..." : "Exit from queue"}
                     </div>
                   </button>

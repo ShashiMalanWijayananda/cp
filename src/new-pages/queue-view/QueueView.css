@@ -40,6 +40,7 @@
 }
 
 .queue-content-wrapper {
+  /* padding-top: 50%; */
   width: 100%;
   max-width: 1200px;
   display: flex;
@@ -50,6 +51,7 @@
 
 /* Container for the Queue component */
 .queue-component-container {
+  margin-top: 15%;
   width: 100%;
   max-width: 600px;
   display: flex;

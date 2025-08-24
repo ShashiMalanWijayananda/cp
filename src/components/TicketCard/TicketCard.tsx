@@ -60,8 +60,7 @@ WELCOME TO YOGESHWARI</span></span>
                         </div>
                         <div className="box-row"
                              style={{background: ticket?.zoneId === "zoneA" ? "#C49799" : "#8666D5", color: "#ffffff"}}>
-                            <span className="box" style={{paddingBottom: "10px", fontSize: "2rem"}}>
-                                <span className="box" style={{paddingBottom: "10px", fontSize: "2rem"}}></span>SUB PASS COST<span
+                            <span className="box" style={{paddingBottom: "10px", fontSize: "2rem"}}><span
                                 className="font-vt323 text-center">{ticket?.price} (LKR)</span></span>
                         </div>
                     </div>

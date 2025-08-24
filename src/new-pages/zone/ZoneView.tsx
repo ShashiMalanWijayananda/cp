@@ -102,7 +102,7 @@ const ZoneView: FC = () => {
   );
 
   // Generate scrolling footer text
-  const scrollingText = `**** CHOOSE YOUR ZONE **** AGENT ${user?.lastName} **** YOUR ZONE DETERMINES WHAT YOU'LL SEE AND WHAT YOU WON'T **** `;
+  const scrollingText = `**** CHOOSE YOUR ZONE **** `;
 
   return (
     <>

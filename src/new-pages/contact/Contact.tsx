@@ -19,7 +19,7 @@ const Contact: FC = () => {
             <div className="contact-intro-section">
               <div className="contact-intro-content">
                 <p>You've reached HQ. Need backup, intel, or direct orders? We're locked, loaded, and ready to respond.</p>
-                <p>We operate on a tight response protocol. Expect a reply within 24 hours—faster during mission-critical periods.</p>
+                {/* <p>We operate on a tight response protocol. Expect a reply within 24 hours—faster during mission-critical periods.</p> */}
               </div>
             </div>
 

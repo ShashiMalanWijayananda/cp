@@ -70,12 +70,12 @@ const Terms: FC = () => {
                   <header className="section-title" aria-label="section heading">Parking & shuttle service</header>
                   <div className="section-content">
                     <ul className="bullet-list">
-                      <li>Parking Location: Sri Lanka Exhibition & Convention Center (SLECC) Car Park, Colombo 07.</li>
+                      <li>Parking Location: <a href="https://maps.app.goo.gl/jrg6Fv8oqXt4NUF7A" target="_blank">Sri Lanka Exhibition & Convention Center (SLECC) Car Park, Colombo 07</a>.</li>
                       <li>Shuttle Service:</li>
                       <li>Pickup: 4:00 PM - 5:30 PM from SLECC to No Limits Beira New Yard.</li>
                       <li>Return shuttle services will resume from 9:30 PM - 11:30 PM.</li>
                       <li>Boarding the shuttle will be first come first serve basis.</li>
-                      <li>Private transport should stop at Jin Pendan junction and walk through to the venue entrance.</li>
+                      <li>Private transport should stop at <a href="https://maps.app.goo.gl/cPcKjFmtEuAg9idS6" target="_blank">Jin Pendan junction</a> and walk through to the venue entrance.</li>
                       <li>Please follow marshals and signage for boarding areas.</li>
                     </ul>
                   </div>

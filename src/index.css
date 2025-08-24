@@ -152,6 +152,7 @@ p {
     letter-spacing: 1px;
 }
 
+
 /* =============================================================================
    GLOBAL FORM SYSTEM
    ============================================================================= */
@@ -264,9 +265,9 @@ button, .btn, .button {
 }
 
 button:hover, .btn:hover, .button:hover {
-    background-color: var(--yo-light-green);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
+    /*background-color: var(--yo-light-green);*/
+    /*transform: translateY(-2px);*/
+    /*box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);*/
 }
 
 button:active, .btn:active, .button:active {

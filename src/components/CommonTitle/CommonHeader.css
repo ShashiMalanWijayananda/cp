@@ -1,111 +1,108 @@
-/* =============================================================================
-   COMMON HEADER - RESPONSIVE LOGO COMPONENT
-   Logo scrolls with content on ALL screen sizes
-   ============================================================================= */
+/* ============================================================================
+   COMMON HEADER — v5 (extra lift for tiny screens)
+   - Mobile (375–428): logo 150×101, NO border
+   - <=340: lift more
+   - <=320: lift the most
+   ============================================================================ */
+
+:root {
+  --yo-dark-green: #06491D;
+  --header-bar-h: 140px;
+  --header-bar-stroke: 2px;
+  --header-bar-color: var(--yo-dark-green);
+  --header-bar-w-tablet: 713px;
+  --header-bar-w-desktop-min: 1262px;
+  --header-bar-w-desktop-max: 1418px;
+
+  --logo-w-mobile: 150px;  /* 150×101 default mobile */
+  --logo-w-tablet: 189px;  /* 189×127 */
+  --logo-w-desktop: 189px; /* 189×127 */
+  --logo-w-cap: 200px;
+
+  --app-header-h: 40px;
+  --app-footer-h: 35px;
+}
 
 .common-header-container {
-    width: 100%;
-    background: #092313;
+  width: 100%;
+  background: var(--yo-primary, #092313);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0px 16px 0 16px;
+  margin-top: calc(var(--app-header-h) + env(safe-area-inset-top, 0px));
+  overflow: visible;
+}
+
+.common-header-logo-mobile {
+  display: block;
+  width: var(--logo-w-mobile);
+  height: auto;
+  image-rendering: auto;
+  filter: sepia(1) saturate(0) brightness(0.8) hue-rotate(20deg);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.common-header-bar { display: none; }
+
+/* ---------- Tiny screens ---------- */
+/* <=340px */
+@media (max-width: 340px) {
+  .common-header-container {
+    padding-top: 2px;
+    margin-top: calc((var(--app-header-h) - 26px) + env(safe-area-inset-top, 0px));
+  }
+  .common-header-logo-mobile {
+    transform: translateY(-30px);   /* lift more */
+  }
+}
+
+/* <=320px */
+@media (max-width: 320px) {
+  .common-header-container {
+    padding-top: 45px;
+    margin-top: calc((var(--app-header-h) - 30px) + env(safe-area-inset-top, 0px));
+  }
+  .common-header_logo-mobile, .common-header-logo-mobile {
+    transform: translateY(-38px);   /* maximum lift */
+  }
+}
+
+/* Tablet/Desktop rules */
+@media (min-width: 768px) {
+  .common-header-logo-mobile { display: none; }
+  .common-header-bar {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    gap: 10px;
-    z-index: 99999999;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    position: absolute; /* Always scrolls with content */
-}
-
-.common-header-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.common-header-logo img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-/* =============================================================================
-   RESPONSIVE LOGO SIZING - ALL SCREEN SIZES
-   ============================================================================= */
-
-/* Large Desktop */
-@media (min-width: 1440px) {
-
-    .common-header-logo {
-        width: 180px;
-    }
-}
-
-/* Desktop */
-@media (max-width: 1439px) and (min-width: 1024px) {
-    .common-header-logo {
-        width: 160px;
-    }
-
-}
-
-/* Tablets */
-@media (max-width: 1023px) and (min-width: 769px) {
-    .common-header-logo {
-        width: 140px;
-    }
-    .common-header-logo img{
-        padding-top:50px;
-    }
-
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .common-header-logo img{
-        padding-top:20px;
-    }
-    .common-header-logo {
-        width: 120px;
-    }
-}
-
-/* Small mobile */
-@media (max-width: 480px) {
-    .common-header-logo {
-        width: 100px;
-    }
-}
-
-/* Extra small mobile */
-@media (max-width: 375px) {
-    .common-header-logo {
-        width: 90px;
-    }
-}
-
-/* Move logo down on laptop & larger screens */
-@media (min-width: 1024px) {
-    .common-header-container {
-    position: relative;
-    /* keep whatever margin-top you already added for the header offset */
-    margin-inline: 20px;                 /* nice left/right breathing room */
-    width: calc(100% - 40px);            /* match the margin-inline */
-    padding: 18px 24px;                  /* space between border and logo */
-    border: 1px solid var(--yo-green);   /* theme light color (green in your UI) */
-    /* border-radius: 6px;                  subtle rounding; adjust if needed */
+    height: var(--header-bar-h);
+    width: var(--header-bar-w-tablet);
+    border: var(--header-bar-stroke) solid var(--header-bar-color);
     box-sizing: border-box;
   }
-  .common-header-container {
-    margin-top: 45px; /* 50px fixed header + ~20px breathing room */
+  .common-header-logo-desktop {
+    display: block;
+    width: var(--logo-w-tablet);
+    height: auto;
+    image-rendering: auto;
+    filter: sepia(1) saturate(0) brightness(0.8) hue-rotate(20deg);
   }
 }
 
-/* Give big laptops/desktops a touch more space */
-@media (min-width: 1440px) {
+@media (min-width: 1366px) {
+  .common-header-bar { width: clamp(var(--header-bar-w-desktop-min), 70vw, var(--header-bar-w-desktop-max)); }
+  .common-header-logo-desktop { width: min(var(--logo-w-desktop), var(--logo-w-cap)); }
+}
+
+@media (min-width: 2560px) {
+  .common-header-bar { width: var(--header-bar-w-desktop-max); }
+}
+
+@supports not (padding: max(0px)) {
   .common-header-container {
-    margin-top: 59px;
-    padding: 20px 28px;
+    margin-top: calc(var(--app-header-h) + constant(safe-area-inset-top, 0px));
   }
 }

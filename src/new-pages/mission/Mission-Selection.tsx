@@ -173,7 +173,7 @@ const MissionSelection: FC = () => {
   const missionsToRender = concerts?.length ? concerts : fallbackMissions;
 
   // Generate scrolling footer text
-  const scrollingText = `**** CHOOSE YOUR MISSION **** AGENT ${user?.lastName} **** SELECT YOUR DEPLOYMENT ZONE **** MISSION BRIEFING READY **** `;
+  const scrollingText = `**** CHOOSE YOUR MISSION ****`;
 
   return (
     <>

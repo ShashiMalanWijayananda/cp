@@ -18,13 +18,13 @@
 }
 
 .retro-dialog .p-dialog-header {
-    background-color: #C89595;
+    background-color: var(--yo-light);
     border-bottom: 2px solid #000;
     height: 35px;
 }
 
 .retro-dialog-header {
-    color: #ffffff;
+    color: var(--yo-dark-green);
     width:100%;
     font-family: 'VT323', monospace;
     font-size: clamp(20px, 5vw, 30px);
@@ -96,12 +96,12 @@
 }
 
 .retro-dialog-button-primary {
-    background-color: #A9CACC !important;
+    background-color: var(--yo-light);
     color: #000 !important;
 }
 
 .retro-dialog-button-primary:hover {
-    background-color: #A9CACC !important;
+    background-color: var(--yo-light);
     color: #000 !important;
 }
 

@@ -283,22 +283,22 @@ const PurchaseTickets: FC = () => {
                         });
 
                       } else if (record?.statusCode === "0") {
-                        appContext.showErrorDialog("Payment⚠ ", "Payment process is still pending, please try again later..");
+                        appContext.showErrorDialog("Payment⚠", "Payment process is still pending, please try again later..");
                       } else if (record?.statusCode === "-1") {
-                        appContext.showErrorDialog("Payment⚠ ", "Payment cancelled..");
+                        appContext.showErrorDialog("Payment⚠", "Payment cancelled..");
                       } else if (record?.statusCode === "-2") {
-                        appContext.showErrorDialog("Payment⚠ ", "Payment failed..");
+                        appContext.showErrorDialog("Payment⚠", "Payment failed..");
                       } else if (record?.statusCode === "-3") {
-                        appContext.showErrorDialog("Payment⚠ ", "Payment chargeback..");
+                        appContext.showErrorDialog("Payment⚠", "Payment chargeback..");
                       } else {
-                        appContext.showErrorDialog("Payment⚠ ", `Unknown payment status: ${record?.statusCode}`);
+                        appContext.showErrorDialog("Payment⚠", `Unknown payment status: ${record?.statusCode}`);
                       }
                     } else {
-                      appContext.showErrorDialog("Error⚠ ", "Failed to validate payment. Please contact support.");
+                      appContext.showErrorDialog("Error⚠", "Failed to validate payment. Please contact support.");
                     }
                   }).catch((err) => {
                     console.error("Error:", err);
-                    appContext.showErrorDialog("Error⚠ ", "Network error occurred. Please try again.");
+                    appContext.showErrorDialog("Error⚠", "Network error occurred. Please try again.");
                   });
                 }, 2000)
               };
@@ -308,7 +308,7 @@ const PurchaseTickets: FC = () => {
               };
               (window as any).payhere.onDismissed = function onDismissed() {
                 console.log("Payment dismissed by user");
-                appContext.showErrorDialog("Payment⚠ ", "Payment process was cancelled.");
+                appContext.showErrorDialog("Payment⚠", "Payment process was cancelled.");
               };
             }
           } else {
@@ -362,7 +362,6 @@ const PurchaseTickets: FC = () => {
               }
             });
           }
-
         }
       }
     }).catch(error => {
@@ -517,44 +516,44 @@ const PurchaseTickets: FC = () => {
         <main className="purchase-page-container-direct" role="main">
           <section className="purchase-content-main">
             <div className="purchase-content-wrapper">
-              
+
               {/* Alert Components */}
-              <Alert
-                  message={"Zone fetching error...."}
-                  visible={!!zoneLoadingError}
-                  type={"error"}
-                  autoClose={true}
-                  autoCloseDelay={3000}
-              />
-              <Alert
-                  message={error}
-                  visible={!!error}
-                  type={"error"}
-                  autoClose={true}
-                  autoCloseDelay={3000}
-              />
+            <Alert
+              message={"Zone fetching error...."}
+              visible={!!zoneLoadingError}
+              type={"error"}
+              autoClose={true}
+              autoCloseDelay={3000}
+            />
+            <Alert
+              message={error}
+              visible={!!error}
+              type={"error"}
+              autoClose={true}
+              autoCloseDelay={3000}
+            />
 
               {/* Purchase Card Component */}
               <div className="purchase-component-container">
-                {zone && event ? (
-                    <PurchaseCard
-                        eventId={eventId}
-                        zoneId={zoneId}
-                        onTap={handleBuyTicket}
-                    />
-                ) : (
+              {zone && event ? (
+                <PurchaseCard
+                  eventId={eventId}
+                  zoneId={zoneId}
+                  onTap={handleBuyTicket}
+                />
+              ) : (
                     <div className="purchase-loading">
                       <div className="loading-text">Loading mission data...</div>
-                    </div>
+                </div>
                 )}
-              </div>
-              
             </div>
+
+          </div>
           </section>
         </main>
-        
+
         {/* Global scrolling footer message - will be added by PurchaseCard */}
-        
+
       </>
   );
 };

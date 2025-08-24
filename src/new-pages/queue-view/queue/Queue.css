@@ -4,7 +4,7 @@
    ============================================================================= */
 
 /* --------------------------- Zone theme variables --------------------------- */
-/* Zone Z (purple header, yellow/green accents) */
+/* Zone Z (purple header, yellow/green accents) - Uses "blue" class in TSX */
 .queue-loader.blue {
   --theme-color: var(--yo-light-green);        /* Green accent color */
   --theme-accent: var(--yo-purple);            /* Purple for "Queue Status" and subtitle */
@@ -12,7 +12,7 @@
   --theme-description-bg: var(--yo-light-green); /* Green background strip */
 }
 
-/* Zone A (blue header, rose accents) */
+/* Zone A (blue header, rose accents) - Uses "green" class in TSX */
 .queue-loader.green {
   --theme-color: var(--yo-blue);               /* Blue accent color */
   --theme-accent: var(--yo-dark-rose);         /* Rose for "Queue Status" and subtitle */
@@ -113,7 +113,12 @@
   letter-spacing: 1px;
   text-align: center;
   margin-bottom: var(--spacing-md);
-  color: var(--yo-green);
+  color: var(--yo-dark-rose);
+}
+
+/* Zone Z - Total Seats color override */
+.queue-loader.blue .queue-total-seats {
+  color: #8666D5;
 }
 
 .queue-checking-position {
@@ -121,21 +126,32 @@
   font-size: clamp(14px, 2vw, 18px);
   letter-spacing: 1px;
   text-align: center;
-  color: var(--yo-green);
+  color: var(--yo-dark-rose);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
 }
 
+/* Zone Z - Checking Position color override */
+.queue-loader.blue .queue-checking-position {
+  color: #CFDF82;
+}
+
 .queue-arrow {
   display: inline-block;
   width: 0.8em;
   height: 0.8em;
-  border-right: 2px solid var(--yo-green);
-  border-bottom: 2px solid var(--yo-green);
+  border-right: 2px solid var(--yo-dark-rose);
+  border-bottom: 2px solid var(--yo-dark-rose);
   transform: rotate(-45deg);
   animation: queue-blink 1s infinite;
+}
+
+/* Zone Z - Arrow color override */
+.queue-loader.blue .queue-arrow {
+  border-right: 2px solid #CFDF82;
+  border-bottom: 2px solid #CFDF82;
 }
 
 @keyframes queue-blink {

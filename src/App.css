@@ -1,13 +1,13 @@
 :root {
     --cursor-left: 12px;
     --zone-label-color: #c49799;
-    --yo-green: #9FFF82;
-    --yo-light-green: #CFDF82;
+    /* --yo-green: #9FFF82; */
+    /* --yo-light-green: #CFDF82; */
     --yo-dark-green: #092313;
-    --yo-purple: #8666D5;
+    /* --yo-purple: #8666D5; */
     --yo-rose: #c2b4bb;
     --yo-blue: #99d5ff;
-    --yo-shade-blue: #AFD0D6;
+    /* --yo-shade-blue: #AFD0D6; */
     --yo-dark-rose: #C49799;
     --yo-light: #CCCCCC;
     --yo-ticket-green:#9FFF82;
@@ -15,7 +15,7 @@
 
 body {
     /* font-family: 'Jersey 25', sans-serif; */
-    background: #000000;
+    background: #092313;
 }
 
 

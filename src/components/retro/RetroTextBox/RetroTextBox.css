@@ -51,7 +51,7 @@
     border: 2px solid var(--yo-green);
     color: var(--yo-green);
     font-family: VT323, monospace;
-    font-size: clamp(20px, 4vw, 30px);
+    font-size: clamp(20px, 4vw, 0px);
     caret-color: transparent;
     position: relative;
     box-sizing: border-box;
@@ -226,7 +226,7 @@
     .form-group input {
         width: 100%;
         padding: 10px; /* Slightly increased for mobile touch */
-        font-size: clamp(20px, 4vw, 30px);
+        font-size: clamp(20px, 4vw, 0px);
         box-sizing: border-box;
     }
 
@@ -279,7 +279,7 @@
     .form-group input {
         width: 100%;
         padding: 9px; /* Optimized padding for 768px screens */
-        font-size: clamp(20px, 4vw, 30px);
+        font-size: clamp(20px, 4vw, 0px);
         box-sizing: border-box;
     }
 
@@ -465,7 +465,7 @@
     border: 2px solid var(--yo-green);
     color: var(--yo-green);
     font-family: VT323, monospace;
-    font-size: clamp(20px, 4vw, 30px);
+    /* font-size: clamp(20px, 4vw, 30px); */
     caret-color: transparent;
     position: relative;
     box-sizing: border-box;
@@ -640,7 +640,7 @@
     .form-group input {
         width: 100%;
         padding: 10px; /* Slightly increased for mobile touch */
-        font-size: clamp(20px, 4vw, 30px);
+        font-size: clamp(20px, 4vw, 0px);
         box-sizing: border-box;
     }
 
@@ -693,7 +693,7 @@
     .form-group input {
         width: 100%;
         padding: 9px; /* Optimized padding for 768px screens */
-        font-size: clamp(20px, 4vw, 30px);
+        font-size: clamp(17px, 4vw, 0px);
         box-sizing: border-box;
     }
 
@@ -829,4 +829,14 @@
 }
 .form-group {
     margin: 8px !important;
+}
+/* Use the input’s font-size when available */
+.input-wrapper::after {
+  font-size: var(--cursor-font-size, clamp(20px, 4vw, 30px));
+  opacity: 0; /* hidden by default */
+}
+
+.form-group.focused .input-wrapper::after {
+  font-size: var(--cursor-font-size, clamp(20px, 4vw, 30px));
+  opacity: 1; /* show only while focused */
 }

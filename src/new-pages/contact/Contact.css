@@ -1,11 +1,11 @@
 
 /* === SAFE AREAS (header/footer offsets) === */
-:root {
+/* :root {
   --app-header-h-mobile: var(--global-header-height, 64px);
   --app-footer-h-mobile: var(--global-footer-height, 56px);
   --app-header-h-desktop: var(--global-header-height-desktop, 88px);
   --app-footer-h-desktop: var(--global-footer-height-desktop, 72px);
-}
+} */
 
 /* =============================================================================
    CONTACT PAGE - EXACT FIGMA MATCH THEME

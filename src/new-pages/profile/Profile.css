@@ -34,19 +34,19 @@
   padding-top: 0; /* No fixed elements to account for */
   padding-bottom: 50px;
   padding-left: var(--spacing-lg);
-  padding-right: var(--spacing-lg); /* FIXED: Increased right padding */
+  padding-right: var(--spacing-lg);
   min-height: 100vh;
   overflow-y: visible;
   overflow-x: hidden;
 }
 
 /* =============================================================================
-   MAIN LAYOUT - Using Global Spacing
-   ============================================================================= */
+     MAIN LAYOUT - Using Global Spacing
+     ============================================================================= */
 
 .profile-content-main {
   max-width: 1000px;
-  margin: 0px auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,12 +60,12 @@
   flex-direction: column;
   gap: var(--spacing-2xl);
   padding: var(--spacing-2xl);
-  box-sizing: border-box; /* FIXED: Added box-sizing */
+  box-sizing: border-box;
 }
 
 /* =============================================================================
-   PROFILE INFO ROW - Avatar and Badges
-   ============================================================================= */
+     PROFILE INFO ROW - Avatar and Badges
+     ============================================================================= */
 
 .profile-info-row {
   display: flex;
@@ -76,63 +76,81 @@
 }
 
 /* =============================================================================
-   BADGE SYSTEM - Match Figma Design with Sharp Corners
-   ============================================================================= */
+     BADGE SYSTEM - EXACT LOOK LIKE THE SCREENSHOT
+     ============================================================================= */
 
 .badge-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
-  flex: 1;
-  max-width: 400px;
+  gap: clamp(12px, 2vw, 28px);
+  max-width: 100%;
+  place-items: center;
 }
 
-.badge-item {
+.badge-item,
+.badge-placeholder {
+  /* sizing */
+  width: clamp(120px, 22vw, 260px);
+  aspect-ratio: 1 / 1; /* perfect square */
+  padding: 0;
+  box-sizing: border-box;
+
+  /* look & feel */
+  border: 2px solid var(--yo-green);
+  border-radius: 0;
+  background: rgba(0, 255, 0, 0.04);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease,
+    border-color 120ms ease;
+}
+
+.badge-item:hover,
+.badge-placeholder:hover {
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* Image fills the tile (like the first tile in the screenshot) */
+.badge-item img,
+.badge-popup-image,
+.badge-thumb {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  border: 2px solid var(--yo-green);
-  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
-  padding: var(--spacing-xs);
-  background-color: rgba(159, 255, 130, 0.1);
+  object-fit: cover; /* edge-to-edge like the mock */
+  display: block;
 }
 
-.badge-item:hover {
-  border-color: var(--yo-green);
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
-}
-
+/* Empty slot tile with blurred ‘X’ */
 .badge-placeholder {
-  width: 100px;
-  height: 100px;
-  border: 2px dashed var(--yo-gray);
-  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
-  background-color: rgba(217, 217, 217, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-primary);
-  font-size: var(--text-2xl);
-  color: var(--yo-gray);
+  position: relative;
 }
 
 .badge-placeholder::after {
-  content: "✗";
+  content: 'X';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
+  font-family: VT323, monospace;
+  font-weight: 700;
+  font-size: clamp(44px, 10vw, 88px);
+  color: rgba(200, 220, 200, 0.55);
+  filter: blur(1.2px);
+  line-height: 1;
+  pointer-events: none;
 }
 
+/* (Hover lift already in :hover above) */
+
 /* =============================================================================
-   BADGE POPUP SYSTEM - Match Theme
-   ============================================================================= */
+     BADGE POPUP SYSTEM - Match Theme
+     ============================================================================= */
 
 .badge-popup-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
@@ -144,7 +162,7 @@
 .badge-popup-content {
   background-color: var(--yo-primary);
   border: 2px solid var(--yo-green);
-  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  border-radius: 0;
   max-width: 500px;
   width: 100%;
   max-height: 90vh;
@@ -189,7 +207,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(159, 255, 130, 0.1);
-  border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
+  border-radius: 0;
   border: 1px solid var(--yo-green);
   padding: var(--spacing-sm);
 }
@@ -251,8 +269,8 @@
 }
 
 /* =============================================================================
-   PROFILE FORM LAYOUT - FIXED: Proper container and responsiveness
-   ============================================================================= */
+     PROFILE FORM LAYOUT
+     ============================================================================= */
 
 .details-form {
   display: flex;
@@ -260,10 +278,9 @@
   gap: var(--spacing-xs);
   width: 100%;
   max-width: 100%;
-  box-sizing: border-box; /* FIXED: Added box-sizing */
+  box-sizing: border-box;
 }
 
-/* Form Group Layout - DESKTOP: Horizontal Side-by-Side with Terminal Style */
 .profile-main .form-group {
   display: flex !important;
   flex-direction: row !important;
@@ -275,11 +292,11 @@
   position: relative;
 }
 
-/* Label Layout - DESKTOP: Fixed Width Left Column with Terminal Arrow */
+/* Base label sizing — expanded per your request */
 .profile-main .form-group label {
-  min-width: 200px !important;
-  max-width: 200px !important;
-  width: 200px !important;
+  min-width: 280px !important;
+  max-width: 280px !important;
+  width: 280px !important;
   flex-shrink: 0 !important;
   text-align: left !important;
   margin: 0 !important;
@@ -292,7 +309,6 @@
   display: inline-block !important;
 }
 
-/* Terminal Arrow Prefix for Labels */
 .profile-main .form-group label::before {
   content: '>';
   color: var(--yo-green);
@@ -301,9 +317,8 @@
   font-family: var(--font-primary);
 }
 
-/* Input Wrapper Layout - DESKTOP: Flexible Right Column with Terminal Cursor */
 .profile-main .input-wrapper {
-          margin-right: 10px;
+  margin-right: 10px;
   flex: 1 !important;
   width: auto !important;
   max-width: none !important;
@@ -312,7 +327,7 @@
   position: relative;
 }
 
-/* Terminal Cursor Animation - Same as RetroTextBox */
+/* Terminal cursor animation for focused group */
 .profile-main .form-group.focused .input-wrapper::after {
   content: '█';
   position: absolute;
@@ -334,10 +349,12 @@
 }
 
 @keyframes cursor-blink {
-  0%, 45% {
+  0%,
+  45% {
     opacity: 1;
   }
-  50%, 95% {
+  50%,
+  95% {
     opacity: 0;
   }
   100% {
@@ -345,7 +362,7 @@
   }
 }
 
-/* Form Input Styling - DESKTOP: Full width within container */
+/* Inputs */
 .field-value-profile {
   font-family: var(--font-primary);
   font-size: var(--text-base);
@@ -373,7 +390,6 @@
   opacity: 0.7;
 }
 
-/* Non-Editable Fields - DESKTOP: Display Only */
 .field-value-readonly {
   font-family: var(--font-primary);
   font-size: var(--text-base);
@@ -391,26 +407,27 @@
   opacity: 0.7;
 }
 
-/* Submit Button - Full width from label start to input end */
+/* Submit Button */
 .update-button {
+  width: 100%;
   font-family: var(--font-primary);
-  font-size: var(--text-base);
-  padding: var(--spacing-sm) var(--spacing-md);
-  height: 40px; /* Same height as input fields */
-  border: 1px solid var(--yo-green);
-  border-radius: 0;
+  font-size: var(--text-2xl);
   background-color: var(--yo-green);
-  color: var(--yo-primary);
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  color: var(--yo-black);
+  border: 1px solid var(--yo-green);
+  padding: var(--btn-padding);
+  height: var(--btn-height);
+  letter-spacing: 1px;
+  text-transform: none;
   cursor: pointer;
   transition: all var(--transition-normal);
-  box-sizing: border-box;
-  
-  /* Button spans full form width (from label start to input end) */
-  width: 100%;
-  margin-top: var(--spacing-md);
-  margin-left: 0;
+  outline: none;
+  border-radius: var(--btn-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -5px;
+  margin-bottom: 6px;
 }
 
 .update-button:hover {
@@ -418,18 +435,15 @@
   color: var(--yo-green);
   transform: scale(1.02);
 }
-
 .update-button:active {
   transform: scale(0.98);
 }
-
 .update-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
 }
 
-/* All screen sizes: button takes full form width */
 @media (min-width: 769px) {
   .update-button {
     width: 100%;
@@ -437,7 +451,6 @@
     margin-top: var(--spacing-xs);
   }
 }
-
 @media (max-width: 768px) {
   .update-button {
     width: 100%;
@@ -447,283 +460,134 @@
 }
 
 /* =============================================================================
-   RESPONSIVE DESIGN - FIXED: Better container handling
-   ============================================================================= */
+     RESPONSIVE TUNING
+     ============================================================================= */
 
-/* Large Desktop (≥1440px) - FORCE HORIZONTAL LAYOUT */
-@media (min-width: 1440px) {
-  .profile-page-container {
-    padding-left: var(--spacing-2xl);
-    padding-right: var(--spacing-2xl);
-  }
-
-  /* FORCE HORIZONTAL LAYOUT FOR LARGE DESKTOP */
-  .profile-main .form-group {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: var(--spacing-lg) !important;
-    margin-bottom: var(--spacing-md) !important;
-  }
-
-  .profile-main .form-group label {
-    min-width: 220px !important;
-    max-width: 220px !important;
-    width: 220px !important;
-    flex-shrink: 0 !important;
-    text-align: left !important;
-  }
-
-  .profile-main .input-wrapper {
-    flex: 1 !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-}
-
-/* Desktop (1024px - 1439px) - FORCE HORIZONTAL LAYOUT */
-@media (max-width: 1439px) and (min-width: 1024px) {
-  .profile-page-container {
-    padding-left: var(--spacing-lg);
-    padding-right: var(--spacing-lg);
-  }
-  
-  .profile-main {
-    padding: var(--spacing-xl);
-    gap: var(--spacing-xl);
-  }
-  
-  .profile-info-row {
-    gap: var(--spacing-xl);
-  }
-  
-  .badge-item,
-  .badge-placeholder {
-    width: 100px;
-    height: 100px;
-  }
-  
-  /* FORCE HORIZONTAL LAYOUT FOR DESKTOP */
-  .profile-main .form-group {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: var(--spacing-md) !important;
-    margin-bottom: var(--spacing-sm) !important;
-  }
-
-  .profile-main .form-group label {
-    min-width: 180px !important;
-    max-width: 180px !important;
-    width: 180px !important;
-    flex-shrink: 0 !important;
-    text-align: left !important;
-  }
-
-  .profile-main .input-wrapper {
-    flex: 1 !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-}
-
-/* Tablet (769px - 1023px) - FORCE HORIZONTAL LAYOUT */
-@media (max-width: 1023px) and (min-width: 769px) {
-  .profile-page-container {
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-md);
-  }
-  
-  .profile-main {
-    padding: var(--spacing-lg);
-    gap: var(--spacing-lg);
-  }
-  
-  .profile-info-row {
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    align-items: center;
-    text-align: center;
-  }
-  
+/* Badge grid responsiveness */
+@media (max-width: 1024px) {
   .badge-container {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-sm);
-    max-width: 300px;
-  }
-  
-  .badge-item,
-  .badge-placeholder {
-    width: 60px;
-    height: 60px;
-  }
-  
-  /* FORCE HORIZONTAL LAYOUT FOR TABLET */
-  .profile-main .form-group {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: var(--spacing-md) !important;
-    margin-bottom: var(--spacing-sm) !important;
-  }
-
-  .profile-main .form-group label {
-    min-width: 160px !important;
-    max-width: 160px !important;
-    width: 160px !important;
-    flex-shrink: 0 !important;
-    text-align: left !important;
-  }
-
-  .profile-main .input-wrapper {
-    margin-right: 10px;
-    flex: 1 !important;
-    width: auto !important;
-    max-width: none !important;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-
-/* Mobile (≤768px) - Stack labels above inputs */
 @media (max-width: 768px) {
-  .profile-page-container {
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-md); /* FIXED: Consistent padding */
-  }
-  
-  .profile-main {
-    padding: var(--spacing-lg);
-    gap: var(--spacing-lg);
-  }
-  
-  .profile-info-row {
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    align-items: center;
-    text-align: center;
-  }
-
   .badge-container {
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-sm);
-    max-width: 300px;
   }
-  
   .badge-item,
   .badge-placeholder {
-    width: 60px;
-    height: 60px;
+    width: clamp(80px, 22vw, 120px);
   }
-  
-  /* Mobile form layout - Stacked Labels Above Inputs */
+}
+@media (max-width: 480px) {
+  .badge-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 360px) {
+  .badge-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Label widths per breakpoint (no duplicates) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .profile-main .form-group label {
+    min-width: 240px !important;
+    max-width: 240px !important;
+    width: 240px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .profile-main .form-group label {
+    min-width: 300px !important;
+    max-width: 300px !important;
+    width: 300px !important;
+  }
+}
+@media (max-width: 1023px) and (min-width: 769px) {
+  .profile-main .form-group label {
+    min-width: 200px !important;
+    max-width: 200px !important;
+    width: 200px !important;
+  }
+}
+/* Mobile: stacked labels */
+@media (max-width: 768px) {
   .profile-main .form-group {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: var(--spacing-xs) !important;
     margin-bottom: var(--spacing-sm) !important;
   }
-
   .profile-main .form-group label {
     min-width: auto !important;
     width: 100% !important;
     margin-bottom: var(--spacing-xs) !important;
   }
-
   .profile-main .input-wrapper {
     margin-right: 10px;
     width: 100% !important;
     max-width: 100% !important;
   }
-  
   .badge-popup-overlay {
     padding: var(--spacing-sm);
   }
-  
   .badge-popup-body {
     padding: var(--spacing-lg);
   }
-  
   .badge-image-container {
     width: 100px;
     height: 100px;
   }
 }
 
-/* Small Mobile (≤480px) */
+/* Additional layout tweaks from your earlier rules */
+@media (min-width: 1024px) {
+  .badge-container {
+    gap: var(--spacing-md) !important;
+    max-width: 700px;
+  }
+}
+
 @media (max-width: 480px) {
   .profile-page-container {
     padding-left: var(--spacing-sm);
-    padding-right: var(--spacing-sm); /* FIXED: Consistent padding */
+    padding-right: var(--spacing-sm);
   }
-  
   .profile-main {
     padding: var(--spacing-md);
     gap: var(--spacing-md);
   }
-  
   .profile-info-row {
     gap: var(--spacing-md);
   }
-  
-  .badge-container {
-    max-width: 260px;
-    gap: var(--spacing-xs);
-  }
-  
-  .badge-item,
-  .badge-placeholder {
-    width: 50px;
-    height: 50px;
-  }
-  
   .badge-popup-body {
     padding: var(--spacing-md);
   }
-  
   .badge-image-container {
     width: 80px;
     height: 80px;
   }
-  
-  /* Small Mobile form layout - Compact Stacked */
-  .profile-main .form-group {
-    gap: var(--spacing-xs) !important;
-    margin-bottom: var(--spacing-xs) !important;
-  }
-
-  .profile-main .form-group label {
-    margin-bottom: 2px !important;
-  }
-  
-  .update-button {
-    font-size: var(--text-base);
-    padding: 10px 16px;
-    height: 40px;
-    min-width: 180px;
-  }
 }
 
 /* =============================================================================
-   ACCESSIBILITY & PERFORMANCE - Consistent with other pages
-   ============================================================================= */
+     ACCESSIBILITY & PERFORMANCE
+     ============================================================================= */
 
 .profile-page-container {
   scroll-behavior: smooth;
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .profile-page-container {
     scroll-behavior: auto;
   }
-  
   .badge-item,
-  .field-value-profile,
   .update-button {
     transition: none;
   }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .profile-main,
   .badge-popup-content,
@@ -735,34 +599,29 @@
   }
 }
 
-/* Focus states for accessibility */
 .badge-item:focus {
   outline: 2px solid var(--yo-green);
   outline-offset: 2px;
 }
-
 .field-value-profile:focus-visible,
 .update-button:focus-visible {
   outline: 2px solid var(--yo-green);
   outline-offset: 2px;
 }
 
-/* Print styles */
+/* Print */
 @media print {
   .profile-page-container {
     margin: 0;
     padding: 1rem;
   }
-  
   .badge-popup-overlay {
     display: none;
   }
-  
   .profile-main {
     border: 1px solid black;
     background: white;
   }
-  
   .profile-main .form-group label,
   .field-value-profile,
   .field-value-readonly,
@@ -772,27 +631,20 @@
   }
 }
 
-/* ==========================================================================
-   MOBILE EDGE ALIGNMENT PATCH v2 (<=768px)
-   Force the Update button to align exactly with input edges on phones.
-   ========================================================================== */
+/* Mobile edge alignment patch */
 @media (max-width: 768px) {
-  .details-form { 
-    display: block !important; 
-    padding-left: 0 !important; 
-    padding-right: 0 !important; 
+  .details-form {
+    display: block !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
-
-  /* Make each row stretch edge-to-edge */
-  .details-form .form-group { 
-    width: 100% !important; 
-    margin-left: 0 !important; 
-    margin-right: 0 !important; 
-    padding-left: 0 !important; 
-    padding-right: 0 !important; 
+  .details-form .form-group {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
-
-  /* Inputs: remove any residual wrapper margins */
   .details-form .input-wrapper {
     display: block !important;
     width: 100% !important;
@@ -800,7 +652,6 @@
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
-
   .details-form .input-wrapper input,
   .details-form .input-wrapper .field-value-profile,
   .details-form .input-wrapper .field-value-readonly {
@@ -808,8 +659,6 @@
     width: 100% !important;
     box-sizing: border-box !important;
   }
-
-  /* Button: match the same edges as inputs */
   .details-form > .update-button {
     display: block !important;
     width: 100% !important;
@@ -821,10 +670,241 @@
   }
 }
 
-/* Ultra‑small phones where inner container padding causes visible offset */
+/* Ultra-small phones */
 @media (max-width: 360px) {
-  .profile-main { 
+  .profile-main {
     padding-left: var(--spacing-md) !important;
     padding-right: var(--spacing-md) !important;
+  }
+}
+
+/* =============================================================================
+   BADGE SYSTEM - Centered Grid Design with Responsiveness
+   ============================================================================= */
+
+.badge-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 2vw, 28px);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  place-items: center;
+  justify-content: center;
+}
+
+.badge-item,
+.badge-placeholder {
+  /* Responsive sizing */
+  width: clamp(80px, 20vw, 140px);
+  aspect-ratio: 1 / 1;
+
+  /* Styling */
+  border: 2px solid var(--yo-green);
+  border-radius: 0;
+  background: rgba(0, 255, 0, 0.04);
+
+  /* Layout */
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease,
+    border-color 120ms ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.badge-item:hover,
+.badge-placeholder:hover {
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* Image fills the badge completely */
+.badge-item img,
+.badge-popup-image,
+.badge-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Empty slot with centered blurred X */
+.badge-placeholder {
+  position: relative;
+}
+
+.badge-placeholder::after {
+  content: 'X';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
+  font-family: VT323, monospace;
+  font-weight: 700;
+  font-size: clamp(32px, 8vw, 56px);
+  color: rgba(200, 220, 200, 0.55);
+  filter: blur(1.2px);
+  text-shadow: 0 0 12px rgba(159, 255, 130, 0.25),
+    0 0 22px rgba(159, 255, 130, 0.18);
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* =============================================================================
+     RESPONSIVE DESIGN FOR CENTERED BADGE GRID
+     ============================================================================= */
+
+/* Large Desktop (≥1200px) - 4 columns, largest badges */
+@media (min-width: 1200px) {
+  .badge-container {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 700px;
+    gap: clamp(20px, 3vw, 32px);
+  }
+
+  .badge-item,
+  .badge-placeholder {
+    width: clamp(120px, 22vw, 150px);
+  }
+
+  .badge-placeholder::after {
+    font-size: clamp(36px, 10vw, 60px);
+  }
+}
+
+/* Desktop (768px - 1199px) - 4 columns, medium badges */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .badge-container {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 500px;
+    gap: clamp(16px, 2.5vw, 24px);
+  }
+
+  .badge-item,
+  .badge-placeholder {
+    width: clamp(90px, 20vw, 120px);
+  }
+
+  .badge-placeholder::after {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+}
+
+/* Tablet (481px - 767px) - 4 columns for better consistency */
+@media (max-width: 767px) and (min-width: 481px) {
+  .badge-container {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 400px;
+    gap: clamp(10px, 2vw, 16px);
+  }
+
+  .badge-item,
+  .badge-placeholder {
+    width: clamp(80px, 22vw, 95px);
+  }
+
+  .badge-placeholder::after {
+    font-size: clamp(24px, 8vw, 32px);
+  }
+}
+
+/* Mobile (≤480px) - Force all 4 badges in single row */
+@media (max-width: 480px) {
+  .badge-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    max-width: none !important;
+    width: 100% !important;
+    gap: clamp(4px, 1vw, 8px) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .badge-item,
+  .badge-placeholder {
+    width: 100% !important;
+    max-width: clamp(60px, 18vw, 75px) !important;
+    min-width: 60px !important;
+    height: auto !important;
+    aspect-ratio: 1 !important;
+  }
+
+  .badge-placeholder::after {
+    font-size: clamp(18px, 5vw, 24px) !important;
+  }
+}
+
+/* Extra small mobile (≤360px) - Even more compact */
+@media (max-width: 360px) {
+  .badge-container {
+    gap: clamp(2px, 0.5vw, 4px) !important;
+  }
+
+  .badge-item,
+  .badge-placeholder {
+    max-width: clamp(55px, 16vw, 65px) !important;
+    min-width: 55px !important;
+  }
+
+  .badge-placeholder::after {
+    font-size: clamp(16px, 4vw, 20px) !important;
+  }
+}
+
+/* =============================================================================
+     PROFILE INFO ROW - Updated for centered badge container
+     ============================================================================= */
+
+.profile-info-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+  width: 100%;
+}
+
+/* Badge section wrapper */
+.profile-badges-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.badges-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  color: var(--yo-green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+/* =============================================================================
+     ACCESSIBILITY IMPROVEMENTS
+     ============================================================================= */
+
+.badge-item:focus,
+.badge-placeholder:focus {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
+
+/* Maintain perfect squares across all devices */
+.badge-item,
+.badge-placeholder {
+  aspect-ratio: 1;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .badge-item,
+  .badge-placeholder {
+    transition: none;
   }
 }

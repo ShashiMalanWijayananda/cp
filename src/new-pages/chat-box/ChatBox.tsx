@@ -281,16 +281,16 @@ const ChatBox: React.FC = () => {
         <div className="chat-timestamp">{timestamp}</div>
       </div> */}
 
-     
+
 
       {/* Messages container */}
       <div className="chat-messages-container">
         {messages.length === 0 && (
           <div className="welcome-message-container yog-message">
-            <div className="welcome-message">
-              Hello Agent {user?.lastName || 'Kasun'},{'\n'}
-              Welcome to Yogeshwari Archives. The tale awaits your inquiry
-            </div>
+            {/*<div className="welcome-message">*/}
+            {/*  Hello Agent {user?.lastName || 'Kasun'},{'\n'}*/}
+            {/*  Welcome to Yogeshwari Archives. The tale awaits your inquiry*/}
+            {/*</div>*/}
             <div className="message-timestamp">{formatTime(new Date())}</div>
           </div>
         )}

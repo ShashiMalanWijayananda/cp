@@ -1,42 +1,31 @@
-/* =============================================================================
-   SYSTEM MENU PAGE - SIMPLIFIED UNIQUE CLASSES
-   Simple, unique classes that cannot be changed by external updates
-   ============================================================================= */
-
-/* =============================================================================
-   SYSTEM MENU - CORE PAGE STRUCTURE
-   ============================================================================= */
-
 .sys-menu-page {
   width: 100vw;
-  height: 100vh;
-  margin: 0;
+  height: 100dvh;
+  margin: 0 0 40px 0; /* larger bottom margin */
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: hidden; /* prevent sideways scroll */
+  overflow-y: hidden; /* enable vertical scroll */
   position: relative;
   display: flex;
   flex-direction: column;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
 }
 
 .sys-menu-layout {
   width: 100%;
   max-width: 1000px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: -50px auto 0 auto; /* pull content up more */
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   min-height: 80vh;
+  padding: var(--spacing-lg);
 }
+
 /* =============================================================================
    SYSTEM MENU - HEADER BAR (Desktop Only)
    ============================================================================= */
-
 .sys-menu-header {
   position: fixed;
   top: 0;
@@ -55,13 +44,11 @@
 .sys-menu-header-left {
   flex: 1;
 }
-
 .sys-menu-header-center {
   flex: 1;
   display: flex;
   justify-content: center;
 }
-
 .sys-menu-header-right {
   flex: 1;
   display: flex;
@@ -73,35 +60,22 @@
 /* =============================================================================
    SYSTEM MENU - LOGOUT BUTTON
    ============================================================================= */
-
 .sys-menu-logout-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 5px;
-  /*transition: all 0.3s ease;*/
   min-width: 40px;
   height: 40px;
   background: transparent;
   border: none;
-  outline: none;
-}
-
-.sys-menu-logout-btn:hover {
-  /*transform: scale(1.1);*/
 }
 
 .sys-menu-logout-icon {
   width: 20px;
   height: 20px;
   filter: brightness(0);
-  /*transition: all 0.3s ease;*/
-}
-
-.sys-menu-logout-btn:hover .sys-menu-logout-icon {
-  /*filter: brightness(0) invert(1);*/
-  /*transform: scale(1.2);*/
 }
 
 /* Mobile Logout Button */
@@ -115,25 +89,14 @@
   justify-content: center;
   cursor: pointer;
   padding: 8px;
-  /*transition: all 0.3s ease;*/
   background: transparent;
   border: none;
-  outline: none;
-}
-
-.sys-menu-mobile-logout:hover {
-  /*transform: scale(1.1);*/
 }
 
 .sys-menu-mobile-logout-icon {
   width: 24px;
   height: 24px;
   filter: brightness(0) invert(1);
-  /*transition: all 0.3s ease;*/
-}
-
-.sys-menu-mobile-logout:hover .sys-menu-mobile-logout-icon {
-  /*transform: scale(1.2);*/
 }
 
 .sys-menu-timestamp {
@@ -182,17 +145,10 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  /*transition: all var(--transition-normal);*/
   height: 120px;
   width: 100%;
   position: relative;
   overflow: hidden;
-}
-
-.sys-menu-item:hover {
-  /*background-color: rgba(159, 255, 130, 0.1);*/
-  /*transform: scale(1.05);*/
-  /*box-shadow: 0 0 20px rgba(159, 255, 130, 0.3);*/
 }
 
 .sys-menu-item:active {
@@ -207,12 +163,10 @@
   align-items: center;
   justify-content: center;
 }
-
 .sys-menu-icon img {
   width: 100%;
   height: 100%;
   filter: brightness(0) invert(1);
-  /*transition: all var(--transition-fast);*/
   object-fit: contain;
 }
 
@@ -224,7 +178,6 @@
   font-size: var(--text-lg);
   color: var(--yo-white);
   letter-spacing: 1px;
-  /* text-transform: uppercase; */
 }
 
 /* =============================================================================
@@ -240,16 +193,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  /*transition: all var(--transition-normal);*/
   height: 80px;
   width: 100%;
   gap: var(--spacing-sm);
-}
-
-.sys-menu-large-btn:hover {
-  /*background-color: rgba(159, 255, 130, 0.1);*/
-  /*transform: scale(1.02);*/
-  /*box-shadow: 0 0 15px rgba(159, 255, 130, 0.3);*/
 }
 
 .sys-menu-large-btn:active {
@@ -260,15 +206,9 @@
   background-color: var(--yo-green);
   color: var(--yo-black);
 }
-
-.sys-menu-large-btn.highlight:hover {
-  /*background-color: var(--yo-light-green);*/
-}
-
 .sys-menu-large-btn.highlight .sys-menu-large-icon img {
   filter: brightness(0);
 }
-
 .sys-menu-large-btn.highlight .sys-menu-large-label {
   color: var(--yo-black);
 }
@@ -280,12 +220,10 @@
   align-items: center;
   justify-content: center;
 }
-
 .sys-menu-large-icon img {
   width: 100%;
   height: 100%;
   filter: brightness(0) invert(1);
-  /*transition: all var(--transition-fast);*/
   object-fit: contain;
 }
 
@@ -297,260 +235,175 @@
   font-size: var(--text-lg);
   color: var(--yo-white);
   letter-spacing: 2px;
-  /* text-transform: uppercase; */
 }
 
 /* =============================================================================
-   SYSTEM MENU - RESPONSIVE DESIGN
+   RESPONSIVE DESIGN
    ============================================================================= */
 
-@media screen and (min-width: 1024px){
-  .sys-menu-layout {
-    top: 35%;
-    position: relative;
-  }
-}
-
-
-/* Large Screens (1200px+) */
 @media (min-width: 1200px) {
-  .sys-menu-layout {
-
-  }
-
   .sys-menu-grid {
     gap: var(--spacing-lg);
   }
-
   .sys-menu-buttons {
     gap: var(--spacing-lg);
   }
-
   .sys-menu-item {
     height: 140px;
   }
-
   .sys-menu-large-btn {
     height: 90px;
   }
 }
 
-/* Medium Large Screens (1025px - 1199px) */
 @media (min-width: 1025px) and (max-width: 1199px) {
-  .sys-menu-layout {
-
-  }
-
   .sys-menu-item {
     height: 130px;
   }
-
   .sys-menu-large-btn {
     height: 85px;
   }
 }
 
-/* Tablet (769px - 1024px) */
 @media (max-width: 1024px) and (min-width: 769px) {
-  .sys-menu-layout {
-
-  }
-
   .sys-menu-container {
     max-width: 600px;
   }
-
   .sys-menu-grid {
     gap: 12px;
   }
-
   .sys-menu-buttons {
     gap: 12px;
   }
-
   .sys-menu-item {
     height: 100px;
     padding: var(--spacing-sm);
   }
-
   .sys-menu-icon {
     width: 35px;
     height: 35px;
   }
-
   .sys-menu-label {
     font-size: var(--text-sm);
   }
-
   .sys-menu-large-btn {
     height: 70px;
     padding: var(--spacing-sm);
   }
-
   .sys-menu-large-icon {
     width: 28px;
     height: 28px;
   }
-
   .sys-menu-large-label {
     font-size: var(--text-base);
   }
 }
 
-/* Mobile (max-width: 768px) */
 @media (max-width: 768px) {
-  .sys-menu-layout{
-
-  }
   .sys-menu-header {
     display: none;
   }
-
   .sys-menu-mobile-logout {
     display: flex;
   }
-
-  .sys-menu-layout {
-
-  }
-
   .sys-menu-container {
     max-width: 360px;
   }
-
   .sys-menu-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 6px;
     margin-bottom: 12px;
   }
-
   .sys-menu-buttons {
     grid-template-columns: 1fr;
     gap: 6px;
   }
-
   .sys-menu-item {
     height: 75px;
     padding: var(--spacing-xs);
   }
-
   .sys-menu-icon {
     width: 26px;
     height: 26px;
   }
-
   .sys-menu-label {
     font-size: var(--text-xs);
   }
-
   .sys-menu-large-btn {
     height: 50px;
     padding: var(--spacing-xs) var(--spacing-sm);
   }
-
   .sys-menu-large-icon {
     width: 20px;
     height: 20px;
   }
-
   .sys-menu-large-label {
     font-size: var(--text-sm);
   }
 }
 
-@media (max-width: 375px) {
-  .sys-menu-layout {
-    position: relative;
-  }
-}
-
-/* Small Mobile (max-width: 480px) */
 @media (max-width: 480px) {
-  .sys-menu-layout {
-
-  }
-
   .sys-menu-grid {
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-sm);
   }
-
   .sys-menu-buttons {
     gap: var(--spacing-xs);
   }
-
   .sys-menu-item {
     height: 70px;
   }
-
   .sys-menu-icon {
     width: 28px;
     height: 28px;
   }
-
   .sys-menu-large-btn {
     height: 55px;
   }
-
   .sys-menu-large-icon {
     width: 22px;
     height: 22px;
   }
 }
 
-/* Very Small Mobile (max-width: 375px) */
 @media (max-width: 375px) {
   .sys-menu-grid {
     grid-template-columns: 1fr;
   }
-
   .sys-menu-item {
     height: 60px;
   }
-
   .sys-menu-icon {
     width: 24px;
     height: 24px;
   }
-
   .sys-menu-large-btn {
     height: 50px;
   }
-
   .sys-menu-large-icon {
     width: 20px;
     height: 20px;
   }
 }
 
-/* Ultra Small Mobile (max-width: 320px) */
 @media (max-width: 320px) {
-  .sys-menu-layout {
-
-  }
-
   .sys-menu-grid {
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-sm);
   }
-
   .sys-menu-buttons {
     gap: var(--spacing-xs);
   }
-
   .sys-menu-item {
     height: 70px;
   }
-
   .sys-menu-icon {
     width: 28px;
     height: 28px;
   }
-
   .sys-menu-large-btn {
     height: 55px;
   }
-
   .sys-menu-large-icon {
     width: 22px;
     height: 22px;
@@ -558,13 +411,12 @@
 }
 
 /* =============================================================================
-   SYSTEM MENU - ACCESSIBILITY & PERFORMANCE
+   ACCESSIBILITY & PREFERENCES
    ============================================================================= */
-
 @media (prefers-reduced-motion: reduce) {
   .sys-menu-item,
   .sys-menu-large-btn {
-    /*transition: none;*/
+    transition: none;
   }
 }
 
@@ -580,11 +432,10 @@
   outline: 2px solid var(--yo-green);
   outline-offset: 2px;
 }
-
-/* =============================================================================
-   SYSTEM MENU - FORCE GREEN BORDERS (Page Specific)
-   ============================================================================= */
-
-.sys-menu-page * {
-  border-color: var(--yo-green) !important;
+/* Force 2-column grid again once we reach 320px width */
+@media (min-width: 320px) and (max-width: 480px) {
+  .sys-menu-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
 }

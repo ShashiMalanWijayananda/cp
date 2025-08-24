@@ -63,6 +63,7 @@ color: var(--yo-blue);
 }
 
 .purchase-component-container {
+  margin-top: 10%;
   width: 100%;
   max-width: 100%;
   display: flex;
@@ -104,7 +105,7 @@ color: var(--yo-blue);
   .purchase-page-container-direct {
     padding: var(--spacing-md);
   }
-  
+
   .purchase-content-wrapper {
     gap: var(--spacing-md);
   }
@@ -119,10 +120,10 @@ color: var(--yo-blue);
     margin-top: var(--spacing-md); /* Add some spacing after logo */
     margin-bottom: var(--spacing-md);
   }
-  
+
   .purchase-page-heading h1 {
 }
-  
+
   .purchase-page-container-direct {
     padding-top: 0; /* Reset padding since logo and heading are now in content flow */
     padding-bottom: 50px; /* Footer space */
@@ -134,7 +135,7 @@ color: var(--yo-blue);
     justify-content: center;
     align-items: center;
   }
-  
+
   .purchase-content-wrapper {
     gap: var(--spacing-md);
   }
@@ -144,11 +145,11 @@ color: var(--yo-blue);
   .purchase-page-container-direct {
     padding: var(--spacing-sm);
   }
-  
+
   .purchase-content-wrapper {
     gap: var(--spacing-sm);
   }
-  
+
   .purchase-page-heading h1 {
 }
 }
@@ -166,7 +167,7 @@ color: var(--yo-blue);
   .purchase-page-container-direct {
     scroll-behavior: auto;
   }
-  
+
   .loading-text {
     animation: none;
   }

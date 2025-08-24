@@ -31,7 +31,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
     const name = (zname || "").toLowerCase();
     const id = (zid || "").toLowerCase();
     if (id === "zonea" || id === "a" || name.includes("zone a")) return "blue";
-    if (id === "zonez" || name.includes("zone z")) return "blue";
+    if (id === "zonez" || name.includes("zone z")) return "green"; // Fixed: Zone Z should return "green"
     return "green";
   };
   const [isExpired, setIsExpired] = useState(false);
@@ -73,8 +73,8 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
         const newTime = prevTime - 1000;
         return newTime <= 0 ? 0 : newTime;
       });
-      if (minutes == 0) {
-        //navigate("/menu", {replace: true})
+      if (minutes <= 0 && seconds <= 0) {
+        navigate("/menu", {replace: true})
         if ((window as any).payhere) {
           (window as any).payhere.onDismissed = function onDismissed() {
             console.log("Payment dismissed");
@@ -401,6 +401,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                     {couponResponse && (
                         <div className="content-row">
                           <div
+                              style={{fontFamily:"vt323"}}
                               className={`content-text ${
                                   couponResponseType === "success"
                                       ? "success-text"
@@ -424,8 +425,8 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
 
                     {/* Price per Entry */}
                     <div className="content-row">
-                      <div className="content-text">Price per Entry</div>
-                      <div className="content-text value">
+                      <div className="content-text" style={{fontFamily:"vt323"}}>Price per Entry</div>
+                      <div className="content-text value" style={{fontFamily:"vt323"}}>
                         {formatAmount(zone?.price ?? 0)}
                       </div>
                     </div>
@@ -436,7 +437,7 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                           <div className="content-text">
                             Mission Discount ({discountPercentage}%)
                           </div>
-                          <div className="content-text">
+                          <div className="content-text" style={{fontFamily:"vt323"}}>
                             -{discountAmount.toFixed(2)} LKR
                           </div>
                         </div>
@@ -447,8 +448,8 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
 
                     {/* Total Cost */}
                     <div className="content-row">
-                      <div className="content-text">Total Mission Cost</div>
-                      <div className="content-text value">
+                      <div className="content-text" style={{fontFamily:"vt323"}}>Total Mission Cost</div>
+                      <div className="content-text value" style={{fontFamily:"vt323"}}>
                         {formatAmount(Math.round(grandTotal))}
                       </div>
                     </div>
@@ -480,8 +481,8 @@ const PurchaseCard: FC<PurchaseCardProps> = ({ onTap, eventId, zoneId }) => {
                   onClick={handleRemoveQueue}
                   aria-label="Abort mission queue"
               >
-                <img className="cicon" src="/images/icon/close.svg" width={30} alt="Close"/>
-                <div className="label">
+                <img style={{filter: "invert(1)"}}  src="/images/icon/close.svg" width={20} alt="Close"/>
+                <div className="label" style={{color:"#ffffff"}}>
                   {queueRemoveLoading ? "Aborting..." : "Abort Mission Queue"}
                 </div>
               </button>

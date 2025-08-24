@@ -1,32 +1,16 @@
-
 /* ============================================================================
-   PURCHASE CARD — Pixel-match to mock (content only)
+   PURCHASE CARD – Pixel-match to mock (content only)
    Do NOT touch global logo/header/footer. All styles are scoped.
    ========================================================================== */
 
-/* Fallbacks in case design tokens are missing */
-:root {
-  --yo-blue: #a7d6ff;
-  --yo-dark-rose: #e3a8a8;
-  --yo-green: #9ef0a3;
-  --yo-gray: #c9cec9;
-  --yo-white: #ffffff;
-  --yo-black: #0b211a;
-  --font-primary: 'VT323', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 12px;
-  --spacing-lg: 16px;
-  --spacing-xl: 24px;
-  --btn-border-radius: 4px;
-  --input-border-radius: 4px;
-  --transition-normal: .18s ease;
-}
-
-/* Theme hook (Zone A = blue) */
+/* Theme hook (Zone A = blue, Zone Z = purple) */
 .purchase-card,
 .purchase-card.blue {
   --theme-color: var(--yo-blue);
+}
+
+.purchase-card.green {
+  --theme-color: #8666D5;
 }
 
 /* ========== Exact desktop sizes (≥1440) ========== */
@@ -39,6 +23,7 @@
   gap: 16px;
   font-family: var(--font-primary);
   letter-spacing: 1px;
+  zoom: 1.2;
 }
 
 /* Top heading "ZONE A" (outside card) */
@@ -47,9 +32,13 @@
   color: var(--yo-blue);
   text-align: center;
   text-transform: none;
-  font-weight: 800;
   font-size: 48px;        /* exact desktop size */
   line-height: 1.1;
+}
+
+/* Zone Z gets purple color */
+.purchase-card.green .purchase-card-header {
+  color: #8666D5;
 }
 
 /* Outer box */
@@ -66,17 +55,22 @@
   text-transform: uppercase;
   font-family: "Jersey 25";
   text-align: center;
-  font-weight: 800;
-  font-size: 38px;        /* desktop */
-  /* padding: 14px 16px; */
+  font-size: 35px;
+  font-weight: 500;
+  letter-spacing: normal;
+  padding: 0px 16px;
   border-bottom: 0;
-  line-height: 2;
+  line-height: inherit;
+}
 
+/* Zone Z gets yellow/green color for event title */
+.purchase-card.green .purchase-card-box-header {
+  color: #CFDF82;
 }
 
 /* Wrapper that holds inner bordered box */
 .purchase-card-box-content {
-  padding: 12px 24px 24px;
+  padding: 3px 24px 24px;
   display: flex;
   justify-content: center;
 }
@@ -89,10 +83,10 @@
 
 /* Inner content stack */
 .inner-box-content {
+  font-weight: bold;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 /* Select Tickets row */
@@ -146,6 +140,22 @@
   font-family: "Jersey 25";
 }
 
+/* Zone Z gets yellow/green color for content text */
+.purchase-card.green .content-text {
+  
+  color: #CFDF82;
+}
+
+/* Zone Z gets yellow/green color for ticket counter label */
+.purchase-card.green .ticket-counter .content-text {
+  color: #CFDF82;
+}
+
+/* Zone Z gets yellow/green color for ticket number */
+.purchase-card.green .number-of-ticket {
+  color: #CFDF82;
+}
+
 /* Coupon row */
 .content-row {
   display: flex;
@@ -163,11 +173,15 @@
   /* border-radius: var(--input-border-radius); */
   padding: 0 10px;
   outline: none;
-  color: var(--yo-dark-rose);
+  color: #FFFFFF;
+  opacity: 50%;
   font-family: var(--font-primary);
   font-size: 18px;
   letter-spacing: 1px;
-  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal), opacity var(--transition-normal);
+}
+.content-row input:not(:disabled) {
+  opacity: 1;
 }
 .content-row input::placeholder { color: rgba(227,168,168,.66); }
 .content-row input:focus {
@@ -176,7 +190,15 @@
 }
 
 /* Divider */
-.content-row-dot { border-top: 1px dotted var(--yo-dark-rose); margin: 8px 0; }
+.content-row-dot {
+  border-top: 1px dotted var(--yo-dark-rose);
+  margin: 8px 0;
+}
+
+/* Zone Z gets yellow/green dotted divider */
+.purchase-card.green .content-row-dot {
+  border-top: 1px dotted #CFDF82;
+}
 
 /* Numbers right aligned */
 .text-container .content-text.value,
@@ -188,24 +210,34 @@
   height: 40px;
   border: 2px solid #8aa3a0;
   background: #6f7f7a;
-  color: #e9f0ee;
+  color: #FFFFFF;
   border-radius: var(--btn-border-radius);
   text-transform: none;
   font-family: var(--font-primary);
   font-size: 18px;
   border-radius: unset;
   cursor: pointer;
-  transition: transform var(--transition-normal), filter var(--transition-normal);
+  transition: transform var(--transition-normal), filter var(--transition-normal), opacity var(--transition-normal), background var(--transition-normal), color var(--transition-normal);
+}
+.apply-btn:not(:disabled) {
+  background-color: var(--yo-white);
+  opacity: 100%;
+  color: var(--yo-primary);
 }
 .apply-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
 .apply-btn:active { transform: translateY(0); filter: brightness(.95); }
-.apply-btn:disabled { opacity: .6; cursor: not-allowed; }
+.apply-btn:disabled {
+  opacity: 50%;
+  cursor: not-allowed;
+  background: #D9D9D9;
+  color: #FFFFFF;
+}
 
 /* Confirm button (full width) */
 .purchase-btn {
   width: 100%;
   margin-top: 10px;
-  height: 46px;
+  height: 4px;
   border: 2px solid var(--theme-color);
   /* border-radius: var(--btn-border-radius); */
   background: var(--bluegray-50);
@@ -228,7 +260,7 @@
   border-radius: var(--btn-border-radius);
   border: 2px solid var(--theme-color);
   background: transparent;
-  color: var(--yo-white);
+  color: var(--yo-dark-rose);
   font-family: var(--font-primary);
   font-size: 18px;
   text-transform: none;
@@ -238,8 +270,40 @@
   justify-content: center;
   cursor: pointer;
 }
-.queue-button:hover { background: var(--theme-color); color: var(--yo-black); }
-.queue-button .cicon { width: 20px; height: 20px; }
+.queue-button:hover {
+  background: var(--yo-primary);
+  color: var(--yo-dark-rose);
+}
+.queue-button .cicon {
+  width: 20px;
+  height: 20px;
+  filter: none;
+}
+
+/* Fix cicon color to be yo-dark-rose */
+.queue-button .cicon,
+.queue-button img.cicon {
+  filter: invert(0.5) sepia(1) saturate(2) hue-rotate(320deg) brightness(0.8) contrast(1.2);
+}
+
+/* Zone Z - Queue button should have yellow/green color scheme */
+.purchase-card.green .queue-button {
+  color: #CFDF82;
+}
+
+.purchase-card.green .queue-button:hover {
+  background: var(--yo-primary);
+  color: #CFDF82;
+}
+
+.purchase-card.green .queue-button .label {
+  color: #CFDF82;
+}
+
+.purchase-card.green .queue-button .cicon,
+.purchase-card.green .queue-button img.cicon {
+  filter: invert(0.85) sepia(1) saturate(2) hue-rotate(60deg) brightness(1.1) contrast(0.9);
+}
 
 /* ======= Breakpoints with exact sizes from mock ======= */
 
@@ -253,7 +317,7 @@
   .purchase-btn { font-size: 20px; height: 44px; }
   .queue-button { font-size: 16px; height: 42px; min-width: 240px; }
   .purchase-card-box-content { padding: 8px 16px 16px; }
-  .inner-box-content { padding: 12px; }
+  .inner-box-content {font-weight: bold; padding: 12px; }
 }
 
 /* ≤ 760 */

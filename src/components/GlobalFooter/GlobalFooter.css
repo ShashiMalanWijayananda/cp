@@ -1,8 +1,6 @@
 /* Zone-aware footer styling. Keeps existing layout classes; only colors are overridden here. */
 .global-footer {
-  font-size: 25px;
-    
-  height: 40px;
+  height: 35px;
   /* Default colors; will be overridden by zone classes below */
   --bar-color: var(--yo-light);
   --text-color: #000;
@@ -27,6 +25,7 @@
 /* Ensure our formatted casing is respected */
 .global-footer-text {
   /* text-transform: none !important; */
+  font-size:28px;
   letter-spacing: 3px;
   opacity: 0.9;
   white-space: nowrap;
@@ -44,7 +43,7 @@
 .global-footer-scrolling {
     width: 100vw;
     position: fixed;
-    height: 38px;
+    height: 35px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -62,20 +61,7 @@
     white-space: nowrap;
 }
 /* GlobalFooter.css */
-.global-footer-scrolling {
-    width: 100vw;
-    position: fixed;
-    height: 35px; /* Reduced from 38px to 35px to match header height */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #B4B3B0;
-    border-top: 1px solid var(--line);
-    overflow: hidden;
-    padding: 0;
-    z-index: 100;
-    margin: 0px;
-}
+
 
 .global-scroll-wrapper {
     width: 100%;
@@ -108,5 +94,18 @@
 @media (prefers-reduced-motion: reduce) {
     .global-scroll-content {
         animation-duration: 300s;
+    }
+}
+
+@media (max-width: 768px) {
+    .global-footer-text {
+        /* text-transform: none !important; */
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 375px) {
+    .global-footer-text {
+        font-size: 18px;
     }
 }
