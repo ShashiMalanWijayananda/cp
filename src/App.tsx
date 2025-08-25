@@ -28,11 +28,14 @@ import PublicTicketView from "./new-pages/public-ticket-view/PublicTicketView";
 import Room from "./Pages/Room/Room";
 import Contact from "./new-pages/contact/Contact";
 import {QueueProvider} from "./graphql/graphql-subscrption";
+import ChatBox from "./new-pages/chat-box/ChatBox";
 import ChatView from "./new-pages/chat-box/ChatView";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop"; // Import the new component
 
 const AppRoutes: FC = () => {
     const {isEnable, isLoading, error, refreshSiteStatus, milliseconds} = useSite();
     const {appContext} = useAppContext();
+    
     if (isLoading) {
         return (
             <div className="app-main-loading">
@@ -40,6 +43,7 @@ const AppRoutes: FC = () => {
             </div>
         );
     }
+    
     if (error) {
         return (
             <div className="app-main-loading">
@@ -54,19 +58,19 @@ const AppRoutes: FC = () => {
 
     if (isEnable) {
         return (
-            <LockScreen milliseconds={milliseconds}/>
+           <LockScreen milliseconds={milliseconds}/>
         );
     }
 
     return (
         <Routes>
-            <Route path="/login" element={< LoginComponent/>}/>
-            <Route path="/splash" element={<Splash/>}/>
-            <Route path="/registration" element={<Registration/>}/>
-            <Route path="/view-ticket" element={<PublicTicketView/>}/>
-            <Route element={<AuthenticatedRoutes/>}>
-                <Route element={<AppLayout/>}>
-                    <Route path="/mission" element={<MissionSelection/>}/>
+            <Route path="/login" element={<LoginComponent/>} />
+            <Route path="/splash" element={<Splash />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/view-ticket" element={<PublicTicketView />} />
+            <Route element={<AuthenticatedRoutes />}>
+                <Route element={<AppLayout />}>
+                    <Route path="/mission" element={<MissionSelection />} />
                     <Route path="/menu" element={<SystemMenu/>}/>
                     <Route path="/my-profile" element={<Profile/>}/>
                     <Route path="/landing-page" element={<Room/>}/>
@@ -88,56 +92,32 @@ const AppRoutes: FC = () => {
 
 export const App: FC = () => {
     const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    
     return (
         <React.Fragment>
             <SiteContextProvider>
                 <ApolloProvider client={client}>
                     <GoogleOAuthProvider clientId={clientId}>
                         <Router>
+                            {/* Add ScrollToTop component here - it will run on every route change */}
+                            <ScrollToTop />
                             <AppContextProvider>
-                                <DialogContextProvider>
-                                    <QueueProvider>
-                                        <LoginContextProvider>
-                                            <QualitySettingsProvider>
+                                <QueueProvider>
+                                    <LoginContextProvider>
+                                        <QualitySettingsProvider>
+                                            <DialogContextProvider>
                                                 <AppRoutes/>
-                                                {/*<Routes>*/}
-                                                {/*    <Route path="/login" element={<LoginComponent/>}/>*/}
-                                                {/*    <Route path="/splash" element={<Splash/>}/>*/}
-                                                {/*    <Route path="/registration" element={<Registration/>}/>*/}
-                                                {/*    <Route path="/view-ticket" element={<PublicTicketView/>}/>*/}
-
-                                                {/*    <Route element={<AuthenticatedRoutes/>}>*/}
-                                                {/*        <Route element={<AppLayout/>}>*/}
-                                                {/*            <Route path="/mission" element={<MissionSelection/>}/>*/}
-                                                {/*            <Route path="/menu" element={<SystemMenu/>}/>*/}
-                                                {/*            <Route path="/my-profile" element={<Profile/>}/>*/}
-                                                {/*            <Route path="/landing-page" element={<Room/>}/>*/}
-                                                {/*            <Route path="/zones" element={<ZoneView/>}/>*/}
-                                                {/*            <Route path="/purchase" element={<PurchaseTickets/>}/>*/}
-                                                {/*            <Route path="/queue" element={<QueueView/>}/>*/}
-                                                {/*            <Route path="/my-tickets" element={<AuthorizeTickets/>}/>*/}
-                                                {/*            <Route path="/terms" element={<Terms/>}/>*/}
-                                                {/*            <Route path="/about" element={<About/>}/>*/}
-                                                {/*            <Route path="/contact" element={<Contact/>}/>*/}
-                                                {/*            <Route path="/chat" element={<ChatBox/>}/>*/}
-                                                {/*        </Route>*/}
-                                                {/*    </Route>*/}
-                                                {/*    <Route path="*" element={<Navigate to="/splash" replace/>}/>*/}
-                                                {/*    <Route path="" element={<Navigate to="/splash" replace/>}/>*/}
-                                                {/*</Routes>*/}
-
-                                            </QualitySettingsProvider>
-                                        </LoginContextProvider>
-                                    </QueueProvider>
-                                </DialogContextProvider>
+                                            </DialogContextProvider>
+                                        </QualitySettingsProvider>
+                                    </LoginContextProvider>
+                                </QueueProvider>
                             </AppContextProvider>
                         </Router>
                     </GoogleOAuthProvider>
                 </ApolloProvider>
             </SiteContextProvider>
         </React.Fragment>
-    )
-        ;
+    );
 };
 
 export default App;

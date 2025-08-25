@@ -81,17 +81,17 @@ const LoginComponent: FC<LoginComponentProps> = () => {
     const errors = { email: '', password: '', general: '' };
     if (!user.email) {
       errors.email = 'Email is required';
-      appContext.showSuccessDialog('REQUIRED!!!', 'Email is required');
+      appContext.showSuccessDialog('REQUIRED!', 'Email is required');
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(user.email)) {
       errors.email = 'Please enter a valid email address';
       appContext.showSuccessDialog(
-        'REQUIRED!!!',
+        'REQUIRED!',
         'Required valid email address'
       );
       isValid = false;
     } else if (user.password == '') {
-      appContext.showSuccessDialog('REQUIRED!!!', 'Required password');
+      appContext.showSuccessDialog('REQUIRED!', 'Required password');
     }
     setFormErrors(errors);
     return isValid;
@@ -160,17 +160,17 @@ const LoginComponent: FC<LoginComponentProps> = () => {
     const email = queryParams.get('email');
     if (verifyStatus == 'activated') {
       appContext.showSuccessDialog(
-        'SYSTEM GRANTED!!!',
-        'Hi agent, Your account has already activated!!!!'
+        'SYSTEM GRANTED!',
+        'Hi agent, Your account has already activated!'
       );
     } else if (verifyStatus == 'active') {
       appContext.showSuccessDialog(
-        'SYSTEM GRANTED!!!',
-        'Hi agent, Your account has been activated!!!'
+        'SYSTEM GRANTED!',
+        'Hi agent, Your account has been activated!'
       );
     } else if (verifyStatus == 'failed') {
       appContext.showSuccessDialog(
-        'SYSTEM ERROR!!!',
+        'SYSTEM ERROR!',
         'Hi agent, Activation Process Error..'
       );
     }
@@ -195,6 +195,7 @@ const LoginComponent: FC<LoginComponentProps> = () => {
               <img
                 src="images/logo/Logo-animate-wothout-Blink1.gif"
                 alt="Yogeshwari Logo"
+                className="logo"
               />
             </div>
           </div>
@@ -268,7 +269,7 @@ const LoginComponent: FC<LoginComponentProps> = () => {
 
                   {/* Registration Redirect */}
                   <div
-                    className="login-register-redirect"
+                    className="login-register-redirect underline"
                     onClick={() =>
                       navigation('/registration', { replace: true })
                     }

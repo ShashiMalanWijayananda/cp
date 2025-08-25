@@ -61,7 +61,7 @@ const SystemMenu: FC = () => {
   const handleNavigation = (): void => {
     if (!isDesktop()) {
       appContext.showSuccessDialog(
-        'DESKTOP REQUIRED',
+        'DESKTOP REQUIRED!',
         'For the complete Yogeshwari experience, switch to desktop view.\nSome missions can only be unlocked on a larger screen.'
       );
     } else {

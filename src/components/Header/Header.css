@@ -1,174 +1,207 @@
 .common-header {
-    --bar-color: var(--yo-light);
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 999; /* Reduced z-index */
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 40px; /* Reduced from 50px to 35px */
-    font-size: 28px;
-    font-family: VT323, monospace;
-    color: #000000;
-    background: var(--bar-color);
+  --bar-color: var(--yo-light);
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 999; /* Reduced z-index */
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 40px; /* Reduced from 50px to 35px */
+  font-size: 28px;
+  font-family: VT323, monospace;
+  color: #000000;
+  background: var(--bar-color);
 }
 
 .common-header.zoneA {
-    --bar-color: var(--yo-dark-rose);
+  --bar-color: var(--yo-dark-rose);
 }
 
 .common-header.zoneZ {
-    --bar-color: var(--yo-purple);
+  --bar-color: var(--yo-purple);
 }
 
 .common-header.default {
-    --bar-color: var(--yo-light);
+  --bar-color: var(--yo-light);
 }
 
 /* Navigation Links Container */
 .header-nav-links {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    align-items: center;
-    justify-content: start;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+  justify-content: start;
 }
 
 .header-exit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 5px;
-    transition: all 0.3s ease;
-    min-width: 40px;
-    height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.3s ease;
+  min-width: 40px;
+  height: 40px;
 }
 
 .header-exit-button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .header-exit-button .logout-icon {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0);
-    transition: all 0.3s ease;
+  width: 20px;
+  height: 20px;
+  filter: brightness(0);
+  transition: all 0.3s ease;
 }
 
 .header-exit-button:hover .logout-icon {
-    filter: brightness(0) invert(1);
-    transform: scale(1.2);
+  filter: brightness(0) invert(1);
+  transform: scale(1.2);
 }
 
 .button-text {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .button-text-bold {
-content:'>';
+  content: '>';
 }
 
-
 @media (max-width: 768px) {
-    .common-header {
-        display: none;
-    }
+  .common-header {
+    display: none;
+  }
 }
 
 .mob-navi {
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 30px;
-    width: 100%;
-    display: none;
-    z-index: 1000;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    font-size: 30px;
-    color: #ffffff;
-    box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 30px;
+  width: 100%;
+  display: none;
+  z-index: 1000;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ffffff;
+  box-sizing: border-box;
 }
 
-
 .mobile-exit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 10px;
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.3s ease;
 }
 
 .mobile-exit-button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .mobile-exit-button .logout-icon {
-    width: 25px;
-    height: 25px;
-    filter: brightness(0) invert(1);
-    transition: all 0.3s ease;
+  width: 25px;
+  height: 25px;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
 }
 
 .mobile-exit-button:hover .logout-icon {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 /* Show mobile nav on mobile devices */
 @media (max-width: 768px) {
-    .mob-navi-click {
+  .mob-navi-click {
     /* cursor: pointer; */
-    margin-top: 65px ;
+    margin-top: 65px;
     margin-left: 20px;
     padding: 12px;
-}
-    .mobile-exit-button {
-        padding: 80px 10px;
-    }
+  }
+  .mobile-exit-button {
+    padding: 80px 10px;
+  }
 
-    .custom-footer {
-        display: none;
-    }
+  .custom-footer {
+    display: none;
+  }
 
-    .mob-navi {
-        display: flex; /* Show on mobile */
-        padding: 10px 5px;
-    }
+  .mob-navi {
+    display: flex; /* Show on mobile */
+    padding: 10px 5px;
+  }
 }
 
 @media (min-width: 769px) {
-    .mobile-back {
-        display: none;
-    }
+  .mobile-back {
+    display: none;
+  }
 }
 
 @media (max-width: 1024px) {
-    .custom-footer {
-        position: fixed;
-    }
+  .custom-footer {
+    position: fixed;
+  }
 
-    /* Reduce header nav gap on tablets */
-    .header-nav-links {
-        gap: 30px;
-        font-size: 24px;
-    }
+  /* Reduce header nav gap on tablets */
+  .header-nav-links {
+    gap: 30px;
+    font-size: 24px;
+  }
 }
-
 
 /* Legacy logout button styles preserved */
 @media (max-width: 320px) {
-    .mob-navi-click {
+  .mob-navi-click {
     /* cursor: pointer; */
-    margin-top: 35px ;
+    margin-top: 35px;
     padding: 12px;
+  }
 }
-   
+
+/* ============================================================================
+   HEADER FONT-SIZE RESPONSIVE FIXES
+   ============================================================================ */
+
+/* Slightly smaller header text on small tablets (769px–1024px) */
+@media (min-width: 769px) and (max-width: 1085px) {
+  .common-header {
+    font-size: 24px !important;
+  }
+  .header-nav-links {
+    gap: 28px !important;
+    font-size: 22px !important;
+  }
+}
+
+/* Tighter header text at ~850px and below */
+@media (max-width: 850px) {
+  .common-header {
+    font-size: 22px !important;
+  }
+  .header-nav-links {
+    gap: 24px !important;
+    font-size: 20px !important;
+  }
+}
+
+/* Even smaller for ~748px and below (before mobile breakpoint) */
+@media (max-width: 748px) {
+  .common-header {
+    font-size: 20px !important;
+  }
+  .header-nav-links {
+    gap: 20px !important;
+    font-size: 18px !important;
+  }
 }

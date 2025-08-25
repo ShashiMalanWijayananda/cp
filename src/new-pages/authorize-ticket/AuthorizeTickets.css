@@ -39,13 +39,13 @@
 }
 
 /* =============================================================================
-   MAIN CONTENT LAYOUT - Match other pages
-   ============================================================================= */
+     MAIN CONTENT LAYOUT - Match other pages
+     ============================================================================= */
 
 .authorize-tickets-content-main {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
+  display: contents;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-xl);
@@ -60,13 +60,13 @@
 }
 
 /* =============================================================================
-   DESKTOP TICKET VIEW - Grid Layout
-   ============================================================================= */
+     DESKTOP TICKET VIEW - Grid Layout
+     ============================================================================= */
 
 .authorize-tickets-desktop-view {
   width: 100%;
   display: flex;
-  gap: var(--spacing-2xl);
+  /* gap: var(--spacing-2xl); */
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -74,8 +74,8 @@
 }
 
 /* =============================================================================
-   MOBILE TICKET VIEW - Enhanced Touch Navigation
-   ============================================================================= */
+     MOBILE TICKET VIEW - Enhanced Touch Navigation
+     ============================================================================= */
 
 .authorize-tickets-mobile-view {
   display: none;
@@ -95,7 +95,7 @@
   margin-bottom: var(--spacing-xs);
   touch-action: pan-x;
   cursor: grab;
-  transition: transform var(--transition-normal);
+  /* transition: transform var(--transition-normal); */
   position: relative;
   overflow: hidden;
 }
@@ -115,8 +115,8 @@
 }
 
 /* =============================================================================
-   TICKET INDICATORS - Clean 3-dot style matching Figma exactly
-   ============================================================================= */
+     TICKET INDICATORS - Clean 3-dot style matching Figma exactly
+     ============================================================================= */
 
 .authorize-tickets-indicators {
   display: flex;
@@ -129,7 +129,7 @@
 
 .authorize-tickets-indicator {
   all: unset;
-  display: inline-block;
+  display: none;
   flex: 0 0 auto;
   width: 6px;
   height: 6px;
@@ -144,7 +144,7 @@
   margin: 0;
   -webkit-appearance: none;
   appearance: none;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+
 }
 
 .authorize-tickets-indicator.active {
@@ -154,24 +154,24 @@
 }
 
 @media (max-width: 375px) {
-  .authorize-tickets-indicator { 
-    width: 5px; 
-    height: 5px; 
-    border-width: 1.2px; 
+  .authorize-tickets-indicator {
+    width: 5px;
+    height: 5px;
+    border-width: 1.2px;
   }
 }
 
 @media (max-width: 320px) {
-  .authorize-tickets-indicator { 
-    width: 4px; 
-    height: 4px; 
-    border-width: 1px; 
+  .authorize-tickets-indicator {
+    width: 4px;
+    height: 4px;
+    border-width: 1px;
   }
 }
 
 /* =============================================================================
-   ERROR AND STATUS MESSAGES - Match theme colors
-   ============================================================================= */
+     ERROR AND STATUS MESSAGES - Match theme colors
+     ============================================================================= */
 
 .authorize-tickets-error {
   width: 100%;
@@ -199,8 +199,8 @@
 }
 
 /* =============================================================================
-   SINGLE TICKET HANDLING
-   ============================================================================= */
+     SINGLE TICKET HANDLING
+     ============================================================================= */
 
 .authorize-tickets-mobile-view.single-ticket {
   justify-content: center;
@@ -208,7 +208,8 @@
   gap: var(--spacing-xs);
 }
 
-.authorize-tickets-mobile-view.single-ticket .authorize-tickets-mobile-container {
+.authorize-tickets-mobile-view.single-ticket
+  .authorize-tickets-mobile-container {
   margin-left: 0 !important;
   margin-bottom: 0;
 }
@@ -218,8 +219,8 @@
 }
 
 /* =============================================================================
-   SHARE DIALOG - Match theme styling
-   ============================================================================= */
+     SHARE DIALOG - Match theme styling
+     ============================================================================= */
 
 .authorize-tickets-share-dialog {
   display: flex;
@@ -258,8 +259,8 @@
 }
 
 /* =============================================================================
-   RESPONSIVE DESIGN - Consistent with other pages
-   ============================================================================= */
+     RESPONSIVE DESIGN - Consistent with other pages
+     ============================================================================= */
 
 /* Large Desktop (≥1440px) */
 @media (min-width: 1440px) {
@@ -277,7 +278,7 @@
   }
 
   .authorize-tickets-desktop-view {
-    gap: var(--spacing-lg);
+    /* gap: var(--spacing-lg); */
   }
 }
 
@@ -368,8 +369,8 @@
 }
 
 /* =============================================================================
-   SAFE AREA HANDLING FOR MOBILE DEVICES
-   ============================================================================= */
+     SAFE AREA HANDLING FOR MOBILE DEVICES
+     ============================================================================= */
 
 @supports (padding: max(0px)) {
   @media (max-width: 480px) {
@@ -388,8 +389,8 @@
 }
 
 /* =============================================================================
-   ACCESSIBILITY & PERFORMANCE - Using Global Standards
-   ============================================================================= */
+     ACCESSIBILITY & PERFORMANCE - Using Global Standards
+     ============================================================================= */
 
 .authorize-tickets-page-container {
   scroll-behavior: smooth;
@@ -418,7 +419,7 @@
   .authorize-tickets-page-container {
     scroll-behavior: auto;
   }
-  
+
   .authorize-tickets-mobile-container,
   .authorize-tickets-indicator,
   .authorize-tickets-share-option,
@@ -461,4 +462,347 @@
 .authorize-tickets-layout > * {
   align-self: flex-start !important;
   margin-top: 0 !important;
+}
+
+/* ============================================================================
+   AUTHORIZE TICKETS — TABLET (768px–1023px) HORIZONTAL SCROLL
+   - One horizontal row, swipe/scrollable
+   - Mobile view stays hidden on tablet
+   ============================================================================ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Turn the desktop list into a horizontal scroller */
+  .authorize-tickets-desktop-view {
+    display: flex !important;
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--spacing-md);
+    flex-wrap: nowrap; /* single row */
+    overflow-x: auto; /* horizontal scroll */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; /* snap is optional but feels great */
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  /* Each ticket/card acts like a slide */
+  .authorize-tickets-desktop-view > * {
+    flex: 0 0 auto; /* don't shrink */
+    scroll-snap-align: start; /* snap start */
+    margin: 0; /* avoid extra gaps */
+  }
+
+  /* Hide the mobile carousel on tablet */
+  .authorize-tickets-mobile-view {
+    display: none !important;
+  }
+}
+
+/* ============================================================================
+     AUTHORIZE TICKETS — DESKTOP (≥1024px)
+     - Show all tickets at once, no horizontal scroll
+     ============================================================================ */
+@media (min-width: 1024px) {
+  .authorize-tickets-desktop-view {
+    display: flex !important;
+    flex-wrap: wrap; /* grid-like wrap */
+    /* gap: var(--spacing-2xl); */
+    overflow: visible; /* no scrollbars on desktop */
+    scroll-snap-type: none;
+    padding-bottom: 0;
+  }
+
+  .authorize-tickets-desktop-view > * {
+    flex: 0 1 auto; /* allow wrapping layout */
+    scroll-snap-align: unset;
+  }
+
+  /* Desktop never uses the mobile view */
+  .authorize-tickets-mobile-view {
+    display: none !important;
+  }
+}
+
+/* ============================================================================
+     AUTHORIZE TICKETS — SMALL MOBILE SAFETY (≤480px)
+     - Keep your existing mobile behavior, just ensure no conflict with tablet/desktop
+     ============================================================================ */
+@media (max-width: 480px) {
+  .authorize-tickets-desktop-view {
+    display: none !important; /* rely on your mobile view */
+  }
+  .authorize-tickets-mobile-view {
+    display: flex !important;
+  }
+}
+
+/* ============================================================================
+     OPTIONAL: Subtle horizontal scrollbar styling on tablet only
+     ============================================================================ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .authorize-tickets-desktop-view::-webkit-scrollbar {
+    height: 8px;
+  }
+  .authorize-tickets-desktop-view::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .authorize-tickets-desktop-view::-webkit-scrollbar-thumb {
+    background: rgba(159, 255, 130, 0.35);
+    border-radius: 4px;
+  }
+  .authorize-tickets-desktop-view::-webkit-scrollbar-thumb:hover {
+    background: rgba(159, 255, 130, 0.55);
+  }
+}
+/* ============================================================================
+   AUTHORIZE TICKETS — EXTRA MOBILE & TABLET SPACING
+   ============================================================================ */
+
+/* Mobile (≤768px): add margin-top 5vh */
+@media (max-width: 768px) {
+  .authorize-tickets-page-container {
+    margin-top: 5vh;
+  }
+  .authorize-tickets-mobile-view {
+    margin-top: 5vh;
+  }
+}
+
+/* Tablet (769px–1023px): add margin-top 5vh */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .authorize-tickets-page-container {
+    margin-top: 5vh;
+  }
+  .authorize-tickets-desktop-view {
+    margin-top: 5vh;
+  }
+}
+
+/* ================== AUTHORIZE TICKETS — VIEW SWITCH ================== */
+/* Desktop-first defaults (already desktop is flex) */
+.authorize-tickets-desktop-view {
+  display: flex;
+}
+.authorize-tickets-mobile-view {
+  display: none;
+}
+
+/* ≤ 768px — MOBILE ONLY */
+@media (max-width: 768px) {
+  .authorize-tickets-desktop-view {
+    display: none !important;
+  }
+  .authorize-tickets-mobile-view {
+    display: flex !important;
+  }
+}
+
+/* 769–1023px — TABLET uses horizontal strip (desktop-view), hide mobile */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .authorize-tickets-desktop-view {
+    display: flex !important;
+  } /* your scroll strip */
+  .authorize-tickets-mobile-view {
+    display: none !important;
+  }
+}
+
+/* ≥ 1024px — DESKTOP grid, hide mobile */
+@media (min-width: 1024px) {
+  .authorize-tickets-desktop-view {
+    display: contents !important;
+  }
+  .authorize-tickets-mobile-view {
+    display: none !important;
+  }
+}
+
+/* ============================================================================
+   AUTHORIZE TICKETS — SCALE TICKETS SMALLER
+   ============================================================================ */
+
+/* Desktop ≥1024px: slightly smaller cards */
+@media (min-width: 1024px) {
+  .authorize-tickets-desktop-view > * {
+    transform: scale(0.9);
+    transform-origin: top center;
+    margin-top: 2vh; /* optional breathing room */
+  }
+}
+
+/* Tablet 769–1023px: shrink more, since horizontal scroll */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .authorize-tickets-desktop-view > * {
+    transform: scale(0.85);
+    transform-origin: top center;
+    margin-inline: 8px; /* tighter strip */
+    margin-top: 2vh;
+  }
+}
+
+/* Mobile ≤768px: shrink stacked cards a bit */
+@media (max-width: 768px) {
+  .authorize-tickets-mobile-container > * {
+    transform: scale(0.5);
+    transform-origin: top center;
+    margin-top: 2vh;
+  }
+  .authorize-tickets-page-container {
+    margin-top: 10vh;
+  }
+}
+
+/* ================== AUTHORIZE TICKETS — SMALLER CARDS ON SMALL SCREENS ================== */
+
+/* Mobile: ≤ 480px — visibly smaller but centered, no overflow */
+@media (max-width: 480px) {
+  .authorize-tickets-desktop-view {
+    display: none !important;
+  }
+  .authorize-tickets-mobile-view {
+    display: flex !important;
+  }
+
+  /* Make the card itself smaller using real width, not transform */
+  .authorize-tickets-mobile-container {
+    justify-content: center;
+    overflow: visible; /* avoid clipping shadows/corners */
+  }
+
+  /* Direct child is the ticket card component */
+  .authorize-tickets-mobile-container > * {
+    width: clamp(240px, 86vw, 340px); /* smaller than viewport, responsive */
+    max-width: 100%;
+    margin: 0 auto;
+    transform: none !important; /* kill earlier scale(0.5) */
+  }
+}
+
+/* Mobile+Phablet: 481–768px — a bit larger than phones, still reduced */
+@media (min-width: 481px) and (max-width: 768px) {
+  .authorize-tickets-desktop-view {
+    display: none !important;
+  }
+  .authorize-tickets-mobile-view {
+    display: flex !important;
+  }
+
+  .authorize-tickets-mobile-container {
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .authorize-tickets-mobile-container > * {
+    width: clamp(280px, 82vw, 400px); /* compact but comfy */
+    max-width: 100%;
+    margin: 0 auto;
+    transform: none !important;
+  }
+}
+
+/* Tablet: 769–1023px — horizontal strip stays, make each card a touch smaller */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .authorize-tickets-desktop-view {
+    /* gap: clamp(10px, 2vw, 20px); */
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .authorize-tickets-desktop-view > * {
+    flex: 0 0 auto;
+    width: clamp(280px, 38vw, 360px); /* smaller cards in the strip */
+    max-width: 100%;
+    transform: none !important; /* avoid transform-based spacing bugs */
+  }
+}
+@media (min-width: 769px) and (max-width: 1023px) {
+  .authorize-tickets-desktop-view {
+    display: flex !important;
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--spacing-md);
+    flex-wrap: nowrap;              /* single row */
+    overflow-x: auto;               /* horizontal scroll */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  /* Exactly 3 cards visible in the viewport */
+  .authorize-tickets-desktop-view > * {
+    flex: 0 0 calc((100% - (2 * var(--spacing-md))) / 3);
+    max-width: calc((100% - (2 * var(--spacing-md))) / 3);
+    scroll-snap-align: start;
+    margin: 0;
+    transform: none !important;
+  }
+}
+/* MOBILE SLIDER — smooth, obvious swipe */
+.authorize-tickets-mobile-container {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y; /* keep page scroll vertical */
+}
+
+.authorize-tickets-track {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+  transform: translateX(0%); /* updated via inline style */
+}
+
+.authorize-tickets-track.animating {
+  transition: transform 320ms ease;
+}
+
+/* while dragging, kill transitions to follow finger precisely */
+.authorize-tickets-mobile-container.swiping .authorize-tickets-track {
+  transition: none;
+}
+
+.ticket-slide {
+  flex: 0 0 100%;   /* one full-width slide at a time */
+  max-width: 100%;
+}
+
+/* edge gradients: subtle hint that more content exists */
+.slider-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+}
+
+.slider-edge.left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(11,31,23,0.9), rgba(11,31,23,0));
+}
+
+.slider-edge.right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(11,31,23,0.9), rgba(11,31,23,0));
+}
+
+/* tighten on tiny phones */
+@media (max-width: 375px) {
+  .slider-edge { width: 26px; }
+}
+
+@media (max-width: 475px) {
+  .ticket-card { border: none !important; }
+}
+@media (max-width: 475px) {
+  .ticket-card { border: none !important; }
+}
+
+.authorize-tickets-counter{
+  margin-bottom: 3px;
+}
+@media (max-width: 475px) {
+    .authorize-tickets-page-container {
+        margin-top: 5vh !important;
+    }
 }

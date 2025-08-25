@@ -6,18 +6,20 @@
 /* --------------------------- Zone theme variables --------------------------- */
 /* Zone Z (purple header, yellow/green accents) - Uses "blue" class in TSX */
 .queue-loader.blue {
-  --theme-color: var(--yo-light-green);        /* Green accent color */
-  --theme-accent: var(--yo-purple);            /* Purple for "Queue Status" and subtitle */
-  --theme-title: var(--yo-purple);             /* Purple for "Queue Status" title */
+  --theme-color: var(--yo-light-green); /* Green accent color */
+  --theme-accent: var(--yo-purple); /* Purple for "Queue Status" and subtitle */
+  --theme-title: var(--yo-purple); /* Purple for "Queue Status" title */
   --theme-description-bg: var(--yo-light-green); /* Green background strip */
 }
 
 /* Zone A (blue header, rose accents) - Uses "green" class in TSX */
 .queue-loader.green {
-  --theme-color: var(--yo-blue);               /* Blue accent color */
-  --theme-accent: var(--yo-dark-rose);         /* Rose for "Queue Status" and subtitle */
-  --theme-title: var(--yo-dark-rose);          /* Rose for "Queue Status" title */
-  --theme-description-bg: var(--yo-blue);      /* Blue background strip */
+  --theme-color: var(--yo-blue); /* Blue accent color */
+  --theme-accent: var(
+    --yo-dark-rose
+  ); /* Rose for "Queue Status" and subtitle */
+  --theme-title: var(--yo-dark-rose); /* Rose for "Queue Status" title */
+  --theme-description-bg: var(--yo-blue); /* Blue background strip */
 }
 
 /* ------------------------------- Card wrapper ------------------------------ */
@@ -44,7 +46,7 @@
 }
 
 .queue-title {
-  font-family: "Jersey 25";
+  font-family: 'Jersey 25';
   font-size: clamp(32px, 5vw, 48px);
   line-height: 1;
   letter-spacing: 2px;
@@ -56,7 +58,7 @@
 }
 
 .queue-subtitle {
-  font-family: "Jersey 25";
+  font-family: 'Jersey 25';
   font-size: clamp(16px, 2.5vw, 24px);
   line-height: 1;
   letter-spacing: 1.5px;
@@ -68,7 +70,7 @@
 }
 
 .queue-description {
-  font-family: "Jersey 25";
+  font-family: 'Jersey 25';
   font-size: clamp(16px, 2vw, 20px);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -91,7 +93,7 @@
 }
 
 .queue-status-title {
-  font-family: "Jersey 25";
+  font-family: 'Jersey 25';
   font-size: clamp(28px, 4vw, 40px);
   color: var(--theme-title);
   line-height: 1.2;
@@ -118,7 +120,7 @@
 
 /* Zone Z - Total Seats color override */
 .queue-loader.blue .queue-total-seats {
-  color: #8666D5;
+  color: #8666d5;
 }
 
 .queue-checking-position {
@@ -135,7 +137,7 @@
 
 /* Zone Z - Checking Position color override */
 .queue-loader.blue .queue-checking-position {
-  color: #CFDF82;
+  color: #cfdf82;
 }
 
 .queue-arrow {
@@ -150,13 +152,19 @@
 
 /* Zone Z - Arrow color override */
 .queue-loader.blue .queue-arrow {
-  border-right: 2px solid #CFDF82;
-  border-bottom: 2px solid #CFDF82;
+  border-right: 2px solid #cfdf82;
+  border-bottom: 2px solid #cfdf82;
 }
 
 @keyframes queue-blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 /* ---------------------------- Depth rows with dashes ---------------------------- */
@@ -291,7 +299,6 @@
 .queue-button .label {
   font-family: var(--font-primary);
   letter-spacing: 1px;
-
 }
 
 /* -------------------------------- Responsive ------------------------------- */

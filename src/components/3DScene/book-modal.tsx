@@ -53,12 +53,25 @@ const BookModal: React.FC<BookModalProps> = ({
     // Initial loading effect
     useEffect(() => {
         if (openBook) {
+            // Disable interactions when modal opens
+            window.dispatchEvent(new CustomEvent('disableRaycasting'));
+            window.dispatchEvent(new CustomEvent('disableInteractions'));
+            
             sessionStorage.setItem('anImageModalIsOPened', JSON.stringify(true));
             setIsLoading(true);
             const timer = setTimeout(() => {
                 setIsLoading(false);
             }, 1000);
-            return () => clearTimeout(timer);
+            return () => {
+                clearTimeout(timer);
+                // Re-enable interactions when modal closes
+                setTimeout(() => {
+                    if (document.pointerLockElement) {
+                        window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                        window.dispatchEvent(new CustomEvent('enableInteractions'));
+                    }
+                }, 2000);
+            };
         }
     }, [openBook]);
 
@@ -159,16 +172,17 @@ const BookModal: React.FC<BookModalProps> = ({
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === 'q' || event.key === 'Q') {
+                // Disable interactions first
+                window.dispatchEvent(new CustomEvent('disableRaycasting'));
+                window.dispatchEvent(new CustomEvent('disableInteractions'));
+                
                 onBookInspectionClose();
+                
                 // moving back - player
                 const moveBackEvent = new CustomEvent('movePlayerBack', {
                     detail: { distance: 2 }
                 });
                 window.dispatchEvent(moveBackEvent);
-
-                // turning the player
-                // const turnEvent = new CustomEvent('turnPlayerAround', { detail: { angle: 270 } });
-                // window.dispatchEvent(turnEvent);
 
                 sessionStorage.setItem('anImageModalIsOPened', JSON.stringify(false));
                 sessionStorage.setItem('bookName', JSON.stringify("n/a"));
@@ -176,6 +190,14 @@ const BookModal: React.FC<BookModalProps> = ({
                 sessionStorage.setItem('isbnNumber', JSON.stringify("n/a"));
                 sessionStorage.setItem('overview', JSON.stringify("n/a"));
                 sessionStorage.setItem('author', JSON.stringify("n/a"));
+
+                // Re-enable interactions after a delay
+                setTimeout(() => {
+                    if (document.pointerLockElement) {
+                        window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                        window.dispatchEvent(new CustomEvent('enableInteractions'));
+                    }
+                }, 2000);
             }
         };
 
@@ -553,14 +575,29 @@ const BookModal: React.FC<BookModalProps> = ({
                 </Box>
 
                 <Box className="modal-action-trigger"
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevent click from reaching through
+                        
+                        // Disable interactions first
+                        window.dispatchEvent(new CustomEvent('disableRaycasting'));
+                        window.dispatchEvent(new CustomEvent('disableInteractions'));
+                        
                         onBookInspectionClose();
+                        
                         sessionStorage.setItem('anImageModalIsOPened', JSON.stringify(false));
                         sessionStorage.setItem('bookName', JSON.stringify("n/a"));
                         sessionStorage.setItem('assetFileName', JSON.stringify("n/a"));
                         sessionStorage.setItem('isbnNumber', JSON.stringify("n/a"));
                         sessionStorage.setItem('overview', JSON.stringify("n/a"));
                         sessionStorage.setItem('author', JSON.stringify("n/a"));
+
+                        // Re-enable interactions after a delay
+                        setTimeout(() => {
+                            if (document.pointerLockElement) {
+                                window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                                window.dispatchEvent(new CustomEvent('enableInteractions'));
+                            }
+                        }, 2000);
                     }}
                     sx={{
                         position: 'absolute',

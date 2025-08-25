@@ -1,31 +1,31 @@
 .share-dialog {
-    width: 500px;
-    height: 350px;
+  width: 500px;
+  height: 350px;
 }
 
 @media (max-width: 768px) {
-    .share-dialog {
-        width: auto;
-        height: auto;
-    }
+  .share-dialog {
+    width: auto;
+    height: auto;
+  }
 }
 .share-dialog .title {
-    width: 100%;
-    font-family: 'Jersey 25', sans-serif;
-    font-size: clamp(20px, 3vw, 30px);
-    color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  font-family: 'Jersey 25', sans-serif;
+  font-size: clamp(20px, 3vw, 30px);
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.share-dialog .share-option{
-    gap:20px;
-    width: 100%;
-    padding:20px;
-    color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.share-dialog .share-option {
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

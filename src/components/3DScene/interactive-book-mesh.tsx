@@ -3,9 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 // r3f
 import * as THREE from 'three';
 import { useThree, useFrame } from "@react-three/fiber";
+import {InteractiveBookMeshProps} from "../../interfaces/props";
 
 // props
-import { InteractiveBookMeshProps } from "../../interfaces/props";
+
 
 const InteractiveBookMesh: React.FC<InteractiveBookMeshProps> = ({
     position,
@@ -27,6 +28,19 @@ const InteractiveBookMesh: React.FC<InteractiveBookMeshProps> = ({
     const [raycastEnabled, setRaycastEnabled] = useState(true);
 
     useEffect(() => {
+        const handleInteractionState = (event: Event) => {
+            if (event.type === 'disableInteractions') {
+                setRaycastEnabled(false);
+            } else if (event.type === 'enableInteractions') {
+                const pointerLockActive = document.pointerLockElement !== null;
+                if (pointerLockActive) {
+                    setTimeout(() => {
+                        setRaycastEnabled(true);
+                    }, 1000);
+                }
+            }
+        };
+
         const checkPointerLock = () => {
             const pointerLockActive = document.pointerLockElement !== null;
             const exploreText = document.getElementById('explore-note');
@@ -42,9 +56,16 @@ const InteractiveBookMesh: React.FC<InteractiveBookMeshProps> = ({
                 setRaycastEnabled(false);
             }
         };
+
+        window.addEventListener('disableInteractions', handleInteractionState);
+        window.addEventListener('enableInteractions', handleInteractionState);
         document.addEventListener('pointerlockchange', checkPointerLock);
+
         checkPointerLock();
+
         return () => {
+            window.removeEventListener('disableInteractions', handleInteractionState);
+            window.removeEventListener('enableInteractions', handleInteractionState);
             document.removeEventListener('pointerlockchange', checkPointerLock);
         };
     }, []);
@@ -71,7 +92,15 @@ const InteractiveBookMesh: React.FC<InteractiveBookMeshProps> = ({
     // Only call onNearby when proximity changes
     const lastNearby = useRef(false);
     useFrame(() => {
-        if (!meshRef.current || !raycastEnabled) return;
+        if (!meshRef.current || !raycastEnabled) {
+            if (lastNearby.current) {
+                onNearby?.(false);
+                lastNearby.current = false;
+            }
+            document.body.style.cursor = 'default';
+            return;
+        }
+
         const isNearby = checkProximity();
         if (isNearby !== lastNearby.current) {
             onNearby?.(isNearby);
@@ -84,12 +113,18 @@ const InteractiveBookMesh: React.FC<InteractiveBookMeshProps> = ({
     useEffect(() => {
         const handleClick = () => {
             if (!raycastEnabled) return;
+
             if (checkInteraction()) {
+                // Disable interactions immediately
+                window.dispatchEvent(new CustomEvent('disableInteractions'));
+
+                // Set modal data
                 sessionStorage.setItem('bookName', JSON.stringify(bookName));
                 sessionStorage.setItem('assetFileName', JSON.stringify(assetFileName));
                 sessionStorage.setItem('isbnNumber', JSON.stringify(isbnNumber));
                 sessionStorage.setItem('overview', JSON.stringify(overview));
                 sessionStorage.setItem('author', JSON.stringify(author));
+
                 setOpenBook(true);
             }
         };

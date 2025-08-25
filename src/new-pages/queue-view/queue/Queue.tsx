@@ -2,9 +2,9 @@ import "./Queue.css";
 import React, {FC, useEffect, useState} from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useLogin} from "../../../context/login.context";
-import {CHECK_REQUEST_QUEUE, QUEUE_SUBSCRIPTION, REMOVE_USER_QUEUE,} from "../../../graphql/queries";
+import {CHECK_REQUEST_QUEUE, FETCH_ZONE_CONFIG, QUEUE_SUBSCRIPTION, REMOVE_USER_QUEUE,} from "../../../graphql/queries";
 import {useLazyQuery, useMutation, useSubscription} from "@apollo/client";
-import {IAPIResponse, IEnqueue, IQueueStatus,} from "../../../interfaces/data.interfaces";
+import {IAPIResponse, IEnqueue, IQueueStatus, IZone,} from "../../../interfaces/data.interfaces";
 import Alert from "../../../components/retro/Alert/Alert";
 import {useWebSocketConnection} from "../../../graphql/WebSocketConnectionHook";
 import {useAppContext} from "../../../context/app.context";
@@ -21,6 +21,7 @@ const Queue: FC = () => {
   const search = location.search;
   const navigate = useNavigate();
   const { user } = useLogin();
+  const [zone, setZone] = useState<IZone>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [enqueue, { error: enqueueError, loading: enqueueLoading }] =
       useLazyQuery(CHECK_REQUEST_QUEUE, { fetchPolicy: "network-only" });
@@ -37,6 +38,30 @@ const Queue: FC = () => {
     skip: !queueRequest,
   });
   const [activeCount, setActiveCount] = useState(0);
+
+  const [
+    loadZoneConfig,
+    { loading: loadingZone, data: zoneConfig, error: zoneConfigError },
+  ] = useLazyQuery(FETCH_ZONE_CONFIG, {
+    fetchPolicy: "network-only",
+  });
+
+
+  useEffect(() => {
+    loadZoneConfig({
+      variables: { eventId, zoneId },
+      onCompleted: (res) => {
+        const response = res?.getZoneConfig as IAPIResponse;
+        if (response.code === "CODE-700") {
+          setZone(response.data);
+        } else if (response?.code === "CODE-701") {
+        }
+      },
+      onError: (error) => {
+
+      },
+    });
+  }, []);
 
   const isDesktop = () => {
     const userAgent = navigator.userAgent;
@@ -168,7 +193,7 @@ const Queue: FC = () => {
   const handleNavigation = () => {
     if (!isDesktop()) {
       appContext.showSuccessDialog(
-          "REQUIRED!!!",
+          "REQUIRED!",
           "For the complete Yogeshwari experience, switch to desktop view.\n" +
           "Some missions can only be unlocked on a larger screen."
       );
@@ -214,9 +239,9 @@ const Queue: FC = () => {
                 <div className="queue-status-title">Queue Status</div>
 
                 <div className="queue-info">
-                  <div className="queue-total-seats">
-                    Total Seats: 4000
-                  </div>
+                  {/*<div className="queue-total-seats">*/}
+                  {/*  Total Seats: {zone?.maxTicket ?? 0}*/}
+                  {/*</div>*/}
                   <div className="queue-checking-position">
                     <span className="queue-arrow"></span>
                     Checking Queue Position....

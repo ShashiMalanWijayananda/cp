@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, {FC} from "react";
 import GlobalFooter from "../../components/GlobalFooter/GlobalFooter";
 import "./Terms.css";
 
@@ -173,7 +173,7 @@ const Terms: FC = () => {
                       </li>
                       <li>
                         For support or shuttle coordination, contact our hotline:<br/>
-                        <strong>+94 70 621 8825</strong>
+                        <a href="tel:+94706218825"><strong>+94 70 621 8825</strong></a>
                       </li>
                       <li>Thank You for Being a Part of Yogeshwari Concert</li>
                       <li>Let's create a respectful, immersive, and unforgettable live musical experience.</li>

@@ -14,13 +14,20 @@
 .sys-menu-layout {
   width: 100%;
   max-width: 1000px;
-  margin: -50px auto 0 auto; /* pull content up more */
+  margin: 15px auto 0 auto; /* pull content up more */
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  min-height: 80vh;
+  min-height: 70vh;
   padding: var(--spacing-lg);
+}
+
+@media (min-width: 1024px) {
+  .sys-menu-layout {
+    margin: -1% auto 0 auto;
+    min-height: 60vh;
+  }
 }
 
 /* =============================================================================
@@ -432,10 +439,29 @@
   outline: 2px solid var(--yo-green);
   outline-offset: 2px;
 }
+
 /* Force 2-column grid again once we reach 320px width */
 @media (min-width: 320px) and (max-width: 480px) {
   .sys-menu-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 6px !important;
+  }
+}
+
+/* Mobile: nudge closer to logo, tighter spacing */
+@media (max-width: 768px) {
+  .sys-menu-mobile-logout {
+    top: 97px;
+    right: 15px;
+    left: auto;
+  }
+}
+
+/* Small phones: adjust again so it doesn’t overlap logo */
+@media (max-width: 480px) {
+  .sys-menu-mobile-logout {
+    top: 80px;
+    right: 0px;
+    left: auto;
   }
 }

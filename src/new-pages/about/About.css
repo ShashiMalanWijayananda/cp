@@ -1,6 +1,3 @@
-
-
-
 /* =============================================================================
    ABOUT PAGE - EXACT FIGMA MATCH THEME
    Consistent with Terms/Protocol and Contact page styling
@@ -14,17 +11,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .about-page-heading h1 {
   font-weight: bold;
-  /* font-family: var(--font-primary); VT323 or Jersey 25 */
   font-size: var(--text-3xl);
   color: var(--yo-blue, #8bd1e5);
-  margin: 0;
+  margin: 7vh 0 0 0;
   letter-spacing: 2px;
-  /* Changed from uppercase to lowercase */
 }
 
 /* Page container */
@@ -51,7 +45,6 @@
   align-items: stretch; /* stretch both columns to equal row height */
 }
 
-
 /* =========================
    TEXT SIDE - Match Terms/Contact styling exactly
    ========================= */
@@ -62,12 +55,8 @@
   border-radius: 0; /* REMOVED - Sharp rectangular corners like Figma */
   overflow: hidden;
   background: transparent;
-  transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
-}
-
-.about-text-section:hover {
-  background: rgba(159,255,130,0.05);
-  box-shadow: 0 0 10px rgba(159,255,130,0.1);
+  transition: box-shadow var(--transition-normal),
+    background-color var(--transition-normal);
 }
 
 /* Header bar - Same styling as Terms/Contact section titles */
@@ -84,7 +73,8 @@
   line-height: 1.2;
   border: none; /* Remove individual border since parent has it */
 
-  text-transform: uppercase;}
+  text-transform: uppercase;
+}
 
 .about-section-header h2 {
   margin: 0;
@@ -95,7 +85,8 @@
   font-family: var(--font-primary);
   font-size: var(--text-xl);
 
-  text-transform: uppercase;}
+  text-transform: uppercase;
+}
 
 /* Text content - Same styling as Terms/Contact content areas */
 .about-text-content {
@@ -127,7 +118,7 @@
    ========================= */
 .about-image-section {
   display: flex;
-  align-items: stretch;   /* fill row height on desktop */
+  align-items: stretch; /* fill row height on desktop */
   justify-content: center;
 }
 
@@ -137,17 +128,13 @@
   padding: 0;
   background: transparent;
   width: 100%;
-  height: 100%;           /* allows height-locking on desktop */
+  height: 100%; /* allows height-locking on desktop */
   display: flex;
   align-items: stretch;
   justify-content: center;
-  overflow: hidden;       /* crop left/right if needed on desktop */
-  transition: box-shadow var(--transition-normal), background-color var(--transition-normal);
-}
-
-.about-image-container:hover {
-  background: rgba(159,255,130,0.05);
-  box-shadow: 0 0 10px rgba(159,255,130,0.1);
+  overflow: hidden; /* crop left/right if needed on desktop */
+  transition: box-shadow var(--transition-normal),
+    background-color var(--transition-normal);
 }
 
 /* Default/mobile-first: width lock */
@@ -155,7 +142,7 @@
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;    /* full portrait on mobile */
+  object-fit: contain; /* full portrait on mobile */
   /* subtle mono/duotone to match the reference look */
   filter: sepia(1) saturate(0) brightness(0.88) contrast(1.05);
 }
@@ -260,7 +247,7 @@
     max-width: none;
   }
 
-  .about-text-section  {
+  .about-text-section {
     order: 2;
     width: 100%;
   }
@@ -292,11 +279,11 @@
   .about-image-container {
     width: 100% !important;
     max-width: none !important;
-    height: 100% !important;  /* equals text stack height */
+    height: 100% !important; /* equals text stack height */
   }
 
   .about-image-container img {
-    height: 100% !important;  /* lock to box height on desktop */
+    height: 100% !important; /* lock to box height on desktop */
     width: auto !important;
     object-fit: cover !important; /* fill vertically; crop L/R if needed */
   }
@@ -365,32 +352,270 @@
   }
 }
 
-
 /* === SAFE SPACING OVERRIDES • ABOUT === */
 
 .about-page-container {
   padding-top: calc(var(--app-header-h-mobile) + env(safe-area-inset-top, 0px));
-  padding-bottom: calc(var(--app-footer-h-mobile) + 28px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(
+    var(--app-footer-h-mobile) + 28px + env(safe-area-inset-bottom, 0px)
+  );
 }
 @media (min-width: 1024px) {
-
   .about-page-container {
-    padding-top: calc(var(--app-header-h-desktop) + env(safe-area-inset-top, 0px));
-    padding-bottom: calc(var(--app-footer-h) + 32px + env(safe-area-inset-bottom, 0px));
+    padding-top: calc(
+      var(--app-header-h-desktop) + env(safe-area-inset-top, 0px)
+    );
+    padding-bottom: calc(
+      var(--app-footer-h) + 32px + env(safe-area-inset-bottom, 0px)
+    );
   }
 }
-
 
 /* iOS legacy safe-area fallback */
 @supports not (padding: max(0px)) {
   .about-page-container {
     padding-top: calc(var(--app-header-h) + constant(safe-area-inset-top, 0px));
-    padding-bottom: calc(var(--app-footer-h) + 28px + constant(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(
+      var(--app-footer-h) + 28px + constant(safe-area-inset-bottom, 0px)
+    );
   }
   @media (min-width: 1024px) {
     .about-page-container {
-      padding-top: calc(var(--app-header-h) + constant(safe-area-inset-top, 0px));
-      padding-bottom: calc(var(--app-footer-h) + 32px + constant(safe-area-inset-bottom, 0px));
+      padding-top: calc(
+        var(--app-header-h) + constant(safe-area-inset-top, 0px)
+      );
+      padding-bottom: calc(
+        var(--app-footer-h) + 32px + constant(safe-area-inset-bottom, 0px)
+      );
     }
   }
+}
+
+/* ============================================================================
+   ABOUT PAGE — FINAL OVERRIDES
+   - Fix/normalize breakpoints
+   - Force centering
+   - Ensure ≥ 1vh left/right padding at all sizes
+   Place this block at the VERY END of the file.
+   ============================================================================ */
+
+/* Always keep the page centered and give side padding ≥ 1vh */
+.about-content-main,
+.about-content-wrapper {
+  margin: 0 auto !important;
+}
+
+.about-page-container {
+  /* Keep your existing top/bottom safe-area paddings.
+     This only enforces horizontal padding with a minimum of 1vh. */
+  padding-inline: max(1vh, var(--spacing-md, 16px)) !important;
+}
+
+/* Base grid defaults (desktop-first idea with sensible fallbacks) */
+.about-content-wrapper {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 420px !important;
+  gap: var(--spacing-2xl, 32px) !important;
+  align-items: stretch !important;
+}
+
+/* =========================
+   BREAKPOINTS (normalized)
+   0–374.98 • 375–424.98 • 425–760.98 • 761–1023.98 • 1024–1439.98 • 1440+
+   ========================= */
+
+/* ≤374.98px — stack, compact paddings */
+@media (max-width: 374.98px) {
+  .about-content-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .about-page-container {
+    padding-inline: max(1vh, 12px) !important;
+  }
+}
+
+/* 375–424.98px — stack */
+@media (min-width: 375px) and (max-width: 424.98px) {
+  .about-content-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .about-page-container {
+    padding-inline: max(1vh, 14px) !important;
+  }
+}
+
+/* 425–760.98px — stack, image first */
+@media (min-width: 425px) and (max-width: 760.98px) {
+  .about-content-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .about-page-container {
+    padding-inline: max(1vh, 18px) !important;
+  }
+  .about-image-section {
+    order: 1 !important;
+    width: 100% !important;
+  }
+  .about-text-section {
+    order: 2 !important;
+    width: 100% !important;
+  }
+  .about-image-container {
+    height: auto !important;
+  }
+  .about-image-container img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+}
+
+/* 761–1023.98px — two columns, slightly narrower image column for tablets */
+@media (min-width: 761px) and (max-width: 1023.98px) {
+  .about-content-wrapper {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 360px !important;
+    gap: var(--spacing-xl, 24px) !important;
+  }
+  .about-page-container {
+    padding-inline: max(1vh, var(--spacing-md, 16px)) !important;
+  }
+  .about-image-container {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .about-image-container img {
+    height: 100% !important;
+    width: auto !important;
+    object-fit: cover !important; /* fill vertically; crop sides */
+  }
+}
+
+/* 1024–1439.98px — default desktop */
+@media (min-width: 1024px) and (max-width: 1439.98px) {
+  .about-content-wrapper {
+    grid-template-columns: minmax(0, 1fr) 420px !important;
+    gap: var(--spacing-2xl, 32px) !important;
+  }
+  .about-page-container {
+    padding-inline: max(1vh, var(--spacing-lg, 24px)) !important;
+  }
+}
+
+/* ≥1440px — larger image column */
+@media (min-width: 1440px) {
+  .about-content-wrapper {
+    grid-template-columns: minmax(0, 1fr) 480px !important;
+    gap: clamp(28px, 2vw, 40px) !important;
+  }
+  .about-page-container {
+    padding-inline: max(1vh, var(--spacing-lg, 24px)) !important;
+  }
+}
+
+/* Ensure image side stretches with text on all ≥761px */
+@media (min-width: 761px) {
+  .about-image-section {
+    align-self: stretch !important;
+  }
+  .about-image-container {
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+  }
+  .about-image-container img {
+    height: 100% !important;
+    width: auto !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Hard-center heading area if needed */
+.about-page-heading,
+.about-page-heading h1 {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+/* ============================================================================
+   ABOUT — iPad / Tablet padding & layout fixes
+   Keeps consistent side gutters, breathing room for cards, heading spacing,
+   and prevents edge-hugging on 761–1024px.
+   ============================================================================ */
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  /* Ensure solid side gutters on tablet */
+  .about-page-container {
+    padding-inline: max(1.25vh, var(--spacing-lg, 24px)) !important;
+  }
+
+  /* Keep the content centered and nicely spaced */
+  .about-content-main {
+    margin: 0 auto !important;
+  }
+  .about-content-wrapper {
+    gap: clamp(20px, 3vw, 28px) !important;
+    grid-template-columns: minmax(0, 1fr) 360px !important; /* slightly narrower image col for iPad */
+  }
+
+  /* Card/panel breathing room on tablet */
+  .about-section-header {
+    padding: clamp(12px, 1.8vw, 16px) !important;
+  }
+  .about-text-content {
+    padding: clamp(18px, 2.5vw, 24px) !important;
+    max-width: none !important; /* avoid overly narrow text block on iPad */
+  }
+
+  /* Heading band: consistent vertical rhythm on tablet */
+  .about-page-heading {
+    height: auto !important;
+    margin: clamp(20px, 3.2vh, 36px) 0 !important; /* even top/bottom gap */
+    padding: 0 !important;
+  }
+  .about-page-heading h1 {
+    margin: 0 !important;
+    padding: 8px 0 !important;
+  }
+
+  /* Media shell: no accidental edge bleed */
+  .about-image-section {
+    align-self: stretch !important;
+  }
+  .about-image-container {
+    width: 100% !important;
+    height: 100% !important;
+    margin-inline: 0 !important; /* prevent side creep */
+  }
+  .about-image-container img {
+    height: 100% !important;
+    width: auto !important;
+    object-fit: cover !important; /* tasteful side crop on tablet when tall */
+  }
+}
+
+/* Global safety net: guarantee ≥ 1vh gutters at all sizes */
+.about-page-container {
+  padding-inline: max(1vh, var(--spacing-md, 16px)) !important;
+}
+
+/* Keep heading centered everywhere (in case of upstream styles) */
+.about-page-heading,
+.about-page-heading h1 {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
 }

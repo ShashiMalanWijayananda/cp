@@ -39,7 +39,7 @@ const Contact: FC = () => {
               <div className="contact-section">
                 <header className="contact-section-title" aria-label="section heading">Direct support coordination</header>
                 <div className="contact-section-content">
-                  <p><strong>Contact:</strong> +94 70 621 8825</p>
+                  <p><strong>Contact:</strong> <a href="tel:+94706218825">+94 70 621 8825</a></p>
                   <p><em>Available during operation hours and on event deployment days</em></p>
                   <p><strong>Protocol:</strong> SMS/WhatsApp preferred</p>
                   <p><strong>Use for:</strong> Critical support, technical issues, emergency coordination</p>
@@ -86,7 +86,7 @@ const Contact: FC = () => {
             <aside className="contact-image-section" aria-label="Support operations">
               <div className="contact-section">
                 <div className="section-title">Ticketing guide:</div>
-                <a href="https://drive.google.com/file/d/13p5boSXDeLnjkZ2kNnIq1oS1iac7ePNI/view?usp=sharing" target="_blank"><p className="pl-4 pt-4 pb-4">Download.</p></a>
+                <a href="https://drive.google.com/file/d/1YWru4nX8p4-pUZnLjJr6UlNLJiVYYw07/view?usp=sharing" target="_blank"><p className="pl-4 pt-4 pb-4">Download.</p></a>
               </div>
             </aside>
 

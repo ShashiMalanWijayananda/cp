@@ -1,47 +1,38 @@
 /* =============================================================================
-   REGISTRATION COMPONENT - ALIGNED WITH LOGIN GLOBAL DESIGN SYSTEM
-   Using global fonts, colors, spacing - only registration-specific styling
-   ============================================================================= */
+   REGISTRATION — CARD LAYOUT (Aligned with Login)
+   Smaller title, vertical form, compact Google sign-in, mobile logo visible,
+   extra bottom padding, smaller mobile register button
+   Uses Yogeshwari Global DS tokens (colors, spacing, typography)
+   ========================================================================== */
 
-/* =============================================================================
-   PAGE LAYOUT - Full Viewport Design with Scroll Support
-   ============================================================================= */
-
+/* ===== Page ===== */
 .registration-main-container {
   width: 100vw;
-  min-height: 100vh; /* Changed from height to min-height */
-  /* background-color: var(--yo-primary); */
+  height: 100vh;
   color: var(--yo-green);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow-x: hidden; /* Only hide horizontal overflow */
-  overflow-y: auto; /* Allow vertical scrolling */
+  overflow: hidden;
   padding: var(--spacing-xl);
   box-sizing: border-box;
   font-family: var(--font-primary);
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
-/* =============================================================================
-   DESKTOP LAYOUT - Two Column Design
-   ============================================================================= */
-
+/* ===== Card grid (two columns on desktop) ===== */
 .registration-content-area {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-md);
   width: 100%;
   max-width: 1000px;
-  min-height: 80vh; /* Changed from height to min-height */
-  max-height: none; /* Remove max-height restriction */
-  margin: auto; /* Center the content */
+  height: 80vh;
+  max-height: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-/* =============================================================================
-   LOGO SECTION - Left Column
-   ============================================================================= */
-
+/* ===== Left card (logo) ===== */
 .registration-logo-section {
   display: flex;
   flex-direction: column;
@@ -50,17 +41,15 @@
   border: 1px solid var(--yo-green);
   padding: var(--spacing-xl);
   background-color: transparent;
-  min-height: 400px; /* Ensure minimum height */
+  min-height: 400px; /* desktop default */
 }
-
 .registration-logo-container {
-  width: 220px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .registration-logo-container img {
   width: 100%;
   height: 100%;
@@ -69,165 +58,139 @@
   mix-blend-mode: screen;
 }
 
-/* =============================================================================
-   REGISTRATION FORM SECTION - Right Column
-   ============================================================================= */
-
+/* ===== Right card (form) ===== */
 .registration-form-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Back to center for better compactness */
+  justify-content: flex-start; /* heading at top */
   border: 1px solid var(--yo-green);
-  padding: var(--spacing-md); /* Reduced from xl to md */
+  padding: 8px 32px;            /* tight sides like Login override */
+  padding-top: 16px;             /* headroom so title never looks cropped */
+  padding-bottom: var(--spacing-xl); /* ensure bottom CTA ("I have an account") is visible */
   background-color: transparent;
-  min-height: 300px; /* Reduced from 400px */
-  overflow-y: auto; /* Allow internal scrolling if needed */
+  min-height: 300px;
+  overflow-y: auto;              /* scroll within the card */
+  box-sizing: border-box;
 }
-
 .registration-form-panel {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
-  max-width: 450px; /* Expanded from 350px to 450px */
-  gap: var(--spacing-sm); /* Reduced from md to sm */
-  padding: 0; /* Removed vertical padding for compactness */
+  max-width: none;               /* fill the card */
+  align-items: stretch;
+  gap: var(--spacing-sm);
+  padding: 0;
 }
 
 /* =============================================================================
-   REGISTRATION FORM ELEMENTS
-   ============================================================================= */
-
-/* Title */
+   TITLE — SMALLER + WRAPS (handles "REGISTER TO BOARDING PROCESS")
+   ========================================================================== */
 .registration-form-title {
   font-family: var(--font-secondary);
-  font-size: var(--text-xl); /* Reduced from 2xl to xl */
   color: var(--yo-green);
   text-align: center;
-  letter-spacing: 1px; /* Reduced from 2px */
-  margin: 0 0 var(--spacing-sm) 0; /* Reduced bottom margin */
   text-transform: uppercase;
-  line-height: 1;
-  white-space: nowrap;
+  letter-spacing: 1.5px;
+  line-height: 1.15;
+  white-space: normal;           /* allow wrapping */
+  overflow-wrap: anywhere;       /* break long phrases if needed */
+  word-break: break-word;
+  text-shadow: 0 0 4px rgba(0, 255, 0, 0.5), 0 0 8px rgba(0, 255, 0, 0.3),
+               0 0 12px rgba(0, 255, 0, 0.15);
+
+  /* SMALLER baseline than Login */
+  font-size: 1rem;               /* ~16px base */
+  margin: var(--spacing-xs) 0 var(--spacing-sm);
 }
 
-/* Google Registration Button Container */
-.registration-google-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: 0;
-}
+/* Progressive scale (still smaller than Login) */
+@media (min-width: 376px) { .registration-form-title { font-size: 1.125rem; } }
+@media (min-width: 481px) { .registration-form-title { font-size: 1.25rem; letter-spacing: 2px; } }
+@media (min-width: 641px) { .registration-form-title { font-size: 1.375rem; } }
+@media (min-width: 769px) { .registration-form-title { font-size: 1.5rem;   letter-spacing: 2.5px; } }
+@media (min-width: 1025px){ .registration-form-title { font-size: 1.625rem; } }
+@media (min-width: 1201px){ .registration-form-title { font-size: 1.75rem;  letter-spacing: 3px; } }
+@media (min-width: 1366px){ .registration-form-title { font-size: 1.875rem; } }
+@media (min-width: 1440px){ .registration-form-title { font-size: 2rem;     letter-spacing: 3.25px; } }
+@media (min-width: 1601px){ .registration-form-title { font-size: 2.125rem; } }
 
-/* Divider - Uses global form divider pattern */
-.registration-form-divider {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: var(--spacing-sm) 0; /* Reduced from md to sm */
-  color: var(--yo-green);
-  font-family: var(--font-primary);
-  font-size: var(--text-sm); /* Reduced from base to sm */
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  width: 100%;
+/* Landscape phones: compact */
+@media (max-width: 768px) and (orientation: landscape) {
+  .registration-form-title { font-size: 1rem; margin-bottom: var(--spacing-xs); }
 }
-
-.registration-form-divider::before,
-.registration-form-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--yo-green);
-  margin: 0 var(--spacing-md);
+/* HiDPI shadow refinement */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .registration-form-title {
+    text-shadow: 0 0 2px rgba(0, 255, 0, 0.6), 0 0 6px rgba(0, 255, 0, 0.4),
+                 0 0 10px rgba(0, 255, 0, 0.2);
+  }
+}
+/* Reduced motion / Print */
+@media (prefers-reduced-motion: reduce) { .registration-form-title { text-shadow: none; } }
+@media print {
+  .registration-form-title {
+    font-size: 1.25rem;
+    color: black;
+    text-shadow: none;
+    letter-spacing: 1px;
+  }
 }
 
 /* =============================================================================
-   GLOBAL FORM SYSTEM OVERRIDE FOR REGISTRATION - HORIZONTAL LABELS
-   Enhanced specificity to prevent external CSS interference
-   ============================================================================= */
+   FORM — VERTICAL LAYOUT (prevents label/input overlap)
+   ========================================================================== */
 
-/* Override global form group to use horizontal layout for registration */
-.registration-main-container .registration-form-section .registration-form .form-group {
-  display: flex;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: var(--spacing-sm) !important; /* Reduced from md to sm */
-  margin-bottom: var(--spacing-sm) !important; /* Reduced from md to sm */
-  width: 100% !important;
-}
-
-.registration-main-container .registration-form-section .registration-form .form-group label {
-  font-family: var(--font-primary) !important;
-  font-size: var(--text-base) !important; /* Reduced from xl to base */
-  color: var(--yo-green) !important;
-  font-weight: normal !important;
-  letter-spacing: 1px !important;
-  margin: 0 !important;
-  white-space: nowrap !important;
-  /* min-width: 100px !important; Reduced from 120px */
-  flex-shrink: 0 !important;
-  text-align: left !important;
-}
-
-.registration-main-container .registration-form-section .registration-form .form-group .input-wrapper {
-  flex: 1 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  display: flex !important;
-  justify-content: flex-end !important; /* Align input to the right */
-}
-
-.registration-main-container .registration-form-section .registration-form .form-group .input-wrapper input {
-  width: 100% !important;
-  box-sizing: border-box !important;
-  flex: 1 !important;
-  max-width: 250px !important; /* Added max-width to limit input length */
-}
-
-/* Additional override for any potential conflicting styles */
-.registration-main-container .registration-form .form-group {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-}
-
-.registration-main-container .registration-form .form-group label {
-  /* min-width: 100px !important; Reduced from 120px */
-  flex-shrink: 0 !important;
-  width: auto !important;
-  max-width: 100px !important; /* Reduced from 120px */
-}
-
-.registration-main-container .registration-form .form-group .input-wrapper {
-  flex: 1 !important;
-  min-width: 0 !important;
-  display: flex !important;
-  justify-content: flex-end !important; /* Align input to the right */
-}
-
-.registration-main-container .registration-form .form-group .input-wrapper input {
-  width: 100% !important;
-  min-width: 200px !important;
-  max-width: 250px !important; /* Added max-width to limit input length */
-}
-
-/* Form Container */
-.registration-form-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
+.registration-form-container { width: 100%; display: flex; justify-content: center; }
 .registration-form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm); /* Reduced from md to sm */
+  gap: var(--spacing-sm);
 }
 
+/* Always vertical (desktop/tablet/mobile) */
+.registration-form .form-group {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: var(--spacing-2xs, 6px) !important;
+  margin: 0 0 var(--spacing-sm) 0 !important;
+}
+
+/* Labels: full-width, wrap cleanly; great for long ones like NIC/Passport */
+.registration-form .form-group label {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 0 6px 0 !important;
+  white-space: normal !important;
+  line-height: 1.25 !important;
+  text-align: left !important;
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--yo-green);
+  letter-spacing: 0.5px;
+}
+
+/* Inputs: stretch fully */
+.registration-form .form-group .input-wrapper { width: 100% !important; max-width: 100% !important; }
+.registration-form .form-group .input-wrapper input,
+.registration-form .form-group .input-wrapper select,
+.registration-form .form-group .input-wrapper textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* (Optional) If you want to explicitly tag certain long labels for extra control */
+.registration-form .form-group label.two-line-label {
+  line-height: 1.2 !important;
+  hyphens: auto;
+}
+
+/* Error text */
 .registration-error-message {
   width: 100%;
   display: flex;
@@ -239,18 +202,82 @@
   margin: var(--spacing-xs) 0;
 }
 
-/* Registration Button - Uses global button system */
+/* =============================================================================
+   GOOGLE SIGN-IN — COMPACT (like Login)
+   ========================================================================== */
+
+.registration-google-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;       /* keep compact like Login */
+  margin: 0 auto;
+  gap: var(--spacing-xs);
+}
+
+/* Adjust selectors to your actual button class if different */
+.registration-google-container button,
+.registration-google-container .google-btn,
+.registration-google-container .google-signin-btn,
+.registration-google-container .yo-google-btn {
+  height: 36px;
+  padding: 8px 12px;
+  font-size: var(--text-base);
+  line-height: 1;
+  border-radius: var(--btn-border-radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;            /* full width inside 320px container */
+}
+
+/* Optional icon sizing inside the button */
+.registration-google-container img,
+.registration-google-container svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  margin-right: 8px;
+}
+
+/* Divider — tight like Login override */
+.registration-form-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 12px 0;
+  color: var(--yo-green);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 100%;
+}
+.registration-form-divider::before,
+.registration-form-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--yo-green);
+  margin: 0 12px;
+}
+
+/* =============================================================================
+   BUTTONS — aligned with Login
+   ========================================================================== */
+
 .registration-submit-button {
   width: 100%;
   font-family: var(--font-primary);
-  font-size: var(--text-base); /* Reduced from xl to base */
+  font-size: var(--text-2xl);
   background-color: var(--yo-green);
   color: var(--yo-black);
   border: 1px solid var(--yo-green);
-  padding: 8px 16px; /* Reduced padding */
-  height: 36px; /* Reduced height */
+  padding: var(--btn-padding);
+  height: var(--btn-height);
   letter-spacing: 1px;
-  text-transform: uppercase;
+  text-transform: none;
   cursor: pointer;
   transition: all var(--transition-normal);
   outline: none;
@@ -258,14 +285,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: -5px;
+  margin-bottom: 6px;
 }
-
 .registration-submit-button:hover {
-  /*background-color: var(--yo-light-green);*/
-  /*transform: translateY(-2px);*/
-  /*box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);*/
+  background-color: var(--yo-light-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3);
 }
-
 .registration-submit-button:disabled {
   background-color: var(--yo-green);
   color: var(--yo-black);
@@ -275,466 +302,7 @@
   box-shadow: none;
 }
 
-/* Login Redirect Button */
-.registration-login-redirect {
-  width: 100%;
-  border: 1px solid var(--yo-green);
-  background-color: transparent;
-  color: var(--yo-green);
-  padding: 8px 16px; /* Reduced padding */
-  height: 36px; /* Reduced height */
-  font-family: var(--font-primary);
-  font-size: var(--text-base); /* Reduced from xl to base */
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  outline: none;
-  border-radius: var(--btn-border-radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.registration-login-redirect:hover {
-  /* background-color: var(--yo-green); */
-  color: var(--yo-light-green);
-  /* transform: translateY(-2px); */
-  /* box-shadow: 0 4px 12px rgba(159, 255, 130, 0.3); */
-}
-
-/* =============================================================================
-   TABLET LAYOUT (769px - 1024px) - Keep horizontal layout with scroll
-   ============================================================================= */
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .registration-main-container {
-    padding: var(--spacing-lg);
-    min-height: 100vh;
-  }
-
-  .registration-content-area {
-    max-width: 900px;
-    gap: var(--spacing-sm);
-    min-height: 60vh; /* Reduced from 70vh */
-  }
-
-  .registration-logo-section,
-  .registration-form-section {
-    padding: var(--spacing-md); /* Reduced from lg */
-    min-height: 280px; /* Reduced from 350px */
-  }
-
-  .registration-logo-container {
-    width: 160px; /* Reduced from 180px */
-    height: 160px; /* Reduced from 180px */
-  }
-
-  .registration-form-panel {
-    max-width: 500px; /* Expanded from 400px to 500px for tablet */
-    gap: var(--spacing-xs); /* Reduced from sm */
-  }
-
-  .registration-form-title {
-    font-size: var(--text-lg); /* Reduced from xl */
-  }
-
-  /* Ensure horizontal layout is maintained at 1024px with high specificity */
-  .registration-main-container .registration-form-section .registration-form .form-group {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: var(--spacing-sm) !important; /* Reduced from md */
-    margin-bottom: var(--spacing-sm) !important; /* Reduced from md */
-    width: 100% !important;
-  }
-
-  .registration-main-container .registration-form-section .registration-form .form-group label {
-    font-family: var(--font-primary) !important;
-    font-size: var(--text-base) !important; /* Reduced from lg */
-    color: var(--yo-green) !important;
-    font-weight: normal !important;
-    letter-spacing: 1px !important;
-    margin: 0 !important;
-    white-space: nowrap !important;
-    /* min-width: 80px !important; Reduced from 100px */
-    flex-shrink: 0 !important;
-    text-align: left !important;
-  }
-
-  .registration-main-container .registration-form-section .registration-form .form-group .input-wrapper {
-    flex: 1 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    display: flex !important;
-    justify-content: flex-end !important; /* Align input to the right */
-  }
-
-  .registration-main-container .registration-form-section .registration-form .form-group .input-wrapper input {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    flex: 1 !important;
-    min-width: 160px !important; /* Reduced from 180px */
-    max-width: 220px !important; /* Added max-width for tablet */
-  }
-}
-
-/* =============================================================================
-   MOBILE LAYOUT (768px and below) - Vertical Labels with Full Scroll Support
-   ============================================================================= */
-
-@media (max-width: 768px) {
-  .registration-main-container {
-    padding: var(--spacing-md);
-    min-height: 100vh; /* Changed from height to min-height */
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    display: block; /* Change from flex to block for better scroll behavior */
-  }
-
-  /* Single column layout for mobile */
-  .registration-content-area {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    min-height: calc(100vh - 2 * var(--spacing-md));
-    max-height: none;
-    align-items: center;
-    justify-content: flex-start; /* Changed from center to flex-start */
-    padding: var(--spacing-sm) 0; /* Add padding for scroll space */
-  }
-
-  /* Mobile logo section */
-  .registration-logo-section {
-    width: 100%;
-    max-width: 400px;
-    padding: var(--spacing-lg) var(--spacing-md);
-    border: none;
-    order: 1;
-    min-height: auto; /* Remove fixed height */
-  }
-
-  .registration-logo-container {
-    width: 200px;
-    height: 200px;
-  }
-
-  /* Mobile form section */
-  .registration-form-section {
-    width: 100%;
-    max-width: 400px;
-    padding: var(--spacing-lg) var(--spacing-md);
-    border: none;
-    order: 2;
-    min-height: auto; /* Remove fixed height */
-    justify-content: flex-start;
-  }
-
-  .registration-form-panel {
-    max-width: 100%;
-    gap: var(--spacing-sm);
-    padding: 0 0 var(--spacing-xl) 0; /* Add bottom padding for scroll space */
-  }
-
-  .registration-form-title {
-    font-size: var(--text-xl);
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .registration-form {
-    gap: var(--spacing-sm);
-  }
-
-  /* Mobile: Switch back to vertical form layout with left alignment */
-  .registration-main-container .registration-form-section .registration-form .form-group {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important; /* Left align the entire group */
-    gap: var(--spacing-xs) !important;
-    margin-bottom: var(--spacing-sm) !important;
-  }
-
-  .registration-main-container .registration-form-section .registration-form .form-group label {
-    /* min-width: auto !important; */
-    text-align: left !important;
-    white-space: normal !important;
-    align-self: flex-start !important; /* Ensure label is left aligned */
-  }
-
-  .registration-main-container .registration-form-section .registration-form .form-group .input-wrapper {
-    width: 100% !important;
-    justify-content: flex-start !important; /* Left align input wrapper */
-    align-self: stretch !important; /* Full width */
-  }
-
-  .registration-main-container .registration-form-section .registration-form .form-group .input-wrapper input {
-    width: 100% !important;
-    max-width: 100% !important; /* Use full width on mobile */
-  }
-
-  .registration-form-divider {
-    margin: var(--spacing-sm) 0;
-    font-size: var(--text-sm);
-  }
-
-  .registration-form-divider::before,
-  .registration-form-divider::after {
-    margin: 0 var(--spacing-sm);
-  }
-}
-
-/* =============================================================================
-   SMALL MOBILE (425px and below) - Left-aligned labels and inputs
-   ============================================================================= */
-
-@media (max-width: 425px) {
-  /* Remove the separate 425px override since mobile layout now handles it properly */
-}
-
-@media (max-width: 480px) {
-  .registration-main-container .registration-form-section .registration-form .form-group {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
-  .registration-main-container {
-    padding: var(--spacing-sm);
-    min-height: 100vh;
-  }
-
-  .registration-content-area {
-    gap: var(--spacing-sm);
-    padding: var(--spacing-xs) 0 var(--spacing-xl) 0; /* Extra bottom padding */
-  }
-
-  .registration-logo-section,
-  .registration-form-section {
-    padding: var(--spacing-md) var(--spacing-sm);
-  }
-
-  .registration-logo-container {
-    width: 160px;
-    height: 160px;
-  }
-
-  .registration-form-panel {
-    gap: var(--spacing-xs);
-    padding: 0 0 var(--spacing-lg) 0;
-  }
-
-  .registration-form-title {
-    font-size: var(--text-lg);
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .registration-form {
-    gap: var(--spacing-xs);
-  }
-
-  .registration-form-divider {
-    margin: var(--spacing-xs) 0;
-    font-size: var(--text-sm);
-  }
-
-  .registration-form-divider::before,
-  .registration-form-divider::after {
-    margin: 0 var(--spacing-xs);
-  }
-
-  .registration-submit-button,
-  .registration-login-redirect {
-    font-size: var(--text-lg);
-    height: 36px;
-    padding: 10px 16px;
-    margin-bottom: var(--spacing-sm); /* Add margin between buttons */
-  }
-}
-
-/* =============================================================================
-   EXTRA SMALL MOBILE (375px and below) - Optimized Scroll
-   ============================================================================= */
-
-@media (max-width: 375px) {
-  .registration-main-container {
-    padding: var(--spacing-xs);
-    min-height: 100vh;
-  }
-
-  .registration-content-area {
-    gap: var(--spacing-xs);
-    padding: var(--spacing-xs) 0 var(--spacing-lg) 0;
-  }
-
-  .registration-logo-section,
-  .registration-form-section {
-    padding: var(--spacing-sm) var(--spacing-xs);
-  }
-
-  .registration-logo-container {
-    width: 140px;
-    height: 140px;
-  }
-
-  .registration-form-title {
-    font-size: var(--text-base);
-    display: none; /* Hide title on very small screens like in Figma */
-  }
-
-  .registration-form-divider {
-    font-size: var(--text-xs);
-  }
-
-  .registration-submit-button,
-  .registration-login-redirect {
-    font-size: var(--text-base);
-    height: 32px;
-    padding: 8px 12px;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .registration-form-panel {
-    padding: 0 0 var(--spacing-md) 0;
-  }
-}
-
-/* =============================================================================
-   MOBILE LANDSCAPE (768px and below, landscape) - Scroll Optimized
-   ============================================================================= */
-
-@media (max-width: 768px) and (orientation: landscape) {
-  .registration-main-container {
-    padding: var(--spacing-sm);
-    min-height: 100vh;
-    overflow-y: auto;
-  }
-
-  .registration-content-area {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: var(--spacing-lg);
-    min-height: calc(100vh - 2 * var(--spacing-sm));
-    align-items: flex-start; /* Changed from center */
-    padding: var(--spacing-sm) 0;
-  }
-
-  .registration-logo-section {
-    order: 1;
-    width: auto;
-    padding: var(--spacing-md);
-    min-height: auto;
-  }
-
-  .registration-logo-container {
-    width: 120px;
-    height: 120px;
-  }
-
-  .registration-form-section {
-    order: 2;
-    flex: 1;
-    padding: var(--spacing-md);
-    min-height: auto;
-    justify-content: flex-start;
-  }
-
-  .registration-form-panel {
-    gap: var(--spacing-xs);
-    padding: 0 0 var(--spacing-md) 0;
-  }
-
-  .registration-form-title {
-    font-size: var(--text-base);
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .registration-form {
-    gap: var(--spacing-xs);
-  }
-
-  .registration-form-divider {
-    margin: var(--spacing-xs) 0;
-    font-size: var(--text-sm);
-  }
-}
-
-/* =============================================================================
-   ACCESSIBILITY & PERFORMANCE
-   ============================================================================= */
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .registration-submit-button,
-  .registration-login-redirect {
-    transition: none;
-  }
-
-  .registration-main-container {
-    -webkit-overflow-scrolling: auto; /* Disable smooth scrolling for reduced motion */
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .registration-logo-section,
-  .registration-form-section {
-    border-width: 2px;
-  }
-}
-
-/* Focus states for accessibility */
-.registration-submit-button:focus,
-.registration-login-redirect:focus {
-  outline: 2px solid var(--yo-green);
-  outline-offset: 2px;
-}
-
-/* Ensure scrollbar is styled consistently */
-.registration-main-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.registration-main-container::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.registration-main-container::-webkit-scrollbar-thumb {
-  background: var(--yo-green);
-  border-radius: 4px;
-}
-
-.registration-main-container::-webkit-scrollbar-thumb:hover {
-  background: var(--yo-light-green);
-}
-
-/* Print styles */
-@media print {
-  .registration-main-container {
-    background: white;
-    color: black;
-    padding: 1rem;
-    overflow: visible;
-    height: auto;
-    min-height: auto;
-  }
-
-  .registration-content-area {
-    display: block;
-    height: auto;
-    min-height: auto;
-  }
-
-  .registration-logo-section,
-  .registration-form-section {
-    border: 1px solid black;
-    background: white;
-    height: auto;
-    min-height: auto;
-  }
-}
-
-/* ===== Override: make the "I already have an account" look like a plain link (no box) ===== */
+/* Plain-link secondary button */
 .registration-login-redirect {
   border: none !important;
   background: transparent !important;
@@ -745,81 +313,200 @@
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  color: var(--yo-green);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  outline: none;
+  text-align: center;
 }
 
-/* Mobile: give a little breathing room below Register button */
-@media (max-width: 768px) {
-  .registration-login-redirect {
-    margin-top: var(--spacing-md) !important;
-    align-self: center !important;
-  }
-}
-
-
-/* ===== Mobile Fix: Align Register button with inputs (make inputs full-width) ===== */
-@media (max-width: 768px) {
-  .registration-form .form-group input {
-    max-width: 100% !important;
-  }
-}/* ==========================================================================
-   REGISTRATION — MOBILE EDGE ALIGNMENT PATCH (<=768px)
-   Makes the Register button align exactly with input edges on phones.
+/* =============================================================================
+   RESPONSIVE — cards & comforts
    ========================================================================== */
+
+/* Wide desktop */
+@media (min-width: 1366px) {
+  .registration-content-area {
+    max-width: 1100px;
+    grid-template-columns: 0.9fr 1.1fr; /* give form a bit more space */
+  }
+  .registration-logo-container { width: 220px; height: 220px; }
+}
+
+/* Tablet (keep two columns but tighter gutters) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .registration-main-container { padding: var(--spacing-lg); }
+  .registration-content-area {
+    max-width: 900px;
+    grid-template-columns: 0.85fr 1fr;
+    gap: var(--spacing-sm);
+    height: 78vh;
+    max-height: 560px;
+  }
+  .registration-logo-section,
+  .registration-form-section { padding: var(--spacing-lg); }
+  .registration-logo-container { width: 180px; height: 180px; }
+}
+
+/* Mobile (stack) + always show logo + smaller register button */
 @media (max-width: 768px) {
-  /* Ensure the whole form section doesn't add extra side space */
-  .registration-form-section,
-  .registration-form-panel,
-  .registration-form-container,
-  .registration-form {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  .registration-main-container {
+    padding: var(--spacing-md);
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-
-  /* Stretch each row and its input wrapper edge-to-edge */
-  .registration-form .form-group {
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    align-self: stretch !important;
+  .registration-content-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    height: auto;
+    min-height: calc(100vh - 2 * var(--spacing-md));
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
   }
-
-  .registration-form .form-group .input-wrapper {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  .registration-logo-section {
+    display: flex !important;           /* ensure NOT hidden by any old rule */
+    width: 100%;
+    max-width: 420px;
+    border: none;                        /* avoid double borders on small screens */
+    padding: var(--spacing-md) var(--spacing-sm) !important;
+    min-height: 0 !important;            /* shrink mobile logo card */
   }
-
-  /* Inputs: full width + border-box so borders don't overflow */
-  .registration-form .form-group .input-wrapper input {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
+  .registration-logo-container {
+    width: 140px !important;
+    height: 140px !important;
   }
-
-  /* Button: use the exact same width rules as inputs */
-  .registration-submit-button {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    align-self: stretch !important;
-  }
-}
-
-/* Extra‑small phones: trim inner padding so edges line up perfectly */
-@media (max-width: 360px) {
   .registration-form-section {
-    padding-left: var(--spacing-sm) !important;
-    padding-right: var(--spacing-sm) !important;
+    width: 100%;
+    max-width: 420px;
+    border: none;
+    padding: var(--spacing-lg) var(--spacing-md);
+    padding-bottom: var(--spacing-xl);  /* ensure "I have an account" is visible */
   }
+  .registration-logo-container img { object-fit: contain; }
+
+  /* Smaller Register button on mobile */
+  .registration-submit-button {
+    font-size: var(--text-lg);
+    height: 40px;             /* down from desktop btn height */
+    padding: 8px 12px;
+    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  /* compact Google sign-in width */
+  .registration-google-container { max-width: 300px; }
 }
 
+/* Small mobile */
+@media (max-width: 480px) {
+  .registration-main-container { padding: var(--spacing-sm); }
+  .registration-content-area { gap: var(--spacing-sm); }
+  .registration-logo-section { padding: var(--spacing-sm) var(--spacing-xs) !important; }
+  .registration-logo-container {
+    width: 110px !important;
+    height: 110px !important;
+  }
+  .registration-form-section { padding: var(--spacing-md) var(--spacing-sm); padding-bottom: var(--spacing-xl); }
+  .registration-form { gap: var(--spacing-xs); }
+
+  /* Register button even smaller */
+  .registration-submit-button {
+    font-size: var(--text-base);
+    height: 36px;
+    padding: 8px 12px;
+  }
+
+  /* compact Google sign-in width */
+  .registration-google-container { max-width: 280px; }
+}
+
+/* XS / ~320px phones: keep logo visible, tight button */
+@media (max-width: 360px) {
+  .registration-logo-section { display: flex !important; } /* UNHIDE if older CSS had display:none */
+  .registration-logo-container {
+    width: 96px !important;
+    height: 96px !important;
+  }
+  .registration-form-section { padding: var(--spacing-sm) var(--spacing-xs); padding-bottom: var(--spacing-xl); }
+
+  /* Register button: tightest */
+  .registration-submit-button {
+    font-size: var(--text-sm);
+    height: 32px;
+    padding: 6px 10px;
+  }
+
+  .registration-google-container { max-width: 260px; }
+}
+
+/* Landscape phones */
+@media (max-width: 768px) and (orientation: landscape) {
+  .registration-main-container { padding: var(--spacing-sm); }
+  .registration-content-area {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-lg);
+    height: calc(100vh - 2 * var(--spacing-sm));
+    align-items: center;
+  }
+  .registration-logo-section { width: auto; padding: var(--spacing-md); }
+  .registration-logo-container { width: 120px; height: 120px; }
+  .registration-form-section { flex: 1; padding: var(--spacing-md); padding-bottom: var(--spacing-xl); }
+
+  /* Button in landscape small */
+  .registration-submit-button { height: 34px; font-size: var(--text-base); }
+}
+
+/* =============================================================================
+   A11Y / PRINT
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .registration-submit-button, .registration-login-redirect { transition: none; }
+}
+@media (prefers-contrast: high) {
+  .registration-logo-section, .registration-form-section { border-width: 2px; }
+}
+.registration-submit-button:focus, .registration-login-redirect:focus {
+  outline: 2px solid var(--yo-green);
+  outline-offset: 2px;
+}
+@media print {
+  .registration-main-container { background: white; color: black; padding: 1rem; }
+  .registration-content-area { display: block; }
+  .registration-logo-section, .registration-form-section { border: 1px solid black; background: white; }
+}
+
+/* =============================================================================
+   TERMS INLINE
+   ========================================================================== */
+.terms-inline {
+  display: inline-flex; align-items: center; gap: 0.5em; white-space: nowrap; user-select: none;
+  font-family: var(--font-primary); font-size: var(--text-base);
+  background-color: transparent; border: 1px solid var(--color-border);
+  color: var(--yo-green);
+}
+.terms-inline span::after { content: ''; margin-left: 0.15ch; }
+.terms-inline input[type='checkbox'] {
+  appearance: none; width: 1.2em; height: 1.2em; border: 0.12em solid currentColor;
+  border-radius: 0.2em; background: transparent; position: relative; cursor: pointer; line-height: 1;
+}
+.terms-inline input[type='checkbox']:checked::after {
+  content: ''; position: absolute; top: 12%; left: 36%; width: 0.3em; height: 0.62em;
+  border: solid currentColor; border-width: 0 0.1em 0.1em 0; transform: rotate(45deg);
+}
+
+/* =============================================================================
+   QoL
+   ========================================================================== */
+.field-adjest-in-rectrobox { padding-left: 5.5px; padding-right: 8px; }
+.terms-and-con-adjest { width: 95%; padding-left: 10px; }
+.form-group label .required { display: none !important; }

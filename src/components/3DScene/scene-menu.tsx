@@ -1,16 +1,19 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 // MUI
-import {Box, Button, Typography} from '@mui/material';
+import { Box } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Button } from '@mui/material';
 
 // components
 import ShuffleText from './shuffle-text';
 import PointerCoords from './pointer-coords';
 import PointerCrossLines from './pointer-cross-lines';
+import {InstructionsModalProps} from "../../interfaces/props";
+import {useNavigate} from "react-router-dom";
 
 // props
-import {InstructionsModalProps} from '../../interfaces/props';
-import {useNavigate} from "react-router-dom";
+
 
 const objectivesList: string[] = [
     "TARGET - A vintage computer / FTP server holds secrets locked away since 1996, protected by a unique symbol code.",
@@ -30,15 +33,20 @@ const playerControlList: string[] = [
 
 const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
     if (!visible) return null;
-    const navigate = useNavigate();
-    const handleClose = useCallback(() => {
+    const navigation = useNavigate();
+    const handleClose = useCallback((e: React.MouseEvent) => {
+        e.stopPropagation(); // Prevent click event from reaching interactive meshes
         onClose();
-        // const moveBackEvent = new CustomEvent('movePlayerBack', {
-        //     detail: { distance: 2 }
-        // });
-        // window.dispatchEvent(moveBackEvent);
 
-        const turnEvent = new CustomEvent('turnPlayerAround', {detail: {angle: -30}});
+        // Disable click handlers immediately
+        window.dispatchEvent(new CustomEvent('disableInteractions'));
+
+        // Re-enable interactions after the raycasting delay
+        setTimeout(() => {
+            window.dispatchEvent(new CustomEvent('enableInteractions'));
+        }, 2500); // Slightly longer than raycasting delay
+
+        const turnEvent = new CustomEvent('turnPlayerAround', { detail: { angle: -30 } });
         window.dispatchEvent(turnEvent);
     }, [onClose]);
 
@@ -51,8 +59,14 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
             }
             // Show cursor
             document.body.style.cursor = 'auto';
+            // Dispatch event to disable raycasting
+            window.dispatchEvent(new CustomEvent('disableRaycasting'));
         } else {
             document.body.style.cursor = '';
+            // Dispatch event to enable raycasting after 2s
+            setTimeout(() => {
+                window.dispatchEvent(new CustomEvent('enableRaycasting'));
+            }, 2000);
         }
     }, [visible, onClose]);
 
@@ -159,8 +173,15 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
         return () => clearInterval(interval);
     }, []);
 
+    const handleOverlayClick = (e: React.MouseEvent) => {
+        // Prevent any clicks on the overlay from reaching interactive meshes
+        e.stopPropagation();
+    };
+
     return (
-        <Box id="scene-manu-wrapper"
+        <Box
+            id="scene-manu-wrapper"
+            onClick={handleOverlayClick}
             sx={{
                 position: 'absolute',
                 top: 0,
@@ -178,6 +199,9 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
                 boxSizing: 'border-box',
                 overflow: 'hidden',
                 WebkitOverflowScrolling: 'touch',
+                pointerEvents: 'all',
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
 
                 '&::before': {
                     content: '""',
@@ -215,15 +239,17 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
                 },
             }}>
 
-            <Box sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                width: '100%',
-                height: '3vw',
-                // border: '1px solid red'
-            }}>
+            <Box
+                onClick={handleOverlayClick}
+                sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '3vw',
+                    // border: '1px solid red'
+                }}>
                 <ShuffleText
                     text="OPERATION MANUAL / PLAYER GUIDELINE"
                     sx={{
@@ -238,7 +264,11 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
                 />
                 <Box>
                     <Button
-                        onClick={() => {
+                        onClick={(e) => {
+                            e.stopPropagation(); // Prevent click from reaching interactive meshes
+                            // Disable interactions immediately
+                            window.dispatchEvent(new CustomEvent('disableInteractions'));
+
                             sessionStorage.setItem('audioTriggerClicked', JSON.stringify(true));
                             if (sessionStorage.getItem('audioTriggerClicked')) {
                                 if (isSceneMusicMuted) {
@@ -250,6 +280,11 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
                                     sessionStorage.setItem('isSceneMusicMuted', JSON.stringify(true));
                                 }
                             }
+
+                            // Re-enable interactions after a delay
+                            setTimeout(() => {
+                                window.dispatchEvent(new CustomEvent('enableInteractions'));
+                            }, 500);
                         }}
                         sx={{
                             backgroundColor: 'transparent',
@@ -280,8 +315,17 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
                         Sound {isSceneMusicMuted ? "On" : "Off"}
                     </Button>
                     <Button
-                        onClick={() => {
-                            navigate("/menu", {replace: true})
+                        onClick={(e) => {
+                            e.stopPropagation(); // Prevent click from reaching interactive meshes
+                            // Disable interactions immediately
+                            window.dispatchEvent(new CustomEvent('disableInteractions'));
+
+                            navigation("/menu", {replace: true})
+
+                            // Re-enable interactions after a delay
+                            setTimeout(() => {
+                                window.dispatchEvent(new CustomEvent('enableInteractions'));
+                            }, 500);
                         }}
                         sx={{
                             backgroundColor: 'transparent',
@@ -345,12 +389,14 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
                 </Box>
             </Box>
 
-            <Box sx={{
-                position: 'relative',
-                height: 'calc(100% - 4vw)',
-                mt: 2,
-                width: '100%',
-            }}>
+            <Box
+                onClick={handleOverlayClick}
+                sx={{
+                    position: 'relative',
+                    height: 'calc(100% - 4vw)',
+                    mt: 2,
+                    width: '100%',
+                }}>
                 {/* left  side */}
                 <Box sx={{
                     position: 'absolute',
@@ -474,7 +520,7 @@ const SceneMenu: React.FC<InstructionsModalProps> = ({ onClose, visible }) => {
                         backgroundColor: 'rgba(0, 15, 0, 0.8)',
                         display: 'flex',
                         flexDirection: 'column',
-                        height: 'calc(100% - 0px)',
+                        height: 'calc(100% - 40px)',
                         overflow: 'hidden',
                         fontFamily: 'Source Code Pro',
                     }}>

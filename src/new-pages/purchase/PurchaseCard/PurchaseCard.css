@@ -10,7 +10,7 @@
 }
 
 .purchase-card.green {
-  --theme-color: #8666D5;
+  --theme-color: #8666d5;
 }
 
 /* ========== Exact desktop sizes (≥1440) ========== */
@@ -28,17 +28,17 @@
 
 /* Top heading "ZONE A" (outside card) */
 .purchase-card-header {
-  font-family: "Jersey 25";
+  font-family: 'Jersey 25';
   color: var(--yo-blue);
   text-align: center;
   text-transform: none;
-  font-size: 48px;        /* exact desktop size */
+  font-size: 48px; /* exact desktop size */
   line-height: 1.1;
 }
 
 /* Zone Z gets purple color */
 .purchase-card.green .purchase-card-header {
-  color: #8666D5;
+  color: #8666d5;
 }
 
 /* Outer box */
@@ -53,7 +53,7 @@
 .purchase-card-box-header {
   color: var(--yo-dark-rose);
   text-transform: uppercase;
-  font-family: "Jersey 25";
+  font-family: 'Jersey 25';
   text-align: center;
   font-size: 35px;
   font-weight: 500;
@@ -65,7 +65,7 @@
 
 /* Zone Z gets yellow/green color for event title */
 .purchase-card.green .purchase-card-box-header {
-  color: #CFDF82;
+  color: #cfdf82;
 }
 
 /* Wrapper that holds inner bordered box */
@@ -99,9 +99,9 @@
 }
 .ticket-counter .content-text {
   grid-column: 1 / -1;
-  font-size: 18px;       /* desktop label size */
+  font-size: 18px; /* desktop label size */
   color: var(--yo-dark-rose);
-  font-family: "Jersey 25";
+  font-family: 'Jersey 25';
 }
 
 /* +/- buttons */
@@ -121,39 +121,46 @@
   font-size: 26px;
   line-height: 0;
 }
-.circle-button:hover { transform: scale(1.06); }
-.circle-button:active { transform: scale(0.96); }
-.circle-button:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+.circle-button:hover {
+  transform: scale(1.06);
+}
+.circle-button:active {
+  transform: scale(0.96);
+}
+.circle-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
 
 /* Ticket count */
 .number-of-ticket {
   text-align: center;
   color: var(--yo-dark-rose);
-  font-size: 32px;        /* desktop count size */
+  font-size: 32px; /* desktop count size */
   font-variant-numeric: tabular-nums;
 }
 
 /* Generic label/value text */
 .content-text {
   color: var(--yo-dark-rose);
-  font-size: 18px;        /* desktop body size */
-  font-family: "Jersey 25";
+  font-size: 18px; /* desktop body size */
+  font-family: 'Jersey 25';
 }
 
 /* Zone Z gets yellow/green color for content text */
 .purchase-card.green .content-text {
-  
-  color: #CFDF82;
+  color: #cfdf82;
 }
 
 /* Zone Z gets yellow/green color for ticket counter label */
 .purchase-card.green .ticket-counter .content-text {
-  color: #CFDF82;
+  color: #cfdf82;
 }
 
 /* Zone Z gets yellow/green color for ticket number */
 .purchase-card.green .number-of-ticket {
-  color: #CFDF82;
+  color: #cfdf82;
 }
 
 /* Coupon row */
@@ -173,20 +180,23 @@
   /* border-radius: var(--input-border-radius); */
   padding: 0 10px;
   outline: none;
-  color: #FFFFFF;
+  color: #ffffff;
   opacity: 50%;
   font-family: var(--font-primary);
   font-size: 18px;
   letter-spacing: 1px;
-  transition: box-shadow var(--transition-normal), transform var(--transition-normal), opacity var(--transition-normal);
+  transition: box-shadow var(--transition-normal),
+    transform var(--transition-normal), opacity var(--transition-normal);
 }
 .content-row input:not(:disabled) {
   opacity: 1;
 }
-.content-row input::placeholder { color: rgba(227,168,168,.66); }
+.content-row input::placeholder {
+  color: rgba(227, 168, 168, 0.66);
+}
 .content-row input:focus {
   transform: translateY(-1px);
-  box-shadow: 0 0 0 2px rgba(167,214,255,.25);
+  box-shadow: 0 0 0 2px rgba(167, 214, 255, 0.25);
 }
 
 /* Divider */
@@ -197,12 +207,14 @@
 
 /* Zone Z gets yellow/green dotted divider */
 .purchase-card.green .content-row-dot {
-  border-top: 1px dotted #CFDF82;
+  border-top: 1px dotted #cfdf82;
 }
 
 /* Numbers right aligned */
 .text-container .content-text.value,
-.content-text.value { margin-left: auto; }
+.content-text.value {
+  margin-left: auto;
+}
 
 /* APPLY button */
 .apply-btn {
@@ -210,27 +222,35 @@
   height: 40px;
   border: 2px solid #8aa3a0;
   background: #6f7f7a;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: var(--btn-border-radius);
   text-transform: none;
   font-family: var(--font-primary);
   font-size: 18px;
   border-radius: unset;
   cursor: pointer;
-  transition: transform var(--transition-normal), filter var(--transition-normal), opacity var(--transition-normal), background var(--transition-normal), color var(--transition-normal);
+  transition: transform var(--transition-normal),
+    filter var(--transition-normal), opacity var(--transition-normal),
+    background var(--transition-normal), color var(--transition-normal);
 }
 .apply-btn:not(:disabled) {
   background-color: var(--yo-white);
   opacity: 100%;
   color: var(--yo-primary);
 }
-.apply-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-.apply-btn:active { transform: translateY(0); filter: brightness(.95); }
+.apply-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+.apply-btn:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
 .apply-btn:disabled {
   opacity: 50%;
   cursor: not-allowed;
-  background: #D9D9D9;
-  color: #FFFFFF;
+  background: #d9d9d9;
+  color: #ffffff;
 }
 
 /* Confirm button (full width) */
@@ -243,17 +263,22 @@
   background: var(--bluegray-50);
   color: var(--yo-black);
   font-family: var(--font-primary);
-  font-size: 22px;       /* desktop */
+  font-size: 22px; /* desktop */
   text-transform: none;
   letter-spacing: 1px;
   cursor: pointer;
   transition: filter var(--transition-normal);
 }
-.purchase-btn:hover { filter: brightness(1.06); }
+.purchase-btn:hover {
+  filter: brightness(1.06);
+}
 
 /* Abort button */
 .horizontal-buttons {
-  display: flex; justify-content: center; width: 100%; margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 16px;
 }
 .queue-button {
   height: 44px;
@@ -283,85 +308,184 @@
 /* Fix cicon color to be yo-dark-rose */
 .queue-button .cicon,
 .queue-button img.cicon {
-  filter: invert(0.5) sepia(1) saturate(2) hue-rotate(320deg) brightness(0.8) contrast(1.2);
+  filter: invert(0.5) sepia(1) saturate(2) hue-rotate(320deg) brightness(0.8)
+    contrast(1.2);
 }
 
 /* Zone Z - Queue button should have yellow/green color scheme */
 .purchase-card.green .queue-button {
-  color: #CFDF82;
+  color: #cfdf82;
 }
 
 .purchase-card.green .queue-button:hover {
   background: var(--yo-primary);
-  color: #CFDF82;
+  color: #cfdf82;
 }
 
 .purchase-card.green .queue-button .label {
-  color: #CFDF82;
+  color: #cfdf82;
 }
 
 .purchase-card.green .queue-button .cicon,
 .purchase-card.green .queue-button img.cicon {
-  filter: invert(0.85) sepia(1) saturate(2) hue-rotate(60deg) brightness(1.1) contrast(0.9);
+  filter: invert(0.85) sepia(1) saturate(2) hue-rotate(60deg) brightness(1.1)
+    contrast(0.9);
 }
 
 /* ======= Breakpoints with exact sizes from mock ======= */
 
 /* ≤ 1024 */
 @media (max-width: 1024px) {
-  .purchase-card-header { font-size: 40px; }
-  .purchase-card-box-header { font-size: 24px; }
-  .content-text, .content-row input { font-size: 16px; }
-  .number-of-ticket { font-size: 32px; }
-  .circle-button { width: 44px; height: 44px; font-size: 24px; }
-  .purchase-btn { font-size: 20px; height: 44px; }
-  .queue-button { font-size: 16px; height: 42px; min-width: 240px; }
-  .purchase-card-box-content { padding: 8px 16px 16px; }
-  .inner-box-content {font-weight: bold; padding: 12px; }
+  .purchase-card-header {
+    font-size: 40px;
+  }
+  .purchase-card-box-header {
+    font-size: 24px;
+  }
+  .content-text,
+  .content-row input {
+    font-size: 16px;
+  }
+  .number-of-ticket {
+    font-size: 32px;
+  }
+  .circle-button {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+  .purchase-btn {
+    font-size: 20px;
+    height: 44px;
+  }
+  .queue-button {
+    font-size: 16px;
+    height: 42px;
+    min-width: 240px;
+  }
+  .purchase-card-box-content {
+    padding: 8px 16px 16px;
+  }
+  .inner-box-content {
+    font-weight: bold;
+    padding: 12px;
+  }
 }
 
 /* ≤ 760 */
 @media (max-width: 760px) {
-  .purchase-card { max-width: 440px; }
-  .purchase-card-header { font-size: 34px; }
-  .purchase-card-box-header { font-size: 22px; }
-  .content-text, .content-row input { font-size: 15px; }
-  .number-of-ticket { font-size: 24px; }
-  .circle-button { width: 40px; height: 40px; font-size: 22px; }
-  .apply-btn { height: 38px; font-size: 15px; min-width: 92px; }
-  .purchase-btn { font-size: 18px; height: 42px; }
+  .purchase-card {
+    max-width: 440px;
+  }
+  .purchase-card-header {
+    font-size: 34px;
+  }
+  .purchase-card-box-header {
+    font-size: 22px;
+  }
+  .content-text,
+  .content-row input {
+    font-size: 15px;
+  }
+  .number-of-ticket {
+    font-size: 24px;
+  }
+  .circle-button {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+  .apply-btn {
+    height: 38px;
+    font-size: 15px;
+    min-width: 92px;
+  }
+  .purchase-btn {
+    font-size: 18px;
+    height: 42px;
+  }
 }
 
 /* ≤ 425 */
 @media (max-width: 425px) {
-  .purchase-card-box-header{font-size:26px;font-weight:800;} /* title size */
-  .purchase-card { max-width: 360px; }
-  .purchase-card-header { font-size: 32px; }
-  .purchase-card-box-header { font-size: 20px; }
-  .content-text, .content-row input { font-size: 14px; }
-  .number-of-ticket { font-size: 22px; }
-  .circle-button { width: 36px; height: 36px; font-size: 20px; }
-  .apply-btn { height: 36px; font-size: 14px; min-width: 86px; }
-  .purchase-btn { font-size: 17px; height: 40px; }
+  .purchase-card-box-header {
+    font-size: 26px;
+    font-weight: 800;
+  } /* title size */
+  .purchase-card {
+    max-width: 360px;
+  }
+  .purchase-card-header {
+    font-size: 32px;
+  }
+  .purchase-card-box-header {
+    font-size: 20px;
+  }
+  .content-text,
+  .content-row input {
+    font-size: 14px;
+  }
+  .number-of-ticket {
+    font-size: 22px;
+  }
+  .circle-button {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+  .apply-btn {
+    height: 36px;
+    font-size: 14px;
+    min-width: 86px;
+  }
+  .purchase-btn {
+    font-size: 17px;
+    height: 40px;
+  }
 }
 
 /* ≤ 375 (mobile mock) */
 @media (max-width: 375px) {
-  .purchase-card { max-width: 330px; }
-  .purchase-card-header { font-size: 26px; }
-  .purchase-card-box-header { font-size: 19px; }
-  .content-text, .content-row input { font-size: 13px; }
-  .number-of-ticket { font-size: 20px; }
-  .circle-button { width: 34px; height: 34px; font-size: 18px; }
-  .apply-btn { height: 34px; font-size: 13px; min-width: 80px; }
-  .purchase-btn { font-size: 16px; height: 38px; }
+  .purchase-card {
+    max-width: 330px;
+  }
+  .purchase-card-header {
+    font-size: 26px;
+  }
+  .purchase-card-box-header {
+    font-size: 19px;
+  }
+  .content-text,
+  .content-row input {
+    font-size: 13px;
+  }
+  .number-of-ticket {
+    font-size: 20px;
+  }
+  .circle-button {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+  }
+  .apply-btn {
+    height: 34px;
+    font-size: 13px;
+    min-width: 80px;
+  }
+  .purchase-btn {
+    font-size: 16px;
+    height: 38px;
+  }
 }
 
 /* A11y */
 @media (prefers-reduced-motion: reduce) {
-  .circle-button, .apply-btn, .purchase-btn { transition: none; }
+  .circle-button,
+  .apply-btn,
+  .purchase-btn {
+    transition: none;
+  }
 }
-
 
 /* === Override: remove .circle-button background/border colors and make SVG fill === */
 .circle-button {
@@ -381,8 +505,9 @@
 }
 
 /* Optional: keep rounded hit-area */
-.circle-button { border-radius: 50%; }
-
+.circle-button {
+  border-radius: 50%;
+}
 
 /* === Align minus/plus correctly & set icon color to yo-white === */
 
@@ -419,7 +544,7 @@
   height: 100% !important;
   display: block !important;
   box-sizing: border-box !important;
-  padding: 8px !important;          /* gives breathing room like mock */
+  padding: 8px !important; /* gives breathing room like mock */
 }
 
 /* If inline SVGs: paint them white */
@@ -437,7 +562,6 @@
   justify-self: center !important;
   text-align: center !important;
 }
-
 
 /* === Update: make icons white and perfectly centered === */
 .ticket-counter {
@@ -462,7 +586,6 @@
   display: block;
   filter: invert(1) brightness(2); /* turn black SVGs to white */
 }
-
 
 /* === Fix: make SVG icons yo-white & perfectly aligned === */
 
@@ -499,7 +622,7 @@
   height: 100% !important;
   object-fit: contain !important;
   display: block !important;
-  padding: 6px !important;              /* visual breathing like mock */
+  padding: 6px !important; /* visual breathing like mock */
   pointer-events: none !important;
 }
 
@@ -514,4 +637,86 @@
   filter: brightness(0) invert(1) !important;
   mix-blend-mode: normal !important;
   opacity: 1 !important;
+}
+
+/* =============================================================================
+   PURCHASE CARD — EXTRA RESPONSIVE BREAKPOINTS (append-only)
+   ============================================================================= */
+
+/* ≥1920px (very large desktop) */
+@media (min-width: 1920px) {
+  .purchase-card {
+    max-width: 560px; /* gentle widen on ultra-wide screens */
+    zoom: 1; /* keep your desktop scale */
+  }
+}
+
+/* 1440–1919px (large desktop) */
+@media (max-width: 1919px) and (min-width: 1440px) {
+  .purchase-card {
+    max-width: 520px; /* your base desktop width */
+    zoom: 1; /* keep exact desktop look */
+  }
+}
+
+/* 1024–1439px (desktop) — use base sizes, no zoom quirks */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .purchase-card {
+    margin-bottom: -5%;
+    max-width: 500px;
+    zoom: 0.97; /* avoid non-standard zoom below 1440 */
+  }
+}
+
+/* 769–1023px (tablet) */
+@media (max-width: 1023px) and (min-width: 769px) {
+  .purchase-card {
+    max-width: 480px;
+    zoom: 0.96; /* rely on your ≤1024 rules for font/button sizes */
+  }
+}
+
+/* ≤768px (mobile baseline) — complements your ≤760 rules */
+@media (max-width: 768px) {
+  .purchase-card {
+    max-width: 94vw; /* keep card inside the viewport gutter */
+    margin-inline: auto;
+    zoom: 1; /* ensure consistent sizing on mobile */
+  }
+  .purchase-card-header {
+    text-wrap: balance;
+  }
+}
+
+/* ≤480px (small phones) — tiny nudge so whole card stays visible */
+@media (max-width: 480px) {
+  .purchase-card {
+    max-width: 96vw;
+  }
+}
+
+/* ≤360px (extra small phones) — last-resort squeeze without changing your sizes */
+@media (max-width: 360px) {
+  .purchase-card {
+    max-width: 98vw;
+  }
+}
+
+/* ===== Short-height safety (≤606px) — make sure the card fits vertically ===== */
+@media (max-height: 606px) {
+  .purchase-card {
+    /* gentle global shrink; avoids content overflow on short viewports */
+    transform: scale(0.92);
+    transform-origin: top center;
+    max-height: 86vh; /* keep it on screen */
+    overflow: auto; /* scroll inside if absolutely necessary */
+  }
+}
+
+/* Short-height + narrow (landscape phones / tiny windows) */
+@media (max-height: 606px) and (max-width: 768px) {
+  .purchase-card {
+    transform: scale(0.86);
+    max-width: 96vw;
+  }
 }

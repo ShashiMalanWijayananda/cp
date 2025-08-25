@@ -83,7 +83,12 @@
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
 }
-
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 /* =============================================================================
    GLOBAL TYPOGRAPHY RESET & BASE STYLES
    ============================================================================= */

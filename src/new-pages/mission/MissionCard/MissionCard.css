@@ -39,7 +39,7 @@
 .mission-card-1.green .mission-header .mission-title, 
 .mission-card-1.green .mission-header .mission-sub-title {
     color: #DCCF95;
-    text-shadow: -2px 0px 10px var(--yo-venue-text);
+    /* text-shadow: -2px 0px 10px var(--yo-venue-text); */
 }
 
 .mission-card-1.white {

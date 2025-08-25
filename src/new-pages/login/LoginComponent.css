@@ -286,7 +286,7 @@
   padding: var(--btn-padding);
   height: var(--btn-height);
   font-family: var(--font-primary);
-  font-size: var(--text-xl);
+  font-size: var(--text-base);
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
@@ -390,13 +390,6 @@
    ============================================================================= */
 
 @media (max-width: 768px) {
-  .login-main-container {
-    padding: var(--spacing-md);
-    height: 100vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
   /* Single column layout for mobile */
   .login-content-area {
     display: flex;
@@ -407,20 +400,6 @@
     max-height: none;
     align-items: center;
     justify-content: center;
-  }
-
-  /* Mobile logo section */
-  .login-logo-section {
-    width: 100%;
-    max-width: 400px;
-    padding: var(--spacing-lg) var(--spacing-md);
-    border: none;
-    order: 1;
-  }
-
-  .login-logo-container {
-    width: 200px;
-    height: 200px;
   }
 
   /* Mobile form section */
@@ -1108,9 +1087,85 @@
     letter-spacing: 1px !important;
   }
 }
+
 @media (min-width: 1440px) {
   .login-form-title {
     font-size: 2.875rem !important; /* ~46px */
     letter-spacing: 4.75px !important;
   }
+}
+
+/* Hide logo + center form on tablet & mobile (≤768px) */
+@media (max-width: 768px) {
+  .login-content-area {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .login-form-section {
+    width: 100% !important;
+    max-width: 420px !important; /* neat readable width */
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+
+/* Default (desktop first): slightly smaller */
+.login-form-title {
+  font-size: 2rem !important; /* ~32px */
+  letter-spacing: 2px !important;
+  margin-bottom: var(--spacing-md) !important;
+}
+
+/* Large desktops (≥1366px) */
+@media (min-width: 1366px) {
+  .login-form-title {
+    font-size: 2.25rem !important; /* ~36px */
+  }
+}
+
+/* Tablet (769px–1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .login-form-title {
+    font-size: 1.75rem !important; /* ~28px */
+  }
+}
+
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  .login-form-title {
+    font-size: 1.5rem !important; /* ~24px */
+    margin-bottom: var(--spacing-sm) !important;
+  }
+}
+
+/* Small mobile (≤480px) */
+@media (max-width: 480px) {
+  .login-form-title {
+    font-size: 1.25rem !important; /* ~20px */
+  }
+}
+
+/* Extra small (≤375px) */
+@media (max-width: 375px) {
+  .login-form-title {
+    font-size: 1.125rem !important; /* ~18px */
+    line-height: 1.2 !important;
+    white-space: normal !important; /* wrap instead of hiding */
+  }
+}
+@media (max-width: 768px) {
+  .login-main-container {
+    margin-bottom: 5vh !important; /* adjust token as needed */
+  }
+}
+.logo {
+  filter: sepia(1) saturate(0) brightness(0.8) hue-rotate(20deg);
 }

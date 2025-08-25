@@ -2,17 +2,19 @@ import "./TicketCard.css"
 import React, {FC} from "react";
 import {ITicket} from "../../interfaces/data.interfaces";
 
+// + add two optional props:
 interface TicketProps {
-    ticket?: ITicket,
-    onClick?: (ticket: ITicket) => void;
-    onDownload?: (ticket: ITicket) => void;
-    locked?: boolean;
-    details?: boolean;
-    download?: boolean;
+  ticket?: ITicket,
+  onClick?: (ticket: ITicket) => void;
+  onDownload?: (ticket: ITicket) => void;
+  locked?: boolean;
+  details?: boolean;
+  download?: boolean;
+  index?: number;   // NEW
+  total?: number;   // NEW
 }
 
-
-const TicketCard: FC<TicketProps> = ({ticket, onClick, onDownload, locked = true, details = true, download = true}) => {
+const TicketCard: FC<TicketProps> = ({ticket, onClick, onDownload, locked = true, details = true, download = true, index, total}) => {
     return (<React.Fragment>
         <div className="ticket-card">
             <div className={`ticket-card-view ${ticket?.share ? "" : locked && "locked"} ${ticket?.zoneId}`}
@@ -67,12 +69,17 @@ WELCOME TO YOGESHWARI</span></span>
                 </div>
 
             </div>
+             {/* NEW: simple counter under the card */}
+        {typeof index === "number" && typeof total === "number" && (
+          <div className="ticket-count">{`${index + 1} of ${total}`}</div>
+        )}
+
             <div className={"assigner-box"}>
                 {!!(ticket?.share) && <>
                     <div className="assigner" onClick={() => onDownload(ticket)}>
-                        {download && <span className="download">Download</span>}
-                        {details && <><p>Assignee : {ticket?.assigner?.email}</p>
-                            <p>NIC/Passport : {ticket?.assigner?.nic}</p></>}
+                        {download && <span className="underline download">Download</span>}
+                        {details && <><div className="left"><p >Assignee : {ticket?.assigner?.email}</p>
+                            <p>NIC/Passport : {ticket?.assigner?.nic}</p></div></>}
                     </div>
                 </>}
             </div>

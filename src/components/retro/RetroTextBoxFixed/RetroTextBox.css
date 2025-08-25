@@ -1,14 +1,16 @@
-/* ================== FORM GROUP BASE ================== */
+/* =========================
+   BASE: Form layout & fields
+   ========================= */
+
 .form-group {
-  margin-bottom: 6px !important; /* tighter vertical spacing */
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px !important; /* smaller label–input gap */
+  gap: 10px;
   position: relative;
   width: 100%;
   flex: 1;
-  background: transparent;
+  justify-content: flex-start; /* no space-between */
 }
 
 .form-group.full-width {
@@ -16,19 +18,12 @@
   flex: 1;
 }
 
-/* ================== LABEL ================== */
 .form-group label {
-  font-size: 32px !important; /* bigger labels */
-  font-weight: 600 !important;
-  min-width: 200px;
+  font-size: 1.5rem;
+  min-width: 180px;
   position: relative;
   color: var(--yo-green);
-  flex-shrink: 0;
-  font-family: 'VT323', 'Courier New', monospace;
-  line-height: 1.2 !important;
-
-  text-shadow: 0 0 4px rgba(0, 255, 0, 0.5), 0 0 8px rgba(0, 255, 0, 0.3),
-    0 0 12px rgba(0, 255, 0, 0.15);
+  flex-shrink: 0; /* keep label width stable */
 }
 
 .form-group label::before {
@@ -37,7 +32,6 @@
   left: -20px;
   opacity: 0;
   transition: opacity 0.2s ease;
-  color: var(--yo-green);
 }
 
 .form-group.focused label::before {
@@ -45,237 +39,410 @@
   opacity: 1;
 }
 
-/* ================== INPUTS ================== */
 .input-wrapper {
+  --cursor-font-size: clamp(18px, 4vw, 24px);
   flex: 1;
   position: relative;
   display: flex;
   align-items: center;
-  width: auto;
-  max-width: 65%;
+  width: 100%;
+  max-width: 60%; /* desktop cap; mobile sets to 100% below */
 }
 
 .form-group input {
   width: 100%;
-  padding: 14px 16px !important; /* taller padding */
-  background: var(--input-bg);
+  padding: 8px 10px;
+  background: #333;
   border: 2px solid var(--yo-green);
   color: var(--yo-green);
-  font-family: 'VT323', 'Courier New', monospace;
-  font-size: 26px !important; /* bigger input text */
-  line-height: 1.4 !important;
-  caret-color: transparent;
+  font-family: VT323, monospace;
+  font-size: clamp(18px, 4vw, 24px);
+  caret-color: transparent; /* we draw a custom cursor */
+  position: relative;
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 0;
+  line-height: 1.2;
 }
 
 .form-group input:focus {
   outline: none;
-  background: var(--input-focused-bg);
-  border-color: var(--yo-green);
+  background: #444;
 }
 
-.form-group input::placeholder {
-  color: rgba(0, 255, 0, 0.6);
-  font-style: italic;
+.form-group .input-wrapper input[type="password"] {
+  padding: 8px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 48px; /* reserve room for larger toggle */
 }
 
-.form-group .input-wrapper input[type='password'] {
-  padding: 14px 45px 14px 16px !important;
-  letter-spacing: 2px;
-}
+/* =========================
+   Password toggle button
+   - bigger, no hover box
+   ========================= */
 
-/* ================== PASSWORD TOGGLE ================== */
 .password-toggle-btn {
   position: absolute;
-  right: 10px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;                    /* touch-friendly */
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--yo-green);
-  width: 30px;
-  height: 30px;
+  width: 36px;                     /* bigger */
+  height: 36px;                    /* bigger */
+  border-radius: 4px;
+  transition: color 0.2s ease;
   z-index: 10;
+  box-shadow: none;
+}
+
+/* remove hover background/box entirely */
+.password-toggle-btn::before {
+  content: none !important;
+  display: none !important;
+}
+
+.password-toggle-btn:hover:not(:disabled){
+  background: none !important;
+  box-shadow: none !important;
+  transform: translateY(-50%) !important;
+}
+
+.password-toggle-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .password-toggle-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;  /* larger icon */
+  height: 20px;
   color: inherit;
+  transition: opacity 0.2s ease;
 }
 
-/* ================== TERMINAL CURSOR ================== */
+.password-toggle-btn:active svg {
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+.form-group.focused .password-toggle-btn {
+  color: var(--yo-green);
+}
+
+/* =========================
+   Fake block cursor
+   ========================= */
+
 .form-group.focused .input-wrapper::after {
   content: '█';
   position: absolute;
-  left: var(--cursor-left, 15px);
+  left: var(--cursor-left, 10px);
   top: 50%;
   transform: translateY(-50%);
   color: var(--yo-green);
   font-weight: bold;
-  font-size: 26px !important; /* match input size */
+  font-size: var(--cursor-font-size, clamp(18px, 4vw, 24px));
   animation: cursor-blink 1s infinite ease-in-out;
   pointer-events: none;
-  font-family: 'VT323', 'Courier New', monospace;
-  margin-left: -2px;
+  z-index: 5;
+  transition: left 0.1s ease;
+  font-family: VT323, monospace;
+  max-width: calc(100% - 16px);
+  overflow: hidden;
+  line-height: 1;
+  margin-left: -1px; /* fine-tune */
 }
 
-/* ================== NAV / FOOTER ================== */
+/* hidden by default; shown on .focused above */
+.input-wrapper::after {
+  font-size: var(--cursor-font-size, clamp(18px, 4vw, 24px));
+  opacity: 0;
+}
+
+.form-group.focused .input-wrapper::after {
+  opacity: 1;
+}
+
+@keyframes cursor-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* =========================
+   Helpers / misc
+   ========================= */
+
+.text-measurer {
+  position: absolute !important;
+  visibility: hidden !important;
+  white-space: pre !important;
+  font-family: VT323, monospace !important;
+  font-size: clamp(18px, 4vw, 24px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  box-sizing: border-box !important;
+  line-height: normal !important;
+}
+
 .bottom-nav {
-  background: var(--terminal-bg);
-  color: var(--yo-green);
-  padding: 10px 20px;
-  font-size: 20px;
+  background: #333;
+  color: #000;
+  padding: 8px 16px;
+  font-size: clamp(18px, 4vw, 24px);
   text-align: left;
-  font-family: 'VT323', 'Courier New', monospace;
-  border-top: 1px solid var(--yo-green);
 }
 
-/* ================== ACCESSIBILITY ================== */
 .required {
-  color: #ff6b6b;
+  color: #C49799;
   margin-left: 4px;
   font-weight: bold;
 }
 
-/* ====== TABLET (≤1024px) ====== */
+.form-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #222;
+}
+
+.form-group input::placeholder {
+  color: var(--yo-green);
+  font-style: italic;
+}
+
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="url"] {
+  padding-right: 10px;
+}
+
+/* =========================
+   Responsive (mobile-first)
+   ========================= */
+
+/* <= 1024px: stack label over input */
 @media (max-width: 1024px) {
   .form-group {
-    margin-bottom: 10px !important;
-    gap: 10px !important;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 15px;
   }
+
   .form-group label {
-    font-size: 28px !important;
-    min-width: 170px !important;
+    min-width: auto;
+    width: 100%;
+    font-size: 1.5rem;
   }
+
+  .form-group label::before { left: -15px; }
+
   .input-wrapper {
-    max-width: 70% !important;
+    width: 100%;
+    max-width: 100%; /* remove 60% cap on smaller screens */
+    display: flex;
   }
-  .form-group input {
-    font-size: 24px !important;
-    padding: 12px 14px !important;
+
+  .form-group input,
+  .form-group .input-wrapper input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: clamp(18px, 4vw, 22px);
+    box-sizing: border-box;
   }
-  .form-group .input-wrapper input[type='password'] {
-    padding: 12px 42px 12px 14px !important;
+
+  /* slightly smaller but still bigger than before */
+  .password-toggle-btn {
+    width: 34px;
+    height: 34px;
+    right: 6px;
+    padding: 6px;
   }
+  .password-toggle-btn svg { width: 18px; height: 18px; }
+
+  /* reserve space for button */
+  .form-group .input-wrapper input[type="password"]{
+    padding-right: 44px;
+  }
+
   .form-group.focused .input-wrapper::after {
-    font-size: 24px !important;
-    left: var(--cursor-left, 14px);
+    left: var(--cursor-left, 12px);
+    font-size: clamp(18px, 4vw, 22px);
+    margin-left: -1px;
   }
+}
+
+/* <= 768px */
+@media (max-width: 768px) {
+  .form-group {
+    margin-bottom: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .form-group label {
+    min-width: auto;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .input-wrapper {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .form-group input,
+  .form-group .input-wrapper input[type="password"] {
+    width: 100%;
+    padding: 9px;
+    font-size: clamp(16px, 4vw, 20px);
+    box-sizing: border-box;
+  }
+
+  .password-toggle-btn {
+    width: 32px;
+    height: 32px;
+    right: 4px;
+    padding: 6px;
+  }
+  .password-toggle-btn svg { width: 16px; height: 16px; }
+
+  .form-group .input-wrapper input[type="password"]{
+    padding-right: 42px;
+  }
+
+  .form-group.focused .input-wrapper::after {
+    left: var(--cursor-left, 11px);
+    font-size: clamp(16px, 4vw, 20px);
+  }
+}
+
+/* <= 480px */
+@media (max-width: 480px) {
+  .form-group label { font-size: clamp(18px, 4vw, 22px); }
+
+  .form-group input,
+  .form-group .input-wrapper input[type="password"] {
+    padding: 8px;
+    font-size: clamp(18px, 4vw, 22px);
+  }
+
+  .password-toggle-btn {
+    width: 30px;
+    height: 30px;
+    right: 4px;
+    padding: 5px;
+  }
+  .password-toggle-btn svg { width: 15px; height: 15px; }
+
+  .form-group .input-wrapper input[type="password"]{
+    padding-right: 40px;
+  }
+
+  .form-group.focused .input-wrapper::after {
+    left: var(--cursor-left, 10px);
+    font-size: clamp(18px, 4vw, 22px);
+  }
+}
+
+/* <= 360px */
+@media (max-width: 360px) {
+  .form-group input,
+  .form-group .input-wrapper input[type="password"] {
+    padding: 7px;
+    font-size: clamp(17px, 4vw, 21px);
+  }
+
   .password-toggle-btn {
     width: 28px;
     height: 28px;
-    right: 8px;
+    right: 3px;
+    padding: 5px;
   }
-  .password-toggle-btn svg {
-    width: 16px;
-    height: 16px;
+  .password-toggle-btn svg { width: 14px; height: 14px; }
+
+  .form-group .input-wrapper input[type="password"]{
+    padding-right: 38px;
+  }
+
+  .form-group.focused .input-wrapper::after {
+    left: var(--cursor-left, 9px);
+    font-size: clamp(17px, 4vw, 21px);
   }
 }
 
-/* ====== LARGE MOBILE / SMALL TABLET (≤768px) ====== */
-@media (max-width: 768px) {
-  .form-group {
-    flex-direction: column !important; /* stack label over input */
-    align-items: stretch !important;
-    justify-content: flex-start !important;
-    margin-bottom: 10px !important;
-    gap: 6px !important;
+/* <= 320px (smallest phones) */
+@media (max-width: 320px) {
+  .form-group input,
+  .form-group .input-wrapper input[type="password"] {
+    width: 100%;
+    padding: 6px;
+    font-size: clamp(16px, 4vw, 20px);
+    box-sizing: border-box;
   }
-  .form-group label {
-    min-width: 0 !important; /* allow wrap */
-    width: 100% !important;
-    font-size: 26px !important;
-    line-height: 1.2 !important;
-  }
-  .input-wrapper {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  .form-group input {
-    font-size: 22px !important;
-    padding: 12px 14px !important;
-  }
-  .form-group .input-wrapper input[type='password'] {
-    padding: 12px 40px 12px 14px !important;
-  }
+
   .password-toggle-btn {
     width: 26px;
     height: 26px;
-    right: 8px;
+    right: 2px;
+    padding: 4px;
   }
-  .password-toggle-btn svg {
-    width: 14px;
-    height: 14px;
+  .password-toggle-btn svg { width: 13px; height: 13px; }
+
+  .form-group .input-wrapper input[type="password"]{
+    padding-right: 36px;
   }
+
   .form-group.focused .input-wrapper::after {
-    font-size: 22px !important;
-    left: var(--cursor-left, 14px);
+    left: var(--cursor-left, 7px);
+    font-size: clamp(16px, 4vw, 20px);
+    margin-left: -1px;
   }
 }
 
-/* ====== MOBILE (≤480px) ====== */
-@media (max-width: 480px) {
-  .form-group {
-    margin-bottom: 8px !important;
-    gap: 6px !important;
-  }
-  .form-group label {
-    font-size: 22px !important;
-  }
-  .form-group input {
-    font-size: 20px !important;
-    padding: 10px 12px !important;
-  }
-  .form-group .input-wrapper input[type='password'] {
-    padding: 10px 36px 10px 12px !important;
-  }
-  .password-toggle-btn {
-    width: 24px;
-    height: 24px;
-    right: 6px;
-  }
-  .password-toggle-btn svg {
-    width: 12px;
-    height: 12px;
-  }
-  .form-group.focused .input-wrapper::after {
-    font-size: 20px !important;
-    left: var(--cursor-left, 12px);
-  }
+/* =========================
+   Accessibility
+   ========================= */
+
+@media (prefers-contrast: high) {
+  .form-group input { border-width: 3px; }
+  .password-toggle-btn { border: 1px solid var(--yo-green); }
 }
 
-/* ====== VERY SMALL (≤360px) ====== */
-@media (max-width: 360px) {
-  .form-group label {
-    font-size: 20px !important;
-  }
-  .form-group input {
-    font-size: 18px !important;
-    padding: 8px 10px !important;
-  }
-  .form-group .input-wrapper input[type='password'] {
-    padding: 8px 34px 8px 10px !important;
-  }
-  .password-toggle-btn {
-    width: 22px;
-    height: 22px;
-    right: 4px;
-  }
-  .password-toggle-btn svg {
-    width: 12px;
-    height: 12px;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .password-toggle-btn,
+  .form-group label::before,
   .form-group.focused .input-wrapper::after {
-    font-size: 18px !important;
-    left: var(--cursor-left, 10px);
+    animation: none;
+    transition: none;
   }
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+  }
+}
+/* Edge/IE: hide the native password reveal + clear icons */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* (Defensive) some Chromium builds expose a webkit toggle button */
+input[type="password"]::-webkit-password-toggle-button {
+  display: none;
 }

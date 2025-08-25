@@ -1,0 +1,16 @@
+/* ScrollToTop.css
+   This component doesn't render any visible elements,
+   but this file exists for consistency with your project structure.
+   All scroll behavior is handled in the component logic.
+*/
+
+/* Optional: If you want to add smooth scrolling globally, 
+   but the component uses 'instant' for immediate reset */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ensure all scrollable containers can be reset */
+[data-scrollable] {
+    scroll-behavior: auto; /* Override smooth scrolling for instant reset */
+}

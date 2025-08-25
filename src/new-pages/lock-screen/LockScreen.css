@@ -3,17 +3,17 @@
    ============================================================================= */
 
 .lock-screen-view {
-    background-color: var(--yo-secondery);
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: relative;
-    padding-bottom: 150px;
+  background-color: var(--yo-secondery);
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  padding-bottom: 150px;
 }
 
 /* =============================================================================
@@ -21,52 +21,51 @@
    ============================================================================= */
 
 .lock-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 40px;
-    background-color: var(--yo-purple);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    font-family: var(--font-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 40px;
+  background-color: var(--yo-purple);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  font-family: var(--font-primary);
 }
 
 .lock-header-left,
 .lock-header-center {
-    flex: 1;
+  flex: 1;
 }
 
 .lock-header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding-right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-right: 20px;
 }
 
 .lock-timestamp {
-    color: var(--yo-primary);
-    font-size: var(--text-sm);
-    font-family: var(--font-primary);
+  color: var(--yo-primary);
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
 }
-
 
 /* =============================================================================
    LOCK SCREEN LAYOUT - MAIN CONTENT CONTAINER
    ============================================================================= */
 
 .lock-screen-layout {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    padding-top: 60px; /* Space for system header */
-    min-height: calc(100vh - 150px);
-    justify-content: flex-start; /* Changed from center to start for proper spacing */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding-top: 60px; /* Space for system header */
+  min-height: calc(100vh - 150px);
+  justify-content: flex-start; /* Changed from center to start for proper spacing */
 }
 
 /* =============================================================================
@@ -74,16 +73,15 @@
    ============================================================================= */
 
 .lock-screen-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0; /* Reduced margin for tighter spacing */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0; /* Reduced margin for tighter spacing */
 }
 
 .lock-screen-logo img {
-    width: 140px; /* Smaller logo to match Figma */
-    height: auto;
-    filter: drop-shadow(0 0 20px rgba(159, 255, 130, 0.3));
+  width: 140px; /* Smaller logo to match Figma */
+  height: auto;
 }
 
 /* =============================================================================
@@ -91,41 +89,59 @@
    ============================================================================= */
 
 .lock-screen-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-bottom: 20px; Reduced spacing */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 20px; Reduced spacing */
 }
 
 .yogeshwari-svg {
-    width: 100%;
-    max-width: 800px; /* Slightly smaller than before */
-    height: auto;
-    filter: drop-shadow(0 0 30px rgba(159, 255, 130, 0.2));
-    animation: retro-glow 3s ease-in-out infinite alternate,
-               retro-flicker 4s linear infinite;
+  margin-top: 5vh;
+  width: 100%;
+  max-width: 800px; /* Slightly smaller than before */
+  height: auto;
 }
 
 @keyframes retro-glow {
-    0% {
-        filter: drop-shadow(0 0 20px rgba(159, 255, 130, 0.3)) 
-                drop-shadow(0 0 40px rgba(159, 255, 130, 0.1));
-    }
-    100% {
-        filter: drop-shadow(0 0 40px rgba(159, 255, 130, 0.6)) 
-                drop-shadow(0 0 80px rgba(159, 255, 130, 0.3))
-                drop-shadow(0 0 120px rgba(159, 255, 130, 0.1));
-    }
+  0% {
+    filter: drop-shadow(0 0 20px rgba(159, 255, 130, 0.3))
+      drop-shadow(0 0 40px rgba(159, 255, 130, 0.1));
+  }
+  100% {
+    filter: drop-shadow(0 0 40px rgba(159, 255, 130, 0.6))
+      drop-shadow(0 0 80px rgba(159, 255, 130, 0.3))
+      drop-shadow(0 0 120px rgba(159, 255, 130, 0.1));
+  }
 }
 
 @keyframes retro-flicker {
-    0%, 100% { opacity: 1; }
-    98%, 99% { opacity: 0.9; }
-    97% { opacity: 1; }
-    95%, 96% { opacity: 0.95; }
-    93%, 94% { opacity: 1; }
-    91%, 92% { opacity: 0.98; }
-    89%, 90% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  98%,
+  99% {
+    opacity: 0.9;
+  }
+  97% {
+    opacity: 1;
+  }
+  95%,
+  96% {
+    opacity: 0.95;
+  }
+  93%,
+  94% {
+    opacity: 1;
+  }
+  91%,
+  92% {
+    opacity: 0.98;
+  }
+  89%,
+  90% {
+    opacity: 1;
+  }
 }
 
 /* =============================================================================
@@ -133,47 +149,53 @@
    ============================================================================= */
 
 .countdown-display {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 80px; /* Fixed height to prevent jumping */
-    margin: 20px auto 30px auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px; /* Fixed height to prevent jumping */
+  margin: 20px auto 30px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .countdown-text {
-    font-family: var(--font-secondary);
-    font-size: clamp(32px, 8vw, 72px); /* Large, responsive text */
-    font-weight: bold;
-    color: #CFDF82; /* Bold white color */
-    text-align: center;
-    letter-spacing: clamp(2px, 1vw, 8px);
-   margin-top: -10px;
-    line-height: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    min-height: 60px; /* Ensure consistent height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-family: var(--font-secondary);
+  font-size: clamp(32px, 8vw, 72px); /* Large, responsive text */
+  font-weight: bold;
+  color: #cfdf82; /* Bold white color */
+  text-align: center;
+  letter-spacing: clamp(2px, 1vw, 8px);
+  margin-top: -10px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 60px; /* Ensure consistent height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Typing cursor effect */
 .countdown-text::after {
-    content: '';
-    display: inline-block;
-    width: 3px;
-    height: 1em;
-    /* background-color: #CFDF82; */
-    margin-left: 5px;
-    animation: cursor-blink 1s infinite;
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  /* background-color: #CFDF82; */
+  margin-left: 5px;
+  animation: cursor-blink 1s infinite;
 }
 
 @keyframes cursor-blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 /* =============================================================================
@@ -181,31 +203,31 @@
    ============================================================================= */
 
 .lock-screen-logs-container {
-    width: 85%; /* Slightly wider to match Figma */
-    max-width: 700px; /* Reduced max-width */
-    border: 2px solid var(--yo-green);
-    background-color: rgba(0, 0, 0, 0.4); /* Slightly more opaque */
-    backdrop-filter: blur(3px);
-    /* margin: 20px auto; */
-    position: relative;
-    box-shadow: 0 0 20px rgba(159, 255, 130, 0.2); /* Added glow */
+  width: 85%; /* Slightly wider to match Figma */
+  max-width: 700px; /* Reduced max-width */
+  border: 2px solid var(--yo-green);
+  background-color: rgba(0, 0, 0, 0.4); /* Slightly more opaque */
+  backdrop-filter: blur(3px);
+  /* margin: 20px auto; */
+  position: relative;
+  box-shadow: 0 0 20px rgba(159, 255, 130, 0.2); /* Added glow */
 }
 
 .lock-screen-logs-header {
-    background-color: var(--yo-secondery);
-    color: #CFDF82;
-    padding: 10px 16px;
-    font-family: var(--font-secondary);
-    font-size: var(--text-sm);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--yo-green);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    overflow: hidden;
-    position: relative;
-    height: 45px; /* Fixed height to prevent jumping */
+  background-color: var(--yo-secondery);
+  color: #cfdf82;
+  padding: 10px 16px;
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--yo-green);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  position: relative;
+  height: 45px; /* Fixed height to prevent jumping */
 }
 /* 
 .lock-screen-logs-header::before {
@@ -219,101 +241,101 @@
 } */
 
 @keyframes scroll-text-header {
-    0% { 
-        transform: translateX(100%); 
-    }
-    100% { 
-        transform: translateX(-100%); 
-    }
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes scroll-text {
-    0% { 
-        transform: translateX(100vw); 
-    }
-    100% { 
-        transform: translateX(-100%); 
-    }
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .lock-screen-logs-content {
-    background-color: var(--yo-secondary);
-    padding: 25px; /* More padding for better spacing */
-    color: #CFDF82;
-    font-family: var(--font-primary);
-    font-size: clamp(13px, 2.8vw, 17px); /* Slightly larger text */
-    line-height: 1.8; /* Increased line height */
-    letter-spacing: 0.8px; /* Slightly more spacing */
-    min-height: 180px; /* Minimum height to match Figma */
+  background-color: var(--yo-secondary);
+  padding: 25px; /* More padding for better spacing */
+  color: #cfdf82;
+  font-family: var(--font-primary);
+  font-size: clamp(13px, 2.8vw, 17px); /* Slightly larger text */
+  line-height: 1.8; /* Increased line height */
+  letter-spacing: 0.8px; /* Slightly more spacing */
+  min-height: 180px; /* Minimum height to match Figma */
 }
 
 .lock-screen-logs-content p {
-    margin: 0 0 15px 0; /* Increased bottom margin */
-    padding-left: 25px; /* More padding for arrow */
-    position: relative;
-    opacity: 0;
-    animation: fade-in-typing 0.5s ease-out forwards;
+  margin: 0 0 15px 0; /* Increased bottom margin */
+  padding-left: 25px; /* More padding for arrow */
+  position: relative;
+  opacity: 0;
+  animation: fade-in-typing 0.5s ease-out forwards;
 }
 
 .lock-screen-logs-content p::before {
-    content: ">";
-    position: absolute;
-    left: 0;
-    color: var(--yo-amber);
-    font-weight: bold;
-    font-size: 1.1em; /* Slightly larger arrow */
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--yo-amber);
+  font-weight: bold;
+  font-size: 1.1em; /* Slightly larger arrow */
 }
 
 .lock-screen-logs-content p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* Styling for completed paragraphs - fade in like original */
 .lock-screen-logs-content .completed-paragraph {
-    margin: 0 0 15px 0;
-    padding-left: 25px;
-    position: relative;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease-out forwards; /* Original fade-in animation */
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+  position: relative;
+  opacity: 0;
+  animation: fade-in-up 0.8s ease-out forwards; /* Original fade-in animation */
 }
 
 .lock-screen-logs-content .completed-paragraph::before {
-    content: ">";
-    position: absolute;
-    left: 0;
-    color: var(--yo-amber);
-    font-weight: bold;
-    font-size: 1.1em;
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--yo-amber);
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 /* Styling for currently typing paragraph */
 .lock-screen-logs-content p:not(.completed-paragraph) {
-    margin: 0 0 15px 0;
-    padding-left: 25px;
-    position: relative;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease-out forwards; /* Same fade-in animation */
+  margin: 0 0 15px 0;
+  padding-left: 25px;
+  position: relative;
+  opacity: 0;
+  animation: fade-in-up 0.8s ease-out forwards; /* Same fade-in animation */
 }
 
 .lock-screen-logs-content p:not(.completed-paragraph)::before {
-    content: ">";
-    position: absolute;
-    left: 0;
-    color: var(--yo-amber);
-    font-weight: bold;
-    font-size: 1.1em;
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--yo-amber);
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 /* Original fade-in-up animation restored */
 @keyframes fade-in-up {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =============================================================================
@@ -321,44 +343,60 @@
    ============================================================================= */
 
 .lock-footer {
-    background: var(--yo-purple) !important;
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--yo-light);
-    text-align: center;
-    width: 90%;
-    max-width: 800px;
-    font-family: var(--font-primary);
-    font-size: clamp(14px, 2.5vw, 18px);
-    line-height: 1.4;
+  background: var(--yo-purple) !important;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--yo-light);
+  text-align: center;
+  width: 90%;
+  max-width: 800px;
+  font-family: var(--font-primary);
+  font-size: clamp(14px, 2.5vw, 18px);
+  line-height: 1.4;
 }
 
 .lock-footer p {
-    margin: 8px 0;
-    opacity: 0;
-    animation: fade-in-up 0.8s ease-out forwards;
+  margin: 8px 0;
+  opacity: 0;
+  animation: fade-in-up 0.8s ease-out forwards;
 }
 
-.lock-footer p:nth-child(1) { animation-delay: 0s; }
-.lock-footer p:nth-child(2) { animation-delay: 1s; }
-.lock-footer p:nth-child(3) { animation-delay: 2s; }
-.lock-footer p:nth-child(4) { animation-delay: 3s; }
-.lock-footer p:nth-child(5) { animation-delay: 4s; }
-.lock-footer p:nth-child(6) { animation-delay: 5s; }
-.lock-footer p:nth-child(7) { animation-delay: 6s; }
-.lock-footer p:nth-child(8) { animation-delay: 7s; }
+.lock-footer p:nth-child(1) {
+  animation-delay: 0s;
+}
+.lock-footer p:nth-child(2) {
+  animation-delay: 1s;
+}
+.lock-footer p:nth-child(3) {
+  animation-delay: 2s;
+}
+.lock-footer p:nth-child(4) {
+  animation-delay: 3s;
+}
+.lock-footer p:nth-child(5) {
+  animation-delay: 4s;
+}
+.lock-footer p:nth-child(6) {
+  animation-delay: 5s;
+}
+.lock-footer p:nth-child(7) {
+  animation-delay: 6s;
+}
+.lock-footer p:nth-child(8) {
+  animation-delay: 7s;
+}
 
 @keyframes fade-in-up {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =============================================================================
@@ -366,85 +404,85 @@
    ============================================================================= */
 
 @media (max-width: 768px) {
-    .lock-header {
-        display: none;
-    }
-    
-    .lock-screen-layout {
-        padding-top: 30px; /* Less padding on mobile */
-        gap: 25px;
-    }
+  .lock-header {
+    display: none;
+  }
 
-    .lock-screen-logo img {
-        width: 160px; /* Smaller logo on mobile */
-    }
+  .lock-screen-layout {
+    padding-top: 30px; /* Less padding on mobile */
+    gap: 25px;
+  }
 
-    .yogeshwari-svg {
-        max-width: 95%;
-    }
+  .lock-screen-logo img {
+    width: 160px; /* Smaller logo on mobile */
+  }
 
-    .countdown-display {
-        height: 60px; /* Smaller height on mobile */
-        margin: 0px auto 1px auto;
-        padding: 0 10px;
-    }
+  .yogeshwari-svg {
+    max-width: 95%;
+  }
 
-    .countdown-text {
-        font-size: clamp(24px, 10vw, 48px); /* Smaller text on mobile */
-        letter-spacing: clamp(1px, 2vw, 4px);
-        min-height: 40px;
-    }
+  .countdown-display {
+    height: 60px; /* Smaller height on mobile */
+    margin: 0px auto 1px auto;
+    padding: 0 10px;
+  }
 
-    .lock-screen-logs-container {
-        width: 95%;
-        margin: 15px auto;
-    }
+  .countdown-text {
+    font-size: clamp(24px, 10vw, 48px); /* Smaller text on mobile */
+    letter-spacing: clamp(1px, 2vw, 4px);
+    min-height: 40px;
+  }
 
-    .lock-screen-logs-content {
-        padding: 20px;
-        font-size: clamp(12px, 3.5vw, 15px);
-        min-height: 150px;
-    }
+  .lock-screen-logs-container {
+    width: 95%;
+    margin: 15px auto;
+  }
 
-    .lock-footer {
-        bottom: 30px;
-        width: 95%;
-        font-size: clamp(12px, 3.5vw, 16px);
-    }
+  .lock-screen-logs-content {
+    padding: 20px;
+    font-size: clamp(12px, 3.5vw, 15px);
+    min-height: 150px;
+  }
+
+  .lock-footer {
+    bottom: 30px;
+    width: 95%;
+    font-size: clamp(12px, 3.5vw, 16px);
+  }
 }
 
 @media (min-width: 1000px) {
-    .lock-screen-layout {
-        gap: 10px;
-    }
+  .lock-screen-layout {
+    gap: 10px;
+  }
 
-    .countdown-display {
-        height: 100px; /* Larger height on desktop */
-        margin: 30px auto 40px auto;
-    }
+  .countdown-display {
+    height: 100px; /* Larger height on desktop */
+    margin: 30px auto 40px auto;
+  }
 
-    .countdown-text {
-        font-size: clamp(48px, 12vw, 80px); /* Larger text on desktop */
-        letter-spacing: clamp(4px, 12vw, 10px);
-        min-height: 80px;
-    }
+  .countdown-text {
+    font-size: clamp(48px, 12vw, 80px); /* Larger text on desktop */
+    letter-spacing: clamp(4px, 12vw, 10px);
+    min-height: 80px;
+  }
 
-    .lock-screen-logs-container {
-        max-width: 800px;
-    }
+  .lock-screen-logs-container {
+    max-width: 800px;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 999px) {
-    .countdown-display {
-        height: 80px; /* Medium height for tablets */
-        margin: 25px auto 35px auto;
-    }
+  .countdown-display {
+    height: 80px; /* Medium height for tablets */
+    margin: 25px auto 35px auto;
+  }
 
-    .countdown-text {
-        font-size: clamp(36px, 7vw, 64px); /* Medium text for tablets */
-        letter-spacing: clamp(3px, 1.5vw, 6px);
-        min-height: 60px;
-    }
+  .countdown-text {
+    font-size: clamp(36px, 7vw, 64px); /* Medium text for tablets */
+    letter-spacing: clamp(3px, 1.5vw, 6px);
+    min-height: 60px;
+  }
 }
 
 /* =============================================================================
@@ -452,23 +490,21 @@
    ============================================================================= */
 
 .lock-screen-logs-content p {
-    transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
 }
 
 /* Enhanced glow effects for better visual impact */
 .lock-screen-logs-container {
-    animation: container-pulse 4s ease-in-out infinite alternate;
+  animation: container-pulse 4s ease-in-out infinite alternate;
 }
 
 @keyframes container-pulse {
-    0% {
-        box-shadow: 0 0 20px rgba(159, 255, 130, 0.2);
-    }
-    100% {
-        box-shadow: 0 0 30px rgba(159, 255, 130, 0.4);
-    }
-
-
+  0% {
+    box-shadow: 0 0 20px rgba(159, 255, 130, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(159, 255, 130, 0.4);
+  }
 }
 
 /* Add this to your LockScreen.css file */
@@ -479,18 +515,87 @@
 
 /* Override GlobalFooter background color specifically in lock screen view */
 .lock-screen-view .global-footer {
-    background: var(--yo-purple) !important;
+  background: var(--yo-purple) !important;
 }
 
 /* Alternative approach - if GlobalFooter has different class name */
 .lock-screen-view .footer-container {
-    background: var(--yo-purple) !important;
+  background: var(--yo-purple) !important;
 }
 
 /* If GlobalFooter uses multiple background properties, override them all */
 .lock-screen-view .global-footer,
 .lock-screen-view .global-footer-container,
 .lock-screen-view .footer-wrapper {
-    background: var(--yo-purple) !important;
-    background-color: var(--yo-purple) !important;
+  background: var(--yo-purple) !important;
+  background-color: var(--yo-purple) !important;
+}
+/* =============================================================================
+   EXTRA SMALL SCREENS (below 768px) - TEXT SIZE REDUCTIONS
+   ============================================================================= */
+@media (max-width: 767px) {
+  .countdown-text {
+    font-size: clamp(18px, 8vw, 32px); /* Smaller countdown text */
+    letter-spacing: clamp(0.5px, 1vw, 2px);
+  }
+
+  .lock-screen-logs-content {
+    font-size: clamp(11px, 3vw, 13px); /* Smaller logs text */
+    line-height: 1.6;
+  }
+
+  .lock-footer {
+    font-size: clamp(11px, 3vw, 14px); /* Smaller footer text */
+  }
+}
+
+/* =============================================================================
+   EXTRA SMALL SCREENS (below 768px) - TEXT SIZE REDUCTIONS
+   ============================================================================= */
+@media (max-width: 767.98px) {
+  .countdown-text {
+    font-size: clamp(18px, 8vw, 32px) !important;
+    letter-spacing: clamp(0.5px, 1vw, 2px);
+  }
+
+  .lock-screen-logs-content {
+    font-size: clamp(11px, 3vw, 13px) !important;
+    line-height: 1.6;
+  }
+
+  .lock-footer {
+    font-size: clamp(11px, 3vw, 14px) !important;
+  }
+}
+.lock-screen-logo img {
+  display: none;
+}
+
+.lock-screen-logo {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.lock-screen-logo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #cfdf82;
+  -webkit-mask: url('images/logo/Logo-animate-wothout-Blink.gif') center /
+    contain no-repeat;
+  mask: url('images/logo/Logo-animate-wothout-Blink.gif') center / contain
+    no-repeat;
+
+  filter: drop-shadow(0 0 20px rgba(207, 223, 130, 0.35))
+    drop-shadow(0 0 40px rgba(207, 223, 130, 0.25));
+}
+
+@supports not (mask: url('x')) {
+  .lock-screen-logo img {
+    display: block;
+  }
+  .lock-screen-logo::before {
+    display: none;
+  }
 }

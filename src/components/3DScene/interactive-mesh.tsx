@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from 'three';
 import { useThree, useFrame } from "@react-three/fiber";
-import { InteractiveMeshProps } from "../../interfaces/props";
+import {InteractiveMeshProps} from "../../interfaces/props";
+
 
 const InteractiveMesh: React.FC<InteractiveMeshProps> = ({
     position,
@@ -18,8 +19,9 @@ const InteractiveMesh: React.FC<InteractiveMeshProps> = ({
     const proximityThreshold = 2;
     const interactionThreshold = 2.5;
     const [raycastEnabled, setRaycastEnabled] = useState(true);
+    const [interactionsEnabled, setInteractionsEnabled] = useState(true);
 
-    // Listen for sessionStorage key changes
+    // Listen for sessionStorage key changes and custom events
     useEffect(() => {
         let customTimeout: any;
         const checkModalAndPointerLock = () => {
@@ -42,14 +44,45 @@ const InteractiveMesh: React.FC<InteractiveMeshProps> = ({
                 setRaycastEnabled(false);
             }
         };
-        document.addEventListener('pointerlockchange', checkModalAndPointerLock);
-        // Also check on mount
-        checkModalAndPointerLock();
-        return () => {
-            clearInterval(customTimeout);
-            document.removeEventListener('pointerlockchange', checkModalAndPointerLock);
+
+        // Handle custom events for menu modal
+        const handleDisableRaycasting = () => {
+            setRaycastEnabled(false);
+            setInteractionsEnabled(false);
+            if (onNearby) onNearby(false);
+            document.body.style.cursor = 'auto';
         };
-    }, []);
+
+        const handleEnableRaycasting = () => {
+            setRaycastEnabled(true);
+        };
+
+        const handleDisableInteractions = () => {
+            setInteractionsEnabled(false);
+        };
+
+        const handleEnableInteractions = () => {
+            setInteractionsEnabled(true);
+        };
+
+        document.addEventListener('pointerlockchange', checkModalAndPointerLock);
+        window.addEventListener('disableRaycasting', handleDisableRaycasting);
+        window.addEventListener('enableRaycasting', handleEnableRaycasting);
+        window.addEventListener('disableInteractions', handleDisableInteractions);
+        window.addEventListener('enableInteractions', handleEnableInteractions);
+
+        // Check on mount
+        checkModalAndPointerLock();
+
+        return () => {
+            clearTimeout(customTimeout);
+            document.removeEventListener('pointerlockchange', checkModalAndPointerLock);
+            window.removeEventListener('disableRaycasting', handleDisableRaycasting);
+            window.removeEventListener('enableRaycasting', handleEnableRaycasting);
+            window.removeEventListener('disableInteractions', handleDisableInteractions);
+            window.removeEventListener('enableInteractions', handleEnableInteractions);
+        };
+    }, [onNearby]);
 
     const checkRaycastAndDistance = (thresholdDistance: number) => {
         if (!meshRef.current) return false;
@@ -83,7 +116,7 @@ const InteractiveMesh: React.FC<InteractiveMeshProps> = ({
 
     useEffect(() => {
         const handleClick = () => {
-            if (!raycastEnabled) return;
+            if (!raycastEnabled || !interactionsEnabled) return;
             if (checkInteraction()) {
                 sessionStorage.setItem('modalMessage', JSON.stringify(assetName));
                 sessionStorage.setItem('modalFileName', JSON.stringify(assetFileName));
@@ -92,7 +125,7 @@ const InteractiveMesh: React.FC<InteractiveMeshProps> = ({
         };
         window.addEventListener('click', handleClick);
         return () => window.removeEventListener('click', handleClick);
-    }, [assetName, assetFileName, setOpen, raycastEnabled]);
+    }, [assetName, assetFileName, setOpen, raycastEnabled, interactionsEnabled]);
 
     useEffect(() => {
         return () => {

@@ -1,23 +1,25 @@
 /* =============================================================================
-   QUEUE VIEW PAGE - LAYOUT CONTAINER FOR QUEUE COMPONENT
-   Provides proper spacing and centering for the queue card
+   QUEUE VIEW PAGE - MOBILE-FIRST RESPONSIVE (320px+)
+   Matches the responsiveness pattern used in Mission Selection
    ============================================================================= */
 
+/* Page shell */
 .queue-page-container {
   width: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background: var(--yo-primary);
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
+  scroll-behavior: smooth;
 }
 
-/* Page heading - hidden to match Figma design */
+/* Heading (hidden by design, keep hooks if you want to show later) */
 .queue-page-heading {
   display: none;
 }
-
 .queue-page-heading h1 {
   font-family: var(--font-primary);
   font-size: var(--h1-size);
@@ -33,94 +35,261 @@
 .queue-content-main {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* start on small screens for more room */
   justify-content: center;
-  padding: clamp(16px, 3vw, 32px);
-  /* Account for header/footer */
+  padding: clamp(12px, 4vw, 24px);
+  padding-top: clamp(16px, 6vw, 40px);
 }
 
+/* Wrapper keeps card centered and limits width */
 .queue-content-wrapper {
-  /* padding-top: 50%; */
   width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-lg);
+  gap: clamp(12px, 3vw, 32px);
 }
 
-/* Container for the Queue component */
+/* Queue component container (the card area) */
 .queue-component-container {
-  margin-top: 15%;
   width: 100%;
-  max-width: 600px;
+  max-width: min(600px, 92vw);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  /* viewport-based top spacing, scales with device height */
+  margin-top: clamp(6vh, 10vh, 15vh);
 }
 
-/* -------------------------------- Responsive ------------------------------- */
-@media (max-width: 1024px) {
-  .queue-content-main {
+/* =============================================================================
+   BREAKPOINTS (mirrors Mission Selection rhythm)
+   ============================================================================= */
 
-    padding: clamp(50px, 4vw, 70px);
+/* Large desktop (≥1440px) */
+@media (min-width: 1440px) {
+  .queue-page-container {
+    padding-left: var(--spacing-2xl);
+    padding-right: var(--spacing-2xl);
+  }
+  .queue-content-main {
+    padding: clamp(24px, 3vw, 48px);
+    padding-top: clamp(24px, 4vw, 56px);
+  }
+  .queue-content-wrapper {
+    gap: clamp(20px, 2.5vw, 56px);
+    max-width: 1280px;
+  }
+  .queue-component-container {
+    max-width: 640px; /* prevent over-stretch on very wide screens */
+    margin-top: clamp(4vh, 8vh, 12vh);
   }
 }
 
+/* Desktop (1024px–1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .queue-page-container {
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
+  }
+  .queue-content-main {
+    padding: clamp(20px, 2.5vw, 40px);
+  }
+  .queue-content-wrapper {
+    gap: clamp(16px, 2.5vw, 40px);
+    max-width: 1200px;
+  }
+  .queue-component-container {
+    max-width: 600px;
+    margin-top: clamp(5vh, 9vh, 12vh);
+  }
+}
+
+/* Tablet (769px–1023px) */
+@media (max-width: 1023px) and (min-width: 769px) {
+  .queue-page-container {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+  .queue-content-main {
+    padding: clamp(16px, 3.5vw, 32px);
+    align-items: center; /* center a bit earlier on tablets */
+  }
+  .queue-content-wrapper {
+    gap: clamp(12px, 3vw, 28px);
+    max-width: 900px;
+  }
+  .queue-component-container {
+    max-width: 560px;
+    margin-top: clamp(6vh, 9vh, 12vh);
+  }
+}
+
+/* Mobile (≤768px) */
 @media (max-width: 768px) {
   .queue-content-main {
+    margin-top: -5vh;
     padding: var(--spacing-md);
-    align-items: flex-start;
     padding-top: clamp(20px, 5vw, 40px);
+    align-items: flex-start;
   }
-
   .queue-content-wrapper {
     gap: var(--spacing-md);
   }
-
+  .queue-component-container {
+    max-width: 92vw;
+    margin-top: clamp(7vh, 10vh, 14vh);
+  }
   .queue-page-heading h1 {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: clamp(22px, 6vw, 32px);
     padding: var(--spacing-md) 0;
   }
 }
 
+/* Small mobile (≤480px) */
 @media (max-width: 480px) {
   .queue-content-main {
     padding: var(--spacing-sm);
     padding-top: var(--spacing-lg);
   }
-
   .queue-content-wrapper {
     gap: var(--spacing-sm);
   }
+  .queue-component-container {
+    max-width: 95vw;
+    margin-top: clamp(8vh, 12vh, 16vh);
+  }
 }
 
-/* Landscape mobile orientation */
+/* Extra small (≤375px) */
+@media (max-width: 375px) {
+  .queue-content-main {
+    padding: var(--spacing-xs);
+    padding-top: var(--spacing-md);
+  }
+  .queue-content-wrapper {
+    gap: var(--spacing-xs);
+  }
+  .queue-component-container {
+    max-width: 96vw;
+  }
+}
+
+/* Landscape mobile (≤768px & landscape) */
 @media (max-width: 768px) and (orientation: landscape) {
   .queue-content-main {
     align-items: flex-start;
     padding-top: var(--spacing-sm);
   }
-}
-
-/* Large screens */
-@media (min-width: 1200px) {
-  .queue-content-main {
-    padding: clamp(32px, 4vw, 48px);
+  .queue-component-container {
+    margin-top: clamp(4vh, 6vh, 8vh);
   }
 }
 
-/* Reduced motion */
+/* =============================================================================
+   ACCESSIBILITY & PRINT
+   ============================================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .queue-page-container {
     scroll-behavior: auto;
   }
 }
 
-/* High contrast mode */
 @media (prefers-contrast: high) {
   .queue-page-container {
     background: var(--yo-black);
+  }
+}
+
+@media print {
+  .queue-page-container {
+    background: #fff;
+    color: #000;
+    min-height: auto;
+  }
+  .queue-content-main {
+    padding: 1rem;
+    align-items: flex-start;
+  }
+  .queue-component-container {
+    margin-top: 0;
+    max-width: 100%;
+  }
+}
+
+/* ================== SHORT HEIGHT OVERRIDES (≤606px) ================== */
+/* Keeps layout comfy on small-height viewports (e.g., 606px tall) */
+@media (max-height: 606px) {
+  /* Reduce global paddings a bit */
+  .queue-page-container {
+    /* prefer stable viewport unit to avoid mobile toolbar jumps */
+    min-height: 100svh;
+    padding: 0; /* let inner content control spacing */
+  }
+
+  .queue-content-main {
+    align-items: center; /* center the card vertically */
+    justify-content: center; /* …and horizontally (already) */
+    padding: clamp(8px, 3vh, 16px); /* tighter on short screens */
+    padding-top: clamp(8px, 3vh, 16px);
+  }
+
+  .queue-content-wrapper {
+    gap: clamp(8px, 2vh, 16px); /* smaller gaps */
+    max-width: 1100px; /* nudge down a bit */
+  }
+
+  .queue-component-container {
+    max-width: min(580px, 94vw); /* keep it snug */
+    margin-top: clamp(2vh, 4vh, 6vh); /* much smaller top offset */
+  }
+}
+
+/* Short-height + small width (phones in landscape or tiny windows) */
+@media (max-height: 606px) and (max-width: 768px) {
+  .queue-content-main {
+    padding: clamp(8px, 2.5vh, 14px);
+  }
+  .queue-component-container {
+    max-width: 96vw;
+    margin-top: clamp(1vh, 3vh, 5vh);
+  }
+}
+
+/* ================== SCALE COMPONENT ON SMALLER SCREENS ================== */
+
+/* Small mobile: shrink component a bit */
+@media (max-width: 480px) {
+  .queue-component-container {
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+}
+
+/* Extra small: shrink more */
+@media (max-width: 375px) {
+  .queue-component-container {
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+}
+
+/* Very small height (≤606px): shrink vertically too */
+@media (max-height: 606px) {
+  .queue-component-container {
+    transform: scale(0.9);
+    transform-origin: center center;
+  }
+}
+
+/* Combine very short + narrow (e.g., landscape phones) */
+@media (max-height: 606px) and (max-width: 480px) {
+  .queue-component-container {
+    transform: scale(0.8);
+    transform-origin: center center;
   }
 }

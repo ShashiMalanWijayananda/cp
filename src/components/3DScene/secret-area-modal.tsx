@@ -17,6 +17,16 @@ const SecretAreaModal: React.FC<SecretAreaModalProps> = ({ open, onClose, assetN
     const [imageLoading, setImageLoading] = useState(true);
     const [scanLine, setScanLine] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const timeoutRef = useRef<number | undefined>(undefined);
+
+    // Cleanup function
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
 
     useEffect(() => {
         const style = document.createElement('style');
@@ -152,6 +162,10 @@ const SecretAreaModal: React.FC<SecretAreaModalProps> = ({ open, onClose, assetN
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === 'q' || event.key === 'Q') {
+                // Disable interactions first
+                window.dispatchEvent(new CustomEvent('disableRaycasting'));
+                window.dispatchEvent(new CustomEvent('disableInteractions'));
+                
                 onClose();
                 // moving back - player
                 const moveBackEvent = new CustomEvent('movePlayerBack', {
@@ -159,12 +173,17 @@ const SecretAreaModal: React.FC<SecretAreaModalProps> = ({ open, onClose, assetN
                 });
                 window.dispatchEvent(moveBackEvent);
 
-                // turning the player
-                // const turnEvent = new CustomEvent('turnPlayerAround', { detail: { angle: 270 } });
-                // window.dispatchEvent(turnEvent);
                 sessionStorage.setItem('anImageModalIsOPened', JSON.stringify(false));
                 sessionStorage.setItem('modalMessage', JSON.stringify("n/a"));
                 sessionStorage.setItem('modalFileName', JSON.stringify("n/a"));
+
+                // Re-enable interactions after a delay
+                setTimeout(() => {
+                    if (document.pointerLockElement) {
+                        window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                        window.dispatchEvent(new CustomEvent('enableInteractions'));
+                    }
+                }, 2000);
             }
         };
 
@@ -436,11 +455,26 @@ const SecretAreaModal: React.FC<SecretAreaModalProps> = ({ open, onClose, assetN
                 </Box>
 
                 <Box className="modal-action-trigger"
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevent click from reaching through
+                        
+                        // Disable interactions first
+                        window.dispatchEvent(new CustomEvent('disableRaycasting'));
+                        window.dispatchEvent(new CustomEvent('disableInteractions'));
+                        
                         onClose();
+                        
                         sessionStorage.setItem('anImageModalIsOPened', JSON.stringify(false));
                         sessionStorage.setItem('modalMessage', JSON.stringify("n/a"));
                         sessionStorage.setItem('modalFileName', JSON.stringify("n/a"));
+
+                        // Re-enable interactions after a delay
+                        setTimeout(() => {
+                            if (document.pointerLockElement) {
+                                window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                                window.dispatchEvent(new CustomEvent('enableInteractions'));
+                            }
+                        }, 2000);
                     }}
                     sx={{
                         position: 'absolute',

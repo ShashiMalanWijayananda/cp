@@ -237,7 +237,7 @@ const Profile: FC = () => {
         const errorResponse = error?.response?.data as IAPIResponse;
         if (errorResponse?.code == 'CODE-300') {
           appContext.showContentDialog(
-            'ERROR!!!',
+            'ERROR!',
             <div>
               <p style={{ color: '#ffffff' }}>
                 Validation error. Please fix the issues in the form:
@@ -547,6 +547,7 @@ const Profile: FC = () => {
               )}
 
               {/* Update Button */}
+              <br />
               <button
                 type="button"
                 className="update-button"

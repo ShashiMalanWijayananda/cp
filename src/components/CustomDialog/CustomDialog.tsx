@@ -202,7 +202,7 @@ const CustomDialog: FC<CustomDialogProps> = ({
             position="center"
             blockScroll={isMobileOrTablet}
         >
-          <div style={{padding: 25}}>  {customContent || defaultContent}</div>
+          <div style={{padding: 25,  maxWidth:"550px"}}>  {customContent || defaultContent}</div>
         </Dialog>
     );
 };

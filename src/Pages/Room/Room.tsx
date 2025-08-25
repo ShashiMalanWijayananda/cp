@@ -1,3 +1,4 @@
+
 import React, { Suspense, useState, useEffect } from "react";
 import * as THREE from 'three';
 
@@ -63,6 +64,14 @@ const Room: React.FC = () => {
         sessionStorage.setItem('anInteractiveModalIsOPened', JSON.stringify(false));
         sessionStorage.setItem('anImageModalIsOPened', JSON.stringify(false));
         sessionStorage.setItem('settingsModalIsOPened', JSON.stringify(false));
+        sessionStorage.setItem('interactionState', 'disabled');
+
+        // Cleanup function
+        return () => {
+            if (window.lastInteractionTimeout) {
+                clearTimeout(window.lastInteractionTimeout);
+            }
+        };
     }, [location.search])
 
 
@@ -121,10 +130,24 @@ const Room: React.FC = () => {
 
             if (event.key === 'Tab') {
                 event.preventDefault();
-                if (showSettings) {
-                    sessionStorage.setItem('settingsModalIsOPened', JSON.stringify(false));
+                // Don't allow opening quality settings when scene menu is open
+                if (showSceneMenu) return;
+
+                // Clear any pending timeouts
+                if (window.lastInteractionTimeout) {
+                    clearTimeout(window.lastInteractionTimeout);
                 }
-                setShowSettings(prev => !prev);
+
+                // Always disable interactions first
+                window.dispatchEvent(new CustomEvent('disableRaycasting'));
+                window.dispatchEvent(new CustomEvent('disableInteractions'));
+                sessionStorage.setItem('interactionState', 'disabled');
+
+                if (!showSettings) {
+                    // When opening quality settings
+                    sessionStorage.setItem('settingsModalIsOPened', JSON.stringify(true));
+                    setShowSettings(true);
+                }
             }
             if (event.key.toLowerCase() === 'i') {
                 event.preventDefault();
@@ -134,26 +157,83 @@ const Room: React.FC = () => {
                 event.preventDefault();
                 navigator("/menu", {replace: true})
             }
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                // Don't toggle menu if any modal is open
+                const isAnImageModalOpened = JSON.parse(sessionStorage.getItem('anImageModalIsOPened') || 'false');
+                const isSettingsModalOpened = JSON.parse(sessionStorage.getItem('settingsModalIsOPened') || 'false');
+
+                if (!isAnImageModalOpened && !isSettingsModalOpened) {
+                    setShowSceneMenu(prev => !prev);
+
+                    if (!showSceneMenu) {
+                        // Opening menu - ensure interactions are disabled
+                        window.dispatchEvent(new CustomEvent('disableRaycasting'));
+                        window.dispatchEvent(new CustomEvent('disableInteractions'));
+                        sessionStorage.setItem('interactionState', 'disabled');
+                    } else {
+                        // Re-enable interactions after a delay when closing
+                        setTimeout(() => {
+                            if (document.pointerLockElement) {
+                                window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                                window.dispatchEvent(new CustomEvent('enableInteractions'));
+                                sessionStorage.setItem('interactionState', 'enabled');
+                            }
+                        }, 2000);
+                    }
+                }
+            }
         };
 
         // Fires when exiting fullscreen or pointer lock
         const handleImmersiveExit = () => {
             const notFullscreen = !document.fullscreenElement;
             const notPointerLock = document.pointerLockElement === null;
+
+            // Clear any pending timeouts
+            if (window.lastInteractionTimeout) {
+                clearTimeout(window.lastInteractionTimeout);
+            }
+
             if (notFullscreen && notPointerLock) {
                 const isAnImageModalOpened = JSON.parse(sessionStorage.getItem('anImageModalIsOPened') || 'false');
                 const isSettingsModalOpened = JSON.parse(sessionStorage.getItem('settingsModalIsOPened') || 'false');
 
+                setImmersive(false);
+                // Always ensure interactions are disabled when exiting immersive mode
+                window.dispatchEvent(new CustomEvent('disableRaycasting'));
+                window.dispatchEvent(new CustomEvent('disableInteractions'));
+                sessionStorage.setItem('interactionState', 'disabled');
+
                 if (!isAnImageModalOpened && !isSettingsModalOpened) {
                     setShowSceneMenu(prev => !prev);
                 }
-                // setShowInstructions(prev => !prev);
             }
+
             if (document.pointerLockElement) {
                 setImmersive(true);
-            }
-            else {
-                setImmersive(false);
+
+                // Only enable interactions if no modals are open
+                const isAnImageModalOpened = JSON.parse(sessionStorage.getItem('anImageModalIsOPened') || 'false');
+                const isSettingsModalOpened = JSON.parse(sessionStorage.getItem('settingsModalIsOPened') || 'false');
+
+                if (!isAnImageModalOpened && !isSettingsModalOpened && !showSceneMenu && !showSettings) {
+                    // Re-enable raycasting and interactions when entering immersive mode
+                    // window.lastInteractionTimeout = setTimeout(() => {
+                    //     if (document.pointerLockElement) {
+                    //         window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                    //         window.dispatchEvent(new CustomEvent('enableInteractions'));
+                    //         sessionStorage.setItem('interactionState', 'enabled');
+                    //     }
+                    // }, 2000);
+                    window.lastInteractionTimeout = window.setTimeout(() => {
+                        if (document.pointerLockElement) {
+                            window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                            window.dispatchEvent(new CustomEvent('enableInteractions'));
+                            sessionStorage.setItem('interactionState', 'enabled');
+                        }
+                    }, 2000);
+                }
             }
         };
 
@@ -165,7 +245,7 @@ const Room: React.FC = () => {
             document.removeEventListener('fullscreenchange', handleImmersiveExit);
             document.removeEventListener('pointerlockchange', handleImmersiveExit);
         };
-    }, [showInstructions, showSettings]);
+    }, [showInstructions, showSettings, showSceneMenu, immersive]);
 
     const {appContext} = useAppContext();
     const {connectionStatus, lastError, isCompleted} = useWebSocketConnection();
@@ -308,8 +388,9 @@ const Room: React.FC = () => {
                     {!false && (
                         showSettings && (
                             <QualitySettings onClose={() => {
-                                setShowSettings(false)
+                                setShowSettings(false);
                                 initialGraphicsQualitySelection = true;
+                                // Handled in the Tab key handler now
                             }} />
                         )
                     )}
@@ -327,15 +408,15 @@ const Room: React.FC = () => {
                 )}
 
                 {/* HUD */}
-                    <>
-                        <TicketsHUD />
-                        <CompassHUD />
-                        <Time/>
-                        <Queue index={qStatus?.currentIndex}/>
-                        <Location />
-                        <SciFiHUD />
-                        <Crosshair />
-                    </>
+                <>
+                    <TicketsHUD />
+                    <CompassHUD />
+                    <Time />
+                    <Queue index={qStatus?.currentIndex}/>
+                    <Location />
+                    <SciFiHUD />
+                    <Crosshair />
+                </>
 
                 {/* Proximity Text */}
                 {showProximityText && (

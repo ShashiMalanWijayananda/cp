@@ -208,7 +208,7 @@ export const LoginContextProvider: React.FC<{ children: ReactNode }> = ({childre
 
     // Don't render children until auth state is initialized
     if (!isInitialized) {
-        return <div>Loading...</div>; // or your loading component
+        return <div></div>; // or your loading component
     }
 
     return (

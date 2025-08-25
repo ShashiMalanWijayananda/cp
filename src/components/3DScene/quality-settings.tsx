@@ -23,13 +23,39 @@ interface QualitySettingsProps {
 const STORAGE_KEY = 'graphics-quality-preset';
 
 const QualitySettings: React.FC<QualitySettingsProps> = ({ onClose }) => {
-    sessionStorage.setItem('settingsModalIsOPened', JSON.stringify(true));
-
     const { setQualityPreset } = useQualitySettings();
     const [selectedPreset, setSelectedPreset] = useState<keyof typeof qualityPresets>(() => {
         const savedPreset = localStorage.getItem(STORAGE_KEY) as keyof typeof qualityPresets;
         return savedPreset && Object.keys(qualityPresets).includes(savedPreset) ? savedPreset : 'low';
     });
+
+    useEffect(() => {
+        sessionStorage.setItem('settingsModalIsOPened', JSON.stringify(true));
+    }, [location])
+
+    // Add key handler for Q to close settings
+    useEffect(() => {
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.key === 'q' || event.key === 'Q') {
+                // Disable interactions first
+                window.dispatchEvent(new CustomEvent('disableInteractions'));
+                
+                sessionStorage.setItem('settingsModalIsOPened', JSON.stringify(false));
+                
+                // Re-enable interactions after a delay
+                setTimeout(() => {
+                    if (document.pointerLockElement) {
+                        window.dispatchEvent(new CustomEvent('enableInteractions'));
+                    }
+                }, 2500);
+
+                onClose();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyPress);
+        return () => window.removeEventListener('keydown', handleKeyPress);
+    }, [onClose]);
 
     useEffect(() => {
         // Exit fullscreen mode if active
@@ -42,28 +68,44 @@ const QualitySettings: React.FC<QualitySettingsProps> = ({ onClose }) => {
             document.exitPointerLock();
         }
 
-        // Show the cursor
+        // Show the cursor and disable raycasting
         document.body.style.cursor = 'default';
+        window.dispatchEvent(new CustomEvent('disableRaycasting'));
 
         // Cleanup function to reset cursor when modal closes
         return () => {
             document.body.style.cursor = 'none';
+            // Re-enable raycasting after a delay when modal closes
+            setTimeout(() => {
+                window.dispatchEvent(new CustomEvent('enableRaycasting'));
+            }, 2000);
         };
     }, []);
 
-    const handleQualityChange = (preset: keyof typeof qualityPresets) => {
+    const handleQualityChange = (e: React.MouseEvent, preset: keyof typeof qualityPresets) => {
+        e.stopPropagation(); // Prevent click from reaching interactive meshes
         setSelectedPreset(preset);
         setQualityPreset(preset);
         // Save the selection to localStorage
         localStorage.setItem(STORAGE_KEY, preset);
     };
 
+    const handleOverlayClick = (e: React.MouseEvent) => {
+        // Prevent any clicks on the overlay from reaching interactive meshes
+        e.stopPropagation();
+    };
+
     return (
-        <Box className="quality-settings-overlay">
-            <Box className="quality-settings-modal"
+        <Box 
+            className="quality-settings-overlay"
+            onClick={handleOverlayClick} // Handle clicks on the overlay background
+        >
+            <Box 
+                className="quality-settings-modal"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="settings-title"
+                onClick={handleOverlayClick} // Handle clicks on the modal container
                 style={{
                     paddingTop: 30,
                     paddingBottom: 40
@@ -94,7 +136,7 @@ const QualitySettings: React.FC<QualitySettingsProps> = ({ onClose }) => {
                                 borderRadius: 0,
                             }}
                             className={`quality-button ${selectedPreset === preset ? 'selected' : ''}`}
-                            onClick={() => handleQualityChange(preset as keyof typeof qualityPresets)}
+                            onClick={(e) => handleQualityChange(e, preset as keyof typeof qualityPresets)}
                             role="radio"
                             aria-checked={selectedPreset === preset}
                             tabIndex={0}>
@@ -117,16 +159,22 @@ const QualitySettings: React.FC<QualitySettingsProps> = ({ onClose }) => {
                         width: '100%',
 
                     }}
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevent click from reaching interactive meshes
                         sessionStorage.setItem('settingsModalIsOPened', JSON.stringify(false));
 
+                        // Disable interactions immediately
+                        window.dispatchEvent(new CustomEvent('disableInteractions'));
+                        
                         const moveBackEvent = new CustomEvent('movePlayerBack', {
                             detail: { distance: 2 }
                         });
                         window.dispatchEvent(moveBackEvent);
 
-                        // const turnEvent = new CustomEvent('turnPlayerAround', { detail: { angle: 299 } });
-                        // window.dispatchEvent(turnEvent);
+                        // Re-enable interactions after a delay
+                        setTimeout(() => {
+                            window.dispatchEvent(new CustomEvent('enableInteractions'));
+                        }, 2500);
 
                         onClose();
                     }}
@@ -159,7 +207,11 @@ const QualitySettings: React.FC<QualitySettingsProps> = ({ onClose }) => {
                     align-items: center;
                     z-index: 6;
                     font-family: "Courier New", monospace;
-                    cursor: 'none !important'
+                    cursor: 'none !important';
+                    /* Ensure the overlay captures all clicks */
+                    pointer-events: all;
+                    user-select: none;
+                    -webkit-user-select: none;
                 }
                 
                 .quality-settings-modal {

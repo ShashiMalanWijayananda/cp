@@ -908,3 +908,111 @@
     transition: none;
   }
 }
+
+/* === Badge boxes: fixed size; images fit without resizing the box === */
+
+/* 1) Define a single size token and lock grid row height */
+:root {
+  --badge-size: 120px; /* default; adjust below per breakpoint if you want */
+}
+
+.badge-container {
+  /* ensure each grid row matches the fixed badge height */
+  grid-auto-rows: var(--badge-size) !important;
+}
+
+/* 2) Lock each tile to the fixed size; prevent content from affecting layout */
+.badge-item,
+.badge-placeholder {
+  width: var(--badge-size) !important;
+  height: var(--badge-size) !important;
+  min-width: var(--badge-size) !important;
+  min-height: var(--badge-size) !important;
+  max-width: var(--badge-size) !important;
+  max-height: var(--badge-size) !important;
+  aspect-ratio: auto !important; /* stop aspect-ratio from driving size */
+  overflow: hidden !important; /* clip overflow just in case */
+  box-sizing: border-box !important;
+}
+
+/* 3) Images fit within the box without stretching it */
+.badge-item img,
+.badge-thumb,
+.badge-popup-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; /* fit inside; no crop, no resize of box */
+  display: block !important;
+}
+
+/* 4) Optional: keep the hover effect visual-only (no layout shift) */
+.badge-item:hover,
+.badge-placeholder:hover {
+  transform: translateY(-1px) scale(1.01); /* visual only; size stays fixed */
+}
+
+/* 5) (Optional) Responsive size tweaks via the token — box stays fixed per breakpoint */
+@media (max-width: 1199px) and (min-width: 768px) {
+  :root {
+    --badge-size: 110px;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 481px) {
+  :root {
+    --badge-size: 95px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --badge-size: 75px;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --badge-size: 65px;
+  }
+}
+
+/* ===========================================
+   RESPONSIVE SPACING FOR BADGE GRID
+   =========================================== */
+
+/* Default spacing (desktop-first, fluid) */
+.badge-container {
+  gap: clamp(8px, 2vw, 28px) !important; /* scales with viewport */
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Large Desktop (≥1200px) */
+@media (min-width: 1200px) {
+  .badge-container {
+    gap: clamp(16px, 2.5vw, 32px) !important;
+  }
+}
+
+/* Tablet (481px – 1199px) */
+@media (max-width: 1024px) and (min-width: 481px) {
+  .badge-container {
+    margin-top: 50px;
+    gap: clamp(6px, 2vw, 20px) !important;
+  }
+}
+
+/* Mobile (≤480px) */
+@media (max-width: 480px) {
+  .badge-container {
+    gap: clamp(4px, 1.5vw, 12px) !important;
+  }
+}
+
+/* Extra Small Mobile (≤360px) */
+@media (max-width: 360px) {
+  .badge-container {
+    gap: clamp(2px, 1vw, 8px) !important;
+  }
+}
+

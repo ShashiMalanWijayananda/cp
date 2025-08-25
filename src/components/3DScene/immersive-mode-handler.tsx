@@ -1,9 +1,60 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-// componnsts
+// components
 import ShuffleText from "./shuffle-text";
 
 const ImmersiveModeHandler: React.FC = () => {
+    useEffect(() => {
+        // Immediately disable interactions when the handler mounts
+        window.dispatchEvent(new CustomEvent('disableRaycasting'));
+        window.dispatchEvent(new CustomEvent('disableInteractions'));
+
+        // Clear any existing timeouts
+        if (window.lastInteractionTimeout) {
+            clearTimeout(window.lastInteractionTimeout);
+        }
+
+        const handlePointerLock = () => {
+            // Always disable first to ensure clean state
+            window.dispatchEvent(new CustomEvent('disableRaycasting'));
+            window.dispatchEvent(new CustomEvent('disableInteractions'));
+
+            if (document.pointerLockElement) {
+                // Clear any existing timeouts
+                if (window.lastInteractionTimeout) {
+                    clearTimeout(window.lastInteractionTimeout);
+                }
+
+                // Set a new timeout for enabling interactions
+                // window.lastInteractionTimeout = setTimeout(() => {
+                //     // Double check we're still in pointer lock and no modals are open
+                //     if (document.pointerLockElement &&
+                //         !JSON.parse(sessionStorage.getItem('settingsModalIsOPened') || 'false')) {
+                //         window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                //         window.dispatchEvent(new CustomEvent('enableInteractions'));
+                //         sessionStorage.setItem('interactionState', 'enabled');
+                //     }
+                // }, 2000);
+                window.lastInteractionTimeout = window.setTimeout(() => {
+                    if (document.pointerLockElement &&
+                        !JSON.parse(sessionStorage.getItem('settingsModalIsOPened') || 'false')) {
+                        window.dispatchEvent(new CustomEvent('enableRaycasting'));
+                        window.dispatchEvent(new CustomEvent('enableInteractions'));
+                        sessionStorage.setItem('interactionState', 'enabled');
+                    }
+                }, 2000);
+            }
+        };
+
+        document.addEventListener('pointerlockchange', handlePointerLock);
+        return () => {
+            document.removeEventListener('pointerlockchange', handlePointerLock);
+            if (window.lastInteractionTimeout) {
+                clearTimeout(window.lastInteractionTimeout);
+            }
+        };
+    }, []);
+
     return (
         <>
             <ShuffleText
